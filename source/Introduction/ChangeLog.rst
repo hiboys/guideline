@@ -27,6 +27,12 @@
         * 改善内容の詳細は、\ `5.3.1のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.1%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
 
     * -
+      - :doc:`../ImplementationAtEachLayer/DomainLayer`
+      - 記載内容の追加
+
+        * \ ``@Transactional`` \アノテーションの\ ``timeout`` \属性に関する記載を追加(\ `guideline#1776 <https://github.com/terasolunaorg/guideline/issues/1776>`_\ ) 
+
+    * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - 記載内容の追加
 
