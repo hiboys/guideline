@@ -934,7 +934,6 @@ Add a field such that up to 3 addresses can be registered in "user registration"
 * Add list of \ ``AddressForm``\  as a field in the form class.
 
   .. code-block:: java
-    :emphasize-lines: 32-35
 
     package com.example.sample.app.validation;
 
@@ -987,7 +986,6 @@ Add a field such that up to 3 addresses can be registered in "user registration"
 * JSP
 
   .. code-block:: jsp
-    :emphasize-lines: 26-58
 
     <!DOCTYPE html>
     <html>
@@ -1075,7 +1073,6 @@ Add a field such that up to 3 addresses can be registered in "user registration"
 * Controller class
 
   .. code-block:: java
-    :emphasize-lines: 20-22
 
     package com.example.sample.app.validation;
 
@@ -1236,7 +1233,6 @@ An example of executing validation using these groups is shown here.
 * Form class
 
   .. code-block:: java
-    :emphasize-lines: 18-26,38-42
 
     package com.example.sample.app.validation;
 
@@ -1315,7 +1311,6 @@ An example of executing validation using these groups is shown here.
   There are no major changes in JSP.
 
   .. code-block:: jsp
-      :emphasize-lines: 16-22
 
       <form:form modelAttribute="userForm" method="post"
           class="form-horizontal"
@@ -1348,7 +1343,6 @@ An example of executing validation using these groups is shown here.
  By giving a group name to \ ``@Validated``\  annotation, the rules defined for that group will be applied.
 
   .. code-block:: java
-      :emphasize-lines: 46-58
 
       package com.example.sample.app.validation;
 
@@ -2554,7 +2548,6 @@ Implementation example is shown below.
 * Implementation example of \ ``@Alphanumeric``\  annotation which is restricted to single byte alphanumeric characters
 
   .. code-block:: java
-    :emphasize-lines: 22-23,25
 
     package com.example.common.validation;
 
@@ -2614,7 +2607,6 @@ Implementation example is shown below.
 * Implementation example of \ ``@NotNegative``\  annotation which is restricted to positive number
 
   .. code-block:: java
-    :emphasize-lines: 22-23,25
 
     package com.example.common.validation;
 
@@ -2658,7 +2650,6 @@ Implementation example is shown below.
 * Implementation example of \ ``@UserId``\  annotation which regulates the format of "User ID".
 
   .. code-block:: java
-    :emphasize-lines: 23-25,27
 
     package com.example.sample.domain.validation;
 
@@ -2703,7 +2694,6 @@ Implementation example is shown below.
 * Implementation example of \ ``@Age``\  annotation which regulates the constraints on "Age"
 
   .. code-block:: java
-    :emphasize-lines: 23-25,27
 
     package com.example.sample.domain.validation;
 
@@ -3203,7 +3193,6 @@ For example, rules that check ISBN (International Standard Book Number)-13 forma
 * Annotation
 
   .. code-block:: java
-    :emphasize-lines: 16
 
     package com.example.common.validation;
 
@@ -3338,7 +3327,6 @@ Set constraint of assigning "confirm" as the prefix of confirmation field.
   Define such that annotation for validation of correlated items can be used at class level as well.
 
   .. code-block:: java
-    :emphasize-lines: 14,26
 
     package com.example.common.validation;
 
@@ -3667,7 +3655,6 @@ An example of implementing, "whether the entered user name is already registered
 * Validator class
 
   .. code-block:: java
-    :emphasize-lines: 11,15-16
 
     package com.example.sample.domain.validation;
 
