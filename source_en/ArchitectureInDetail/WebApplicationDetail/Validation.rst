@@ -2549,6 +2549,7 @@ Implementation example is shown below.
 * Implementation example of \ ``@Alphanumeric``\  annotation which is restricted to single byte alphanumeric characters
 
   .. code-block:: java
+    :emphasize-lines: 19,22-23,25
 
     package com.example.common.validation;
 
@@ -2608,6 +2609,7 @@ Implementation example is shown below.
 * Implementation example of \ ``@NotNegative``\  annotation which is restricted to positive number
 
   .. code-block:: java
+    :emphasize-lines: 19,22-23,25
 
     package com.example.common.validation;
 
@@ -2651,6 +2653,7 @@ Implementation example is shown below.
 * Implementation example of \ ``@UserId``\  annotation which regulates the format of "User ID".
 
   .. code-block:: java
+    :emphasize-lines: 20,23-25,27
 
     package com.example.sample.domain.validation;
 
@@ -2695,6 +2698,7 @@ Implementation example is shown below.
 * Implementation example of \ ``@Age``\  annotation which regulates the constraints on "Age"
 
   .. code-block:: java
+    :emphasize-lines: 20,23-25,27
 
     package com.example.sample.domain.validation;
 
