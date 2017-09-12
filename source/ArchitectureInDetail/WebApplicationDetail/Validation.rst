@@ -2565,6 +2565,7 @@ Bean Validationは標準で用意されているチェックルール以外に�
 * 半角英数字の文字種に限定する\ ``@Alphanumeric``\ アノテーションの実装例
 
   .. code-block:: java
+    :emphasize-lines: 19,22-23,25
 
     package com.example.common.validation;
 
@@ -2624,6 +2625,7 @@ Bean Validationは標準で用意されているチェックルール以外に�
 * 正の数に限定する\ ``@NotNegative``\ アノテーションの実装例
 
   .. code-block:: java
+    :emphasize-lines: 19,22-23,25
 
     package com.example.common.validation;
 
@@ -2667,6 +2669,7 @@ Bean Validationは標準で用意されているチェックルール以外に�
 * 「ユーザーID」のフォーマットを規定する\ ``@UserId``\ アノテーションの実装例
 
   .. code-block:: java
+    :emphasize-lines: 20,23-25,27
 
     package com.example.sample.domain.validation;
 
@@ -2711,6 +2714,7 @@ Bean Validationは標準で用意されているチェックルール以外に�
 * 「年齢」の制限を規定する\ ``@Age``\ アノテーションの実装例
 
   .. code-block:: java
+    :emphasize-lines: 20,23-25,27
 
     package com.example.sample.domain.validation;
 
