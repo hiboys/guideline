@@ -945,7 +945,6 @@ ECサイトにおける「注文」処理の例を考える。「注文」フォ
   \ ``AddressForm``\ のリストを、フィールドに追加する。
 
   .. code-block:: java
-    :emphasize-lines: 32-35
 
     package com.example.sample.app.validation;
 
@@ -998,7 +997,6 @@ ECサイトにおける「注文」処理の例を考える。「注文」フォ
 * JSP
 
   .. code-block:: jsp
-    :emphasize-lines: 26-58
 
     <!DOCTYPE html>
     <html>
@@ -1086,7 +1084,6 @@ ECサイトにおける「注文」処理の例を考える。「注文」フォ
 * Controllerクラス
 
   .. code-block:: java
-    :emphasize-lines: 20-22
 
     package com.example.sample.app.validation;
 
@@ -1247,7 +1244,6 @@ Bean Validationでグループを指定する場合、アノテーションの\ 
 * フォームクラス
 
   .. code-block:: java
-    :emphasize-lines: 18-26,38-42
 
     package com.example.sample.app.validation;
 
@@ -1326,7 +1322,6 @@ Bean Validationでグループを指定する場合、アノテーションの\ 
   JSPに大きな変更はない。
 
   .. code-block:: jsp
-      :emphasize-lines: 16-22
 
       <form:form modelAttribute="userForm" method="post"
           class="form-horizontal"
@@ -1359,7 +1354,6 @@ Bean Validationでグループを指定する場合、アノテーションの\ 
   \ ``@Validated``\ に、対象のグループを設定することで、バリデーションルールを変更できる。
 
   .. code-block:: java
-      :emphasize-lines: 46-58
 
       package com.example.sample.app.validation;
 
@@ -2571,7 +2565,7 @@ Bean Validationは標準で用意されているチェックルール以外に�
 * 半角英数字の文字種に限定する\ ``@Alphanumeric``\ アノテーションの実装例
 
   .. code-block:: java
-    :emphasize-lines: 22-23,25
+    :emphasize-lines: 19,22-23,25
 
     package com.example.common.validation;
 
@@ -2631,7 +2625,7 @@ Bean Validationは標準で用意されているチェックルール以外に�
 * 正の数に限定する\ ``@NotNegative``\ アノテーションの実装例
 
   .. code-block:: java
-    :emphasize-lines: 22-23,25
+    :emphasize-lines: 19,22-23,25
 
     package com.example.common.validation;
 
@@ -2675,7 +2669,7 @@ Bean Validationは標準で用意されているチェックルール以外に�
 * 「ユーザーID」のフォーマットを規定する\ ``@UserId``\ アノテーションの実装例
 
   .. code-block:: java
-    :emphasize-lines: 23-25,27
+    :emphasize-lines: 20,23-25,27
 
     package com.example.sample.domain.validation;
 
@@ -2720,7 +2714,7 @@ Bean Validationは標準で用意されているチェックルール以外に�
 * 「年齢」の制限を規定する\ ``@Age``\ アノテーションの実装例
 
   .. code-block:: java
-    :emphasize-lines: 23-25,27
+    :emphasize-lines: 20,23-25,27
 
     package com.example.sample.domain.validation;
 
@@ -3221,7 +3215,6 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
 * アノテーション
 
   .. code-block:: java
-    :emphasize-lines: 16
 
     package com.example.common.validation;
 
@@ -3356,7 +3349,6 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
   相関項目チェック用のアノテーションはクラスレベルに付与できるようにする。
 
   .. code-block:: java
-    :emphasize-lines: 14,26
 
     package com.example.common.validation;
 
@@ -3685,7 +3677,6 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
 * Validatorクラス
 
   .. code-block:: java
-    :emphasize-lines: 11,15-16
 
     package com.example.sample.domain.validation;
 
