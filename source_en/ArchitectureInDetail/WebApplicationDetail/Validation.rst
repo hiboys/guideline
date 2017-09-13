@@ -589,7 +589,7 @@ An example of error message is shown when the following CSS class is applied.
 
    In the method of "Displaying error messages in a list",
 
-   * Error message definition in feed unit
+   * Error message definition in field unit
    * Extended implementation to control the output order of error messages
 
    are required. Therefore, the cost is higher as compared to "displaying error messages next to input field".
@@ -1063,7 +1063,7 @@ Add a field such that up to 3 addresses can be registered in "user registration"
      * - Sr. No.
        - Description
      * - | (1)
-       - | Display error message related to \ ``address``\  field.
+       - | Display error message related to \ ``addresses``\  field.
      * - | (2)
        - | Process the collection of child forms in a loop using \ ``<c:forEach>``\  tag.
      * - | (3)
