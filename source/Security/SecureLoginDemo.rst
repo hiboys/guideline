@@ -1177,16 +1177,16 @@ ER図
 
      public class EncodedPasswordHistoryRule extends HistoryRule { // (1)
 
-         PasswordEncoder passwordEncoder; // (2)
+         private final PasswordEncoder passwordEncoder; // (2)
 
          public EncodedPasswordHistoryRule(PasswordEncoder passwordEncoder) {
              this.passwordEncoder = passwordEncoder;
          }
 
          @Override
-         protected boolean matches(final String clearText,
+         protected boolean matches(final String rawPassword,
                  final PasswordData.Reference reference) { // (3)
-             return passwordEncoder.matches(clearText, reference.getPassword()); // (4)
+             return passwordEncoder.matches(rawPassword, reference.getPassword()); // (4)
          }
      }
 
