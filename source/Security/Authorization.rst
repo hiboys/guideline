@@ -389,7 +389,8 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
     本事象の詳細は「\ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\」を参照されたい。
 
     \ `trimTokens` \ プロパティに \ `true` \ を設定した\ `org.springframework.util.AntPathMatcher` \ のBeanがSpring MVCに適用されている場合に、本事象が発生する。
-    しかし、Spring Framework 4.3 から\ `trimTokens` \ プロパティのデフォルト値は \ `false` \ となったため、意図的に変更しない限り本事象は発生しない。
+    Spring Framework 4.2以前は \ `trimTokens` \ プロパティのデフォルト値が\ `true`\ となっていたが、Spring Framework 4.3 からデフォルト値は \ `false` \ となったため、意図的に変更しない限り本事象は発生しない。
+
 
 .. warning::
     特定のURLに対してアクセスポリシーを設ける(\ ``pattern``\属性に\ ``*``\や\ ``**``\などのワイルドカード指定を含めない)場合、
