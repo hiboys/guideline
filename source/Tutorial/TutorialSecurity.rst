@@ -1172,7 +1172,7 @@ spring-mvc.xml
 Spring Securityと関係のない設定については、説明を割愛する。
 
 .. code-block:: xml
-    :emphasize-lines: 22-24,87-89
+    :emphasize-lines: 22-24,85-87
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -1199,8 +1199,6 @@ Spring Securityと関係のない設定については、説明を割愛する�
                 <bean
                     class="org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver" />
             </mvc:argument-resolvers>
-            <!-- workaround to CVE-2016-5007. -->
-            <mvc:path-matching path-matcher="pathMatcher" />
         </mvc:annotation-driven>
 
         <mvc:default-servlet-handler />
@@ -1304,11 +1302,6 @@ Spring Securityと関係のない設定については、説明を割愛する�
             <aop:advisor advice-ref="handlerExceptionResolverLoggingInterceptor"
                 pointcut="execution(* org.springframework.web.servlet.HandlerExceptionResolver.resolveException(..))" />
         </aop:config>
-
-        <!-- Setting PathMatcher. -->
-        <bean id="pathMatcher" class="org.springframework.util.AntPathMatcher">
-            <property name="trimTokens" value="false" />
-        </bean>
 
     </beans>
 
