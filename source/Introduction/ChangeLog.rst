@@ -67,6 +67,12 @@
         * SOAP Web Serviceの実装に伴うインジェクションで使用するアノテーションを\ ``@Inject`` \から\ ``@Autowired`` \に変更(\ `guideline#2763 <https://github.com/terasolunaorg/guideline/issues/2763>`_\ )
         * Spring FrameworkのJAX-WS連携機能についての誤記修正と、SOAPサーバがJavaEEサーバのJAW-WS実装上で動作することに伴なう注意事項の追記(\ `guideline#2770 <https://github.com/terasolunaorg/guideline/issues/2770>`_\ )
 
+    * -
+      - :doc:`../Security/Authorization`
+      - Spring Framework 4.3対応に伴う修正
+
+        * ブランクプロジェクトから\ ``mvc:path-matching`` \の定義を削除しSpring MVCのデフォルト設定を使用するよう変更したことに伴う記載内容の修正(\ `guideline#2941 <https://github.com/terasolunaorg/guideline/issues/2941>`_\ )
+
     * - 
       - :doc:`../Security/XSS`
       - 記載内容の修正、追加
