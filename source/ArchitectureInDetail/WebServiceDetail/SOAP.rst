@@ -71,12 +71,29 @@ JAX-WSとは
 
 |
 
+.. _SOAPOverviewAboutRESTfulWebServiceDevelopment:
+
+JAX-WSを利用したWebサービスの開発について
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+| TERASOLUNA Server Framework for Java (5.x)では、APサーバのJAX-WS実装とSpringの機能を利用してWebサービスの開発を行うことを推奨する。
+| SOAPサーバ、クライアントどちらにおいても、通常のWebアプリケーション同様に、ブランクプロジェクト内のwebプロジェクトから作成したWARファイルをAPサーバにデプロイすることで、SOAP Web Serviceを実現することができる。
+
+.. Note::
+
+    APサーバのJAX-WS実装によって、JAX-WS仕様への対応状況や実際のWebサービスの動作やが異なる場合があり、必ずしも本ガイドラインの実装が全てのAPサーバで同様に動作するわけではない。
+    
+    開発を始める前には必ず、「\ :ref:`SOAPApplicationConfiguration`\」のNoteから使用するAPサーバのマニュアルを確認されたい。
+
+|
+
+
 .. _SOAPOverviewJaxWSSpring:
 
 Spring FrameworkのJAX-WS連携機能について
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| Spring FrameworkはJAX-WSの連携機能をサポートしており、その機能を使用することでSOAPサーバ、クライアントともに簡単に実装することができる。
-| 以下はその機能を用いた、推奨アクセスフローの概要である。ここではSOAPのクライアント(図左)であるWebアプリケーションがSOAPサーバ(図右)にアクセスすることを前提としている。
+| Spring FrameworkはJAX-WSの連携機能をサポートしており、その機能を使用することでJAX-WSを利用して作成されたSOAP Web Serviceに接続するアプリケーションを簡単に実装することができる。
+| 以下はその機能を用いた、推奨アクセスフローの概要である。
+| ここではSOAPのクライアント(図左)であるWebアプリケーションがSOAPサーバ(図右)にアクセスすることを前提としている。
 
 .. figure:: images_SOAP/SOAPProcessFlow.png
     :alt: Server and Client Projects for SOAP
@@ -108,7 +125,7 @@ Spring FrameworkのJAX-WS連携機能について
 
             厳密には、SOAPサーバとクライアントはXMLを使用して通信を行っている。
             送信時、および受信時にはJAXBを使用して、Domain ObjectとXMLの相互変換が行われているが、SOAP Web Service作成者はXMLをあまり意識せず、開発を行うことができるようになっている。
-        
+                
     * - | (5)
       - | [サーバ] WebServiceインターフェースが呼び出されると実体としてWebService実装クラスが呼び出される。
         | SOAPサーバでは、WebServiceインターフェースの実装クラスとしてWebService実装クラスを用意する。
@@ -116,9 +133,13 @@ Spring FrameworkのJAX-WS連携機能について
 
         .. Note::
 
-            SOAPサーバは、\ ``@Inject``\ではなく、\ ``@Autowired``\でインジェクションすることを推奨する。
+            WebService実装クラスは、Spring Frameworkが提供するDispatcherServlet上ではなく、APサーバのJAX-WSエンジンが実装するサーブレットとして動作する。このためガイドラインのアプリケーション層の実装に記載している実装方法とは以下のような違いがあることに注意されたい。
+            
+            * WebService実装クラスがSpringのDIコンテナ上で管理されないため、例えばSpringのAOPによる横断的な処理をかけることができない。（ただし、JAX-WS実装としてApache CXFを利用する場合にはSpringのDIコンテナ上で管理される）
+            * SpringのControllerクラスではないため、 \ ``@ControllerAdvice``\ や \ ``@ExceptionHandler`` \などが適用されない。
+            
+            また、SOAPサーバは、\ ``@Inject``\ではなく、\ ``@Autowired``\でインジェクションすることを推奨する。
 
-            SOAPサーバは、Springが実装するサーブレットではなく、JAX-WSエンジンが実装するサーブレット上で動作する。
             \ ``@Inject``\の場合、JavaEEサーバが提供するDI機能で使用されるため、JavaEEサーバのDIコンテナに存在しないとエラーになってしまう。
 
             上記に対して、\ ``@Autowired``\であればSpringのDI機能のみで使用されるため、意図せずJavaEEサーバのDI機能でエラーになるのを防止することができる。
@@ -141,20 +162,6 @@ Spring FrameworkのJAX-WS連携機能について
 .. note::
 
     SpringでのJAX-WS実装の詳細は、\ `Spring Framework Reference Documentation -Remoting and web services using Spring(Web services)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/remoting.html#remoting-web-services>`_\ を参照されたい。
-
-|
-
-.. _SOAPOverviewAboutRESTfulWebServiceDevelopment:
-
-JAX-WSを利用したWebサービスの開発について
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| TERASOLUNA Server Framework for Java (5.x)では、APサーバのJAX-WS実装とSpringの機能を利用してWebサービスの開発を行うことを推奨する。
-
-
-.. Note:: **APサーバへのデプロイについて**
-
-    SOAPサーバ、クライアントどちらにおいても、通常のWebアプリケーション同様に、ブランクプロジェクト内のwebプロジェクトから作成したWARファイルをAPサーバにデプロイすることで、SOAP Web Serviceを実現することができる。
-
 
 |
 
@@ -336,6 +343,8 @@ SOAPサーバの作成
 
 |
 
+.. _SOAPApplicationConfiguration:
+
 アプリケーションの設定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -353,6 +362,8 @@ SOAPサーバの作成
     JBoss Enterprise Application Platform 7.0: \ `DEVELOPING JAX-WS WEB SERVICES <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/developing-web-services-applications/chapter-3-developing-jax-ws-web-services>`_\
 
     JBoss Enterprise Application Platform 6.4: \ `DEVELOPMENT GUIDE JAX-WS WEB SERVICES <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Development_Guide/chap-JAX-WS_Web_Services.html>`_\
+    
+    WebSphere Application Server 9.0: \ `IBM Knowledge Center - Web services <https://www.ibm.com/support/knowledgecenter/SSEQTP_9.0.0/com.ibm.websphere.base.doc/ae/cwbs_wbs2.html>`_\
 
 |
 
@@ -630,6 +641,12 @@ webプロジェクト内にWebServiceインターフェースの実装クラス�
       - | \ ``@BindingType``\ を付けることで、バインディングの方式を設定する。
         | \ ``SOAPBinding.SOAP12HTTP_BINDING``\ を定義するとSOAP1.2でのバインディングとなる。
         | 何もつけない場合は、SOAP1.1でのバインディングとなる。
+
+        .. note::
+          使用するAPサーバのJAX-WS実装により、バインディング方式で挙動が異なる場合があるため注意すること。
+          
+          たとえば、WebSphere Application Serverの特定のバージョンではSOAP1.2でのバインディングの場合にWSDLが自動生成されない。詳細については\ `IBM Knowledge Center - Using annotations to create web services <https://www.ibm.com/support/knowledgecenter/SSRTLW_9.0.0/com.ibm.webservice.doc/topics/jaxws/cwsandoc001.html>`_\を参照されたい。
+
     * - | (3)
       - | 先ほど作成した\ ``TodoWebService``\ インターフェースを実装する。
         | \ ``org.springframework.web.context.support.SpringBeanAutowiringSupport``\ を継承することで、SpringのBeanをDIできるようにする。
