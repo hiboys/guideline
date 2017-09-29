@@ -73,6 +73,12 @@
 
         * パスワードを\ ``StandardPasswordEncoder`` \によるハッシュ化によって管理する場合の注意事項を追加(\ `guideline#2092 <https://github.com/terasolunaorg/guideline/issues/2092>`_\ )
 
+    * -
+      - :doc:`../Security/Authorization`
+      - Spring Framework 4.3対応に伴う修正
+
+        * ブランクプロジェクトから\ ``mvc:path-matching`` \の定義を削除しSpring MVCのデフォルト設定を使用するよう変更したことに伴う記載内容の修正(\ `guideline#2941 <https://github.com/terasolunaorg/guideline/issues/2941>`_\ )
+
     * - 
       - :doc:`../Security/XSS`
       - 記載内容の修正、追加
