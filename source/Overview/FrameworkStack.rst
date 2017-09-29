@@ -657,8 +657,8 @@ Macchinetta Server Framework (1.x)では、\ `TERASOLUNA Server Framework for Ja
       - terasoluna-gfw-codepoints
       - 対象の文字列を構成するコードポイントがコードポイント集合に含まれることをチェックする機能を提供する。(5.1.0から追加)
       - 有
-      - 無
-      - 無
+      - 無*3
+      - 無*3
     * - \ (16)
       - terasoluna-gfw-validator
       - 汎用的なBean Validationの制約アノテーションを追加して提供する。(5.1.0から追加)
@@ -675,14 +675,14 @@ Macchinetta Server Framework (1.x)では、\ `TERASOLUNA Server Framework for Ja
       - terasoluna-gfw-mybatis3-dependencies
       - MyBatis3を使用する場合の依存関係定義を提供する。(5.2.0から追加)
       - 無
-      - 有*3
-      - 有*3
+      - 有*4
+      - 有*4
     * - \ (19)
       - terasoluna-gfw-jpa-dependencies
       - JPAを使用する場合の依存関係定義を提供する。(5.2.0から追加)
       - 無
-      - 無*4
-      - 無*4
+      - 有*5
+      - 有*5
     * - \ (20)
       - terasoluna-gfw-recommended-dependencies
       - Webに依存しない推奨ライブラリへの依存関係定義を提供する。
@@ -702,6 +702,7 @@ Macchinetta Server Framework (1.x)では、\ `TERASOLUNA Server Framework for Ja
 
 #. | \ ``<dependency>``\ 要素ではないが、各プロジェクトの\ ``<parent>``\ 要素として組み込まれる。
 #. | \ ``<dependency>``\ 要素ではないが、\ ``<dependency>``\ 要素からの推移的依存関係として組み込まれる。
+#. | 使用するコードポイント集合に応じて複数のアーティファクトを提供している。詳細は :ref:`StringProcessingHowToUseCodePointsClasses` を参照されたい。
 #. | データアクセスに、MyBatis3を使用する場合に標準で組み込まれる共通ライブラリ
 #. | データアクセスに、JPAを使用する場合に用いる共通ライブラリ。Macchinetta Server Framework (1.x)では使用しない
 
