@@ -94,9 +94,6 @@ CVE(Common Vulnerabilities and Exposures)による観点
      - * :ref:`FileUploadOverview`
 
        * :ref:`file-upload_usage_commons_fileupload`
-   * - \ `CVE-2014-1904 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1904>`_\
-     - \ ``<form:form>``\タグの \ ``action``\属性を省略するとXSS攻撃を受ける可能性がある
-     - * :ref:`ApplicationLayerImplementOfJsp`
    * - \ `CVE-2015-3192 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3192>`_\
      - DTDを使用したDoS攻撃が可能となる
      - * :ref:`ajax_how_to_use`
