@@ -218,7 +218,7 @@ Delete TODO
         mvn archetype:generate -B\
          -DarchetypeGroupId=org.terasoluna.gfw.blank\
          -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype\
-         -DarchetypeVersion=5.3.0.RELEASE\
+         -DarchetypeVersion=5.3.1.RELEASE\
          -DgroupId=todo\
          -DartifactId=todo\
          -Dversion=1.0.0-SNAPSHOT
@@ -238,7 +238,7 @@ O/R Mapperに依存しないブランクプロジェクトの作成
     mvn archetype:generate -B^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeVersion=5.3.1.RELEASE^
      -DgroupId=todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
@@ -256,7 +256,7 @@ MyBatis3を使用してデータベースにアクセスするRepositoryImpl用�
     mvn archetype:generate -B^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-mybatis3-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeVersion=5.3.1.RELEASE^
      -DgroupId=todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
@@ -274,7 +274,7 @@ Spring Data JPAの使用してデータベースにアクセスするRepositoryI
     mvn archetype:generate -B^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-jpa-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeVersion=5.3.1.RELEASE^
      -DgroupId=todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
