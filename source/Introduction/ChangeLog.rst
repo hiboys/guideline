@@ -10,6 +10,18 @@
       - 更新箇所
       - 更新内容
 
+    * - 2017-11-10
+      - \-
+      - 5.3.1 RELEASE版公開
+
+        * 更新内容の詳細は、\ `5.3.1のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.1%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
+
+    * -
+      - :doc:`../ArchitectureInDetail/GeneralFuncDetail/StringProcessing`
+      - ガイドラインのバグ修正
+
+        *  全角・半角文字列変換に使用するペア定義を適切に修正(\ `guideline#3004 <https://github.com/terasolunaorg/guideline/issues/3004>`_\ )
+
     * - 2017-03-17
       - \-
       - 5.3.0 RELEASE版公開
