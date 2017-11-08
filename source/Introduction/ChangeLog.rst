@@ -17,10 +17,10 @@
         * 更新内容の詳細は、\ `5.3.1のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.1%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
 
     * -
-      - :doc:`../ArchitectureInDetail/GeneralFuncDetail/StringProcessing`
-      - ガイドラインのバグ修正
+      - 全般
+      - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
-        *  全角・半角文字列変換に使用するペア定義を適切に修正(\ `guideline#3004 <https://github.com/terasolunaorg/guideline/issues/3004>`_\ )
+        * 修正内容の詳細は、\ `5.3.1のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.1%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
 
     * - 2017-03-17
       - \-
