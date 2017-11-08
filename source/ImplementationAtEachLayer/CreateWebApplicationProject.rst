@@ -103,7 +103,7 @@ Webアプリケーション向け開発プロジェクトの作成
     mvn archetype:generate -B^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-multi-web-blank-mybatis3-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeVersion=5.3.1.RELEASE^
      -DgroupId=com.example.todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
@@ -152,7 +152,7 @@ Webアプリケーション向け開発プロジェクトの作成
 
     (... omit)
     [INFO] ----------------------------------------------------------------------------
-    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-multi-web-blank-mybatis3-archetype:5.3.0.RELEASE
+    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-multi-web-blank-mybatis3-archetype:5.3.1.RELEASE
     [INFO] ----------------------------------------------------------------------------
     [INFO] Parameter: groupId, Value: com.example.todo
     [INFO] Parameter: artifactId, Value: todo
