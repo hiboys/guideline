@@ -24,7 +24,7 @@ Overview
 
     File Upload functionality of Servlet 3.0 may likely result into garbling of multi byte characters of file names or request parameters on some application server.
 
-    Application servers wherein occurrence of issues is confirmed at the version 5.3.0.RELEASE are as shown below.
+    Application servers wherein occurrence of issues is confirmed at the version 5.3.1.RELEASE are as shown below.
 
     * WebLogic 12.1.3
     * JBoss EAP 7.0
@@ -1783,7 +1783,7 @@ Perform the following settings when using Commons FileUpload.
 
     When using Apache Commons FileUpload, version 1.3.2 or above should be used.
 
-    Note that, if a version managed by Spring IO Platform Athens-SR2.RELEASE which is in conformance with TERASOLUNA Server Framework for Java version 5.3.0.RELEASE is used, vulnerabilities reported in CVE-2014-0050 and CVE-2016-3092 do not occur.
+    Note that, if a version managed by Spring IO Platform Athens-SR2.RELEASE which is in conformance with TERASOLUNA Server Framework for Java version 5.3.1.RELEASE is used, vulnerabilities reported in CVE-2014-0050 and CVE-2016-3092 do not occur.
     When Apache Commons FileUpload version is to be changed intentionally, a version wherein corresponding vulnerability has been addressed must be specified.
 
 |
