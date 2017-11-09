@@ -498,8 +498,8 @@ Implementation method and code description
 ================================================================================
 
 | Method of implementation in this application and the code are described for each classification of security requirements.
-| Only the minimum code required to fulfil the requirements for each classification is described here. Refer to `GitHub <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.3.0.RELEASE/secure-login-demo>`_ for the complete code.
-| SQL for initial data registration to run this application is placed `here <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.3.0.RELEASE/secure-login-demo/secure-login-env/src/main/resources/database>`_.
+| Only the minimum code required to fulfil the requirements for each classification is described here. Refer to `GitHub <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.3.1.RELEASE/secure-login-demo>`_ for the complete code.
+| SQL for initial data registration to run this application is placed `here <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.3.1.RELEASE/secure-login-demo/secure-login-env/src/main/resources/database>`_.
 
 .. note::
 
