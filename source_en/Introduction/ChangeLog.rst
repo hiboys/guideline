@@ -9,6 +9,18 @@ Change Log
       - Modified locations
       - Modification details
 
+    * - 2017-11-10
+      - \-
+      - 5.3.1 RELEASE version published
+
+        * For details of update, refer \ `Issue list of 5.3.1 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.1%20is%3Aissue%20is%3Aclosed%20>`_\.
+
+    * -
+      - General
+      - Correction of guideline mistakes (typing errors, simple mistakes, etc.)
+
+        * For details of the correction,please refer \ `5.3.1's Issue list (clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.1%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\.
+
     * - 2017-03-17
       - \-
       - 5.3.0 RELEASE version published
