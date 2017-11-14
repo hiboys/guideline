@@ -12,19 +12,19 @@
 
     * - 2017-XX-XX
       - \-
-      - 5.3.1 RELEASE版公開
+      - 5.3.2 RELEASE版公開
 
-        * 更新内容の詳細は、\ `5.3.1のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.1%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
+        * 更新内容の詳細は、\ `5.3.2のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.2%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
 
     * -
       - 全般
       - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
-        * 修正内容の詳細は、\ `5.3.1のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.1%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
+        * 修正内容の詳細は、\ `5.3.2のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.2%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
 
         記載内容の改善
 
-        * 改善内容の詳細は、\ `5.3.1のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.1%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
+        * 改善内容の詳細は、\ `5.3.2のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.2%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
 
     * -
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
@@ -108,7 +108,19 @@
 
         * フロー図およびその説明の改善(\ `guideline#2891 <https://github.com/terasolunaorg/guideline/issues/2891>`_\ )
 
-        * その他修正内容の詳細は、\ `5.3.1のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.1%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
+        * その他修正内容の詳細は、\ `5.3.2のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.2%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
+
+    * - 2017-11-10
+      - \-
+      - 5.3.1 RELEASE版公開
+
+        * 更新内容の詳細は、\ `5.3.1のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.1%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
+
+    * -
+      - 全般
+      - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
+
+        * 修正内容の詳細は、\ `5.3.1のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.1%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
 
     * - 2017-03-17
       - \-
