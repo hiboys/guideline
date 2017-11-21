@@ -70,7 +70,7 @@ RESTful Web Serviceとは
 
 RESTful Web Serviceの開発について
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TERASOLUNA Server Framework for Java (5.x)では、Spring MVCの機能を利用してRESTful Web Serviceの開発を行う。
+Macchinetta Server Framework (1.x)では、Spring MVCの機能を利用してRESTful Web Serviceの開発を行う。
 
 | Spring MVCでは、RESTful Web Serviceを開発する上で必要となる共通的な機能がデフォルトで組み込まれている。
 | そのため、特別な設定の追加や実装を行うことなく、RESTful Web Serviceの開発を開始する事ができる。
@@ -241,7 +241,7 @@ REST APIの実装サンプル
 
     \ **詳細な説明を読む前に、まずは**\「:doc:`../../Tutorial/TutorialREST`」\ **を実践する事を強く推奨する。**\
 
-    チュートリアルでは”習うより慣れろ”を目的としており、 詳細な説明の前に実際に手を動かすことでTERASOLUNA Server Framework for Java (5.x)によるRESTful Web Serviceの開発を体感する事が出来る。
+    チュートリアルでは”習うより慣れろ”を目的としており、 詳細な説明の前に実際に手を動かすことでMacchinetta Server Framework (1.x)によるRESTful Web Serviceの開発を体感する事が出来る。
     RESTful Web Serviceの開発を体感した後に、詳細な説明を読むことで、RESTful Web Serviceの開発に対する理解度がより深まる事が期待できる。
     
     特にRESTful Web Serviceの開発経験がない場合は、「チュートリアルの実践」 → 「アーキテクチャ、設計、開発に関する詳細な説明(次節以降で説明)」 → 「チュートリアルの振り返り(再実践)」というプロセスを踏むことを推奨する。
@@ -2184,7 +2184,7 @@ REST APIの実装
      開発者がこれらのREST APIを明示的に実装する必要はない。
 
      なお、暗黙的に用意されるOPTIONS用のREST APIがレスポンスするAllowヘッダの中にはOPTIONS自体が含まれないため、
-     TERASOLUNA Server Framework for Java 5.2.xまでの開発ガイドラインで紹介している実装例と異なる点に留意されたい。
+     Macchinetta Server Framework 1.3.xまでの開発ガイドラインで紹介している実装例と異なる点に留意されたい。
 
 |
 

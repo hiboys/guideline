@@ -2195,9 +2195,9 @@ Apache ActiveMQを利用する場合の設定について説明する。
 
  .. warning::
 
-   TERASOLUNA Server Framework for Javaで使用している\ `Spring IO Platform <http://platform.spring.io/platform/>`_\ では、Apache ActiveMQと接続などを行う際に使用するライブラリのバージョンを定義している。
+   Macchinetta Server Framework で使用している\ `Spring IO Platform <http://platform.spring.io/platform/>`_\ では、Apache ActiveMQと接続などを行う際に使用するライブラリのバージョンを定義している。
    そのため、Apache ActiveMQのバージョンを決定する際には注意すること。
-   また、TERASOLUNA Server Framework for Javaのバージョンアップの際には、ライブラリとミドルウェアのバージョンの整合性が取れなくなる可能性があるので注意すること。
+   また、Macchinetta Server Framework のバージョンアップの際には、ライブラリとミドルウェアのバージョンの整合性が取れなくなる可能性があるので注意すること。
 
 |
 

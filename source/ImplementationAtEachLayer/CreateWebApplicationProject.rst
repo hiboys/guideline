@@ -1662,7 +1662,7 @@ Maven Archetypeで作成したプロジェクトのプロジェクト階層の�
         Maven Archetypeで作成したプロジェクトはマルチモジュール構成となっており、
         親プロジェクトと各サブモジュールは相互参照の関係になっている。
 
-        version 5.3.0.RELEASE用のMaven Archetypeで作成したプロジェクトでは、
+        version 1.4.0.RELEASE用のMaven Archetypeで作成したプロジェクトでは、
         親プロジェクトとして「org.terasoluna.gfw:terasoluna-gfw-parent:5.3.0.RELEASE」を指定している。
     * - | (2)
       - TERASOLUNA Server Framework for Java (5.x) Parentプロジェクト。
