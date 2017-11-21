@@ -13,7 +13,7 @@
 このチュートリアルで学ぶこと
 --------------------------------------------------------------------------------
 
-* TERASOLUNA Server Framework for Java (5.x)による基本的なRESTful Webサービスの構築方法
+* Macchinetta Server Framework (1.x)による基本的なRESTful Webサービスの構築方法
 
 対象読者
 --------------------------------------------------------------------------------
@@ -2464,7 +2464,7 @@ DHCを開いてURLに\ ``"localhost:8080/todo/api/v1/todos"``\ を入力し、�
 ================================================================================
 このチュートリアルでは、以下の内容を学習した。
 
-* TERASOLUNA Server Framework for Java (5.x)による基本的なRESTful Webサービスの構築方法
+* Macchinetta Server Framework (1.x)による基本的なRESTful Webサービスの構築方法
 * REST API(GET, POST, PUT, DELETE)を提供するControllerクラスの実装
 * JavaBeanとJSONの相互変換方法
 * エラーメッセージの定義方法
