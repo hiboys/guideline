@@ -4411,7 +4411,7 @@ Hibernate Validatorの代表的なアノテーション(\ ``org.hibernate.valida
             
    * - \ ``@Email``\
      - 任意の\ ``CharSequence``\ インタフェースの実装クラスに適用可能
-     - RFC2822に準拠したEmailアドレスかどうか検証する。
+     - Emailアドレスとして妥当であること検証する。
      - .. code-block:: java
 
             @Email
