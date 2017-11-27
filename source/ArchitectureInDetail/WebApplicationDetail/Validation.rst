@@ -4443,6 +4443,18 @@ Hibernate Validatorの代表的なアノテーション(\ ``org.hibernate.valida
             @NotEmpty
             private String password;
 
+.. warning::
+
+    \ ``@Email``\ 使用する際は以下の点に注意が必要である。
+
+    * \ ``@Email``\ は正確にRFC2822に準拠しているわけではなく、例えばマルチバイト文字がアドレスに含まれていても入力チェックで検証エラーが起きない。
+
+    * 過去のキャリアメールのメールアドレスには、RFC2822に準拠していないものも存在する。
+
+    これらの注意点を考慮した上でメールアドレスの検証を行いたい場合は、使用するSMTPサーバ等のメール利用環境要件に合わせて入力チェックルールを定義する必要がある。
+
+    実装の際は、\ :ref:`Validation_convine_existing_constraint`\ を参照されたい。
+
 .. tip::
 
      \ ``@URL``\ にて、JVMがサポートしていないプロトコルについても妥当として検証したい場合、Hibernateから提供されている\ ``org.hibernate.validator.constraintvalidators.RegexpURLValidator``\ を使用する。
