@@ -659,13 +659,13 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
       - 有*1
     * - \ (2)
       - terasoluna-gfw-common-libraries
-      - 共通ライブラリのうち、Javaソースコードを含むプロジェクトの構成を定義する。依存関係としてpom.xmlに追加する必要はない。
+      - 共通ライブラリのうち、Javaソースコードを含むプロジェクトの構成を定義する。依存関係としてpom.xmlに追加する必要はない。(5.2.0から追加)
       - 無
       - 有*1
       - 有*1
     * - \ (3)
       - terasoluna-gfw-dependencies
-      - 共通ライブラリのうち、依存関係定義のみを提供するプロジェクト(terasoluna-gfw-parent以外)の構成を定義する。依存関係としてpom.xmlに追加する必要はない。
+      - 共通ライブラリのうち、依存関係定義のみを提供するプロジェクト(terasoluna-gfw-parent以外)の構成を定義する。依存関係としてpom.xmlに追加する必要はない。(5.2.0から追加)
       - 無
       - 有*1
       - 有*1
@@ -677,7 +677,7 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
       - 有*2
     * - \ (5)
       - terasoluna-gfw-common-dependencies
-      - terasoluna-gfw-commonプロジェクトが提供する機能を使用する場合の依存関係定義を提供する。
+      - terasoluna-gfw-commonプロジェクトが提供する機能を使用する場合の依存関係定義を提供する。(5.2.0から追加)
       - 無
       - 有
       - 有
@@ -689,7 +689,7 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
       - 有*2
     * - \ (7)
       - terasoluna-gfw-jodatime-dependencies
-      - terasoluna-gfw-jodatimeプロジェクトが提供する機能を使用する場合の依存関係定義を提供する。
+      - terasoluna-gfw-jodatimeプロジェクトが提供する機能を使用する場合の依存関係定義を提供する。(5.2.0から追加)
       - 無
       - 有
       - 有
@@ -701,7 +701,7 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
       - 有*2
     * - \ (9)
       - terasoluna-gfw-web-dependencies
-      - terasoluna-gfw-webプロジェクトが提供する機能を使用する場合の依存関係定義を提供する。
+      - terasoluna-gfw-webプロジェクトが提供する機能を使用する場合の依存関係定義を提供する。(5.2.0から追加)
       - 無
       - 有
       - 有
@@ -713,7 +713,7 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
       - 有*2
     * - \ (11)
       - terasoluna-gfw-web-jsp-dependencies
-      - terasoluna-gfw-web-jspプロジェクトが提供する機能を使用する場合の依存関係定義を提供する。
+      - terasoluna-gfw-web-jspプロジェクトが提供する機能を使用する場合の依存関係定義を提供する。(5.2.0から追加)
       - 無
       - 有
       - 有
@@ -725,7 +725,7 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
       - 有*2
     * - \ (13)
       - terasoluna-gfw-security-web-dependencies
-      - Spring Securityを使用する場合の依存関係定義(Web関連)と、terasoluna-gfw-security-webプロジェクトが提供する機能を使用する場合の依存関係定義を提供する。
+      - Spring Securityを使用する場合の依存関係定義(Web関連)と、terasoluna-gfw-security-webプロジェクトが提供する機能を使用する場合の依存関係定義を提供する。(5.2.0から追加)
       - 無
       - 有
       - 有
@@ -749,19 +749,19 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
       - 無
     * - \ (17)
       - terasoluna-gfw-security-core-dependencies
-      - Spring Securityを使用する場合の依存関係定義(Web以外)を提供する。
+      - Spring Securityを使用する場合の依存関係定義(Web以外)を提供する。(5.2.0から追加)
       - 無
       - 有
       - 有
     * - \ (18)
       - terasoluna-gfw-mybatis3-dependencies
-      - MyBatis3を使用する場合の依存関係定義を提供する。
+      - MyBatis3を使用する場合の依存関係定義を提供する。(5.2.0から追加)
       - 無
       - 有*4
       - 有*4
     * - \ (19)
       - terasoluna-gfw-jpa-dependencies
-      - JPAを使用する場合の依存関係定義を提供する。
+      - JPAを使用する場合の依存関係定義を提供する。(5.2.0から追加)
       - 無
       - 有*5
       - 有*5
