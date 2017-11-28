@@ -997,6 +997,17 @@ BCryptPasswordEncoder
     \ ``strength``\ には4(16回)から31(2,147,483,648回)を指定することが可能である。
     ストレッチング回数が多いほどパスワードの強度は増すが、計算量が多くなるため性能にあたえる影響も大きくなる。
 
+.. note::
+
+    ガイドラインではBCryptを使用したハッシュ化を推奨しているが、\ `OWASP <https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet>`_\
+    ではBCryptよりPBKDF2が推奨されている。
+    また、\ `NIST800-132の「5 Password-Based Key Derivation Functions」 <http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-132.pdf>`_\
+    ではPBKDFのハッシュ関数に使用するイテレーションカウントを、最低1,000、特に重要なキーや性能が問題にならないシステムの場合は10,000,000を設定することが推奨されている。
+    ストレッチング回数と同様、イテレーションカウントが大きくなるほどパスワード強度は増すが、性能にあたえる影響も大きくなる。
+
+    なお、PBKDF2に対応するには、Spring Security 4.1から追加されている\ ``PasswordEncoder``\ の実装クラスである
+    \ ``org.springframework.security.crypto.password.Pbkdf2PasswordEncoder``\ を使用すればよい。
+
 |
 
 .. _SpringSecurityAuthenticationEvent:
