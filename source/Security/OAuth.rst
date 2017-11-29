@@ -1668,16 +1668,11 @@ Spring Securityの詳細については \ :doc:`../../Security/Authentication`\ 
 
 .. tip::
 
-    Internet Explorerがサポートブラウザとなっている場合は、
-    エラー画面として応答するHTMLのサイズが512バイトより大きくなるように実装する必要がある。
+    アプリケーションでInternet Explorerをサポートする場合、エラー画面の応答として生成されるHTMLのサイズに注意する必要がある。
 
-    Internet Explorerでは、
+    Internet Explorerでは、特定の条件を満たすとアプリケーションが用意したエラー画面の代わりに、Internet Explorerが用意した簡易メッセージを表示するためである。
 
-    * 応答されたステータスコードがエラー系(4xxと5xx)
-    * 応答されたHTMLが512バイト以下
-    * ブラウザの設定が「HTTP簡易メッセージを表示する」が有効な状態
-
-    という３つの条件を充たした際に、Internet Explorerが用意している簡易メッセージが表示される仕組みになっているためである。
+    詳細は、\ `Friendly HTTP Error Pages <https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/>`_\ を参照されたい。
 
 .. _OAuthAuthorizationServerHowToConfigureAccessToken:
 
