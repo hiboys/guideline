@@ -254,16 +254,6 @@ Bean ValidationのAPI仕様クラス(\ ``javax.validation``\ パッケージの�
        - | 対象のフィールドが指定した数値の以下であることを示す\ ``javax.validation.constraints.Max``\ を付ける。
 
 
-  .. warning::
-
-    Emailの形式は\ `RFC2822 <https://www.ietf.org/rfc/rfc2822.txt>`_\ で定義されているが、\ ``@Email``\は厳密にRFC2822に準拠していることをチェックするものではない。
-
-    例えばマルチバイト文字（全角文字）を含んでいても\ ``@Email``\でのチェックをパスすることが確認されている。
-    また、実際に利用されているEmailアドレスも、必ずしもRFC2822に厳密に準拠しているわけではない。
-
-    これらの注意点を考慮した上で、利用・サポートするSMTPサーバなどによって適切なルールでの入力チェックを実装することを推奨する。
-    実装の際は、\ :ref:`Validation_convine_existing_constraint`\ を参照されたい。
-
   .. tip::
   
     Bean Validation標準のアノテーション、Hibernate Validationが用意しているアノテーションについては、\ :ref:`Validation_jsr303_doc`\ 、\ :ref:`Validation_validator_list`\ を参照されたい。
@@ -4451,6 +4441,16 @@ Hibernate Validatorの代表的なアノテーション(\ ``org.hibernate.valida
 
             @NotEmpty
             private String password;
+
+.. warning::
+
+    Emailの形式は\ `RFC2822 <https://www.ietf.org/rfc/rfc2822.txt>`_\ で定義されているが、\ ``@Email``\は厳密にRFC2822に準拠していることをチェックするものではない。
+
+    例えばマルチバイト文字（全角文字）を含んでいても\ ``@Email``\でのチェックをパスすることが確認されている。
+    また、実際に利用されているEmailアドレスも、必ずしもRFC2822に厳密に準拠しているわけではない。
+
+    これらの注意点を考慮した上で、利用・サポートするSMTPサーバなどによって適切なルールでの入力チェックを実装することを推奨する。
+    実装の際は、\ :ref:`Validation_convine_existing_constraint`\ を参照されたい。
 
 .. tip::
 
