@@ -38,6 +38,8 @@
 
         * \ ``@Compare`` \アノテーションの\ ``operator`` \属性に新たに追加された\ ``NOT_EQUAL`` \の説明を追加(\ `guideline#2842 <https://github.com/terasolunaorg/guideline/issues/2842>`_\ )
 
+        * \ ``@Email`` \アノテーションを使用する際の注意事項を追加(\ `guideline#2930 <https://github.com/terasolunaorg/guideline/issues/2930>`_\ )
+
         ガイドラインのバグ修正
 
         * 共通ライブラリのチェックルールの拡張方法の実装例を修正(\ `guideline#2822 <https://github.com/terasolunaorg/guideline/issues/2822>`_\ )
