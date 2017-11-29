@@ -246,6 +246,8 @@ Bean ValidationのAPI仕様クラス(\ ``javax.validation``\ パッケージの�
          | 1文字以上というルールが入力必須を表す。
      * - | (3)
        - | 対象のフィールドがE-mail形式であることを示す\ ``org.hibernate.validator.constraints.Email``\ を付ける。
+         | E-mail形式の要件が\ ``@Email`` \のチェックと合致しない場合は、\ ``javax.validation.constraints.Pattern``\を用いて、正規表現を指定する必要がある。
+         | \ ``@Email`` \については、\ :ref:`Validation_validator_list`\を参照されたい。
      * - | (4)
        - | 数値の入力フィールドに未入力の状態でフォームを送信した場合、フォームオブジェクトに\ ``null`` \ がバインドされるため、\ ``@NotNull``\ が\ ``age``\ の入力必須条件を表す。
      * - | (5)
