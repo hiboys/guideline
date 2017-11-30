@@ -1671,7 +1671,7 @@ Spring Securityの詳細については \ :doc:`../../Security/Authentication`\ 
 
     Internet Explorer/Microsoft Edgeでは、応答されたHTMLのサイズが規定値以下だと、アプリケーションが用意したエラー画面の代わりに、Internet Explorer/Microsoft Edgeが用意した簡易メッセージが表示されるためである。
 
-    詳細な条件は、「`Friendly HTTP Error Pages <https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/>`_」を参照されたい。
+    参考までに、Internet Explorerでの詳細な条件は、「`Friendly HTTP Error Pages <https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/>`_」を参照されたい。
 
 .. _OAuthAuthorizationServerHowToConfigureAccessToken:
 
