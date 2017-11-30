@@ -661,14 +661,14 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
       - terasoluna-gfw-common-libraries
       - 共通ライブラリのうち、Javaソースコードを含むプロジェクトの構成を定義する。依存関係としてpom.xmlに追加する必要はない。(5.2.0から追加)
       - 無
-      - 有*1
-      - 有*1
+      - 無
+      - 無
     * - \ (3)
       - terasoluna-gfw-dependencies
       - 共通ライブラリのうち、依存関係定義のみを提供するプロジェクト(terasoluna-gfw-parent以外)の構成を定義する。依存関係としてpom.xmlに追加する必要はない。(5.2.0から追加)
       - 無
-      - 有*1
-      - 有*1
+      - 無
+      - 無
     * - \ (4)
       - terasoluna-gfw-common
       - Webに依存しない汎用的に使用できる機能を提供する。本ライブラリを利用する場合は、依存関係としてterasoluna-gfw-common-dependenciesをpom.xmlに追加する。
