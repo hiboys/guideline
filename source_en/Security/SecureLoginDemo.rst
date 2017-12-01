@@ -5860,7 +5860,7 @@ Note that, when a Bean is to be defined for multiple validation rules, DI must b
    * - | (3)
      - | Specify number of characters. Since "1" is passed, validation rules are set to check whether one or more single byte uppercase characters are included.
    * - | (4)
-     - | It is similar to (1)-(3), however since \ ``org.passay.EnglishCharacterData.UpperCase`` \  is passed as a character type, a bean is defined for the validation rules to check whether one or more single byte lowercase letters are included.
+     - | It is similar to (1)-(3), however since \ ``org.passay.EnglishCharacterData.LowerCase`` \  is passed as a character type, a bean is defined for the validation rules to check whether one or more single byte lowercase letters are included.
    * - | (5)
      - | It is similar to (1)-(3), however, since \ ``org.passay.EnglishCharacterData.Digit`` \  is passed as a character type, a bean is defined for the validation rules to check whether one or more single byte digit is included.
    * - | (6)
@@ -5967,7 +5967,7 @@ DI can be applied by defining a bean for generation rules and generator as given
    * - | (3)
      - | Specify number of characters. Since "1" is passed, validation rules are set to check whether one or more single byte uppercase characters are included.
    * - | (4)
-     - | It is similar to (1)-(3), however since \ ``org.passay.EnglishCharacterData.UpperCase`` \  is passed as a character type, a bean is defined for the validation rules to check whether one or more single byte lowercase letters are included.
+     - | It is similar to (1)-(3), however since \ ``org.passay.EnglishCharacterData.LowerCase`` \  is passed as a character type, a bean is defined for the validation rules to check whether one or more single byte lowercase letters are included.
    * - | (5)
      - | It is similar to (1)-(3), however, since \ ``org.passay.EnglishCharacterData.Digit`` \  is passed as a character type, a bean is defined for the validation rules to check whether one or more single byte digit is included.
    * - | (6)
