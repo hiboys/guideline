@@ -860,7 +860,7 @@ Spring Securityが提供するインタフェースには、以下の2種類が�
 
 |
 
-Spring Securityは\ ``PasswordEncoder``\ インタフェースの実装クラスをいくつか提供している。
+Spring Securityは、\ ``PasswordEncoder``\ インタフェースの実装クラスとして、以下の５クラスを提供している。
 
 .. tabularcolumns:: |p{0.35\linewidth}|p{0.65\linewidth}|
 .. list-table:: **PasswordEncoderの実装クラス**
@@ -878,6 +878,12 @@ Spring Securityは\ ``PasswordEncoder``\ インタフェースの実装クラス
     * - | \ ``NoOpPasswordEncoder``\
       - | ハッシュ化しない実装クラス。
         | テスト用のクラスであり、実際のアプリケーションで使用することはない。
+    * - | \ ``Pbkdf2PasswordEncoder``\
+      - | PBKDF2アルゴリズムを使用してパスワードのハッシュ化及び照合を行う実装クラス。\ ``Pbkdf2PasswordEncoder``\ はSpring Security 4.1から追加されたクラスである。
+        | 詳細は、\ `Pbkdf2PasswordEncoderのJavaDoc <https://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/apidocs/org/springframework/security/crypto/password/Pbkdf2PasswordEncoder.html>`_\ を参照されたい。
+    * - | \ ``SCryptPasswordEncoder``\
+      - | SCryptアルゴリズムを使用してパスワードのハッシュ化及び照合を行う実装クラス。\ ``SCryptPasswordEncoder``\ はSpring Security 4.1から追加されたクラスである。
+        | 詳細は、\ `SCryptPasswordEncoderのJavaDoc <https://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/apidocs/org/springframework/security/crypto/scrypt/SCryptPasswordEncoder.html>`_\ を参照されたい。
 
 本節では、\ ``BCryptPasswordEncoder``\ の使い方について説明する。
 
@@ -887,6 +893,17 @@ Spring Securityは\ ``PasswordEncoder``\ インタフェースの実装クラス
     パスワードが平文で保存されているアカウントが存在し、そのアカウントで認証しようとした場合、例外メッセージに以下のような形でパスワードが出力されてしまうため注意が必要である。
 
     \ ``java.lang.IllegalArgumentException: Non-hex character in input: (DB等で管理されている「平文パスワード」)`` \
+
+.. todo:: **TBD**
+
+    ガイドラインでは\ ``BCryptPasswordEncoder``\ の使い方を紹介しているが、\ `OWASP <https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet>`_\
+    ではBCryptアルゴリズムよりPBKDF2アルゴリズムが推奨されている。
+    また、\ `NIST800-132の「5 Password-Based Key Derivation Functions」 <http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-132.pdf>`_\
+    ではPBKDFのハッシュ関数に使用するイテレーションカウントを、最低1,000、特に重要なキーや性能が問題にならないシステムの場合は10,000,000を設定することが推奨されている。
+    イテレーションカウントが大きくなるほどパスワード強度は増すが、性能にあたえる影響も大きくなる。
+
+    なお、PBKDF2アルゴリズムに対応するには、前述の\ ``Pbkdf2PasswordEncoder``\ を使用すればよい。
+    \ ``Pbkdf2PasswordEncoder``\ の使用方法については、次版以降に記載する予定である。
 
 |
 
@@ -995,17 +1012,6 @@ BCryptPasswordEncoder
     Spring Securityのデフォルトでは1,024(2の10乗)回ストレッチングを行うが、この回数はコンストラクタ引数(\ ``strength``\ )で変更することができる。
     \ ``strength``\ には4(16回)から31(2,147,483,648回)を指定することが可能である。
     ストレッチング回数が多いほどパスワードの強度は増すが、計算量が多くなるため性能にあたえる影響も大きくなる。
-
-.. note::
-
-    ガイドラインでは\ ``BCryptPasswordEncoder``\ の使い方を紹介しているが、\ `OWASP <https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet>`_\
-    ではBCryptアルゴリズムよりPBKDF2アルゴリズムが推奨されている。
-    また、\ `NIST800-132の「5 Password-Based Key Derivation Functions」 <http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-132.pdf>`_\
-    ではPBKDFのハッシュ関数に使用するイテレーションカウントを、最低1,000、特に重要なキーや性能が問題にならないシステムの場合は10,000,000を設定することが推奨されている。
-    ストレッチング回数と同様、イテレーションカウントが大きくなるほどパスワード強度は増すが、性能にあたえる影響も大きくなる。
-
-    なお、PBKDF2アルゴリズムに対応するには、Spring Security 4.1から追加されている\ ``PasswordEncoder``\ の実装クラスである
-    \ ``org.springframework.security.crypto.password.Pbkdf2PasswordEncoder``\ を使用すればよい。
 
 |
 
