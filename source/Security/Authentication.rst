@@ -894,7 +894,7 @@ Spring Securityは、\ ``PasswordEncoder``\ インタフェースの実装クラ
 
     \ ``java.lang.IllegalArgumentException: Non-hex character in input: (DB等で管理されている「平文パスワード」)`` \
 
-.. todo:: **TBD**
+.. note::
 
     ガイドラインでは\ ``BCryptPasswordEncoder``\ の使い方を紹介しているが、\ `OWASP <https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet>`_\
     ではBCryptアルゴリズムよりPBKDF2アルゴリズムが推奨されている。
@@ -902,7 +902,11 @@ Spring Securityは、\ ``PasswordEncoder``\ インタフェースの実装クラ
     ではPBKDFのハッシュ関数に使用するイテレーションカウントを、最低1,000、特に重要なキーや性能が問題にならないシステムの場合は10,000,000を設定することが推奨されている。
     イテレーションカウントが大きくなるほどパスワード強度は増すが、性能にあたえる影響も大きくなる。
 
-    なお、PBKDF2アルゴリズムに対応するには、前述の\ ``Pbkdf2PasswordEncoder``\ を使用すればよい。
+|
+
+ .. todo:: **TBD**
+
+    PBKDF2アルゴリズムに対応するには、前述の\ ``Pbkdf2PasswordEncoder``\ を使用すればよい。
     \ ``Pbkdf2PasswordEncoder``\ の使用方法については、次版以降に記載する予定である。
 
 |
