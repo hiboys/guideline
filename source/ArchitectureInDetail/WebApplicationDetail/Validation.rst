@@ -82,7 +82,7 @@ Spring は、Java標準であるBean Validationをサポートしている。
 How to use
 --------------------------------------------------------------------------------
 
-.. ValidationAddDependencyLibrary:
+.. _ValidationAddDependencyLibrary:
 
 依存ライブラリの追加
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
