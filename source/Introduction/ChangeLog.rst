@@ -68,6 +68,13 @@
         * Spring FrameworkのJAX-WS連携機能についての誤記修正と、SOAPサーバがJavaEEサーバのJAW-WS実装上で動作することに伴なう注意事項の追記(\ `guideline#2770 <https://github.com/terasolunaorg/guideline/issues/2770>`_\ )
 
     * -
+      - :doc:`../Security/Authentication`
+      - 記載内容の修正
+
+        * パスワードハッシュ化のためのクラス（\ ``Pbkdf2PasswordEncoder``\ ）の説明を追記し、それに伴い\ ``BCryptPasswordEncoder``\を推奨する記述を削除(\ `guideline#3011 <https://github.com/terasolunaorg/guideline/issues/3011>`_\ )
+
+
+    * -
       - :doc:`../Security/Authorization`
       - Spring Framework 4.3対応に伴う修正
 
