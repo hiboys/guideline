@@ -860,7 +860,7 @@ Spring Securityが提供するインタフェースには、以下の2種類が�
 
 |
 
-Spring Securityは、\ ``PasswordEncoder``\ インタフェースの実装クラスとして、以下のクラスを提供している。
+Spring Securityは、\ ``PasswordEncoder``\ インタフェースの実装クラスとして、以下の５クラスを提供している。
 
 .. tabularcolumns:: |p{0.35\linewidth}|p{0.65\linewidth}|
 .. list-table:: **PasswordEncoderの実装クラス**
@@ -871,7 +871,6 @@ Spring Securityは、\ ``PasswordEncoder``\ インタフェースの実装クラ
       - 説明
     * - | \ ``BCryptPasswordEncoder``\
       - | BCryptアルゴリズムを使用してパスワードのハッシュ化及び照合を行う実装クラス。
-        | **パスワードのハッシュ化要件に制約がない場合は、このクラスを使用することを推奨する。**
         | 詳細は、\ `BCryptPasswordEncoderのJavaDoc <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/apidocs/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.html>`_\ を参照されたい。
     * - | \ ``StandardPasswordEncoder``\
       - | SHA-256アルゴリズムを使用してパスワードのハッシュ化及び照合を行う実装クラス。
@@ -879,8 +878,29 @@ Spring Securityは、\ ``PasswordEncoder``\ インタフェースの実装クラ
     * - | \ ``NoOpPasswordEncoder``\
       - | ハッシュ化しない実装クラス。
         | テスト用のクラスであり、実際のアプリケーションで使用することはない。
+    * - | \ ``Pbkdf2PasswordEncoder``\
+      - | PBKDF2アルゴリズムを使用してパスワードのハッシュ化及び照合を行う実装クラス。\ ``Pbkdf2PasswordEncoder``\ はSpring Security 4.1から追加されたクラスである。
+        | 詳細は、\ `Pbkdf2PasswordEncoderのJavaDoc <https://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/apidocs/org/springframework/security/crypto/password/Pbkdf2PasswordEncoder.html>`_\ を参照されたい。
+    * - | \ ``SCryptPasswordEncoder``\
+      - | SCryptアルゴリズムを使用してパスワードのハッシュ化及び照合を行う実装クラス。\ ``SCryptPasswordEncoder``\ はSpring Security 4.1から追加されたクラスである。
+        | 詳細は、\ `SCryptPasswordEncoderのJavaDoc <https://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/apidocs/org/springframework/security/crypto/scrypt/SCryptPasswordEncoder.html>`_\ を参照されたい。
 
-本節では、Spring Securityが利用を推奨している\ ``BCryptPasswordEncoder``\ の使い方について説明する。
+本節では、\ ``BCryptPasswordEncoder``\ の使い方について説明する。
+
+.. note::
+
+    ガイドラインでは\ ``BCryptPasswordEncoder``\ の使い方を紹介しているが、\ `OWASP <https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet>`_\
+    ではBCryptアルゴリズムよりPBKDF2アルゴリズムが推奨されている。
+    また、\ `NIST800-132の「5 Password-Based Key Derivation Functions」 <http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-132.pdf>`_\
+    ではPBKDFのハッシュ関数に使用するイテレーションカウントを、最低1,000、特に重要なキーや性能が問題にならないシステムの場合は10,000,000を設定することが推奨されている。
+    イテレーションカウントが大きくなるほどパスワード強度は増すが、性能にあたえる影響も大きくなる。
+
+|
+
+ .. todo:: **TBD**
+
+    PBKDF2アルゴリズムに対応するには、前述の\ ``Pbkdf2PasswordEncoder``\ を使用すればよい。
+    \ ``Pbkdf2PasswordEncoder``\ の使用方法については、次版以降に記載する予定である。
 
 |
 
