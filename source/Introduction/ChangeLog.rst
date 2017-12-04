@@ -75,6 +75,10 @@
 
         * パスワードを\ ``StandardPasswordEncoder`` \によるハッシュ化によって管理する場合の注意事項を追加(\ `guideline#2092 <https://github.com/terasolunaorg/guideline/issues/2092>`_\ )
 
+        記載内容の修正
+
+        * パスワードハッシュ化のためのクラス（\ ``Pbkdf2PasswordEncoder``\ ）の説明を追記し、それに伴い\ ``BCryptPasswordEncoder``\を推奨する記述を削除(\ `guideline#3011 <https://github.com/terasolunaorg/guideline/issues/3011>`_\ ) 
+
     * -
       - :doc:`../Security/Authorization`
       - Spring Framework 4.3対応に伴う修正
