@@ -258,7 +258,7 @@ Maven Archetypeで作成したプロジェクトのPOMファイルでは、
 
     <name>Macchinetta Server Framework (1.x) Web Blank Multi Project</name>
     <description>Web Blank Multi Project using Macchinetta Server Framework (1.x)</description>
-    <url>http://macchietta.github.io</url>
+    <url>http://macchinetta.github.io</url>
     <inceptionYear>2017</inceptionYear>
     <licenses>
         <license>
@@ -281,7 +281,7 @@ Maven Archetypeで作成したプロジェクトのPOMファイルでは、
     <scm>
         <connection>scm:git:git@github.com:Macchinetta/macchinetta-web-multi-blank.git</connection>
         <developerConnection>scm:git:git@github.com:Macchinetta/macchinetta-web-multi-blank</developerConnection>
-        <url>git@github.com:Macchietta/macchinetta-web-multi-blank</url>
+        <url>git@github.com:Macchinetta/macchinetta-web-multi-blank</url>
     </scm>
 
     <!-- ... -->
