@@ -4584,7 +4584,7 @@ terasoluna-gfw-validatorのチェックルール
         * \ ``LESS_THAN``\  : \ ``left < right``\ である
         * \ ``LESS_THAN_OR_EQUAL``\  : \ ``left <= right``\ である
 
-        | \ ``NOT_EQUAL``\ は、terasoluna-gfw-validator 5.3.1.RELEASE以上で利用可能な値である。
+        | \ ``NOT_EQUAL``\ は、terasoluna-gfw-validator 5.3.2.RELEASE以上で利用可能な値である。
         |
         | \ ``boolean requireBoth``\  - \ ``left``\ 属性と\ ``right``\ 属性で指定したフィールドの両方が入力されている（\ ``null``\ でない）必要があるかどうかを指定する。
 
