@@ -29,19 +29,17 @@ Webアプリケーション向け開発プロジェクトの作成
     * - | `マルチプロジェクト構成のブランクプロジェクト <https://github.com/Macchinetta/macchinetta-web-multi-blank>`_
       - 商用環境にリリースするような本格的なアプリケーションを開発する際に使用する。
 
-        プロジェクトの雛形は、MavenのArchetypeとして、以下の3種類を用意している。
+        プロジェクトの雛形は、MavenのArchetypeとして、以下の1種類を用意している。
 
         * MyBatis3用の設定が盛り込まれた雛形
-        * JPA(Spring Data JPA)用の設定が盛り込まれた雛形
 
         **本ガイドラインでは、マルチプロジェクト構成のプロジェクトを使用する事を推奨している。**
     * - | `シングルプロジェクト構成のブランクプロジェクト <https://github.com/Macchinetta/macchinetta-web-blank>`_
       - POC(Proof Of Concept)、プロトタイプ、サンプルなどの簡易的なアプリケーションを作成する際に使用する。
 
-        プロジェクトの雛形は、MavenのArchetypeとして、以下の4種類を用意している。
+        プロジェクトの雛形は、MavenのArchetypeとして、以下の2種類を用意している。
 
         * MyBatis3用の設定が盛り込まれた雛形
-        * JPA(Spring Data JPA)用の設定が盛り込まれた雛形
         * O/R Mapperに依存しない雛形
 
         本ガイドラインでは、各種チュートリアルについてシングルプロジェクトを使用して行う手順となっている。
@@ -68,7 +66,7 @@ Webアプリケーション向け開発プロジェクトの作成
 
 |
 
-マルチプロジェクトを作成するためのArchetypeとして、以下の2種類を用意している。
+マルチプロジェクトを作成するためのArchetypeとして、以下の1種類を用意している。
 
 .. tabularcolumns:: |p{0.05\linewidth}|p{0.30\linewidth}|p{0.65\linewidth}|
 .. list-table::
@@ -81,9 +79,6 @@ Webアプリケーション向け開発プロジェクトの作成
     * - 1.
       - macchinetta-multi-web-blank-archetype
       - O/R MapperとしてMyBatis3を使用するためのプロジェクトを生成するためのArchetype。
-    * - 2.
-      - terasoluna-gfw-multi-web-blank-jpa-archetype
-      - O/R MapperとしてJPA(with Spring Data JPA and Hibernate)を使用するためのプロジェクトを生成するためのArchetype。
 
 |
 
@@ -121,12 +116,10 @@ Webアプリケーション向け開発プロジェクトの作成
     * - | \-DarchetypeArtifactId
       - ブランクプロジェクトのarchetypeId(雛形を特定するためのID)を指定する。**(カスタマイズが必要)**
 
-        以下の何れかのarchetypeIdを指定する。
+        以下のarchetypeIdを指定する。
 
         * ``macchinetta-multi-web-blank-archetype``
-        * ``terasoluna-gfw-multi-web-blank-jpa-archetype``
 
-        上記例では、\ ``macchinetta-multi-web-blank-archetype``\ を指定している。
     * - | \-DarchetypeVersion
       - ブランクプロジェクトのバージョンを指定する。(固定)
     * - | \-DgroupId
