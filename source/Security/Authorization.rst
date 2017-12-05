@@ -355,7 +355,7 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
       .. code-block:: xml
 
           <sec:http request-matcher="regex">
-              <sec:intercept-url pattern="/admin/accounts/.*" access=hasRole('ACCOUNT_MANAGER')" />
+              <sec:intercept-url pattern="/admin/accounts/.*" access="hasRole('ACCOUNT_MANAGER')" />
               <!-- omitted -->
           </sec:http>
 
