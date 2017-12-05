@@ -51,7 +51,7 @@ Spring MVCを用いたWebアプリケーションの開発に対するイメー�
     mvn archetype:generate -B^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeVersion=5.4.0.RELEASE^
      -DgroupId=com.example.helloworld^
      -DartifactId=helloworld^
      -Dversion=1.0.0-SNAPSHOT
@@ -63,7 +63,7 @@ Spring MVCを用いたWebアプリケーションの開発に対するイメー�
     C:\work>mvn archetype:generate -B^
     More?  -DarchetypeGroupId=org.terasoluna.gfw.blank^
     More?  -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
-    More?  -DarchetypeVersion=5.3.0.RELEASE^
+    More?  -DarchetypeVersion=5.4.0.RELEASE^
     More?  -DgroupId=com.example.helloworld^
     More?  -DartifactId=helloworld^
     More?  -Dversion=1.0.0-SNAPSHOT
@@ -79,9 +79,9 @@ Spring MVCを用いたWebアプリケーションの開発に対するイメー�
     [INFO]
     [INFO] --- maven-archetype-plugin:2.4:generate (default-cli) @ standalone-pom ---
     [INFO] Generating project in Batch mode
-    [INFO] Archetype repository not defined. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-archetype:5.3.0.RELEASE] found in catalog remote
+    [INFO] Archetype repository not defined. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-archetype:5.4.0.RELEASE] found in catalog remote
     [INFO] ----------------------------------------------------------------------------
-    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-web-blank-archetype:5.3.0.RELEASE
+    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-web-blank-archetype:5.4.0.RELEASE
     [INFO] ----------------------------------------------------------------------------
     [INFO] Parameter: groupId, Value: com.example.helloworld
     [INFO] Parameter: artifactId, Value: helloworld

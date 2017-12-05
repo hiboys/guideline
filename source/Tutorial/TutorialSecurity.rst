@@ -99,7 +99,7 @@ Mavenのアーキタイプを利用し、\ `TERASOLUNA Server Framework for Java
     mvn archetype:generate -B^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-mybatis3-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeVersion=5.4.0.RELEASE^
      -DgroupId=com.example.security^
      -DartifactId=first-springsecurity^
      -Dversion=1.0.0-SNAPSHOT
