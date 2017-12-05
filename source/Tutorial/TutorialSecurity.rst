@@ -98,7 +98,7 @@ Mavenのアーキタイプを利用し、\ `Macchinetta Server Framework (1.x)�
 
     mvn archetype:generate -B^
      -DarchetypeGroupId=com.github.macchinetta.blank^
-     -DarchetypeArtifactId=macchinetta-web-blank-archetype^
+     -DarchetypeArtifactId=macchinetta-web-blank-thymeleaf-archetype^
      -DarchetypeVersion=1.4.0.RELEASE^
      -DgroupId=com.example.security^
      -DartifactId=first-springsecurity^
