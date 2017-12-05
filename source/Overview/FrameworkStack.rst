@@ -338,7 +338,7 @@ version 5.4.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - JPA(Hibernate)
       - org.jboss
       - jandex
-      - 2.0.0.Final
+      - 2.0.3.Final
       - \*
       - \*2 \*4
     * - JPA(Hibernate)
