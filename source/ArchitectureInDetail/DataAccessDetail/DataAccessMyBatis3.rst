@@ -1036,7 +1036,7 @@ TypeHandlerの設定
 MyBatis3でJSR-310 Date and Time APIから提供されている日付や時刻を表現するクラスを使用する場合には、MyBatisより別ライブラリ(\ ``mybatis-typehandlers-jsr310`` \)で提供されている\ ``TypeHandler`` \を使用する。
 なお、`ブランクプロジェクト <https://github.com/Macchinetta/macchinetta-web-multi-blank#multi-blank-project>`_ \では、デフォルトで\ ``mybatis-typehandlers-jsr310`` \が使用可能である。
 
-また、Macchinetta Server Framework (1.5.x)が使用しているMyBatis 3.4では\ ``TypeHandler`` \を自動検出する様になっているため、MyBatisの設定ファイルに\ ``TypeHandler``\を追加する必要はない。
+また、MyBatis 3.4では\ ``TypeHandler`` \を自動検出する様になっているため、MyBatisの設定ファイルに\ ``TypeHandler``\を追加する必要はない。
 
 .. tip::
 
