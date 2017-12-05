@@ -1209,8 +1209,8 @@ PRG(Post-Redirect-Get)パターンの適用
    * - | (2)
      - | HTMLの\ ``<form>``\タグを使用する場合は、\ ``<t:transaction />`` を使用することで、(1)と同様のhiddenタグが埋め込まれる。
    * - | (3)
-     - | HTMLの\ ``<form>``\タグを使用する場合は、Spring Securityから提供されているCSRFトークンチェックで必要となるcsrfトークンをhidden項目として埋め込む必要がある。
-       | CSRFトークンチェックで必要となるcsrfトークンについては、\ :ref:`csrf_formtag-use`\ を参照されたい。
+     - | HTMLの\ ``<form>``\タグを使用する場合は、Spring Securityから提供されているCSRFトークンチェックで必要となるCSRFトークンをhidden項目として埋め込む必要がある。
+       | CSRFトークンチェックで必要となるCSRFトークンについては、\ :ref:`csrf_formtag-use`\ を参照されたい。
 
  .. note::
     
