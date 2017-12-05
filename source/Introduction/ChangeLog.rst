@@ -26,6 +26,15 @@
 
         * 改善内容の詳細は、\ `5.4.0のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.4.0%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
 
+    * - 
+      - :doc:`../Overview/FrameworkStack`
+      - 利用するOSSのバージョンを更新(\ `guideline#3061 <https://github.com/terasolunaorg/guideline/issues/3061>`_\ )
+
+        * Spring IO PlatformのバージョンをBrussels-SR5に更新
+        * MyBatisのバージョンを3.4.5に更新
+
+        Spring IO Platformのバージョン更新に伴い利用するOSSのバージョンを更新
+
     * -
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
       - 記載内容の追加
