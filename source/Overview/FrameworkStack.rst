@@ -1,4 +1,4 @@
-TERASOLUNA Server Framework for Java (5.x)のスタック
+Macchinetta Server Framework (1.x)のスタック
 ================================================================================
 
 .. only:: html
@@ -7,10 +7,10 @@ TERASOLUNA Server Framework for Java (5.x)のスタック
     :depth: 3
     :local:
 
-TERASOLUNA Server Framework for Java (5.x)のSoftware Framework概要
+Macchinetta Server Framework (1.x)のSoftware Framework概要
 --------------------------------------------------------------------------------
 
-TERASOLUNA Server Framework for Java (5.x)で使用するSoftware Frameworkは独自のフレームワークではなく、\ `Spring Framework <http://projects.spring.io/spring-framework/>`_\ を中心としたOSSの組み合わせである。
+Macchinetta Server Framework (1.x)で使用するSoftware Frameworkは独自のフレームワークではなく、\ `Spring Framework <http://projects.spring.io/spring-framework/>`_\ を中心としたOSSの組み合わせである。
 
 .. figure:: images/introduction-software-framework.png
    :width: 95%
@@ -19,7 +19,7 @@ TERASOLUNA Server Framework for Java (5.x)で使用するSoftware Frameworkは�
 Software Frameworkの主な構成要素
 --------------------------------------------------------------------------------
 
-TERASOLUNA Server Framework for Java (5.x)を構成するライブラリを以下に示す。
+Macchinetta Server Framework (1.x)を構成するライブラリを以下に示す。
 
 .. figure:: images/introduction-software-stack.png
    :width: 95%
@@ -119,11 +119,11 @@ Viewのレイアウトを共通化する場合は、
 利用するOSSのバージョン
 --------------------------------------------------------------------------------
 
-version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
+version 1.4.0.RELEASEで利用するOSSの一覧を以下に示す。
 
 .. tip::
 
-    version 5.0.0.RELEASEより、
+    version 1.1.0.RELEASEより、
     `Spring IO platform <http://platform.spring.io/platform/>`_\ の\ ``<dependencyManagement>``\ をインポートする構成を採用している。
 
     Spring IO platformの\ ``<dependencyManagement>``\ をインポートすることで、
@@ -133,9 +133,9 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
     * Spring Frameworkと相性のよいOSSライブラリ
 
     への依存関係を解決しており、
-    TERASOLUNA Server Framework for Java (5.x)で使用するOSSのバージョンは、原則として、Spring IO platformの定義に準じている。
+    Macchinetta Server Framework (1.x)で使用するOSSのバージョンは、原則として、Spring IO platformの定義に準じている。
 
-    なお、version 5.3.0.RELEASEで指定しているSpring IO platformのバージョンは、`Athens-SR2 <http://docs.spring.io/platform/docs/Athens-SR2/reference/htmlsingle/>`_\ である。
+    なお、version 1.4.0.RELEASEで指定しているSpring IO platformのバージョンは、`Athens-SR2 <http://docs.spring.io/platform/docs/Athens-SR2/reference/htmlsingle/>`_\ である。
 
 .. tabularcolumns:: |p{0.15\linewidth}|p{0.27\linewidth}|p{0.25\linewidth}|p{0.15\linewidth}|p{0.05\linewidth}|p{0.08\linewidth}|
 .. list-table::
@@ -620,11 +620,11 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
 
 #. | データアクセスに、MyBatis3を使用する場合に依存するライブラリ
 #. | データアクセスに、JPAを使用する場合に依存するライブラリ
-#. | 共通ライブラリに依存しないが、TERASOLUNA Server Framework for Java (5.x)でアプリケーションを開発する場合に、利用することを推奨しているライブラリ
+#. | 共通ライブラリに依存しないが、Macchinetta Server Framework (1.x)でアプリケーションを開発する場合に、利用することを推奨しているライブラリ
 #. | Spring IO platformでサポートしているライブラリが個別に依存しているライブラリ
    | (Spring IO platformとしては依存関係の管理は行っていないライブラリ)
 #. | Spring IO platformで適用されるバージョンが、BetaやRC(Release Candidate)であるライブラリ
-   | (TERASOLUNA Server Framework for Java (5.x)側でGAのバージョンを明示的に指定しているライブラリ)
+   | (Macchinetta Server Framework (1.x)側でGAのバージョンを明示的に指定しているライブラリ)
 #. | Java SE 8以降のAPIを前提としたライブラリ
    | Java SE 7以下の場合は本ライブラリへの依存関係を明示的に除去する必要がある
 
@@ -635,9 +635,10 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
 共通ライブラリの構成要素
 --------------------------------------------------------------------------------
 
-\ `共通ライブラリ <https://github.com/terasolunaorg/terasoluna-gfw>`_\ は、TERASOLUNA Server Framework for Java (5.x)が含むSpring Ecosystem や、その他依存ライブラリでは足りない+αな機能を提供するライブラリである。
-基本的には、このライブラリがなくてもTERASOLUNA Server Framework for Java (5.x)によるアプリケーション開発は可能であるが、"あると便利"な存在である。
-また、提供している2種類の \ `マルチプロジェクト構成のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank>`_\ および \ `シングルプロジェクト構成のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-blank>`_\ の共通ライブラリの標準の組込状況は以下の通りである。
+Macchinetta Server Framework (1.x)では、\ `TERASOLUNA Server Framework for Java (5.x) <https://github.com/terasolunaorg>`_\ が提供する\ `共通ライブラリ <https://github.com/terasolunaorg/terasoluna-gfw>`_\ を使用する。（以降「共通ライブラリ」と記載する。）
+共通ライブラリは、Macchinetta Server Framework (1.x)やTERASOLUNA Server Framework for Java (5.x)が含むSpring Ecosystem や、その他依存ライブラリでは足りない+αな機能を提供するライブラリである。
+基本的には、このライブラリがなくてもMacchinetta Server Framework (1.x)によるアプリケーション開発は可能であるが、"あると便利"な存在である。
+また、提供している2種類の \ `マルチプロジェクト構成のブランクプロジェクト <https://github.com/Macchinetta/macchinetta-web-multi-blank>`_\ および \ `シングルプロジェクト構成のブランクプロジェクト <https://github.com/Macchinetta/macchinetta-gfw-web-blank>`_\ の共通ライブラリの標準の組込状況は以下の通りである。
 
 .. tabularcolumns:: |p{0.05\linewidth}|p{0.15\linewidth}|p{0.40\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|
 .. list-table::

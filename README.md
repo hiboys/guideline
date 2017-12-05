@@ -1,27 +1,14 @@
-# TERASOLUNA Server Framework for Java (5.x) Development Guideline
+# Macchinetta Server Framework (1.x) Development Guideline
 
 This guideline provides best practices to develop highly maintainable Web applications using full stack framework focussing on Spring Framework, Spring MVC, Spring Security and MyBatis, JPA.
 
 This guideline helps to proceed with the software development (mainly coding) smoothly.
-
-> **Note: Stable guidelines**
->
-> **GitHub contents is under construction**. Stable guidelines refer to [here](http://terasolunaorg.github.io/guideline/).
-
-[![Build Status](https://travis-ci.org/terasolunaorg/guideline.svg?branch=master)](https://travis-ci.org/terasolunaorg/guideline)
-
-
-## How to contribute
-
-**Contributing (bug report, pull request, any comments etc.) is welcome !!** Please see the [contributing guideline](CONTRIBUTING.md) for details.
-
 
 ## Source files
 
 Source files of this guideline are stored into following directories.
 
 * Japanese version : `{repository root}/source/`
-* English version  : `{repository root}/source_en/`
 
 
 ## Source file format
@@ -48,19 +35,19 @@ Please install the Python and Sphinx.
 
 ### Clone a repository
 
-Please clone a `terasolunaorg/guideline` repository or forked your repository.
+Please clone a `Macchinetta/server-guideline` repository or forked your repository.
 
 ```
-git clone https://github.com/terasolunaorg/guideline.git
+git clone https://github.com/Macchinetta/server-guideline.git
 ```
 
 or
 
 ```
-git clone https://github.com/{your account}/guideline.git
+git clone https://github.com/{your account}/server-guideline.git
 ```
 
-### Build HTML files for the Japanese
+### Build HTML files
 
 Please execute the `build-html.sh` or `build-html.bat`.
 If build is successful, HTML files generate to the `{your repository}/build/html/` directory.
@@ -79,45 +66,16 @@ Windows:
 > build-html.bat
 ```
 
-### Build HTML files for the English
-
-Please execute the `build-html_en.sh` or `build-html_en.bat`.
-If build is successful, HTML files generate to the `{your repository}/build_en/html/` directory.
-
-Linux or Mac:
-
-```
-$ cd {your repository directory}
-$ ./build-html_en.sh
-```
-
-Windows:
-
-```
-> cd {your repository directory}
-> build-html_en.bat
-```
-
-### Build a PDF file for the Japanese
+### Build a PDF file
 
 Please execute the `build-pdf.sh`.
-If build is successful, PDF file(`TERASOLUNAServerFrameworkForJavaDevelopmentGuideline.pdf`) generate to the `{your repository}/build/latex/` directory.
+If build is successful, PDF file(`MacchinettaServerFrameworkDevelopmentGuideline.pdf`) generate to the `{your repository}/build/latex/` directory.
 
 ```
 $ cd {your repository directory}
 $ ./build-pdf.sh
 ```
 
-### Build a PDF file for the English
-
-Please execute the `build-pdf_en.sh`.
-If build is successful, PDF file(`TERASOLUNAServerFrameworkForJavaDevelopmentGuideline.pdf`) generate to the `{your repository}/build_en/latex/` directory.
-
-```
-$ cd {your repository directory}
-$ ./build-pdf_en.sh
-```
-
 ## Terms of use
 
-Terms of use refer to [here](/source_en/Introduction/TermsOfUse.rst).
+Terms of use refer to [here](https://github.com/Macchinetta/server-guideline/blob/master/source/Introduction/TermsOfUse.rst).
