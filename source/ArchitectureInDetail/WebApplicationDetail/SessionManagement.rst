@@ -790,7 +790,7 @@ Controllerのハンドラメソッドの引数に渡すオブジェクトが、\
       - 説明
     * - | (5)
       - | 共通ライブラリから提供している\ ``SystemExceptionResolver``\ の\ ``exceptionMappings``\ に、\ ``HttpSessionRequiredException``\ の例外ハンドリングの定義を追加する。
-        | 上記例では、  例外発生時の遷移先として、\ ``/WEB-INF/views/common/error/operationError.jsp``\ を指定している。
+        | 上記例では、  例外発生時の遷移先のView名として、\ ``common/error/operationError``\ を指定している。
     * - | (6)
       - | \ ``SystemExceptionResolver``\ の\ ``statusCodes``\ に、\ ``HttpSessionRequiredException``\ 発生時の、HTTPレスポンスコードを指定する。
         | 上記例では、  例外発生時のHTTPレスポンスコードとして、 Bad Request(\ ``400``\ )を指定している。
