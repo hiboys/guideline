@@ -1200,7 +1200,7 @@ PRG(Post-Redirect-Get)パターンの適用
 
  .. note::
     
-    \ ``th:action``\属性を使用すると、CSRFトークンチェックで必要となるパラメータも自動的に埋め込まれる。 CSRFトークンチェックで必要となるパラメータについては、\ :ref:`csrf_htmlformtag-use`\ を参照されたい。
+    \ ``th:action``\属性を使用すると、CSRFトークンチェックで必要となるパラメータも自動的に埋め込まれる。 CSRFトークンチェックで必要となるパラメータについては、\ :ref:`csrf_formtag-use`\ を参照されたい。
 
 * HTMLの出力例
 
