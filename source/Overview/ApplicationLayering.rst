@@ -283,7 +283,7 @@ Integration System Connectorは、Repositoryインタフェースの実装に用
 
 本ガイドラインでは、実装技術として、
 
-* アプリケーション層にSpring MVC
+* アプリケーション層にSpring MVC, Thymeleaf
 * インフラストラクチャ層にMyBatis, Spring Data JPA
 
 を使用することを想定しているが、本質的には、実装技術が変わっても、それぞれの層で違いが吸収され、ドメイン層には影響を与えない。
@@ -599,11 +599,11 @@ Repositoryを作成することにより、永続化技術を隠蔽できたり�
                   └WEB-INF
                       ├views ...(8)
                       │  ├abc
-                      │  │ ├list.jsp
-                      │  │ └createForm.jsp
+                      │  │ ├list.html
+                      │  │ └createForm.html
                       │  └def
-                      │     ├list.jsp
-                      │     └createForm.jsp
+                      │     ├list.html
+                      │     └createForm.html
                       └web.xml ...(9)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -628,7 +628,7 @@ Repositoryを作成することにより、永続化技術を隠蔽できたり�
     * - | (7)
       - 静的リソース(css、js、画像など)を格納する。
     * - | (8)
-      - View(jsp)を格納する。
+      - View(ThymeleafのテンプレートHTML)を格納する。
     * - | (9)
       - Servletのデプロイメント定義を行う。
 

@@ -230,25 +230,25 @@ Spring Securityのデフォルトの動作では、\ ``"/login"``\ に対してG
 Spring Securityはフォーム認証用のログインフォームをデフォルトで提供しているが、そのまま利用するケースは少ない。
 ここでは、自身で作成したログインフォームをSpring Securityに適用する方法を説明する。
 
-まず、ログインフォームを表示するためのJSPを作成する。
+まず、ログインフォームを表示するためのHTMLを作成する。
 ここでは、Spring MVCでリクエストをうけてログインフォームを表示する際の実装例になっている。
 
-* ログインフォームを表示するためのJSPの作成例(xxx-web/src/main/webapp/WEB-INF/views/login/loginForm.jsp)
+* ログインフォームを表示するためのThymeleafでの作成例(xxx-web/src/main/webapp/WEB-INF/views/login/loginForm.html)
 
-.. code-block:: jsp
+.. code-block:: HTML
 
-    <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-    <%-- omitted --%>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <!--/* omitted */-->
     <div id="wrapper">
         <h3>Login Screen</h3>
-        <%-- (1) --%>
-        <c:if test="${param.containsKey('error')}">
-            <t:messagesPanel messagesType="error"
-                messagesAttributeName="SPRING_SECURITY_LAST_EXCEPTION"/> <%-- (2) --%>
-        </c:if>
-        <form:form action="${pageContext.request.contextPath}/login" method="post"> <%-- (3) --%>
+        <!--/* (1) */-->
+        <div th:if="${param.keySet().contains('error')}"
+          th:with="exception=${#request.getAttribute('SPRING_SECURITY_LAST_EXCEPTION')} ?: ${session[SPRING_SECURITY_LAST_EXCEPTION]}">
+            <div th:if="${exception != null}" class="alert alert-error">
+                <span th:text="${exception.message}"></span><!--/* (2) */-->
+            </div>
+        </div>
+        <form th:action="@{/login}" method="post"> <!--/* (3) */-->
             <table>
                 <tr>
                     <td><label for="username">User Name</label></td>
@@ -263,9 +263,9 @@ Spring Securityはフォーム認証用のログインフォームをデフォ�
                     <td><button>Login</button></td>
                 </tr>
             </table>
-        </form:form>
+        </form>
     </div>
-    <%-- omitted --%>
+    <!--/* omitted */-->
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -278,13 +278,11 @@ Spring Securityはフォーム認証用のログインフォームをデフォ�
       - | 認証エラーを表示するためのエリア。
     * - | (2)
       - | 認証エラー時に出力させる例外メッセージを出力する。
-        | 共通ライブラリで提供している\ ``<t:messagesPanel>``\ タグを使用して出力することを推奨する。
-        | \ ``<t:messagesPanel>``\ タグの使用方法については、「\ :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`\ 」を参照されたい。
         | なお、認証エラーが発生した場合は、セッション又はリクエストスコープに\ ``"SPRING_SECURITY_LAST_EXCEPTION"``\ という属性名で例外オブジェクトが格納される。
     * - | (3)
       - | ユーザー名とパスワードを入力するためのログインフォーム。
         | ここではユーザー名を\ ``username``\、パスワードを\ ``passowrd``\ というリクエストパラメータで送信する。
-        | また、\ ``<form:form>``\ を使用することで、CSRF対策用のトークン値がリクエストパラメータで送信される。
+        | また、\ ``th:action``\ を使用することで、CSRF対策用のトークン値がリクエストパラメータで送信される。
         | CSRF対策については、「:ref:`SpringSecurityCsrf`」で説明する。
 
 |
@@ -1261,16 +1259,15 @@ Spring Securityのデフォルトの動作では、\ ``"/logout"``\ というパ
 
 .. _SpringSecurityAuthenticationLogoutForm:
 
-* ログアウト処理を呼び出すためのJSPの実装例
+* ログアウト処理を呼び出すためのThymeleafでの実装例
 
-.. code-block:: jsp
+.. code-block:: HTML
 
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-    <%-- omitted --%>
-    <form:form action="${pageContext.request.contextPath}/logout" method="post"> <%-- (1) --%>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <!--/* omitted */-->
+    <form th:action="@{/logout}" method="post"> <!--/* (1) */-->
         <button>ログアウト</button>
-    </form:form>
+    </form>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1281,7 +1278,7 @@ Spring Securityのデフォルトの動作では、\ ``"/logout"``\ というパ
       - 説明
     * - | (1)
       - | ログアウト用のフォームを作成する。
-        | また、\ ``<form:form>``\ を使用することで、CSRF対策用のトークン値がリクエストパラメータで送信される。
+        | また、\ ``th:action``\ を使用することで、CSRF対策用のトークン値がリクエストパラメータで送信される。
         | CSRF対策については、「:ref:`SpringSecurityCsrf`」で説明する。
 
 .. note:: **CSRFトークンの送信**
@@ -1400,20 +1397,20 @@ Javaからのアクセス
 
 |
 
-JSPからのアクセス
+Thymeleafからのアクセス
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 一般的なWebアプリケーションでは、ログインユーザーのユーザー情報などを画面に表示することがある。
 このような要件を実現する際のログインユーザーのユーザー情報は、認証情報から取得することができる。
 
-* JSPから認証情報へアクセスする実装例
+* Thymeleafのテンプレートで認証情報へアクセスする実装例
 
-.. code-block:: jsp
+.. code-block:: HTML
 
-    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-    <%-- omitted --%>
+    <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <!--/* omitted */-->
     ようこそ、
-    <sec:authentication property="principal.account.lastName"/> <%-- (1) --%>
+    <span sec:authentication="principal.account.lastName"></span> <!--/* (1) */-->
     さん。
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1424,28 +1421,35 @@ JSPからのアクセス
     * - 項番
       - 説明
     * - | (1)
-      - | Spring Securityから提供されている\ ``<sec:authentication>``\ タグを使用して、認証情報(\ ``Authentication``\ オブジェクト) を取得する。
-        | \ ``property``\ 属性にアクセスしたいプロパティへのパスを指定する。
+      - | 属性値にSpring Security Dialectから提供されている\ ``sec:authentication``\ 属性を使用して、認証情報(\ ``Authentication``\ オブジェクト) を取得する。
+        | アクセスしたいプロパティへのパスを指定する。
         | ネストしているオブジェクトへアクセスしたい場合は、プロパティ名を\ ``"."``\ でつなげればよい。
 
-.. tip:: **認証情報の表示方法**
+.. tip:: **#authenticationオブジェクトの紹介**
 
-    ここでは、認証情報が保持するユーザー情報を表示する際の実装例を説明したが、\ ``var``\ 属性と\ ``scope``\ 属性を組み合わせて任意のスコープ変数に値を格納することも可能である。
-    ログインユーザーの状態によって表示内容を切り替えたい場合は、ユーザー情報を変数に格納しておき、JSTLのタグライブラリなどを使って表示を切り替えることが可能である。
+    ここでは、\ ``sec:authentication``\ 属性を用いて認証情報が保持するユーザー情報を表示する際の実装例を説明したが、
+    Spring Security Dialectから提供されている\ ``#authentication``\ オブジェクトを用いても、テンプレートHTMLから認証情報にアクセスする事が可能である。
+    \ ``#authentication``\ オブジェクトは、 ${...} 式にて使用できるため、条件判定やリテラル置換等\ ``sec:authentication``\ 属性より複雑な使い方が可能である。
 
-    上記の例は、以下のように記述することでも実現することができる。
-    本例では、\ ``scope``\ 属性を省略しているため、\ ``page``\スコープが適用される。
+    上記の例は、以下のように記述できる
 
-        .. code-block:: jsp
+        .. code-block:: HTML
 
-            <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-            <%-- omitted --%>
-            <sec:authentication var="principal" property="principal"/>
-            <%-- omitted --%>
-            ようこそ、
-            ${f:h(principal.account.lastName)}
-            さん。
+            <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"><!--/* (1) */-->
+            <!--/* omitted */-->
+            <p th:text="|ようこそ、${#authentication.principal.account.lastName}さん。|"></p><!--/* (2) */-->
+     .. tabularcolumns:: |p{0.25\linewidth}|p{0.75\linewidth}|
+     .. list-table::
+         :header-rows: 1
+         :widths: 25 75
 
+         * - 項番
+           - 説明
+         * - | (1)
+           - | \ ``sec:authentication``\ 属性を使用する際には\ ``<html>``\ タグに\ ``xmlns:sec``\ 属性を定義していたが、
+             | \ ``#authentication``\ オブジェクトを使用する際には、\ ``xmlns:sec``\ 属性の定義は不要である。
+         * - | (2)
+           - | \ ``#authentication``\ オブジェクトにて認証情報よりlastNameを取得し、lastNameの前後にリテラル置換を行っている。
 |
 
 .. _SpringSecurityAuthenticationIntegrationWithSpringMVC:
@@ -2012,20 +2016,13 @@ LogoutSuccessHandlerの適用
 
 * ログインフォームの実装例
 
-.. code-block:: jsp
+.. code-block:: HTML
 
-    <c:choose>
-        <c:when test="${param.containsKey('error')}">
-            <span style="color: red;">
-                <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>
-            </span>
-        </c:when>
-        <c:when test="${param.containsKey('systemError')}">
-            <span style="color: red;">
-                System Error occurred.
-            </span>
-        </c:when>
-    </c:choose>
+    <span th:if="${param.keySet().contains('error')}" style="color: red;"
+        th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"></span>
+    <span th:if="${param.keySet().contains('systemError')}" style="color: red;">
+        System Error occurred.
+    </span>
 
 .. note::
 
@@ -2388,26 +2385,26 @@ Authentication Filterの作成
 ログインフォームの修正
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-\ :ref:`SpringSecurityAuthenticationLoginForm`\ で作成したログインフォーム(JSP)に対して、会社識別子を追加する。
+\ :ref:`SpringSecurityAuthenticationLoginForm`\ で作成したログインフォーム(Thymeleaf)に対して、会社識別子を追加する。
 
-.. code-block:: jsp
+.. code-block:: HTML
 
-    <form:form action="${pageContext.request.contextPath}/login" method="post">
-        <!-- omitted -->
+    <form th:action="@{/login}" method="post">
+        <!--/* omitted */-->
             <tr>
                 <td><label for="username">User Name</label></td>
                 <td><input type="text" id="username" name="username"></td>
             </tr>
             <tr>
                 <td><label for="companyId">Company Id</label></td>
-                <td><input type="text" id="companyId" name="companyId"></td> <!-- (1) -->
+                <td><input type="text" id="companyId" name="companyId"></td> <!--/* (1) */-->
             </tr>
             <tr>
                 <td><label for="password">Password</label></td>
                 <td><input type="password" id="password" name="password"></td>
             </tr>
-        <!-- omitted -->
-    </form:form>
+        <!--/* omitted */-->
+    </form>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -2762,7 +2759,7 @@ Spring MVCでリクエストを受けてログインフォームを表示する�
     * - 項番
       - 説明
     * - | (1)
-      - | view名として"login"を返却する。\ ``InternalResourceViewResolver``\ によってsrc/main/webapp/WEB-INF/views/login.jspが出力される。
+      - | view名として"login"を返却する。\ ``ThymeleafViewResolver``\ によってsrc/main/webapp/WEB-INF/views/login.htmlが出力される。
 
 本例のように、単純にview名を返すだけのメソッドが一つだけあるControllerであれば、\ ``<mvc:view-controller>``\ を使用して代用することも可能である。  
 
@@ -2829,18 +2826,18 @@ Remember Me認証を利用する場合は、\ ``<sec:remember-me>``\ タグを�
 
 ログインフォームには、「Remember Me認証」機能の利用有無を指定するためのフラグ(チェックボックス項目)を用意する。
 
-* ログインフォームのJSPの実装例
+* ログインフォームのThymeleafでの実装例
 
-.. code-block:: jsp
+.. code-block:: HTML
 
-    <form:form action="${pageContext.request.contextPath}/login" method="post">
-            <!-- omitted -->
+    <form th:action="@{/login}" method="post">
+            <!--/* omitted */-->
             <tr>
                 <td><label for="remember-me">Remember Me : </label></td>
-                <td><input name="remember-me" id="remember-me" type="checkbox" checked="checked" value="true"></td> <!-- (1) -->
+                <td><input name="remember-me" id="remember-me" type="checkbox" checked="checked" value="true"></td> <!--/* (1) */-->
             </tr>
-            <!-- omitted -->
-    </form:form>
+            <!--/* omitted */-->
+    </form>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::

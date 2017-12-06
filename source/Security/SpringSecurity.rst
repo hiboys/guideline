@@ -119,11 +119,11 @@ Spring Securityのモジュール
     * - \ ``spring-security-config``\
       - 各モジュールから提供されているコンポーネントのセットアップをサポートするためのコンポーネント(コンフィギュレーションをサポートするクラスやXMLネームスペースを解析するクラスなど)が格納されている。
         このモジュールを使用すると、Spring Securityのbean定義を簡単に行うことができる。
-    * - \ ``spring-security-taglibs``\
-      - 認証情報や認可機能にアクセスするためのJSPタグライブラリが格納されている。
     * - \ ``spring-security-acl``\
       - EntityなどのドメインオブジェクトをAccess Control List(ACL)を使用して認可制御するために必要となるコンポーネントが格納されている。
         本モジュールは依存関係の都合上、フレームワークスタックに含まれているモジュールであるため、本ガイドラインにおいて使用方法の説明は行わない。
+    * - \ ``thymeleaf-extras-springsecurity4``\
+      - 認証情報や認可機能にアクセスするためのThymeleafのダイアレクトが格納されている。
 
 要件に合わせて使用するモジュール群
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -355,6 +355,10 @@ Spring Securityと共通ライブラリの関連については、:ref:`framewor
         <groupId>org.terasoluna.gfw</groupId>
         <artifactId>terasoluna-gfw-security-web</artifactId>  <!-- (2) -->
     </dependency>
+    <dependency>
+        <groupId>org.thymeleaf.extras</groupId>
+        <artifactId>thymeleaf-extras-springsecurity4</artifactId>  <!-- (3) -->
+    </dependency>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -367,6 +371,8 @@ Spring Securityと共通ライブラリの関連については、:ref:`framewor
       - ドメイン層のプロジェクトでSpring Securityの機能を使用する場合は、terasoluna-gfw-security-coreをdependencyに追加する。
     * - \ (2)
       - アプリケーション層のプロジェクトでSpring Securityの機能を使用する場合は、terasoluna-gfw-security-webをdependencyに追加する。
+    * - \ (3)
+      - アプリケーション層のプロジェクトでThymeleafのHTMLテンプレートにてSpring Securityの機能を使用する場合は、thymeleaf-extras-springsecurity4をdependencyに追加する。
 
 
 .. note::
@@ -454,6 +460,41 @@ Spring Securityのコンポーネントをbean定義するため、以下のよ�
       - \ アクセスエラー時のエラーハンドリングを行うコンポーネントをbean定義する。
     * - \ (11)
       - \ ログ出力するユーザ情報をMDCにする共通ライブラリのコンポーネントをbean定義する。
+
+
+|
+
+* xxx-web/src/main/resources/META-INF/spring/spring-mvc.xmlの定義例
+
+.. code-block:: xml
+
+    <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+      <property name="prefix" value="/WEB-INF/views/" />
+      <property name="suffix" value=".html" />
+      <property name="templateMode" value="HTML" />
+      <property name="characterEncoding" value="UTF-8" />
+    </bean>
+  
+    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+      <property name="enableSpringELCompiler" value="true" />
+      <property name="templateResolver" ref="templateResolver" />
+      <property name="additionalDialects">
+        <set>
+          <bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect" /> <!-- (1) -->
+        </set>
+      </property>
+    </bean>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+
+    * - 項番
+      - 説明
+    * - \ (1)
+      - TemplateEngineに、\ ``thymeleaf-extras-springsecurity4``\ が提供するダイアレクト(\ ``SpringSecurityDialect``\) を利用する定義を追加する。
 
 
 |

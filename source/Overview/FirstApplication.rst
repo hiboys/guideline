@@ -49,9 +49,9 @@ Spring MVCを用いたWebアプリケーションの開発に対するイメー�
 .. code-block:: console
 
     mvn archetype:generate -B^
-     -DarchetypeGroupId=org.terasoluna.gfw.blank^
-     -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeGroupId=com.github.macchinetta.blank^
+     -DarchetypeArtifactId=macchinetta-web-blank-thymeleaf-archetype^
+     -DarchetypeVersion=1.5.0.RELEASE^
      -DgroupId=com.example.helloworld^
      -DartifactId=helloworld^
      -Dversion=1.0.0-SNAPSHOT
@@ -122,7 +122,7 @@ Package Explorerに、次のようなプロジェクトが生成される。
 Spring MVCの設定方法を理解するために、生成されたSpring MVCの設定ファイル(src/main/resources/META-INF/spring/spring-mvc.xml)について、簡単に説明する。
 
 .. code-block:: xml
-    :emphasize-lines: 18-19, 30-31, 71-75
+    :emphasize-lines: 18-19, 32-33, 73-77, 82-85, 90-91, 93
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -194,11 +194,33 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
                 REMOVE THIS LINE IF YOU USE JPA  -->
         </mvc:interceptors>
 
-        <!-- (3) Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+        <!-- (3) Resolves views selected for rendering by @Controllers -->
         <!-- Settings View Resolver. -->
         <mvc:view-resolvers>
-            <mvc:jsp prefix="/WEB-INF/views/" />
+          <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+            <property name="templateEngine" ref="templateEngine" />
+            <property name="characterEncoding" value="UTF-8" />
+          </bean>
         </mvc:view-resolvers>
+
+        <!-- (4) -->
+        <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+          <property name="prefix" value="/WEB-INF/views/" />
+          <property name="suffix" value=".html" />
+          <property name="templateMode" value="HTML" />
+          <property name="characterEncoding" value="UTF-8" />
+        </bean>
+
+        <!-- (5) -->
+        <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+          <property name="enableSpringELCompiler" value="true" />
+          <property name="templateResolver" ref="templateResolver" />
+          <property name="additionalDialects">
+            <set>
+              <bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect" />
+            </set>
+          </property>
+        </bean>
 
         <bean id="requestDataValueProcessor"
             class="org.terasoluna.gfw.web.mvc.support.CompositeRequestDataValueProcessor">
@@ -263,22 +285,11 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
    * - | (2)
      - Spring MVCで使用するコンポーネントを探すパッケージを定義する。
    * - | (3)
-     - JSP用の\ ``ViewResolver``\ を指定し、JSPファイルの配置場所を定義する。
-
-       .. tip::
-
-           \ ``<mvc:view-resolvers>``\ 要素はSpring Framework 4.1から追加されたXML要素である。
-           \ ``<mvc:view-resolvers>``\ 要素を使用すると、\ ``ViewResolver``\ をシンプルに定義することが出来る。
-
-           従来通り\ ``<bean>``\ 要素を使用した場合の定義例を以下に示す。
-
-            .. code-block:: xml
-
-               <bean id="viewResolver"
-                   class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                   <property name="prefix" value="/WEB-INF/views/" />
-                   <property name="suffix" value=".jsp" />
-               </bean>
+     - Thymeleaf用の\ ``ViewResolver``\ を指定する。ここでは、idが ``templateEngine`` のbeanである(5)を参照している。
+   * - | (4)
+     - Viewファイルの拡張子と配置場所を定義する。
+   * - | (5)
+     - Springを用いたThymeleafの実装を定義する。またここでは、idが ``templateResolver`` のbeanである(4)を参照している。
 
 |
 
@@ -303,7 +314,7 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
     /**
      * Handles requests for the application home page.
      */
-    @Controller // (4)
+    @Controller // (6)
     public class HelloController {
 
         private static final Logger logger = LoggerFactory
@@ -312,7 +323,7 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
         /**
          * Simply selects the home view to render by returning its name.
          */
-        @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST}) // (5)
+        @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST}) // (7)
         public String home(Locale locale, Model model) {
             logger.info("Welcome home! The client locale is {}.", locale);
 
@@ -322,9 +333,9 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
 
             String formattedDate = dateFormat.format(date);
 
-            model.addAttribute("serverTime", formattedDate); // (6)
+            model.addAttribute("serverTime", formattedDate); // (8)
 
-            return "welcome/home"; // (7)
+            return "welcome/home"; // (9)
         }
 
     }
@@ -336,34 +347,31 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
 
    * - 項番
      - 説明
-   * - | (4)
-     - ``@Controller`` アノテーションを付けることで、DIコンテナにより、コントローラクラスが自動で読み込まれる。前述「Spring MVCの設定ファイルの説明(2)」の設定により、component-scanの対象となっている。
-   * - | (5)
-     - HTTPメソッドがGETまたはPOSTで、Resource（もしくはRequest URL）が"/"で、アクセスする際に実行される。
    * - | (6)
-     - Viewに渡したいオブジェクトを\ ``Model``\ に設定する。
+     - ``@Controller`` アノテーションを付けることで、DIコンテナにより、コントローラクラスが自動で読み込まれる。前述「Spring MVCの設定ファイルの説明(2)」の設定により、component-scanの対象となっている。
    * - | (7)
-     - View名を返却する。前述「Spring MVCの設定ファイルの説明(3)」の設定により、"WEB-INF/views/welcome/home.jsp"がレンダリングされる。
+     - HTTPメソッドがGETまたはPOSTで、Resource（もしくはRequest URL）が"/"で、アクセスする際に実行される。
+   * - | (8)
+     - Viewに渡したいオブジェクトを\ ``Model``\ に設定する。
+   * - | (9)
+     - View名を返却する。前述「Spring MVCの設定ファイルの説明(4)」の設定により、"WEB-INF/views/welcome/home.html"がレンダリングされる。
 
 |
 
-最後に、Welcomeページを表示するためのJSP (\ ``src/main/webapp/WEB-INF/views/welcome/home.jsp``\ ) について、簡単に説明する。
+最後に、Welcomeページを表示するためThymeleafのテンプレートHTML (\ ``src/main/webapp/WEB-INF/views/welcome/home.html``\ ) について、簡単に説明する。
 
-.. code-block:: jsp
-    :emphasize-lines: 12
+.. code-block:: html
+    :emphasize-lines: 9
 
     <!DOCTYPE html>
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org"> <!--/* (10) */-->
     <head>
-    <meta charset="utf-8">
     <title>Home</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
         <div id="wrapper">
             <h1>Hello world!</h1>
-            <p>The time on the server is ${serverTime}.</p> <%-- (8) --%>
+            <p th:text="|The time on the server is ${serverTime}.|"></p> <!--/* (11) */-->
         </div>
     </body>
     </html>
@@ -375,11 +383,14 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
 
    * - 項番
      - 説明
-   * - | (8)
-     - 前述の「Controllerの説明(6)」でModelに設定したオブジェクト(serverTime)は、HttpServletRequestに格納される。
-       そのため、JSPで\ ``${serverTime}``\ と記述することで、Controllerで設定した値を画面に出力することができる。
+   * - | (10)
+     - | スタンダードダイアレクトが提供する属性を使用したとき、EclipseなどのIDEでの警告を抑止するため、ネームスペースを付与する。
+   * - | (11)
+     - 前述の「Controllerの説明(8)」でModelに設定したオブジェクト(serverTime)は、HttpServletRequestに格納される。
+       そのため、テンプレートHTMLで\ ``${serverTime}``\ と記述し、Thymeleafの ``th:text`` 属性を使用することで、Controllerで設定した値を画面に出力することができる。
 
-       **ただし、${XXX}の記述は、XSS対象になる可能性があるので、文字列を出力する場合はHTMLエスケープする必要がある。**
+       ``th:text`` 属性はHTMLエスケープをして出力を行うため、自動的にXSS対策をとることができる。
+       詳細については :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
 
 |
 
@@ -502,7 +513,7 @@ Controllerの作成
      - | メソッドに付加した ``@RequestMapping`` アノテーションの ``value`` 属性に、何も指定しない場合、クラスに付加した ``@RequestMapping`` のルートに、マッピングされる。この場合、"<contextPath>/echo"にアクセスすると、 ``index`` メソッドが呼ばれる。
        | ``method`` 属性に何もしない場合は、任意のHTTPメソッドでマッピングされる。
    * - | (3)
-     - | View名で"echo/index"を返すので、ViewResolverにより、 "WEB-INF/views/echo/index.jsp"がレンダリングされる。
+     - | View名で"echo/index"を返すので、ViewResolverにより、 "WEB-INF/views/echo/index.html"がレンダリングされる。
    * - | (4)
      - | メソッドに付加した ``@RequestMapping`` アノテーションの\ ``value``\ 属性に"hello"を、\ ``method``\ 属性に\ ``RequestMethod.POST``\ を指定しているので、この場合、"<contextPath>/echo/hello"にPOSTメソッドを使用してアクセスすると ``hello`` メソッドが呼ばれる。
    * - | (5)
@@ -527,27 +538,27 @@ Controllerの作成
 
 |
 
-JSPの作成
+テンプレートHTMLの作成
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-最後に、入力画面と、出力画面のJSPを作成する。それぞれのファイルパスは、View名に合わせて、次のようになる。
+最後に、入力画面と、出力画面について、ThymeleafのテンプレートHTMLを作成する。それぞれのファイルパスは、View名に合わせて、次のようになる。
 
-入力画面 (src/main/webapp/WEB-INF/views/echo/index.jsp) を作成する。
+入力画面 (src/main/webapp/WEB-INF/views/echo/index.html) を作成する。
 
-.. code-block:: jsp
+.. code-block:: html
     :emphasize-lines: 7-8
 
     <!DOCTYPE html>
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org"> <!--/* (1) */-->
     <head>
     <title>Echo Application</title>
     </head>
     <body>
-      <%-- (1) --%>
-      <form:form modelAttribute="echoForm" action="${pageContext.request.contextPath}/echo/hello">
-        <form:label path="name">Input Your Name:</form:label>
-        <form:input path="name" />
+      <!--/* (2) */-->
+      <form th:object="${echoForm}" th:action="@{/echo/hello}" method="post">
+        <label for="name">Input Your Name:</label>
+        <input th:field="*{name}" /> <!--/* (3) */-->
         <input type="submit" />
-      </form:form>
+      </form>
     </body>
     </html>
 
@@ -560,12 +571,19 @@ JSPの作成
    * - 項番
      - 説明
    * - | (1)
-     - | タグライブラリを利用し、HTMLフォームを構築している。 ``modelAttribute`` 属性に、Controllerで用意したフォームオブジェクトの名前を指定する。
-       | タグライブラリは `こちら <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib-formtag>`_\を参照されたい。
+     - | スタンダードダイアレクトが提供する属性を使用したとき、EclipseなどのIDEでの警告を抑止するため、ネームスペースを付与する。
+   * - | (2)
+     - | Thymeleafの属性を利用し、HTMLフォームを構築している。 ``th:object`` 属性に、Controllerで用意したフォームオブジェクトの名前を指定する。
+       | また、ThymeleafのリンクURL式 ``@{}`` に ``/`` から始まるパスを記述することでコンテキスト相対パスが生成され、 ``th:action`` 属性に指定できる。
+       | これらの属性の詳細については `こちら <http://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html#creating-a-form>`_\を参照されたい。
+   * - | (3)
+     - | Thymeleaf+Springで提供される ``th:field`` 属性を用いて、特定のプロパティをHTML formにバインドすることができる。
+       |  ``th:field`` 属性は ``id`` 属性、 ``name`` 属性、 ``value`` 属性をHTMLに出力し、 ``id`` 属性、 ``name`` 属性にはプロパティ名が出力される。
+       |  ``th:field`` 属性の詳細については、 :doc:`アプリケーション層の実装 <../ImplementationAtEachLayer/ApplicationLayer>` を参照されたい。
 
 .. note::
 
-    \ ``<form:form>``\ タグの\ ``method``\ 属性を省略した場合は、POSTメソッドが使用される。
+    \ ``<form>``\ タグの\ ``method``\ 属性を省略した場合は、**GETメソッドが使用される。**
 
 出力されるHTMLは、
 
@@ -578,12 +596,12 @@ JSPの作成
     <title>Echo Application</title>
     </head>
     <body>
-      <form id="echoForm" action="/helloworld/echo/hello" method="post">
+      <form action="/helloworld/echo/hello" method="post">
+        <input type="hidden" name="_csrf" value="43595f38-3edd-4c08-843b-3c31a00d2b15" />      
         <label for="name">Input Your Name:</label>
-        <input id="name" name="name" type="text" value=""/>
+        <input id="name" name="name" value=""/>
         <input type="submit" />
-      <input type="hidden" name="_csrf" value="43595f38-3edd-4c08-843b-3c31a00d2b15" />
-    </form>
+      </form>
     </body>
     </html>
 
@@ -591,20 +609,18 @@ JSPの作成
 
 |
 
-出力画面 (src/main/webapp/WEB-INF/views/echo/hello.jsp) を作成する。
+出力画面 (src/main/webapp/WEB-INF/views/echo/hello.html) を作成する。
 
-.. code-block:: jsp
-    :emphasize-lines: 8
+.. code-block:: html
+    :emphasize-lines: 7
 
     <!DOCTYPE html>
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <title>Echo Application</title>
     </head>
     <body>
-      <p>
-        Hello <c:out value="${name}" /> <%-- (2) --%>
-      </p>
+      <p th:text="|Hello ${name}|"></p> <!--/* (4) */-->
     </body>
     </html>
 
@@ -615,13 +631,8 @@ JSPの作成
 
    * - 項番
      - 説明
-   * - | (2)
-     - | Controllerから渡された"name"を出力する。 ``c:out`` タグにより、XSS対策を行っている。
-
-.. note::
-
-    ここではXSS対策を標準タグの ``c:out`` で実現したが、より容易に使用できる ``f:h()`` 関数を共通ライブラリで用意している。
-    詳細は、  :doc:`../Security/XSS` を参照されたい。
+   * - | (4)
+     - | Controllerから渡された"name"を出力する。 ``th:text`` 属性により、XSS対策を行っている。
 
 |
 
@@ -736,24 +747,24 @@ Spring MVCでは、 `Bean Validation <http://jcp.org/en/jsr/detail?id=349>`_\ �
 
 |
 
-入力画面 (src/main/webapp/WEB-INF/views/echo/index.jsp) に、入力エラーのメッセージを表示するための実装を追加する。
+入力画面 (src/main/webapp/WEB-INF/views/echo/index.html) に、入力エラーのメッセージを表示するための実装を追加する。
 
 
-.. code-block:: jsp
+.. code-block:: html
     :emphasize-lines: 10
 
     <!DOCTYPE html>
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <title>Echo Application</title>
     </head>
     <body>
-      <form:form modelAttribute="echoForm" action="${pageContext.request.contextPath}/echo/hello">
-        <form:label path="name">Input Your Name:</form:label>
-        <form:input path="name" />
-        <form:errors path="name" cssStyle="color:red" /><%-- (1) --%>
+      <form th:object="${echoForm}" th:action="@{/echo/hello}" method="post">
+        <label for="name">Input Your Name:</label>
+        <input th:field="*{name}" />
+        <span th:errors="*{name}" style="color:red"></span> <!--/* (1) */-->
         <input type="submit" />
-      </form:form>
+      </form>
     </body>
     </html>
 
@@ -765,7 +776,7 @@ Spring MVCでは、 `Bean Validation <http://jcp.org/en/jsr/detail?id=349>`_\ �
    * - 項番
      - 説明
    * - | (1)
-     - | 入力画面には、エラーがあった場合に、エラーメッセージを表示するため、 ``form:errors`` タグを追加する。
+     - | 入力画面には、エラーがあった場合に、エラーメッセージを表示するため、 ``th:errors`` 属性を追加する。
 
 |
 
@@ -785,7 +796,7 @@ Spring MVCでは、 `Bean Validation <http://jcp.org/en/jsr/detail?id=349>`_\ �
 出力されるHTMLは、
 
 .. code-block:: html
-    :emphasize-lines: 10
+    :emphasize-lines: 11
 
     <!DOCTYPE html>
     <html>
@@ -793,13 +804,13 @@ Spring MVCでは、 `Bean Validation <http://jcp.org/en/jsr/detail?id=349>`_\ �
     <title>Echo Application</title>
     </head>
     <body>
-      <form id="echoForm" action="/helloworld/echo/hello" method="post">
+      <form action="/helloworld/echo/hello" method="post">
+        <input type="hidden" name="_csrf" value="6e94a78d-4a2c-4a41-a514-0a60f0dbedaf" />
         <label for="name">Input Your Name:</label>
-        <input id="name" name="name" type="text" value=""/>
-        <span id="name.errors" style="color:red">size must be between 1 and 5</span>
+        <input id="name" name="name" value=""/>
+        <span style="color:red">size must be between 1 and 5</span>
         <input type="submit" />
-      <input type="hidden" name="_csrf" value="6e94a78d-4a2c-4a41-a514-0a60f0dbedaf" />
-    </form>
+      </form>
     </body>
     </html>
 

@@ -178,7 +178,7 @@ Overview
 
   #. サーブレット単位で行う例外ハンドリングに対して、View名と、HTTPレスポンスコードの解決以外の処理が必要な場合。
      （View名とHTTPレスポンスコードの解決のみでよい場合は、\ ``SystemExceptionResolver``\ で対応できる ）
-  #. サーブレット単位で行う例外ハンドリングに対して、エラー応答用のレスポンスデータをJSPなどのテンプレートエンジンを使わずに、
+  #. サーブレット単位で行う例外ハンドリングに対して、エラー応答用のレスポンスデータをThymeleafなどのテンプレートエンジンを使わずに、
      エラー用のモデル（JavaBeans）を、JSONやXML形式にシリアライズして生成したい場合
      （AJAXや、REST用のControllerを作成する際の、エラーハンドリングとして使用する）。
 
@@ -533,16 +533,16 @@ Detail
 
 .. _exception-handling-class-viewerror-label:
 
-プレゼンテーション層(JSPなど)で、例外が発生したことを通知する場合
+プレゼンテーション層(Thymeleafなど)で、例外が発生したことを通知する場合
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-プレゼンテーション層(JSPなど)で、例外が発生したことを通知する場合、サーブレットコンテナで捕捉し、Webアプリケーション単位で例外処理を行う。
+プレゼンテーション層(Thymeleafなど)で、例外が発生したことを通知する場合、サーブレットコンテナで捕捉し、Webアプリケーション単位で例外処理を行う。
 
 .. figure:: ./images/exception-handling-class-jsperror.png
   :alt: class of exception handling for fatal error
   :width: 80%
   :align: center
 
-  **図-プレゼンテーション層(JSPなど)で例外が発生した事を通知する場合のハンドリング方法**
+  **図-プレゼンテーション層(Thymeleafなど)で例外が発生した事を通知する場合のハンドリング方法**
 
 
 .. _exception-handling-basic-flow-label:
@@ -583,9 +583,9 @@ Detail
    ResultMessagesLoggingInterceptorはResultMessagesNotificationExceptionのサブ例外(BusinessException/ResourceNotFoundException)が発生した場合のみ、ログを出力するクラスである。
 #. **Controllerクラスは、 BusinessExceptionを捕捉し、 BusinessExceptionに設定されているメッセージ情報(ResultMessage)を画面表示用にModelに設定する(6')。**
 #. **Controllerクラスは、遷移先のView名を返却する。**
-#. DispatcherServletは、返却されたView名に対応するJSPを呼び出す。
-#. **JSPは、MessagesPanelTagを使用して、メッセージ情報(ResultMessage)を取得し、メッセージ表示用のHTMLコードを生成する。**
-#. JSPで生成されたレスポンスが表示される。
+#. DispatcherServletは、返却されたView名に対応するThymeleafテンプレートを呼び出す。
+#. **Thymeleafは、プロセッサを使用して、メッセージ情報(ResultMessage)を取得し、メッセージ表示用のHTMLコードを生成する。**
+#. Thymeleafで生成されたレスポンスが表示される。
 
 
 .. _exception-handling-basic-flow-annotation-label:
@@ -612,9 +612,9 @@ Detail
 #. ExceptionHandlerExceptionResolverは、Controllerより返却されたView名を返却する。
 #. HandlerExceptionResolverLoggingInterceptorは、ExceptionLoggerを呼び出し、HTTPステータスコードに対応するレベル(info, warn, error)のログ(監視ログとアプリケーションログ)を出力する。
 #. HandlerExceptionResolverLoggingInterceptorは、ExceptionHandlerExceptionResolverより返却されたView名を返却する。
-#. DispatcherServletは、返却されたView名に対応するJSPを呼び出す。
-#. **JSPは、MessagesPanelTagを使用して、メッセージ情報(ResultMessage)を取得し、メッセージ表示用のHTMLコードを生成する。**
-#. JSPで生成されたレスポンスが表示される。
+#. DispatcherServletは、返却されたView名に対応するThymeleafテンプレートを呼び出す。
+#. **Thymeleafは、プロセッサを使用して、メッセージ情報(ResultMessage)を取得し、メッセージ表示用のHTMLコードを生成する。**
+#. Thymeleafで生成されたレスポンスが表示される。
 
 
 .. _exception-handling-basic-flow-resolver-label:
@@ -639,9 +639,9 @@ Detail
 #. SystemExceptionResolverは、SystemException発生時の遷移先のView名を返却する。
 #. HandlerExceptionResolverLoggingInterceptorは、ExceptionLoggerを呼び出し、HTTPステータスコードに対応するレベル(info, warn, error)のログ(監視ログとアプリケーションログ)を出力する。
 #. HandlerExceptionResolverLoggingInterceptorは、SystemExceptionResolverより返却されたView名を返却する。
-#. DispatcherServletは、返却されたView名に対応するJSPを呼び出す。
-#. **JSPは、HttpServletRequestより例外コードを取得し、メッセージ表示用のHTMLコードに埋め込む。**
-#. JSPで生成されたレスポンスが表示される。
+#. DispatcherServletは、返却されたView名に対応するThymeleafテンプレートを呼び出す。
+#. **Thymeleafは、プロセッサを使用して、HttpServletRequestより例外コードを取得し、メッセージ表示用のHTMLコードに埋め込む。**
+#. Thymeleafで生成されたレスポンスが表示される。
 
 
 .. _exception-handling-basic-flow-container-label:
@@ -649,7 +649,7 @@ Detail
 Webアプリケーション単位でサーブレットコンテナがハンドリングする場合の基本フロー
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 | 例外をWebアプリケーション単位でハンドリングする場合、サーブレットコンテナで捕捉し、例外処理を行う。
-| 致命的なエラー、フレームワークでハンドリング対象となっていない例外(JSP内で発生した例外など)、Filterで発生した例外をハンドリングする。
+| 致命的なエラー、フレームワークでハンドリング対象となっていない例外(Thymeleaf内で発生した例外など)、Filterで発生した例外をハンドリングする。
 | 基本フローは以下の通りである。
 | 下記フローは、java.lang.Exceptionを、"error page"でハンドリングする場合のフローである。
 | ログ出力は、ハンドリングされていない例外が発生したことを記録するサーブレットフィルタ(\ ``org.terasoluna.gfw.web.exception.ExceptionLoggingFilter``\ )を使用して、出力する。
@@ -755,7 +755,7 @@ How to use
 
         .. note:: **例外コード(メッセージID)について**
 
-             例外コードは、ExceptionLoggerによりログに出力される。（画面での取得も可能である。View(JSP)から例外コードを参照する方法については、\ :ref:`exception-handling-how-to-use-codingpoint-jsp-exceptioncode-label`\ を参照されたい。）
+             例外コードは、ExceptionLoggerによりログに出力される。（画面での取得も可能である。View(Thymeleaf)から例外コードを参照する方法については、\ :ref:`exception-handling-how-to-use-codingpoint-jsp-exceptioncode-label`\ を参照されたい。）
              またコード体系については、プロパティに定義している形式でなくともよい。
              例えば、MA7001等
 
@@ -956,9 +956,22 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
 
     <!-- Settings View Resolver. -->
     <mvc:view-resolvers>
-        <mvc:jsp prefix="/WEB-INF/views/" /> <!-- (9) -->
+        <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver"> <!-- (9) -->
+            <property name="templateEngine" ref="templateEngine" />
+            <!-- omitted -->
+        </bean>
     </mvc:view-resolvers>
 
+    <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".html" />
+        <!-- omitted -->
+    </bean>
+
+    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver" />
+        <!-- omitted -->
+    </bean>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -1009,28 +1022,13 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
 
         上記の設定では、
 
-        * ``/WEB-INF/views/common/error/systemError.jsp``
-        * ``/WEB-INF/views/common/error/resourceNotFoundError.jsp``
-        * ``/WEB-INF/views/common/error/businessError.jsp``
-        * ``/WEB-INF/views/common/error/transactionTokenError.jsp``
-        * ``/WEB-INF/views/common/error/dataAccessError.jsp``
+        * ``/WEB-INF/views/common/error/systemError.html``
+        * ``/WEB-INF/views/common/error/resourceNotFoundError.html``
+        * ``/WEB-INF/views/common/error/businessError.html``
+        * ``/WEB-INF/views/common/error/transactionTokenError.html``
+        * ``/WEB-INF/views/common/error/dataAccessError.html``
 
         が遷移先となる。
-
-        .. tip::
-
-            \ ``<mvc:view-resolvers>``\ 要素はSpring Framework 4.1から追加されたXML要素である。
-            \ ``<mvc:view-resolvers>``\ 要素を使用すると、\ ``ViewResolver``\ をシンプルに定義することが出来る。
-
-            従来通り\ ``<bean>``\ 要素を使用した場合の定義例を以下に示す。
-
-             .. code-block:: xml
-
-                <bean id="viewResolver"
-                    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                    <property name="prefix" value="/WEB-INF/views/" />
-                    <property name="suffix" value=".jsp" />
-                </bean>
 
  .. raw:: latex
 
@@ -1131,7 +1129,7 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
 
  .. code-block:: text
 
-    date:2013-09-25 19:51:52	thread:tomcat-http--3	X-Track:f94de92148f1489b9ceeac3b2f17c969	level:ERROR	logger:o.t.gfw.common.exception.ExceptionLogger        	message:[e.xx.fw.9001] An exception occurred processing JSP page /WEB-INF/views/exampleJSPException.jsp at line 13
+    date:2013-09-25 19:51:52	thread:tomcat-http--3	X-Track:f94de92148f1489b9ceeac3b2f17c969	level:ERROR	logger:o.t.gfw.common.exception.ExceptionLogger        	message:[e.xx.fw.9001] Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "#messages.msgWithParams(message.code, message.args)" (template: "staff/register" - line 32, col 11)
 
 
 .. _exception-handling-how-to-use-application-configuration-container-label:
@@ -1150,7 +1148,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
        <!-- (1) -->
        <error-code>404</error-code>
        <!-- (2) -->
-       <location>/WEB-INF/views/common/error/resourceNotFoundError.jsp</location>
+       <location>/common/error/resourceNotFoundError</location>
    </error-page>
 
 
@@ -1166,7 +1164,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
        | **【プロジェクト毎にカスタマイズする箇所】**
        | Spring MVCの、デフォルトの例外ハンドリング機能で応答されるHTTPレスポンスコードについては、\ :ref:`exception-handling-appendix-defaulthandlerexceptionresolver-label`\ を参照されたい。
    * - | (2)
-     - | 遷移するファイル名を指定する。Webアプリケーションルートからのパスで、指定する。上記の設定では、"${WebAppRoot}/WEB-INF/views/common/error/resourceNotFoundError.jsp"が、遷移先のファイルとなる。
+     - | 遷移するパスを指定する。エラー画面を\ ``ThymeleafView``\ でレンダリングさせるため、直接HTMLファイルのパスを指定せず、エラー画面に遷移させるためのController（※ブランクプロジェクトで提供）でハンドリングされるようにしている。
        | **【プロジェクト毎にカスタマイズする箇所】**
 
 
@@ -1194,7 +1192,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 .. note:: **locationに指定するパスについて**
 
   動的コンテンツのパスを指定した場合、致命的なエラーが発生していた場合に、別のエラーが発生する可能性が高くなるため、
-  locationには、JSPなどの動的コンテンツでなく、 **HTMLなどの静的コンテンツへのパスを指定することを推奨する。**
+  locationには、Thymeleafなどの動的コンテンツでなく、 **HTMLなどの静的コンテンツへのパスを指定することを推奨する。**
 
 .. note:: **開発中に原因が特定できないエラーが発生した場合**
 
@@ -1212,7 +1210,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
           <!-- (4) -->
           <exception-type>java.io.IOException</exception-type>
           <!-- (5) -->
-          <location>/WEB-INF/views/common/error/systemError.jsp</location>
+          <location>/common/error/systemError</location>
       </error-page>
 
     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1225,7 +1223,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
       * - | (4)
         - | ハンドリング対象とする **例外クラス名(FQCN)** を指定する。
       * - | (5)
-        - | 遷移するファイル名を指定する。Webアプリケーションルートからのパスで指定する。上記の設定では、"${WebAppRoot}/WEB-INF/views/common/error/systemError.jsp"が遷移先のファイルとなる。
+        - | 遷移するパスを指定する。エラー画面を\ ``ThymeleafView``\ でレンダリングさせるため、直接HTMLファイルのパスを指定せず、エラー画面に遷移させるためのController（※ブランクプロジェクトで提供）でハンドリングされるようにしている。
           | **【プロジェクト毎にカスタマイズする箇所】**
 
 
@@ -1685,9 +1683,9 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 
 .. _exception-handling-how-to-use-codingpoint-jsp-label:
 
-コーディングポイント（JSP編）
+コーディングポイント（Thymeleaf編）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-例外ハンドリングを行う際の、JSPでのコーディングポイントを、以下に示す。
+例外ハンドリングを行う際の、Thymeleafテンプレート(HTML)でのコーディングポイントを、以下に示す。
 
 #. :ref:`exception-handling-how-to-use-codingpoint-jsp-panel-label`
 #. :ref:`exception-handling-how-to-use-codingpoint-jsp-exceptioncode-label`
@@ -1707,23 +1705,35 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 
 .. _exception-handling-how-to-use-codingpoint-jsp-panel-label:
 
-MessagesPanelTagを使用して、メッセージを画面表示する方法
+ResultMessagesに格納されたメッセージを画面表示する方法
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 任意の場所に、ResultMessagesを出力する際の実装例を、以下に示す。
+なお、以下では、TERASOLUNAのJSPタグである ``<t:messagesPanel>`` のデフォルト設定で出力するHTMLを生成するソースコードを記述している。
+詳細は、 :doc:`../WebApplicationDetail/MessageManagement` を参照されたい。
 
- .. code-block:: xml
+ .. code-block:: html
 
-    <t:messagesPanel /> <!-- (1) -->
+    <div th:if="${resultMessages} != null" class="alert"
+        th:classappend="|alert-${resultMessages.type}|"> <!--/* (1) */-->
+        <ul>
+            <!--/* (2) */-->
+            <li th:each="message : ${resultMessages}"
+                th:text="${message.code} != null ? ${#messages.msgWithParams(message.code, message.args)} : ${message.text}">
+            </li>
+        </ul>
+    </div>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
-    :header-rows: 1
-    :widths: 10 90
+   :header-rows: 1
+   :widths: 10 90
 
-    * - 項番
-      - 説明
-    * - | (1)
-      -  メッセージを出力したい場所に、<t:messagesPanel>タグを指定する。 <t:messagesPanel>タグの使用方法の詳細については、\ :doc:`../WebApplicationDetail/MessageManagement`\ を参照されたい。
+   * - 項番
+     - 説明
+   * - | (1)
+     - 属性名が"resultMessages"のオブジェクトがnullでないとき、 ``<div>`` とその配下の要素が実行される。
+   * - | (2)
+     - 属性名が"resultMessages"のオブジェクトに格納された ``message`` 変数を、Thymeleafのメッセージ式 ``#messages`` を使用して繰り返し取得し、出力する。
 
 
 .. _exception-handling-how-to-use-codingpoint-jsp-exceptioncode-label:
@@ -1732,14 +1742,9 @@ MessagesPanelTagを使用して、メッセージを画面表示する方法
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 任意の場所に、例外コード(メッセージID)と、固定メッセージを表示する際の実装例を、以下に示す。
 
- .. code-block:: xml
+ .. code-block:: html
 
-    <p>
-        <c:if test="${!empty exceptionCode}">  <!-- (1) -->
-            [${f:h(exceptionCode)}]            <!-- (2) -->
-        </c:if>
-        <spring:message code="e.cm.fw.9999" /> <!-- (3) -->
-    </p>
+    <p th:text="${#strings.isEmpty(exceptionCode)} ? #{e.cm.fw.9999} : |[${exceptionCode}] #{${e.cm.fw.9999}}|"></p> <!--/* (1) */-->
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -1749,11 +1754,10 @@ MessagesPanelTagを使用して、メッセージを画面表示する方法
     * - 項番
       - 説明
     * - | (1)
-      - | 例外コード(メッセージID)の存在チェックを行う。上記の実装例のように、記号などで例外コード(メッセージID)を囲む場合は、存在チェックを行うこと。
-    * - | (2)
-      - | 例外コード(メッセージID)を出力する。
-    * - | (3)
-      - | メッセージ定義より取得した、固定メッセージを出力する。
+      - | Thymeleafのユーティリティオブジェクトを利用して例外コード(メッセージID)の存在チェックを行う。上記の実装例では、3項演算子を用いて存在チェック結果により出力内容を変えている。
+        | 存在しない場合、メッセージ定義より取得した固定メッセージを出力する。
+        | 存在する場合、例外コード(メッセージID)と、メッセージ定義より取得した固定メッセージを合わせて出力する。
+        | 上記の実装例のように、記号などで例外コード(メッセージID)を囲む場合は、存在チェックを行うこと。
 
 - 出力画面（exceptionCode有り）
 
@@ -1955,14 +1959,14 @@ SystemExceptionResolverの設定項目について
      - | 結果メッセージの属性名
      - | resultMessagesAttribute
      - | ビジネス例外に設定されているメッセージ情報として、モデルに設定する際の属性名(String)を指定する。
-       | View(JSP)から結果メッセージにアクセスする際の、属性名となる。
+       | View(Thymeleaf)から結果メッセージにアクセスする際の、属性名となる。
      - resultMessages
    * - | (2)
      - | 例外コード(メッセージID)の属性名
      - | exceptionCode
        | Attribute
      - | 例外コード(メッセージID)として、HttpServletRequestに設定する際の属性名(String)を指定する。
-       | View(JSP)から例外コード(メッセージID)にアクセスする際の属性名となる。
+       | View(Thymeleaf)から例外コード(メッセージID)にアクセスする際の属性名となる。
      - exceptionCode
    * - | (3)
      - | 例外コード(メッセージID)のヘッダー名
@@ -1974,7 +1978,7 @@ SystemExceptionResolverの設定項目について
      - | 例外オブジェクトの属性名
      - | exceptionAttribute
      - | ハンドリングした例外オブジェクトとして、モデルに設定する際の属性名(String)を指定する。
-       | View(JSP)から例外オブジェクトにアクセスする際の属性名となる。
+       | View(Thymeleaf)から例外オブジェクトにアクセスする際の属性名となる。
      - exception
    * - | (5)
      - | 本ExceptionResolverとして、使用するハンドラー(Controller)のオブジェクト一覧
@@ -2012,7 +2016,7 @@ SystemExceptionResolverの設定項目について
 
 結果メッセージの属性名
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-| SystemExceptionResolverでハンドリングして設定したメッセージと、アプリケーションコードでハンドリングして設定したメッセージを、View(JSP)で別のmessagesPanelとして出力したい場合は、SystemExceptionResolver専用の属性名を指定する。
+| SystemExceptionResolverでハンドリングして設定したメッセージと、アプリケーションコードでハンドリングして設定したメッセージを、Thymeleafテンプレート(HTML)で別のタグとして出力したい場合は、SystemExceptionResolver専用の属性名を指定する。
 | 下記に示す例は、デフォルト値から「resultMessagesForExceptionResolver」に変更する場合の、設定&実装例である。
 
 - **spring-mvc.xml**
@@ -2028,11 +2032,19 @@ SystemExceptionResolverの設定項目について
         <!-- omitted -->
     </bean>
 
-- **jsp**
+- **html**
 
-  .. code-block:: xml
+  .. code-block:: html
 
-    <t:messagesPanel messagesAttributeName="resultMessagesForExceptionResolver"/> <!-- (2) -->
+    <div th:if="${resultMessagesForExceptionResolver} != null" class="alert"
+        th:classappend="|alert-${resultMessagesForExceptionResolver.type}|"> <!--/* (2) */-->
+        <ul>
+            <!--/* (3) */-->
+            <li th:each="message : ${resultMessagesForExceptionResolver}"
+                th:text="${message.code} != null ? ${#messages.msgWithParams(message.code, message.args)} : ${message.text}">
+            </li>
+        </ul>
+    </div>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -2044,7 +2056,9 @@ SystemExceptionResolverの設定項目について
     * - | (1)
       - | 結果メッセージの属性名(resultMessagesAttribute)に、"resultMessagesForExceptionResolver"を指定する。
     * - | (2)
-      - | メッセージ属性名(messagesAttributeName)に、SystemExceptionResolverで設定した属性名を指定する。
+      - | SystemExceptionResolverで設定した属性名のオブジェクトがnullでないとき、 ``<div>`` とその配下の要素が実行される。
+    * - | (3)
+      - | SystemExceptionResolverで設定した属性名のオブジェクトに格納された ``message`` 変数を、Thymeleafのメッセージ式 ``#messages`` を使用して繰り返し取得し、出力する。
 
 
 例外コード(メッセージID)の属性名
@@ -2065,16 +2079,11 @@ SystemExceptionResolverの設定項目について
         <!-- omitted -->
     </bean>
 
-- **jsp**
+- **html**
 
-  .. code-block:: xml
+  .. code-block:: html
 
-    <p>
-        <c:if test="${!empty exceptionCodeForExceptionResolver}">  <!-- (2) -->
-            [${f:h(exceptionCodeForExceptionResolver)}]            <!-- (3) -->
-        </c:if>
-        <spring:message code="e.cm.fw.9999" />
-    </p>
+    <p th:text="${#strings.isEmpty(exceptionCodeForExceptionResolver)} ? #{e.cm.fw.9999} : |[${exceptionCodeForExceptionResolver}] #{${e.cm.fw.9999}}|"></p> <!--/* (2) */-->
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -2087,8 +2096,7 @@ SystemExceptionResolverの設定項目について
       - | 例外コード(メッセージID)の属性名(exceptionCodeAttribute)に、"exceptionCodeForExceptionResolver"を指定する。
     * - | (2)
       - | SystemExceptionResolverに設定した値(exceptionCodeForExceptionResolver)を、テスト対象(空チェック対応)の変数名として指定する。
-    * - | (3)
-      - | SystemExceptionResolverに設定した値(exceptionCodeForExceptionResolver)を、出力対象の変数名として指定する。
+        | 例外コード(メッセージID)が存在する場合の出力時に、SystemExceptionResolverに設定した値(exceptionCodeForExceptionResolver)を、出力対象の変数名として指定する。
 
 
 例外コード(メッセージID)のヘッダー名
@@ -2138,12 +2146,12 @@ SystemExceptionResolverの設定項目について
         <!-- omitted -->
     </bean>
 
-- **jsp**
+- **html**
 
-  .. code-block:: xml
+  .. code-block:: html
 
     <p>[Exception Message]</p>
-    <p>${f:h(exceptionForExceptionResolver.message)}</p> <!-- (2) -->
+    <p th:text="${exceptionForExceptionResolver.message}"></p> <!-- (2) -->
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::

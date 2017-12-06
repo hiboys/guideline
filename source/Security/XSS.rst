@@ -74,7 +74,14 @@ HTMLにおいてエスケープが必要な特殊文字の例と、エスケー�
    * - | ``'``
      - | ``&#39;``
 
-XSSを防ぐために、文字列として出力するすべての表示項目に、\ ``f:h()``\ を使用すること。
+Thymeleafでテキストを出力する方法には\ ``th:text``\属性、\ ``th:utext``\属性の二種類が存在する。
+詳細は、\ `Unescaped Text <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#unescaped-text>`_\ を参照されたい。
+
+ * \ ``th:text``\属性を使用すると値をエスケープして出力する
+ * \ ``th:utext``\属性を使用すると値をエスケープせずに出力する
+
+XSSを防ぐために、\ ``th:text``\属性を使用すること。
+
 入力値を、別画面に再出力するアプリケーションを例に、説明する。
 
 出力値をエスケープしない脆弱性のある例
@@ -84,12 +91,12 @@ XSSを防ぐために、文字列として出力するすべての表示項目�
 
 **出力画面の実装**
 
-.. code-block:: jsp
+.. code-block:: html
 
     <!-- omitted -->
     <tr>
         <td>Job</td>
-        <td>${customerForm.job}</td>  <!-- (1) -->
+        <td th:utext="${customerForm.job}">Job</td>  <!-- (1) -->
     </tr>
     <!-- omitted -->
 
@@ -101,7 +108,7 @@ XSSを防ぐために、文字列として出力するすべての表示項目�
    * - 項番
      - 説明
    * - | (1)
-     - | customerFormのフィールドである、jobをエスケープせず出力している。
+     - | \ ``th:utext``\ 属性を使用することにより、customerFormのフィールドであるjobをエスケープせず出力している。
 
 入力画面のJobフィールドに、<script>タグを入力する。
 
@@ -123,18 +130,18 @@ XSSを防ぐために、文字列として出力するすべての表示項目�
 
 .. _xss_how_to_use_h_function_example:
 
-出力値をf:h()関数でエスケープする例
+出力値をエスケープする例
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 **出力画面の実装**
 
-.. code-block:: jsp
+.. code-block:: html
 
     <!-- omitted -->
     <tr>
         <td>Job</td>
-        <td>${f:h(customerForm.job)}</td>  <!-- (1) -->
+        <td th:text="${customerForm.job}">Job</td>  <!-- (1) -->
     </tr>
     .<!-- omitted -->
 
@@ -146,7 +153,7 @@ XSSを防ぐために、文字列として出力するすべての表示項目�
    * - 項番
      - 説明
    * - | (1)
-     - | EL式の\ ``f:h()``\ を使用することにより、エスケープして出力している。
+     - | \ ``th:text``\ 属性を使用することにより、エスケープして出力している。
 
 入力画面のJobフィールドに<script>タグを入力する。
 
@@ -168,7 +175,7 @@ XSSを防ぐために、文字列として出力するすべての表示項目�
 
 **出力結果**
 
-.. code-block:: jsp
+.. code-block:: html
 
     <!-- omitted -->
     <tr>
@@ -177,30 +184,40 @@ XSSを防ぐために、文字列として出力するすべての表示項目�
     </tr>
     <!-- omitted -->
 
-.. tip:: **java.util.Date継承クラスのフォーマット**
+.. note:: **インライン記法を使用する場合**
 
-    java.util.Date継承クラスをフォーマットして表示する場合は、JSTLの\ ``<fmt:formatDate>``\ を用いることを推奨する。
-    以下に、設定例を示す。
-
-        .. code-block:: jsp
-
-            <fmt:formatDate value="${form.date}" pattern="yyyyMMdd" />
-
-    valueの値に前述した \ ``f:h()``\ を使用して値を設定すると、Stringになってしまい、\ ``javax.el.ELException``\ がスローされるため、そのまま\ ``${form.date}``\ を使用している。
-    しかし、yyyyMMddにフォーマットするため、XSSの心配はない。
-
-.. tip::
-
-        **java.lang.Number継承クラス、またはjava.lang.Numberにパースできる文字列**
-
-        java.lang.Number継承クラスまたはjava.lang.Numberにパースできる文字列をフォーマットして表示する場合は、\ ``<fmt:formatNumber>``\ を用いることを推奨する。
-        以下に、設定例を示す。
-
-            .. code-block:: jsp
-
-                <fmt:formatNumber value="${f:h(form.price)}" pattern="###,###" />
-
-        上記は、Stringでも問題ないので、\ ``<fmt:formatNumber>``\ タグを使わなくなった場合に ``f:h()`` を付け忘れることを予防するため、\ ``f:h()``\ を明示的に使用している。
+  Thymeleafでテキストを出力する方法には\ ``th:text``\、\ ``th:utext``\の他にインライン記法が存在する。
+  インライン記法は[[xxx]]、[(xxx)]という二つの形式で記述することができる。
+  
+  * [[xxx]]の形式を使用すると、値をエスケープして出力する
+  * [(xxx)]の形式を使用すると、値をエスケープせずに出力する
+  
+  XSSを防ぐために、[[xxx]]の形式を使用すること。
+  
+  使用例を下記に示す。
+  
+  **HTML**
+  
+    .. code-block:: html
+    
+      <p>[[${warnCode}]]</p>
+    
+    .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
+    .. list-table::
+       :header-rows: 1
+       :widths: 20 80
+    
+       * - 属性名
+         - 値
+       * - | warnCode
+         - | ``</p><script>alert('XSS Attack!')</script><p>``
+  
+  **出力結果**
+  
+    .. code-block:: html
+    
+      <p>&lt;/p&gt;&lt;script&gt;alert(&#39;XSS Attack!&#39;)&lt;/script&gt;&lt;p&gt;</p>
+    
 
 .. _xss_how_to_use_javascript_escaping:
 
@@ -247,10 +264,20 @@ XSS問題が発生する例を、以下に示す。
 
   <html>
     <script  type="text/javascript">
-        var aaa = '${warnCode}';
+        var aaa = "[(${warnCode})]";  <!-- (1) -->
         alert(aaa);
     </script>
   </html>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | [(xxx)]の形式を用いたインライン記法により、\ ``warnCode``\をエスケープせず出力している。
 
 .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
 .. list-table::
@@ -260,7 +287,7 @@ XSS問題が発生する例を、以下に示す。
    * - 属性名
      - 値
    * - | warnCode
-     - | ``';alert('XSS Attack!');aaa='message``
+     - | ``";alert('XSS Attack!');aaa="message``
 
 上記例のように、ユーザーの入力を導出元としてコードを出力するなど、JavaScriptの要素を動的に生成する場合、意図せず文字列リテラルが閉じられ、XSSの脆弱性が生じる。
 
@@ -276,7 +303,7 @@ XSS問題が発生する例を、以下に示す。
 .. code-block:: html
 
     <script type="text/javascript">
-        var aaa = '';alert('XSS Attack!');aaa='message';
+        var aaa = "";alert('XSS Attack!');aaa="message";
         alert(aaa);
     </script>
 
@@ -286,17 +313,17 @@ XSS問題が発生する例を、以下に示す。
 
 .. _xss_how_to_use_js_function_example:
 
-出力値をf:js()関数でエスケープする例
+出力値をエスケープする例
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-XSSを防ぐために、ユーザーの入力値、が設定される値にEL式の関数、\ ``f:js()``\ の使用を推奨する。
+XSSを防ぐために、Thymeleafの\ ``th:inline="javascript"``\ の使用を推奨する。詳細は、\ `JavaScript inlining <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#javascript-inlining>`_\ を参照されたい。
 
 使用例を、下記に示す。
 
 .. code-block:: html
 
-    <script type="text/javascript">
-        var aaa = '${f:js(warnCode)}';  // (1)
+    <script type="text/javascript" th:inline="javascript">  <!-- (1) -->
+        var aaa = [[${warnCode}]];
         alert(aaa);
     </script>
 
@@ -308,9 +335,9 @@ XSSを防ぐために、ユーザーの入力値、が設定される値にEL式
    * - 項番
      - 説明
    * - | (1)
-     - | EL式の\ ``f:js()``\ を使用することにより、エスケープして変数に設定している。
+     - | \ ``th:inline="javascript"``\ と[[xxx]]の形式を用いたインライン記法を併用することにより、エスケープして変数に設定している。
 
-.. figure:: ./images_XSS/javascript_xss_screen_escape_result.png
+.. figure:: ./images_XSS/javascript_xss_screen_escape_result_th_inline.png
    :alt: javascript_xss_screen_escape_result
    :width: 35%
    :align: center
@@ -322,22 +349,35 @@ XSSを防ぐために、ユーザーの入力値、が設定される値にEL式
 .. code-block:: html
 
     <script  type="text/javascript">
-        var aaa = '\';alert(\'XSS Attack!\');aaa=\'message';
+        var aaa = "\";alert('XSS Attack!');aaa=\"message";
         alert(aaa);
     </script>
 
+.. note:: 
+
+   \ ``th:inline="javascript"``\と[[xxx]]の形式を用いたインライン記法を併用すると、文字列が\ ``"``\に挟まれた状態で出力されるので、\ ``'``\はエスケープ不要となる。
+   
+   また、<script>タグがブラウザに認識されると、</script>のようにタグを閉じるまで他のタグは認識されない。
+   そのため、\ ``/``\がエスケープされていれば、\ ``<``\、\ ``>``\のエスケープは不要となる。
+   
+   以上のことから、以下の特殊文字は\ ``th:inline="javascript"``\のエスケープ対象に入っていない。
+
+   * \ ``'``\
+   * \ ``<``\
+   * \ ``>``\
+
 .. Warning::
 
-    スクリプトタグが含まれる値を、HTMLエスケープせず\ ``f:js()``\でエスケープさせて出力する場合、document.write()を使用すると、
+    スクリプトタグが含まれる値を、HTMLエスケープせず\ ``th:inline="javascript"``\でエスケープさせて出力する場合、document.write()を使用すると、
     ブラウザにHTMLソースとして解釈させるよう出力するので、XSSの脆弱性が生じる。以下に例を示すが、 **このような実装は決して行わないこと。**
 
-    **JSP**
+    **HTML**
 
       .. code-block:: html
 
-        <script  type="text/javascript">
-           var aaa = '${f:js(warnCode)}';
-           document.write(aaa);
+        <script type="text/javascript" th:inline="javascript">
+            var aaa = [[${warnCode}]];
+            document.write(aaa);
         </script>
 
       .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
@@ -355,7 +395,7 @@ XSSを防ぐために、ユーザーの入力値、が設定される値にEL式
       .. code-block:: html
 
         <script  type="text/javascript">
-           var aaa = '\x3cscript\x3ealert(\'XSS Attack!\');\x3c\/script\x3e';
+           var aaa = "<script>alert('XSS Attack!');<\/script>";
            document.write(aaa);
         </script>
 
@@ -364,42 +404,46 @@ XSSを防ぐために、ユーザーの入力値、が設定される値にEL式
     \ ``document.write(aaa);`` \と実装してしまうと、HTMLのソースとして\ ``<script>alert('XSS Attack!');</script>`` \を出力することになる。
     その結果、スクリプトが実行される。
 
-    ブラウザに値を出力させたい場合は、JavaScriptを使用せず、HTML特殊文字をエスケープする\ ``f:h()``\を使用することが望ましい。
+    ブラウザに値を出力させたい場合は、JavaScriptを使用せず、HTML特殊文字をエスケープする\ ``th:text``\属性を使用することが望ましい。
 
-    **JSP**
+    **HTML**
 
       .. code-block:: html
 
-        ${f:h(warnCode)}
+        <div th:text="${warnCode}">warn code</div>
                 
 
     **出力結果**
 
       .. code-block:: html
 
-        &lt;script&gt;alert(&#39;XSS Attack!&#39;);&lt;/script&gt;
+        <div>&lt;script&gt;alert(&#39;XSS Attack!&#39;);&lt;/script&gt;</div>
 
-    あえて\ ``f:js()``\を使用し、document.write()で出力したい場合は、以下のいずれかのような、追加のXSS対策が必要である。
+    あえてdocument.write()で出力したい場合は、以下のいずれかのような、追加のXSS対策が必要である。
 
     * HTMLエスケープ用のJavaScript関数を用意し、document.write()の引数をエスケープする。
-    * \ ``f:h()``\でユーザーの入力値が設定される値をHTMLエスケープした後、\ ``f:js()``\でJavaScriptの文字列リテラル用のエスケープを行う。
+    * \ ``th:text``\属性でユーザーの入力値が設定される値をHTMLエスケープした後、\ ``th:inline="javascript"``\でJavaScriptの文字列リテラル用のエスケープを行う。
 
 .. _xss_how_to_use_event_handler_escaping:
 
 Event handler Escaping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-javascript のイベントハンドラの値をエスケープする場合、\ ``f:h()``\ や、\ ``f:js()``\ を使用するのではなく、\ ``f:hjs()``\ を使用すること。\ ``${f:h(f:js())}``\ と同義である。
+javascript のイベントハンドラの値をエスケープする場合、Thymeleafの\ ``#strings.escapeJavaScript()``\ を使用する。
 
 理由としては、 \ ``<input type="submit" onclick="callback('xxxx');">``\ のようなイベントハンドラの値に\ ``"');alert("XSS Attack");// "``\ を指定された場合、別のスクリプトを挿入できてしまうため、文字参照形式にエスケープ後、HTMLエスケープを行う必要がある。
+
+.. note:: 
+
+   \ ``#strings.escapeJavaScript()``\ を使用すると、\ ``/``\のエスケープは\ ``</script>``\のようなタグを閉じる際にのみ必要となるため、\ ``<``\の後の\ ``/``\のみエスケープが行われる。
 
 出力値をエスケープしない脆弱性のある例
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 XSS問題が発生する例を、以下に示す。
 
-.. code-block:: jsp
+.. code-block:: html
 
-    <input type="text" onmouseover="alert('output is ${warnCode}') . ">
+    <input type="text" th:onmouseover="|alert('output is ${warnCode}.')|">
 
 .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
 .. list-table::
@@ -424,22 +468,22 @@ XSS問題が発生する例を、以下に示す。
 
 **出力結果**
 
-.. code-block:: jsp
+.. code-block:: html
 
     <!-- omitted -->
-    <input type="text" onmouseover="alert('output is'); alert('XSS Attack!'); // .') ">
+    <input type="text" onmouseover="alert(&#39;output is &#39;); alert(&#39;XSS Attack!&#39;); //.&#39;)">
     <!-- omitted -->
 
 .. _xss_how_to_use_hjs_function_example:
 
-出力値をf:hjs()関数でエスケープする例
+出力値をエスケープする例
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 使用例を、下記に示す。
 
-.. code-block:: jsp
+.. code-block:: html
 
-    <input type="text" onmouseover="alert('output is ${f:hjs(warnCode)}') . ">  // (1)
+    <input type="text" th:onmouseover="|alert('output is ${#strings.escapeJavaScript(warnCode)}.')|">  // (1)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -449,7 +493,7 @@ XSS問題が発生する例を、以下に示す。
    * - 項番
      - 説明
    * - | (1)
-     - | EL式の\ ``f:hjs()``\ を使用することにより、エスケープして引数としている。
+     - | \ ``#strings.escapeJavaScript()``\ を使用することにより、エスケープしている。
 
 マウスオーバ時、XSSのダイアログは出力されない。
 
@@ -462,10 +506,10 @@ XSS問題が発生する例を、以下に示す。
 
 **出力結果**
 
-.. code-block:: jsp
+.. code-block:: html
 
     <!-- omitted -->
-    <input type="text" onmouseover="alert('output is \&#39;); alert(\&#39;XSS Attack!\&#39;);\&quot; \/\/ .') ">
+    <input type="text" onmouseover="alert(&#39;output is \&#39;); alert(\&#39;XSS Attack!\&#39;); //.&#39;)">
     <!-- omitted -->
 
 .. raw:: latex

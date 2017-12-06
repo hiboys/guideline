@@ -636,48 +636,45 @@ PRG(Post-Redirect-Get)パターンの適用
      - | 完了画面を表示するためのハンドラメソッド。
        | **GETメソッドでリクエストを受け取る。**
    * - | (8)
-     - | 完了画面を表示するView(JSP)を呼び出し、完了画面を応答する。
-       | JSPの拡張子は :file:`spring-mvc.xml` に定義されている \ ``ViewResolver``\によって付与されるため、ハンドラメソッドの返却値からは省略している。
+     - | 完了画面を表示するView(テンプレートHTML)を呼び出し、完了画面を応答する。
+       | HTMLの拡張子は :file:`spring-mvc.xml` に定義されている \ ``TemplateResolver``\によって付与されるため、ハンドラメソッドの返却値からは省略している。
 
  .. note::
 
     * リダイレクトする際は、ハンドラメソッドの返り値として返却する遷移情報のプレフィックスとして「redirect:」を付与する。
     * リダイレクト先の処理にデータを引き渡したい場合は、\ ``RedirectAttributes``\ のaddFlashAttributeメソッドを呼び出し、引き渡すデータを追加する。
 
-- :file:`createForm.jsp`
+- :file:`createForm.html`
 
- .. code-block:: jsp
+ .. code-block:: html
 
     <h1>Create User</h1>
     <div id="prgForm">
-      <form:form 
-        action="${pageContext.request.contextPath}/prgExample/create"
-        method="post" modelAttribute="postRedirectGetForm">
-        <form:label path="firstName">FirstName</form:label>
-        <form:input path="firstName" /><br>
-        <form:label path="lastName">LastName:</form:label>
-        <form:input path="lastName" /><br>
-        <form:button name="confirm">Confirm Create User</form:button>
-      </form:form>
+      <form th:action="@{/prgExample/create}"
+        method="post" th:object="${postRedirectGetForm}">
+        <label for="firstName">FirstName</label>
+        <input th:field="*{firstName}" /><br>
+        <label for="lastName">LastName:</label>
+        <input th:field="*{lastName}" /><br>
+        <button name="confirm">Confirm Create User</button>
+      </form>
     </div>
 
-- :file:`createConfirm.jsp`
+- :file:`createConfirm.html`
 
- .. code-block:: jsp
-    :emphasize-lines: 5,11
+ .. code-block:: html
+    :emphasize-lines: 4,9
 
     <h1>Confirm Create User</h1>
     <div id="prgForm">
-      <form:form
-        action="${pageContext.request.contextPath}/prgExample/create"
-        method="post"
-        modelAttribute="postRedirectGetForm">
-        FirstName:${f:h(postRedirectGetForm.firstName)}<br>
-        <form:hidden path="firstName" />
-        LastName:${f:h(postRedirectGetForm.lastName)}<br>
-        <form:hidden path="lastName" />
-        <form:button>Create User</form:button> <%-- (6) --%>
-      </form:form>
+      <form th:action="@{/prgExample/create}"
+        method="post" th:object="${postRedirectGetForm}">
+        <span th:text="|FirstName: *{firstName}|"></span><br>
+        <input type="hidden" th:field="*{firstName}" />
+        <span th:text="|LastName: *{lastName}|"></span><br>
+        <input type="hidden" th:field="*{lastName}" />
+        <button type="submit">Create User</button> <!-- (6) -->
+      </form>
     </div>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -690,19 +687,18 @@ PRG(Post-Redirect-Get)パターンの適用
    * - | (6)
      - | 更新処理を行うためのボタンが押下された場合は、 **POSTメソッドでリクエストを送る。**
 
-- :file:`createComplete.jsp`
+- :file:`createComplete.html`
 
- .. code-block:: jsp
+ .. code-block:: html
     :emphasize-lines: 6
 
     <h1>Successful Create User Completion</h1>
     <div id="prgForm">
-      <form:form
-        action="${pageContext.request.contextPath}/prgExample/create"
-        method="get" modelAttribute="postRedirectGetForm">
-        output:${f:h(output)}<br> <%-- (7) --%>
-        <form:button name="backToTop">Top</form:button>
-      </form:form>
+      <form th:action="@{/prgExample/create}"
+        method="get" th:object="${postRedirectGetForm}">
+        <span th:text="|output: ${output}|"></span><br> <!-- (7) -->
+        <button name="backToTop" type="submit">Top</button>
+      </form>
     </div>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1023,7 +1019,7 @@ PRG(Post-Redirect-Get)パターンの適用
    * - | (3)
      - | \ ``@TransactionTokenCheck``\ アノテーションを使用して、トランザクショントークンの生成及びチェックを実施するためのクラス(\ ``TransactionTokenInterceptor``\)を指定する。
    * - | (4)
-     - | トランザクショントークンを、Spring MVCの\ ``<form:form>``\タグを使用してHidden領域に自動的に埋め込むためのクラス(\ ``TransactionTokenRequestDataValueProcessor``\)を設定する。
+     - | トランザクショントークンを、Thymeleafの\ ``th:action``\属性を使用してHidden領域に自動的に埋め込むためのクラス(\ ``TransactionTokenRequestDataValueProcessor``\)を設定する。
 
 
 トランザクショントークンエラーをハンドリングするための設定
@@ -1125,77 +1121,59 @@ PRG(Post-Redirect-Get)パターンの適用
 
 .. _doubleSubmit_how_to_use_transaction_token_check_jsp:
 
-トランザクショントークンチェックのView(JSP)での利用方法
+トランザクショントークンチェックのView(Thymeleaf)での利用方法
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-| トランザクショントークンチェックを行う場合、払い出されたトランザクショントークンが、リクエストパラメータとして送信されるようにView(JSP)を実装する必要がある。
-| リクエストパラメータとして送信されるようにする方法としては、\ :ref:`setting`\を行った上で、\ ``<form:form>``\タグを使用して自動的にトランザクショントークンをhidden要素に埋め込む方法を推奨する。
+| トランザクショントークンチェックを行う場合、払い出されたトランザクショントークンが、リクエストパラメータとして送信されるようにView(テンプレートHTML)を実装する必要がある。
+| リクエストパラメータとして送信されるようにする方法としては、\ :ref:`setting`\を行った上で、\ ``th:action``\属性を使用して自動的にトランザクショントークンをhidden要素に埋め込む方法を推奨する。
 
-- :file:`firstView.jsp`
+- :file:`firstView.html`
 
- .. code-block:: jsp
+ .. code-block:: html
 
     <h1>First</h1>
-    <form:form method="post" action="transactionTokenCheckExample">
+    <form method="post" th:action="@{/transactionTokenCheckExample}">
       <input type="submit" name="second" value="second" />
-    </form:form>
+    </form>
 
-- :file:`secondView.jsp`
+- :file:`secondView.html`
 
- .. code-block:: jsp
+ .. code-block:: html
     :emphasize-lines: 2
 
     <h1>Second</h1>
-    <form:form method="post" action="transactionTokenCheckExample"><!-- (1) -->
+    <form method="post" th:action="@{/transactionTokenCheckExample}"><!-- (1) -->
       <input type="submit" name="third" value="third" />
-    </form:form>
+    </form>
 
-- :file:`thirdView.jsp`
+- :file:`thirdView.html`
 
- .. code-block:: jsp
+ .. code-block:: html
     :emphasize-lines: 2
 
     <h1>Third</h1>
-    <form:form method="post" action="transactionTokenCheckExample"><!-- (1) -->
+    <form method="post" th:action="@{/transactionTokenCheckExample}"><!-- (1) -->
       <input type="submit" name="fourth" value="fourth" />
-    </form:form>
+    </form>
 
-- :file:`fourthView.jsp`
+- :file:`fourthView.html`
 
- \ ``<form:form>``\タグを使用する場合
-
- .. code-block:: jsp
+ .. code-block:: html
     :emphasize-lines: 2
 
     <h1>Fourth</h1>
-    <form:form method="post" action="transactionTokenCheckExample"><!-- (1) -->
-      <input type="submit" name="fifth" value="fifth" />
-    </form:form>
-
-.. _fourthView:
-
- \ HTMLの\ ``<form>``\タグを使用する場合
-
- .. code-block:: jsp
-    :emphasize-lines: 3,4-6
-
-    <h1>Fourth</h1>
-    <form method="post" action="transactionTokenCheckExample">
-      <t:transaction /><!-- (2) -->
-      <!-- (3) -->
-      <input type="hidden" name="${f:h(_csrf.parameterName)}"
-                           value="${f:h(_csrf.token)}"/>
+    <form method="post" th:action="@{/transactionTokenCheckExample}"><!-- (1) -->
       <input type="submit" name="fifth" value="fifth" />
     </form>
 
-- :file:`fifthView.jsp`
+- :file:`fifthView.html`
 
- .. code-block:: jsp
+ .. code-block:: html
 
     <h1>Fifth</h1>
-    <form:form method="get" action="transactionTokenCheckExample">
+    <form method="get" th:action="@{/transactionTokenCheckExample}">
       <input type="submit" name="first" value="first" />
-    </form:form>
+    </form>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -1205,21 +1183,12 @@ PRG(Post-Redirect-Get)パターンの適用
    * - 項番
      - 説明
    * - | (1)
-     - | JSPで、\ ``<form:form>``\タグを使用した場合は、\ ``@TransactionTokenCheck``\ アノテーションのtype属性にBEGINかINを指定すると、\ ``name="_TRANSACTION_TOKEN"``\に対するValueが、hiddenタグとして自動的に埋め込まれる。
-   * - | (2)
-     - | HTMLの\ ``<form>``\タグを使用する場合は、\ ``<t:transaction />`` を使用することで、(1)と同様のhiddenタグが埋め込まれる。
-   * - | (3)
-     - | HTMLの\ ``<form>``\タグを使用する場合は、Spring Securityから提供されているCSRFトークンチェックで必要となるcsrfトークンをhidden項目として埋め込む必要がある。
-       | CSRFトークンチェックで必要となるcsrfトークンについては、\ :ref:`csrf_formtag-use`\ を参照されたい。
+     - | テンプレートHTMLで\ ``th:action``\属性を使用した場合は、\ ``@TransactionTokenCheck``\ アノテーションのtype属性にBEGINかINを指定すると、\ ``name="_TRANSACTION_TOKEN"``\に対するValueが、hiddenタグとして自動的に埋め込まれる。
 
  .. note::
     
-    \ ``<form:form>``\タグを使用すると、CSRFトークンチェックで必要となるパラメータも自動的に埋め込まれる。 CSRFトークンチェックで必要となるパラメータについては、\ :ref:`csrf_htmlformtag-use`\ を参照されたい。
+    \ ``th:action``\属性を使用すると、CSRFトークンチェックで必要となるパラメータも自動的に埋め込まれる。 CSRFトークンチェックで必要となるパラメータについては、\ :ref:`csrf_htmlformtag-use`\ を参照されたい。
 
- .. note::
-    
-    \ ``<t:transaction />``\は、共通ライブラリから提供しているJSPタグライブラリである。
-    (2)で使用している「t:」については、\ :ref:`view_jsp_include-label`\ を参照されたい。
 
 * HTMLの出力例
 
@@ -1530,19 +1499,19 @@ TransactionTokenTypeを正しく設定しない場合、通常のオペレーシ
    * - | (3)
      - | 入力チェックを行い、確認画面を表示するためのハンドラメソッド。
        | 確認画面には更新処理を実行するためのボタンが配置されているため、このタイミングでトランザクションを開始する。
-       | 遷移先には、View（JSP）を指定する。
+       | 遷移先には、View（テンプレートHTML）を指定する。
    * - | (4)
      - | 更新処理を実行するためのハンドラメソッド。
        | **更新処理を行うメソッドなので、トランザクショントークンのチェックを行う。**
-   * - | (4)
+   * - | (5)
      - | 完了画面を表示するためのハンドラメソッド。
        | **完了画面を表示するだけなので、トランザクショントークンのチェックは不要である。**
        | そのため、上記例では \ ``@TransactionTokenCheck``\アノテーションを指定していない。
 
  .. warning::
 
-    \ ``@TransactionTokenCheck``\ アノテーションを定義したハンドラメソッドの遷移先は、View(JSP)を指定する必要がある。
-    リダイレクト先などのView（JSP）以外を遷移先に指定すると、次の処理でTransactionTokenの値が変わっており、必ずTransactionTokenエラーが発生する。
+    \ ``@TransactionTokenCheck``\ アノテーションを定義したハンドラメソッドの遷移先は、View(テンプレートHTML)を指定する必要がある。
+    リダイレクト先などのView（テンプレートHTML）以外を遷移先に指定すると、次の処理でTransactionTokenの値が変わっており、必ずTransactionTokenエラーが発生する。
 
 セッション使用時の並行処理の排他制御について
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1657,7 +1626,7 @@ HTTPレスポンスヘッダの\ ``Cache-Control``\ の設定により、ブラ�
 
  .. note::
 
-    アプリケーション全体として、単一の画面遷移のみを許容する場合は、NameSpaceごとに保持できるトランザクショントークンの上限数を1に設定し、グルーバルトークンを使用することで実現することが出来る。
+    アプリケーション全体として、単一の画面遷移のみを許容する場合は、NameSpaceごとに保持できるトランザクショントークンの上限数を1に設定し、グローバルトークンを使用することで実現することが出来る。
 
 アプリケーション全体として、単一の画面遷移のみを許容する場合の設定及び実装例を以下に示す。
  
@@ -1693,7 +1662,7 @@ NameSpaceごとに保持できるトランザクショントークンの上限�
 Controllerの実装
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-グルーバルトークン用のNameSpaceとなるようにするために、\ ``@TransactionTokenCheck``\アノテーションのvalue属性には、値を指定しない。
+グローバルトークン用のNameSpaceとなるようにするために、\ ``@TransactionTokenCheck``\アノテーションのvalue属性には、値を指定しない。
 
 - Controller
 
@@ -1748,8 +1717,8 @@ Controllerの実装
 
 * HTMLの出力例
 
- | JSPは、\ :ref:`doubleSubmit_how_to_use_transaction_token_check_jsp`\で用意したJSPと同等のものを用意する。
- | actionを、\ ``"transactionTokenCheckExample"``\から\ ``"globalTokenCheckExample"``\に変更したのみで、他は同じである。
+ | テンプレートHTMLは、\ :ref:`doubleSubmit_how_to_use_transaction_token_check_jsp`\で用意したテンプレートHTMLと同等のものを用意する。
+ |  ``th:action`` を、\ ``"@{/transactionTokenCheckExample}"``\から\ ``"@{/globalTokenCheckExample}"``\に変更したのみで、他は同じである。
 
  .. figure:: ./images/transaction-token-global-html.png
    :alt: transaction token global html
