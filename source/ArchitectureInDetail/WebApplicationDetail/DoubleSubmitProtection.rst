@@ -1185,10 +1185,22 @@ PRG(Post-Redirect-Get)パターンの適用
    * - | (1)
      - | テンプレートHTMLで\ ``th:action``\属性を使用した場合は、\ ``@TransactionTokenCheck``\ アノテーションのtype属性にBEGINかINを指定すると、\ ``name="_TRANSACTION_TOKEN"``\に対するValueが、hiddenタグとして自動的に埋め込まれる。
 
+
+.. note:: **遷移先としてカレントパスを指定する場合**
+
+    同じViewを異なるパスのコントローラーで使い回すために、action属性を付与しないことでカレントパスを指定する場合がある。
+    その場合は、以下の例のようにth:actionの遷移先を空にすることで、トランザクショントークンを埋め込んだ上でカレントパスに遷移することができる。
+
+        .. code-block:: html
+
+            <form th:action method="post">
+                <!--/* ... */--!>
+            </form>
+
+
  .. note::
     
     \ ``th:action``\属性を使用すると、CSRFトークンチェックで必要となるパラメータも自動的に埋め込まれる。 CSRFトークンチェックで必要となるパラメータについては、\ :ref:`csrf_htmlformtag-use`\ を参照されたい。
-
 
 * HTMLの出力例
 

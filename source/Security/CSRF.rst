@@ -228,6 +228,19 @@ Thymeleafの ``th:action`` 属性を使うと、以下のようなHTMLフォー�
 
     **なお、<form>要素にmethod属性が指定されていない場合、HTML5標準ではGETメソッドとして処理される。このため、CSRF対策機能を使用する場合、明示的にmethod属性にpostを指定する必要がある。**
 
+
+.. note:: **遷移先としてカレントパスを指定する場合**
+
+    同じViewを異なるパスのコントローラーで使い回すために、action属性を付与しないことでカレントパスを指定する場合がある。
+    その場合は、以下の例のようにth:actionの遷移先を空にすることで、CSRFトークンを埋め込んだ上でカレントパスに遷移することができる。
+
+        .. code-block:: html
+
+            <form th:action method="post">
+                <!--/* ... */--!>
+            </form>
+
+
 .. _csrf_ajax-token-setting:
 
 Ajax使用時の連携
