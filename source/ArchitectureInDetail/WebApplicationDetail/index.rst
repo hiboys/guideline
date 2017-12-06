@@ -6,6 +6,7 @@ Webアプリ開発機能
 .. toctree::
    :maxdepth: 1
 
+   Thymeleaf
    Validation
    ExceptionHandling
    SessionManagement
@@ -16,7 +17,7 @@ Webアプリ開発機能
    Codelist
    FileUpload
    FileDownload
-   TilesLayout
+   TemplateLayout
    TagLibAndELFunctions
    Ajax
    HealthCheck

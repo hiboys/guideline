@@ -25,7 +25,7 @@
 #. | :ref:`formobject`
    | フォームオブジェクトは、HTML formとアプリケーションの間での値の受け渡しを行う。
 #. | :ref:`view`
-   | View(JSP)は、モデル（フォームオブジェクトやドメインオブジェクトなど）からデータを取得し、画面(HTML)を生成する。
+   | View(Thymeleaf)は、モデル（フォームオブジェクトやドメインオブジェクトなど）からデータを取得し、画面(HTML)を生成する。
 
 
 .. _controller-label:
@@ -45,9 +45,9 @@ Controllerの実装
 #. | **業務処理の処理結果をModelに反映する。**
    | Serviceのメソッドから返却されたドメインオブジェクトを\ ``Model``\ に反映することで、Viewから処理結果を参照できるようにする。
 #. | **処理結果に対応するView名を返却する。**
-   | Controllerでは処理結果に対する描画処理を実装せず、描画処理はJSP等のViewで実装する。
+   | Controllerでは処理結果に対する描画処理を実装せず、描画処理はThymeleaf等のViewで実装する。
    | Controllerでは描画処理が実装されているViewのView名の返却のみ行う。
-   | View名に対応するViewの解決は、Spring Frameworkより提供されている\ ``ViewResolver``\ によって行われ、処理結果に対応するView(JSPなど)が呼び出される仕組みになっている。
+   | View名に対応するViewの解決は、Spring Frameworkより提供されている\ ``ViewResolver``\ によって行われ、処理結果に対応するView(Thymeleafなど)が呼び出される仕組みになっている。
 
 .. figure:: images_ApplicationLayer/application_logic-of-controller.png
    :alt: responsibility of logic
@@ -603,7 +603,7 @@ Acceptヘッダでマッピング
    * - | (1)
      - params属性に ``"form"`` を指定する。
    * - | (2)
-     - フォーム画面を描画するためのJSPのView名を返却する。
+     - フォーム画面を描画するためのThymeleafによって生成されるHTMLのView名を返却する。
 
  .. note::
     この処理でHTTPメソッドをGETに限る必要がないのでmethod属性を指定していない。
@@ -647,24 +647,23 @@ Acceptヘッダでマッピング
     }
 
 
-フォーム画面のView(JSP)を作成する。
+フォーム画面のView(テンプレートHTML)を作成する。
 
- .. code-block:: jsp
-    :emphasize-lines: 12
+ .. code-block:: html
+    :emphasize-lines: 11
 
     <h1>Abc Create Form</h1>
-    <form:form modelAttribute="abcForm"
-      action="${pageContext.request.contextPath}/abc/create">
-      <form:label path="input1">Input1</form:label>
-      <form:input path="input1" />
-      <form:errors path="input1" />
+    <form th:action="@{/abc/create}" th:object="${abcForm}" method="post">
+      <label for="input1">Input1</label>
+      <input th:field="*{input1}">
+      <span th:errors="*{input1}"></span>
       <br>
-      <form:label path="input2">Input2</form:label>
-      <form:input path="input2" />
-      <form:errors path="input2" />
+      <label for="input2">Input2</label>
+      <input th:field="*{input2}">
+      <span th:errors="*{input2}"></span>
       <br>
-      <input type="submit" name="confirm" value="Confirm" /> <!-- (1) -->
-    </form:form>
+      <input type="submit" name="confirm" value="Confirm"> <!-- (1) -->
+    </form>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -720,7 +719,7 @@ Acceptヘッダでマッピング
    * - | (2)
      - 入力チェックエラーが発生した場合の処理は、フォーム再表示用のハンドラメソッドを呼び出すことを推奨する。フォーム画面を再表示するための処理の共通化を行うことができる。
    * - | (3)
-     - 入力内容確認画面を描画するためのJSPのView名を返却する。
+     - 入力内容確認画面を描画するためのThymeleafによって生成されるHTMLのView名を返却する。
 
  .. note::
     POSTメソッドを指定させる理由は、個人情報やパスワードなどの秘密情報がブラウザのアドレスバーに現れ、他人に容易に閲覧されることを防ぐためである。
@@ -736,25 +735,24 @@ Acceptヘッダでマッピング
 
 が必要になる。
 
-入力内容確認画面のView(JSP)を作成する。
+入力内容確認画面のView(テンプレートHTML)を作成する。
 
- .. code-block:: jsp
-    :emphasize-lines: 6,10,12-13
+ .. code-block:: html
+    :emphasize-lines: 5,9,11-12
 
     <h1>Abc Create Form</h1>
-    <form:form modelAttribute="abcForm"
-      action="${pageContext.request.contextPath}/abc/create">
-      <form:label path="input1">Input1</form:label>
-      ${f:h(abcForm.input1)}
-      <form:hidden path="input1" /> <!-- (1) -->
+    <form th:action="@{/abc/create}" th:object="${abcForm}" method="post">
+      <label for="input1">Input1</label>
+      <span th:text="*{input1}"></span>
+      <input th:field="*{input1}" type="hidden"> <!-- (1) -->
       <br>
-      <form:label path="input2">Input2</form:label>
-      ${f:h(abcForm.input2)}
-      <form:hidden path="input2" /> <!-- (1) -->
+      <label for="input2">Input2</label>
+      <span th:text="*{input2}"></span>
+      <input th:field="*{input2}" type="hidden"> <!-- (1) -->
       <br>
-      <input type="submit" name="redo" value="Back" /> <!-- (2) -->
-      <input type="submit" value="Create" /> <!-- (3) -->
-    </form:form>
+      <input type="submit" name="redo" value="Back"> <!-- (2) -->
+      <input type="submit" value="Create"> <!-- (3) -->
+    </form>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -771,8 +769,8 @@ Acceptヘッダでマッピング
      - 新規作成を行うためのsubmitボタンにはパラメータ名の指定は不要。
 
  .. note::
-    この例では確認項目を表示する際にHTMLエスケープするため、 ``f:h()`` 関数を使用している。
-    XSS対策のため、必ず行うこと。詳細については :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
+    ``th:text`` 属性を使用すると、値をHTMLエスケープして表示することができる。 
+    XSS対策のため、HTMLエスケープは必ず行うことを推奨する。詳細については :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
 
 |
 
@@ -818,7 +816,7 @@ Confirmボタンを押下するとPOSTメソッドでHTTPパラメータが送�
    * - | (1)
      - method属性に ``RequestMethod.POST`` 、params属性に ``"redo"`` を指定する。
    * - | (2)
-     - 入力内容確認画面を描画するためのJSPのView名を返却する。
+     - 入力内容確認画面を描画するためのThymeleafによって生成されるHTMLのView名を返却する。
 
 |
 
@@ -935,7 +933,7 @@ Backボタンを押下するとPOSTメソッドでHTTPパラメータが送信�
    * - | (1)
      - params属性に ``"complete"`` を指定する。
    * - | (2)
-     - 新規作成完了画面を描画するため、JSPのView名を返却する。
+     - 新規作成完了画面を描画するため、Thymeleafによって生成されるHTMLのView名を返却する。
 
  .. note::
     この処理もHTTPメソッドをGETに限る必要がないのでmethod属性を指定しなくても良い。
@@ -979,7 +977,7 @@ HTML form上に複数のボタンを配置する場合の実装
 Backボタンを押下した場合、新規作成フォーム画面を再表示するためのリクエスト( ``"/abc/create?redo"`` )を送信する必要があるため、
 HTML form内に以下のコードが必要となる。
 
- .. code-block:: jsp
+ .. code-block:: html
     :emphasize-lines: 1
 
     <input type="submit" name="redo" value="Back" /> <!-- (1) -->
@@ -993,7 +991,7 @@ HTML form内に以下のコードが必要となる。
    * - 項番
      - 説明
    * - | (1)
-     - 上記のように、入力内容確認画面( ``"abc/createConfirm.jsp"`` )のBackボタンに\ ``name="redo"``\ というパラメータを指定する。
+     - 上記のように、入力内容確認画面( ``"abc/createConfirm.html"`` )のBackボタンに\ ``name="redo"``\ というパラメータを指定する。
 
 Backボタン押下時の動作については、 :ref:`controller-mapping-policy-sampleapp-redo-impl-label` を参照されたい。
 
@@ -1132,21 +1130,21 @@ Backボタン押下時の動作については、 :ref:`controller-mapping-polic
         return "sample/hello"; // returns view name
     }
 
-- hello.jsp
-
- .. code-block:: jsp
-    :emphasize-lines: 1-2
-
-    Message : ${f:h(hello)}<br> <%-- (4) --%>
-    Message : ${f:h(helloBean.message)}<br> <%-- (5) --%>
-
-- HTML of created by View(hello.jsp)
+- hello.html
 
  .. code-block:: html
     :emphasize-lines: 1-2
 
-    Message : Hello World!<br> <!-- (6) -->
-    Message : Bean Hello World!<br>　<!-- (6) -->
+    <span th:text="${hello}"></span><br> <!--/* (4) */-->
+    <span th:text="${helloBean.message}"></span><br> <!--/* (5) */-->
+
+- HTML of created by View(hello.html)
+
+ .. code-block:: html
+    :emphasize-lines: 1-2
+
+    Hello World!<br> <!-- (6) -->
+    Bean Hello World!<br> <!-- (6) -->
 
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1160,18 +1158,19 @@ Backボタン押下時の動作については、 :ref:`controller-mapping-polic
      - \ ``Model``\ オブジェクトを引数として受け取る。
    * - | (2)
      - | 引数で受け取った\ ``Model``\ オブジェクトの\ ``addAttribute``\ メソッドを呼び出し、渡したいデータを\ ``Model``\ オブジェクトに追加する。
-       | 例では、``"hello"`` という属性名で ``"HelloWorld!"`` という文字列のデータを追加している。
+       | 例では、``"hello"`` という属性名で ``"Hello World!"`` という文字列のデータを追加している。
    * - | (3)
      - | \ ``addAttribute``\ メソッドの第一引数を省略すると値のクラス名の先頭を小文字にした文字列が属性名になる。
        | 例では、 ``model.addAttribute("helloBean", new HelloBean());`` を行ったのと同じ結果となる。
    * - | (4)
-     - | View(JSP)側では、「${属性名}」と記述することで\ ``Model``\ オブジェクトに追加したデータを取得することができる。
-       | 例ではHTMLエスケープを行うEL式の関数を呼び出しているため、「${f:h(属性名)}」としている。
-       | HTMLエスケープを行うEL式の関数の詳細については、 :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
+     - | テンプレートHTML側では、 ``th:text`` などの属性において${属性名}のような式を記述することできる。
+       | ``${}`` は変数式で、\ ``Model``\ オブジェクトに追加したデータを取得することができる。
+       | 例では、取得したデータをHTMLエスケープして出力するために ``th:text`` 属性を利用し、「th:text="${hello}"」としている。
+       | HTMLエスケープの詳細については、 :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
    * - | (5)
      - | 「${属性名.JavaBeanのプロパティ名}」と記述することで\ ``Model``\に格納されているJavaBeanから値を取得することができる。
    * - | (6)
-     - | JSP実行後に出力されるHTML。
+     - | Thymeleafによって出力されるHTML。
 
  .. note::
   \ ``Model``\ は使用しない場合でも引数に指定しておいてもよい。実装初期段階では必要なくても
@@ -1327,7 +1326,7 @@ URLのパスから値を取得する
     }
 
 | フォームオブジェクトクラスを作成する。
-| このフォームオブジェクトに対応するHTML formのjspは :ref:`formobjectjsp` を参照されたい。
+| このフォームオブジェクトに対応するHTML formのテンプレートHTMLは :ref:`formobject_thymeleaf` を参照されたい。
 
  .. code-block:: java
 
@@ -1478,21 +1477,21 @@ URLのパスから値を取得する
         return "sample/complete"; // (5)
     }
 
-- complete.jsp
-
- .. code-block:: jsp
-    :emphasize-lines: 1-2
-
-    Message : ${f:h(hello)}<br> <%-- (6) --%>
-    Message : ${f:h(helloBean.message)}<br> <%-- (7) --%>
-
-- HTML of created by View(complete.jsp)
+- complete.html
 
  .. code-block:: html
     :emphasize-lines: 1-2
 
-    Message : Hello World!<br> <!-- (8) -->
-    Message : Bean Hello World!<br>　<!-- (8) -->
+    <span th:text="${hello}"></span><br> <!--/* (6) */-->
+    <span th:text="${helloBean.message}"></span><br> <!--/* (7) */-->
+
+- HTML of created by View(complete.html)
+
+ .. code-block:: html
+    :emphasize-lines: 1-2
+
+    Hello World!<br> <!-- (8) -->
+    Bean Hello World!<br> <!-- (8) -->
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -1506,7 +1505,7 @@ URLのパスから値を取得する
      - \ ``RedirectAttributes``\ オブジェクトを引数として受け取る。
    * - | (2)
      - | \ ``RedirectAttributes``\ オブジェクトの\ ``addFlashAttribute``\ メソッドを呼び出し、渡したいデータを\ ``RedirectAttributes``\ オブジェクトに追加する。
-       | 例では、 ``"hello"`` という属性名で ``"HelloWorld!"`` という文字列のデータを追加している。
+       | 例では、 ``"hello"`` という属性名で ``"Hello World!"`` という文字列のデータを追加している。
    * - | (3)
      - | \ ``addFlashAttribute``\ メソッドの第一引数を省略すると値に渡したオブジェクトのクラス名の先頭を小文字にした文字列が属性名になる。
        | 例では、 ``model.addFlashAttribute("helloBean", new HelloBean());`` を行ったのと同じ結果となる。
@@ -1515,13 +1514,14 @@ URLのパスから値を取得する
    * - | (5)
      - | リダイレクト後のハンドラメソッドでは、(2)(3)で追加したデータを表示する画面のView名を返却する。
    * - | (6)
-     - | View(JSP)側では、「${属性名}」と記述することで\ ``RedirectAttributes``\ オブジェクトに追加したデータを取得することができる。
-       | 例ではHTMLエスケープを行うEL式の関数を呼び出しているため、「${f:h(属性名)}」としている。
-       | HTMLエスケープを行うEL式の関数の詳細については、 :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
+     - | View(テンプレートHTML)側では、 ``th:text`` などの属性において${属性名}のような式を記述することできる。
+       | ``${}`` は変数式で、\ ``Model``\オブジェクトだけでなく\ ``RedirectAttributes``\ オブジェクトに追加したデータも取得することができる。
+       | 例では、取得したデータをHTMLエスケープして出力するために ``th:text`` 属性を利用し、「th:text="${hello}"」としている。
+       | HTMLエスケープの詳細については、 :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
    * - | (7)
      - | 「${属性名.JavaBeanのプロパティ名}」と記述することで\ ``RedirectAttributes``\に格納されているJavaBeanから値を取得することができる。
    * - | (8)
-     - | HTMLの出力例。
+     - | Thymeleafによって出力されるHTML。
 
  .. raw:: latex
 
@@ -1751,34 +1751,11 @@ Cookieに値を書き込む
 
 HTMLを応答する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| ハンドラメソッドの実行結果をHTMLとして応答する場合、ハンドラメソッドの返り値は、JSPのView名を返却する。
-| JSPを使ってHTMLを生成する場合の\ ``ViewResolver``\ は、基本的には\ ``UrlBasedViewResolver``\ の継承クラス(\ ``InternalViewResolver``\ や \ ``TilesViewResolver``\ 等)となる。
+| ハンドラメソッドの実行結果をHTMLとして応答する場合、ハンドラメソッドの返り値は、ThymeleafのView名を返却する。
+| Thymeleafを使ってHTMLを生成する場合の ``ViewResolver`` には、 ``ThymeleafViewResolver`` を用いる。
 
-| 以下では、JSP用の\ ``InternalViewResolver``\ を使用する場合の例を記載するが、画面レイアウトがテンプレート化されている場合は\ ``TilesViewResolver``\ を使用することを推奨する。
-| \ ``TilesViewResolver``\ の使用方法については、 :doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout` を参照されたい。
-
-- spring-mvc.xml
-
- \ ``<bean>``\ 要素を使用する場合の定義例
-
- .. code-block:: xml
-
-    <!-- (1) -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/" /> <!-- (2) -->
-        <property name="suffix" value=".jsp" /> <!-- (3) -->
-        <property name="order" value="1" /> <!-- (4) -->
-    </bean>
-
- Spring Framework 4.1から追加された\ ``<mvc:view-resolvers>``\ 要素を使用する場合の定義例
-
- .. code-block:: xml
-
-    <mvc:view-resolvers>
-        <mvc:jsp prefix="/WEB-INF/views/" /> <!-- (5) -->
-    </mvc:view-resolvers>
-
-
+| ``ThymeleafViewResolver`` を実際に使用する例については、＜新章のリンク＞を参照されたい。
+  
 - SampleController.java
 
  .. code-block:: java
@@ -1787,7 +1764,7 @@ HTMLを応答する
     @RequestMapping("hello")
     public String hello() {
         // omitted
-        return "sample/hello"; // (6)
+        return "sample/hello"; // (1)
     }
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1798,57 +1775,11 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - JSP用の\ ``InternalViewResolver``\ を定義する。
-   * - | (2)
-     - JSPファイルが格納されているベースディレクトリ(ファイルパスのプレフィックス)を指定する。
-
-       プレフィックスを指定しておくことで、ControllerでView名を返却する際に、JSPの物理的な格納場所を意識する必要がなくなる。
-   * - | (3)
-     - JSPファイルの拡張子(ファイルパスのサフィックス)を指定する。
-
-       サフィックスを指定しておくことで、ControllerでView名を返却する際に、JSPの拡張子を意識する必要がなくなる。
-   * - | (4)
-     - 複数の\ ``ViewResolver``\ を指定した場合の実行順番を指定する。
-
-       \ ``Integer``\ の範囲で指定することが可能で、値が小さいものから順に実行される。
-   * - | (5)
-     - Spring Framework 4.1から追加された\ ``<mvc:jsp>``\ 要素に使用して、JSP用の\ ``InternalViewResolver``\ を定義する。
-
-       * \ ``prefix``\ 属性には、JSPファイルが格納されているベースディレクトリ(ファイルパスのプレフィックス)を指定する。
-       * \ ``suffix``\ 属性には、デフォルト値として\ ``".jsp"``\が適用されているため、明示的に指定する必要はない。
-
-       .. note::
-
-           \ ``<mvc:view-resolvers>``\ 要素を使用すると、\ ``ViewResolver``\ をシンプルに定義することが出来るため、
-           本ガイドラインでは\ ``<mvc:view-resolvers>``\ を使用することを推奨する。
-
-   * - | (6)
-     - ハンドラメソッドの返り値として ``"sample/hello"`` というView名を返却した場合、 ``"/WEB-INF/views/sample/hello.jsp"`` が呼び出されてHTMLが応答される。
-
+     - ハンドラメソッドの返り値として ``"sample/hello"`` というView名を返却した場合、 ``ThymeleafViewResolver`` の設定により ``"/WEB-INF/views/sample/hello.html"`` が呼び出されHTMLが応答される。
 
 .. note::
-    上記の例ではJSPを使ってHTMLを生成しているが、VelocityやFreeMarkerなど他のテンプレートエンジンを使用してHTMLを生成する場合でも、ハンドラメソッドの返り値は ``"sample/hello"`` のままでよい。
+    JSPやVelocity、FreeMarkerなど他のテンプレートエンジンを使用してHTMLを生成する場合でも、ハンドラメソッドの返り値は ``"sample/hello"`` のままでよい。
     使用するテンプレートエンジンでの差分は ``ViewResolver`` によって解決される。
-
-
-.. note::
-
-    単純にview 名を返すだけのメソッドを実装する場合は、\ ``<mvc:view-controller>`` \を使用してControllerクラスの実装を代用することも可能である。
-    
-    * \ ``<mvc:view-controller>``\ を使用したControllerの定義例。
-    
-      .. code-block:: xml
-      
-        <mvc:view-controller path="/hello" view-name="sample/hello" />
-      
-
-
-.. warning:: **<mvc:view-controller>使用に関する留意点**
-
-    Spring Framework 4.3へのバージョンアップによって、\ ``<mvc:view-controller>``\ が許可するHTTPメソッドはGETとHEADのみに限定される様になったため(`SPR-13130 <https://jira.spring.io/browse/SPR-13130>`_)、
-    HTTPメソッドがGETとHEAD以外(POSTなど)でアクセスするページの場合、\ ``<mvc:view-controller>``\ は使用できない。
-    GETとHEAD以外(POSTなど)からフォワードされた場合も同様となるため、エラーページへの遷移などフォワード元のHTTPメソッドが限定できない場合には\ ``<mvc:view-controller>``\ を使用しないよう注意されたい。
-
 
 |
 
@@ -1868,17 +1799,16 @@ HTMLを応答する
  \ ``<bean>``\ 要素を使用する場合の定義例
 
  .. code-block:: xml
-    :emphasize-lines: 1-4
+    :emphasize-lines: 2
 
     <!-- (1) -->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
         <property name="order" value="0"/> <!-- (2) -->
     </bean>
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/" />
-        <property name="suffix" value=".jsp" />
-        <property name="order" value="1" />
+    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+      <property name="templateEngine" ref="templateEngine" />
+      <property name="characterEncoding" value="UTF-8" />
     </bean>
 
  Spring Framework 4.1から追加された\ ``<mvc:view-resolvers>``\ 要素を使用する場合の定義例
@@ -1888,7 +1818,6 @@ HTMLを応答する
 
     <mvc:view-resolvers>
         <mvc:bean-name /> <!-- (3) -->
-        <mvc:jsp prefix="/WEB-INF/views/" />
     </mvc:view-resolvers>
 
 - SampleController.java
@@ -1941,18 +1870,12 @@ HTMLを応答する
 
        \ ``BeanNameViewResolver``\ は、返却されたView名に一致するBeanをアプリケーションコンテキストから探してViewを解決するクラスとなっている。
    * - | (2)
-     - JSP用の\ ``InternalViewResolver``\ や \ ``TilesViewResolver``\ と併用する場合は、これらの\ ``ViewResolver``\ より、高い優先度を指定する事を推奨する。
-       上記例では、 ``"0"`` を指定することで、\ ``InternalViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
+     - Thymeleaf用の\ ``ThymeleafViewResolver``\ と併用する場合は、これらの\ ``ViewResolver``\ より、高い優先度を指定する事を推奨する。
+       上記例では、 ``"0"`` を指定することで、\ ``ThymeleafViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
    * - | (3)
      - Spring Framework 4.1から追加された\ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
 
        \ ``<mvc:view-resolvers>``\ 要素を使用して\ ``ViewResolver``\ を定義する場合は、子要素に指定する\ ``ViewResolver``\の定義順が優先順位となる。
-       上記例では、JSP用の\ ``InternalViewResolver``\を定義するための要素(\ ``<mvc:jsp>``\)より上に定義することで、JSP用の\ ``InternalViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
-
-       .. note::
-
-           \ ``<mvc:view-resolvers>``\ 要素を使用すると、\ ``ViewResolver``\ をシンプルに定義することが出来るため、
-           本ガイドラインでは\ ``<mvc:view-resolvers>``\ を使用することを推奨する。
    * - | (4)
      - ハンドラメソッドの返り値として ``"sample/report"`` というView名を返却した場合、 (5)でBean登録されたViewインスタンスによって生成されたデータがダウンロードデータとして応答される。
    * - | (5)
@@ -2256,7 +2179,7 @@ Controllerで実装すべき処理を以下に4つ示す。
 --------------------------------------------------------------------------------
 フォームオブジェクトはHTML上のformを表現するオブジェクト(JavaBean)であり、以下の役割を担う。
 
-#. **データベース等で保持している業務データを保持し、HTML(JSP) formから参照できるようにする。**
+#. **データベース等で保持している業務データを保持し、HTML formから参照できるようにする。**
 #. **HTML formから送信されたリクエストパラメータを保持し、ハンドラメソッドで参照できるようにする。**
 
 .. figure:: ./images_ApplicationLayer/applicationFormobject.png
@@ -2305,7 +2228,7 @@ Spring Frameworkでは、HTML formから送信されたリクエストパラメ�
 
     フォームオブジェクトには画面に表示のみ行う項目は保持せず、HTML formの項目のみ保持することを推奨する。
     フォームオブジェクトに画面表示のみ行う項目の値を設定した場合、フォームオブジェクトをHTTPセッションオブジェクトに格納する際にメモリを多く消費する事になり、メモリ枯渇の原因になる可能性がある。
-    画面表示のみの項目は、Entityなどのドメイン層のオブジェクトをリクエストスコープに追加(\ ``Model.addAttribute``\ )することでHTML(JSP)にデータを渡すことを推奨する。
+    画面表示のみの項目は、Entityなどのドメイン層のオブジェクトをリクエストスコープに追加(\ ``Model.addAttribute``\ )することでテンプレートHTMLにデータを渡すことを推奨する。
 
 |
 
@@ -2463,7 +2386,7 @@ Controller単位の型変換
 
 フォームオブジェクトの初期化方法
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-HTMLのformにバインドするフォームオブジェクトの事をform-backing beanと呼び、\ ``@ModelAttribute``\ アノテーションを使うことで結びつけることができる。
+HTMLにバインドするフォームオブジェクトの事をform-backing beanと呼び、\ ``@ModelAttribute``\ アノテーションを使うことで結びつけることができる。
 form-backing beanの初期化は、\ ``@ModelAttribute``\ アノテーションを付与したメソッドで行う。
 このようなメソッドのことを本ガイドラインではModelAttributeメソッドと呼び、\ ``setUpXxxForm``\ というメソッド名で定義することを推奨する。
 
@@ -2532,31 +2455,30 @@ form-backing beanの初期化は、\ ``@ModelAttribute``\ アノテーション�
 
 |
 
-.. _formobjectjsp:
+.. _formobject_thymeleaf:
 
 .. _formobject_bindhtmlform-label:
 
-HTML formへのバインディング方法
+HTMLへのバインディング方法
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| \ ``Model``\ に追加されたフォームオブジェクトは\ ``<form:xxx>``\ タグを用いて、HTML(JSP)のformにバインドすることができる。
-| \ ``<form:xxx>``\ タグの詳細は、 `Using Spring's form tag library <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib>`_\ を参照されたい。
+| \ ``Model``\ に追加されたフォームオブジェクトの各プロパティは、Thymeleaf+Springで提供される ``th:field`` 属性で指定することで、HTMLのinput要素にバインドすることができる。
+| JSPには ``<form:xxx>`` タグを利用してフォームオブジェクトをHTML formにバインドする機能があるが、Thymeleafでは ``th:field`` 属性に ``th:object`` 属性を併用することで同様の機能を実現することができる。
 
- .. code-block:: jsp
-    :emphasize-lines: 1
+ .. code-block:: html
+    :emphasize-lines: 1,2
 
-    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> <!-- (1) -->
+    <html xmlns:th="http://www.thymeleaf.org"> <!-- (1) -->
 
- .. code-block:: jsp
-    :emphasize-lines: 2,3
+ .. code-block:: html
+    :emphasize-lines: 1,2
 
-    <form:form modelAttribute="sampleForm"
-               action="${pageContext.request.contextPath}/sample/hello"> <!-- (2) -->
-        Id         : <form:input path="id" /><form:errors path="id" /><br /> <!-- (3) -->
-        Name       : <form:input path="name" /><form:errors path="name" /><br />
-        Age        : <form:input path="age" /><form:errors path="age" /><br />
-        Gender     : <form:input path="genderCode" /><form:errors path="genderCode" /><br />
-        Birth Date : <form:input path="birthDate" /><form:errors path="birthDate" /><br />
-    </form:form>
+    <form th:action="@{/sample/hello}" th:object="${sampleForm}" method="post"> <!-- (2) -->
+        Id         : <input th:field="*{id}" /><span th:errors="*{id}"></span><br /> <!-- (3) -->
+        Name       : <input th:field="*{name}" /><span th:errors="*{name}"></span><br />
+        Age        : <input th:field="*{age}" /><span th:errors="*{age}"></span><br />
+        Gender     : <input th:field="*{genderCode}" /><span th:errors="*{genderCode}"></span><br />
+        Birth Date : <input th:field="*{birthDate}" /><span th:errors="*{birthDate}"></span><br />
+    </form>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -2566,11 +2488,12 @@ HTML formへのバインディング方法
    * - 項番
      - 説明
    * - | (1)
-     - \ ``<form:form>``\ タグを使用するためのtaglibの定義を行う。
+     - スタンダードダイアレクトが提供する属性を使用したとき、EclipseなどのIDEでの警告を抑止するため、ネームスペースを付与する。
    * - | (2)
-     - \ ``<form:form>``\ タグのmodelAttribute属性には、\ ``Model``\ に格納されているフォームオブジェクトの属性名を指定する。
+     - \ ``<form>``\ タグの ``th:object`` 属性には、\ ``Model``\ に格納されているフォームオブジェクトの属性名を指定する。
+       \ ``th:object``\ 属性については、 :ref:`view_thymeleaf_object-label` も参照されたい。
    * - | (3)
-     - \ ``<form:input>``\ タグのpath属性には、フォームオブジェクトのプロパティ名を指定する。
+     - \ ``<input>``\ タグの ``th:field`` 属性には、フォームオブジェクトのプロパティ名を指定する。
 
 |
 
@@ -2695,31 +2618,38 @@ Viewは以下の役割を担う。
 
 |
 
-.. _ApplicationLayerImplementOfJsp:
+.. _ApplicationLayerImplementOfThymeleaf:
 
-JSPの実装
+ThymeleafのテンプレートHTMLの実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| クライアントにHTMLを応答する場合は、JSPを使用してViewを実装する。
-| JSPを呼び出すための ``ViewResolver`` は、Spring Frameworkより提供されているので、提供されているクラスを利用する。``ViewResolver`` の設定方法は、 :ref:`controller_method_return-html-label` を参照されたい。
+| クライアントにHTMLを応答する場合は、Thymeleafを使用してViewを実装する。
+| Thymeleafによって生成されたHTMLを呼び出すための ``ViewResolver`` は、Thymeleaf+Springより提供されている ``ThymeleafViewResolver`` を使用する。
+| ``ViewResolver`` の設定方法については、＜新章のリンク＞を参照されたい。
 
-以下に、基本的なJSPの実装方法について説明する。
+以下に、基本的なテンプレートHTMLの実装方法について説明する。
 
-- :ref:`view_jsp_include-label`
-- :ref:`view_jsp_out-label`
-- :ref:`view_jsp_outnumber-label`
-- :ref:`view_jsp_outdate-label`
-- :ref:`view_jsp_requesturl-label`
-- :ref:`view_jsp_form-label`
-- :ref:`view_jsp_errors-label`
-- :ref:`view_jsp_resultmessages-label`
-- :ref:`view_jsp_codelist-label`
-- :ref:`view_jsp_message-label`
-- :ref:`view_jsp_if-label`
-- :ref:`view_jsp_forEach-label`
-- :ref:`view_jsp_pagination-label`
-- :ref:`view_jsp_authorization-label`
+- :ref:`view_thymeleaf_namespace-label`
+- :ref:`view_thymeleaf_text-label`
+- :ref:`view_thymeleaf_numbers-label`
+- :ref:`view_thymeleaf_dates-label`
+- :ref:`view_thymeleaf_requesturl-label`
+- :ref:`view_thymeleaf_message-label`
+- :ref:`view_thymeleaf_textcombine-label`
+- :ref:`view_thymeleaf_conditional-label`
+- :ref:`view_thymeleaf_if-label`
+- :ref:`view_thymeleaf_each-label`
+- :ref:`view_thymeleaf_object-label`
+- :ref:`view_thymeleaf_with-label`
+- :ref:`view_thymeleaf_preprocessing-label`
+- :ref:`view_thymeleaf_form-label`
+- :ref:`view_thymeleaf_errors-label`
+- :ref:`view_thymeleaf_resultmessages-label`
+- :ref:`view_thymeleaf_codelist-label`
+- :ref:`view_thymeleaf_pagination-label`
+- :ref:`view_thymeleaf_authorization-label`
 
-本章では代表的なJSPタグライブラリの使い方は説明しているが、全てのJSPタグライブラリの説明はしていないので、詳細な使い方については、それぞれのドキュメントを参照すること。
+本章では、ThymeleafおよびThymeleaf+Springのダイアレクト、ならびにThymeleafのSpring Security連携用ダイアレクトで提供されている代表的な属性やオブジェクトの使い方を説明しているが、
+全てについて説明はしていないので、詳細な使い方については、それぞれのドキュメントを参照すること。
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.30\linewidth}|p{0.60\linewidth}|
  .. list-table::
@@ -2727,73 +2657,31 @@ JSPの実装
    :widths: 10 30 60
 
    * - 項番
-     - JSPタグライブラリ名
+     - 説明
      - ドキュメント
    * - 1.
-     - Spring's form tag library
-     - - `<http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib>`_\
-       - `<http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/spring-form-tld.html>`_\
+     - Thymeleafのダイアレクト
+     - - `<http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html>`_\
    * - 2.
-     - Spring's tag library
-     - - `<http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/spring-tld.html>`_\
+     - Thymeleaf+Springのダイアレクト
+     - - `<http://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html#the-springstandard-dialect>`_\
    * - 3.
-     - JSTL
-     - - `<http://download.oracle.com/otndocs/jcp/jstl-1.2-mrel2-eval-oth-JSpec/>`_\
-   * - 4.
-     - Common library's tags & el functions
-     - - 本ガイドラインの「:doc:`../ArchitectureInDetail/WebApplicationDetail/TagLibAndELFunctions`」
-
- .. warning::
-
-    terasoluna-gfw-web 1.0.0.RELEASEを使用している場合は、Spring's form tag libraryから提供されている\ ``<form:form>``\タグを使う際は、必ず\ ``action``\属性を指定すること。
-
-    terasoluna-gfw-web 1.0.0.RELEASEが依存しているSpring MVC(3.2.4.RELEASE)では、\ ``<form:form>``\タグの\ ``action``\属性を省略した場合、XSS(Cross-site scripting)の脆弱性が存在する。
-    脆弱性に関する情報については、\ `National Vulnerability Database (NVD)のCVE-2014-1904 <http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-1904>`_\を参照されたい。
-
-    尚、terasoluna-gfw-web 1.0.1.RELEASE以上では、XSS対策が行われているSpring MVC(3.2.10.RELEASE以上)に依存しているため、本脆弱性は存在しない。
-
-
+     - ThymeleafのSpring Security連携用ダイアレクト
+     - - `<https://github.com/thymeleaf/thymeleaf-extras-springsecurity>`_\
 
 |
 
-.. _view_jsp_include-label:
+.. _view_thymeleaf_namespace-label:
 
-インクルード用の共通JSPの作成
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-全てのJSPで必要となるディレクティブの宣言などを行うためのJSPを作成する。
-このJSPを ``web.xml`` の ``<jsp-config>/<jsp-property-group>/<include-prelude>`` 要素に指定することで、個々のJSPで宣言する必要がなくなる。
-なお、このファイルはブランクプロジェクトで提供している。
+Thymeleafのネームスペースを設定する
+"""""""""""""""""""""""""""""""""""""""""""""""""
+| EclipseなどのIDEでテンプレートHTMLを作成するとき、Thymeleafのダイアレクトに対して警告が出る場合がある。
+| これは、 ``<html>`` タグにネームスペースを設定することで解除することができる。
 
-- include.jsp
+ .. code-block:: html
+    :emphasize-lines: 1
 
- .. code-block:: jsp
-    :emphasize-lines: 1,4,8
-
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> <%-- (1) --%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> <%-- (2) --%>
-    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
-
-    <%@ taglib uri="http://terasoluna.org/functions" prefix="f"%> <%-- (3) --%>
-    <%@ taglib uri="http://terasoluna.org/tags" prefix="t"%>
-
-- web.xml
-
- .. code-block:: xml
-    :emphasize-lines: 7
-
-    <jsp-config>
-        <jsp-property-group>
-            <url-pattern>*.jsp</url-pattern>
-            <el-ignored>false</el-ignored>
-            <page-encoding>UTF-8</page-encoding>
-            <scripting-invalid>false</scripting-invalid>
-            <include-prelude>/WEB-INF/views/common/include.jsp</include-prelude> <!-- (4) -->
-        </jsp-property-group>
-    </jsp-config>
-
+    <html xmlns:th="http://www.thymeleaf.org"> <!-- (1) -->
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -2803,31 +2691,20 @@ JSPの実装
    * - 項番
      - 説明
    * - | (1)
-     - JSTLのJSPタグライブラリを宣言している。 例では、 ``core`` と ``fmt`` を利用している。
-   * - | (2)
-     - Spring FrameworkのJSPタグライブラリを宣言している。 例では、 ``spring`` と ``form`` と ``sec`` を利用している。
-   * - | (3)
-     - 共通ライブラリから提供しているJSPタグライブラリを宣言している。
-   * - | (4)
-     - インクルード用のJSP(\ ``/WEB-INF/views/common/include.jsp``\ )に指定した内容が、各JSP(\ ``<url-pattern>``\ で指定されているファイル)の先頭にインクルードされる。
+     - スタンダードダイアレクトが提供する属性を使用したとき、EclipseなどのIDEでの警告を抑止するため、ネームスペースを付与する。
 
- .. note::
-
-   ディレクティブの詳細は、 `JavaServer Pages Specification(Version2.2) <http://download.oracle.com/otndocs/jcp/jsp-2.2-mrel-eval-oth-JSpec/>`_\ の "JSP.1.10 Directives" を参照されたい。
-
- .. note::
-
-   <jsp-property-group>要素の詳細は、 `JavaServer Pages Specification(Version2.2) <http://download.oracle.com/otndocs/jcp/jsp-2.2-mrel-eval-oth-JSpec/>`_\ の "JSP.3.3 JSP Property Groups" を参照されたい。
+.. note::
+      ``xmlns:th`` 属性はIDE上での警告を抑止するものであり、テンプレートHTML上に記述しなくてもエラーは出ない。
+      ただし、出力されるHTMLには ``xmlns:th`` 属性は現れないことから、記述によるデメリットは特にない。
+      こうしたことから、IDEを利用してテンプレートHTMLを作成する際にはネームスペースを設定することを推奨する。
 
 |
 
-.. _view_jsp_out-label:
+.. _view_thymeleaf_text-label:
 
 モデルに格納されている値を表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-モデル（フォームオブジェクトやドメインオブジェクトなど）に格納されている値をHTMLに表示する場合、EL式又はJSTLから提供されているJSPタグライブラリを使用する。
-
-EL式を使用して表示する。
+モデル（フォームオブジェクトやドメインオブジェクトなど）に格納されている値をHTMLに表示する場合、Thymeleafの ``th:text`` 属性に変数式 ``${}`` を指定する。
 
 - SampleController.java
 
@@ -2840,12 +2717,19 @@ EL式を使用して表示する。
         return "sample/hello"; // returns view name
     }
 
-- hello.jsp
+- hello.html
 
- .. code-block:: jsp
+ .. code-block:: html
     :emphasize-lines: 1
 
-    Message : ${f:h(helloBean.message)} <%-- (2) --%>
+    <span th:text="${helloBean.message}"></span> <!--/* (2) */-->
+
+- HTML created by View(hello.html)
+
+ .. code-block:: html
+    :emphasize-lines: 1
+
+    <span>Bean Hello World!</span>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -2857,47 +2741,54 @@ EL式を使用して表示する。
    * - | (1)
      - | \ ``Model``\ オブジェクトに \ ``HelloBean``\ オブジェクトを追加する。
    * - | (2)
-     - | View(JSP)側では、「${属性名.JavaBeanのプロパティ名}」と記述することで\ ``Model``\ オブジェクトに追加したデータを取得することができる。
-       | 例ではHTMLエスケープを行うEL式の関数を呼び出しているため、「${f:h(属性名.JavaBeanのプロパティ名)}」としている。
-
- .. note::
-    共通部品よりEL式用のHTMLエスケープ関数( ``f:h`` )を提供しているので、EL式を使用してHTMLに値を出力する場合は、必ず使用すること。
-    HTMLエスケープを行うEL式の関数の詳細については、 :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
-
-JSTLのJSPタグライブラリから提供されている ``<c:out>`` タグを使用して表示する。
-
- .. code-block:: jsp
-    :emphasize-lines: 1
-
-    Message : <c:out value="${helloBean.message}" /> <%-- (1) --%>
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-   :header-rows: 1
-   :widths: 10 90
-
-   * - 項番
-     - 説明
-   * - | (1)
-     - | EL式で取得した値を ``<c:out>`` タグのvalue属性に指定する。HTMLエスケープも行われる。
-
- .. note::
-    ``<c:out>`` の詳細は、`JavaServer Pages Standard Tag Library(Version 1.2) <http://download.oracle.com/otndocs/jcp/jstl-1.2-mrel2-eval-oth-JSpec/>`_\ の "CHAPTER 4 General-Purpose Actions" を参照されたい。
+     - | View(テンプレートHTML)側では、 ``th:text`` などの属性において${属性名}のような式を記述することできる。
+       | ``${}`` は変数式で、\ ``Model``\ オブジェクトに追加したデータを取得することができる。
+       | 例では、取得したデータをHTMLエスケープして出力するために ``th:text`` 属性を利用し、「th:text="${hello}"」としている。
+       | なお、 ``th:utext`` を用いるとHTMLエスケープしないでデータを出力することができるが、XSS対策のため必ずHTMLエスケープを行うことを推奨する。
+       | HTMLエスケープの詳細については、 :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
 
 |
 
-.. _view_jsp_outnumber-label:
+.. _view_thymeleaf_numbers-label:
 
 モデルに格納されている数値を表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-数値型の値をフォーマットして出力する場合、JSTLから提供されているJSPタグライブラリを使用する。
+数値型の値をフォーマットして出力する場合、Thymeleafの ``#numbers`` オブジェクトを使用する。
 
-| JSTLのJSPタグライブラリから提供されている ``<fmt:formatNumber>`` タグを使用して表示する。
+``#numbers`` オブジェクトは、数値のフォーマットを行う以下のようなメソッドをもつ。
 
- .. code-block:: jsp
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.30\linewidth}|p{0.60\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 30 60
+
+   * - 項番
+     - メソッド名
+     - 説明
+   * - 1.
+     - formatInteger
+     - 整数値にフォーマットする。引数には、数値型の値、最小桁数（、千の位の区切り文字）を設定する。
+   * - 2.
+     - formatDecimal
+     - 小数にフォーマットする。引数には、数値型の値、最小桁数（、千の位の区切り文字）、小数桁数（、小数点の文字）を設定する。
+   * - 3.
+     - formatPercent
+     - パーセント表示にフォーマットする。引数には、数値型の値、最小桁数を設定する。
+
+ .. note::
+     千の位の区切り文字、小数点の文字としては、以下のものが指定できる。
+     * 'POINT'
+     * 'COMMA'
+     * 'WHITESPACE'
+     * 'NONE'
+     * 'DEFAULT' (ロケールに依存)
+
+例えば小数を表示する際には、 ``#numbers.formatDecimal`` メソッドを使用してフォーマットする。
+
+ .. code-block:: html
     :emphasize-lines: 1
 
-    Number Item : <fmt:formatNumber value="${helloBean.numberItem}" pattern="0.00" /> <%-- (1) --%>
+    <span th:text="${#numbers.formatDecimal(helloBean.numberItem,1,2,'POINT')}"></span> <!--/* (1) */-->
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -2907,26 +2798,29 @@ JSTLのJSPタグライブラリから提供されている ``<c:out>`` タグを
    * - 項番
      - 説明
    * - | (1)
-     - | EL式で取得した値を ``<fmt:formatNumber>`` タグのvalue属性に指定する。表示するフォーマットはpattern属性に指定する。例では、"``0.00``" を指定している。
-       | 仮に ``${helloBean.numberItem}`` で取得した値が ``"1.2"`` の場合、画面には ``"1.20"`` が出力される。
+     - | 取得した値を ``#numbers.formatDecimal`` メソッドでフォーマットし、変数式 ``${}`` に指定する。
+       | 例では、最小桁数に1を、小数桁数に2を、小数点に ``'POINT'`` を、表示するフォーマットに設定している。
+       | 仮に ``helloBean.numberItem`` の値が ``"1.2"`` の場合、画面には ``"1.20"`` が出力される。
 
 .. note::
-    ``<fmt:formatNumber>`` の詳細は、`JavaServer Pages Standard Tag Library(Version 1.2) <http://download.oracle.com/otndocs/jcp/jstl-1.2-mrel2-eval-oth-JSpec/>`_\ の "CHAPTER 9 Formatting Actions" を参照されたい。
+    ``#numbers`` は、配列やリストなどを対象にフォーマットを行うことも可能である。
+
+     詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects>`_\ を参照されたい。
 
 |
 
-.. _view_jsp_outdate-label:
+.. _view_thymeleaf_dates-label:
 
 モデルに格納されている日時を表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-日時型の値をフォーマットして出力する場合、JSTLから提供されているJSPタグライブラリを使用する。
+日時型の値をフォーマットして出力する場合、Thymeleafの ``#dates`` オブジェクト、あるいは ``#calendars`` オブジェクトを使用する。
 
-JSTLのJSPタグライブラリから提供されている ``<fmt:formatDate>`` タグを使用して表示する。
+``java.util.Date`` オブジェクトのフォーマットを行う場合は、 ``#dates`` オブジェクトの ``format`` メソッドを利用する。
 
- .. code-block:: jsp
+ .. code-block:: html
     :emphasize-lines: 1
 
-    Date Item : <fmt:formatDate value="${helloBean.dateItem}" pattern="yyyy-MM-dd" /> <%-- (1) --%>
+    <span th:text="${#dates.format(helloBean.dateItem,'yyyy-MM-dd')}"></span> <!--/* (1) */-->
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -2936,31 +2830,55 @@ JSTLのJSPタグライブラリから提供されている ``<fmt:formatDate>`` 
    * - 項番
      - 説明
    * - | (1)
-     - | EL式で取得した値を ``<fmt:formatDate>`` タグのvalue属性に指定する。表示するフォーマットはpattern属性に指定する。例では、"``yyyy-MM-dd``" を指定している。
-       | 仮に ``${helloBean.dateItem}`` で取得した値が2013年3月2日の場合、画面には ``"2013-03-02"`` が出力される。
+     - | 取得した値を ``#dates.format`` メソッドでフォーマットし、変数式 ``${}`` に指定する。
+       | 例では、"``yyyy-MM-dd``" を引数として与え、表示するフォーマットに設定している。
+       | 仮に ``helloBean.dateItem`` の値が2013年3月2日の場合、画面には "``2013-03-02``" が出力される。
 
 .. note::
-    ``<fmt:formatDate>`` の詳細は、`JavaServer Pages Standard Tag Library(Version 1.2) <http://download.oracle.com/otndocs/jcp/jstl-1.2-mrel2-eval-oth-JSpec/>`_\ の "CHAPTER 9 Formatting Actions" を参照されたい。
-
-.. note::
-    日時オブジェクトの型として、Joda Timeから提供されている ``org.joda.time.DateTime`` などを利用する場合は、Jada Timeから提供されているJSPタグライブラリを使用すること。
-    Joda Timeの詳細は、 :doc:`../ArchitectureInDetail/GeneralFuncDetail/JodaTime` を参照されたい。
-
+      ``#dates`` は、配列やリストを対象にフォーマットを行うことも可能である。
+      
+      詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects>`_\ を参照されたい。
 
 |
 
-.. _view_jsp_requesturl-label:
+``java.util.Calendar`` オブジェクトのフォーマットを行う場合は、 ``#calendars`` オブジェクトの ``format`` メソッドを利用する。
+
+ .. code-block:: html
+    :emphasize-lines: 1
+
+    <span th:text="${#calendars.format(helloBean.calendarItem,'yyyy-MM-dd')}"></span> <!--/* (1) */-->
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | 取得した値を ``#calendars.format`` メソッドでフォーマットし、変数式 ``${}`` に指定する。
+       | 例では、"``yyyy-MM-dd``" を引数として与え、表示するフォーマットに設定している。
+       | 仮に ``helloBean.calendarItem`` の値が2013年3月2日の場合、画面には ``"2013-03-02"`` が出力される。
+
+.. note::
+      ``#calendars`` は、配列やリストを対象にフォーマットを行うことも可能である。
+      
+      詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects>`_\ を参照されたい。
+
+|
+
+.. _view_thymeleaf_requesturl-label:
 
 リクエストURLを生成する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``href``\ 属性、\ ``<img>``\ 要素の\ ``src``\ 属性などに対してURLを出力する場合は、Thymeleafの\ ``th:action``\属性、\ ``th:href``\属性、\ ``th:src``\属性を使用する。
 
-HTMLの\ ``<form>``\ 要素(JSPタグライブラリの\ ``<form:form>``\ 要素)の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``href``\ 属性などに対してリクエストURL(Controllerのメソッドを呼び出すためのURL)を設定する場合は、
-以下のいずれかの方法を使用してURLを生成する。
+これらの属性では、以下のいずれかの方法によって生成されたリクエストURL(Controllerのメソッドを呼び出すためのURL)を設定する。
 
-* 文字列としてリクエストURLを組み立てる
-* Spring Framework 4.1から追加されたEL関数を使用してリクエストURLを組み立てる
+* ThymeleafのリンクURL式 ``@{}`` を使用してリクエストURLを組み立てる
+* Thymeleaf+Springの ``#mvc.uri`` メソッドを使用してリクエストURLを組み立てる
 
-.. note::
+ .. note::
 
     どちらの方法を使用してもよいが、一つのアプリケーションの中で混在して使用することは、
     保守性を低下させる可能性があるので避けた方がよい。
@@ -2997,17 +2915,19 @@ HTMLの\ ``<form>``\ 要素(JSPタグライブラリの\ ``<form:form>``\ 要素
     * - 項番
       - 説明
     * - | (1)
-      - このメソッドに割り当てられるリクエストURLは、\ "``{コンテキストパス}/hello"``\ となる。
+      - | このメソッドに割り当てられるリクエストURLは、\ "``{コンテキストパス}/hello"``\ となる。
 
 |
 
-**文字列としてリクエストURLを組み立てる**
+**ThymeleafのリンクURL式を使用してリクエストURLを組み立てる**
 
-まず、文字列としてリクエストURLを組み立てる方法について説明する。
+まず、ThymeleafのリンクURL式 ``@{}`` を使用してリクエストURLを組み立てる方法について説明する。
 
- .. code-block:: jsp
+* コンテキストルート相対URLを使用する
 
-    <form action="${pageContext.request.contextPath}/hello"> <!-- (2) -->
+ .. code-block:: html
+
+    <form th:action="@{/hello}" method="post"> <!-- (2) -->
         <!-- ... -->
     </form>
 
@@ -3019,33 +2939,36 @@ HTMLの\ ``<form>``\ 要素(JSPタグライブラリの\ ``<form:form>``\ 要素
     * - 項番
       - 説明
     * - | (2)
-      - \ ``pageContext``\ (JSPの暗黙オブジェクト)からWebアプリケーションに割り振られているコンテキスパスを取得し(\ ``${pageContext.request.contextPath}``\ )、
-        コンテキストパスの後ろに呼び出すControllerのメソッドに割り振られているサーブレットパス(上記例では、\ ``/hello``\)を加える。
+      - | リンクURL式 ``@{}`` に'/'から始まるパスを記述すると、記述したパスをコンテキストルートに付与したURLが生成される。
 
- .. tip::
+* ページ相対URLを使用する
 
-    URLを組み立てるJSPタグライブラリとして、
+ .. code-block:: html
 
-    * JSTLから提供されている \ ``<c:url>``\
-    * Spring Frameworkから提供されている \ ``<spring:url>``\
+    <a th:href="@{user/top}"></a> <!-- (3) -->
 
-    が存在する。これらのJSPタグライブラリを使用して、リクエストURLを組み立ててもよい。
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
 
-    リクエストURLを動的に組み立てる必要がある場合は、
-    これらのJSPタグライブラリを使用してURLを組み立てた方がよいケースがある。
+    * - 項番
+      - 説明
+    * - | (3)
+      - | リンクURL式 ``@{}`` にパスを記述すると、現在のページから見た相対的なURLが生成される。
+
+.. note::
+    リンクURL式 ``@{}`` は、コンテキストルート相対URLやページ相対URLを生成するほか、サーバー相対URL、プロトコル相対URLも生成できる。
+
+    詳細については、"The Standard Dialect"の `4.4 Link URLs <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#link-urls>`_\ を参照されたい。
 
 |
 
-**Spring Framework 4.1から追加されたEL関数を使用してリクエストURLを組み立てる**
+リンクURL式では、URLパラメータを設定することが可能である。
 
-つぎに、Spring Framework 4.1から追加されたEL関数(\ ``spring:mvcUrl``\ )を使用してリクエストURLを組み立てる方法について説明する。
+ .. code-block:: html
 
-\ ``spring:mvcUrl``\ 関数を使用すると、Controllerのメソッドのメタ情報(メソッドシグネチャやアノテーションなど)と連携して、
-リクエストURLを組み立てる事ができる。
-
- .. code-block:: jsp
-
-    <form action="${spring:mvcUrl('HC#hello').build()}"> <!-- (3) -->
+    <form th:action="@{/user/details(userId=${user.id})}" method="post"> <!-- (4) -->
         <!-- ... -->
     </form>
 
@@ -3056,29 +2979,73 @@ HTMLの\ ``<form>``\ 要素(JSPタグライブラリの\ ``<form:form>``\ 要素
 
     * - 項番
       - 説明
-    * - | (3)
-      - \ ``spring:mvcUrl``\ 関数の引数には、呼び出すControllerのメソッドに割り振られているリクエストマッピング名を指定する。
+    * - | (4)
+      - | リンクURL式 ``@{}`` のパス内にパラメータを指定することができる。
+        | 例では、変数 ``${user.id}`` の値が代入され、 ``/user/details?userId=3`` といったパスが生成される。
 
-        \ ``spring:mvcUrl``\ 関数からは、リクエストURLを組み立てるクラス(\ ``MvcUriComponentsBuilder.MethodArgumentBuilder``\ )のオブジェクトが返却される。
-        \ ``MvcUriComponentsBuilder.MethodArgumentBuilder``\ クラスには、
+|
 
+また、URLパス内で変数式を使用することもできる。
+
+ .. code-block:: html
+
+    <form th:action="@{/user/{userId}/details(userId=${user.id})}" method="post"> <!-- (4) -->
+        <!-- ... -->
+    </form>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (4)
+      - | リンクURL式 ``@{}`` のパス内で変数式を使うこともできる。
+        | 例では、パスの ``{userId}`` の部分に変数 ``${user.id}`` の値が代入され、 ``/user/3/details`` といったパスが生成される。
+      
+|
+
+**Thymeleaf+Springのメソッドを使用してリクエストURLを組み立てる**
+
+つぎに、Thymeleaf+Springの\ ``#mvc.uri``\メソッドを使用してリクエストURLを組み立てる方法について説明する。
+
+\ ``#mvc.uri``\ メソッドを使用すると、Controllerのメソッドのメタ情報(メソッドシグネチャやアノテーションなど)と連携して、
+リクエストURLを組み立てる事ができる。
+
+ .. code-block:: html
+
+    <form th:action="${(#mvc.uri('HC#hello')).build()}" method="post"> <!-- (3) -->
+        <!-- ... -->
+    </form>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (4)
+      - | \ ``#mvc.uri``\ メソッドの引数には、呼び出すControllerのメソッドに割り振られているリクエストマッピング名を指定する。
+        | \ ``#mvc.uri``\ メソッドからは、リクエストURLを組み立てるクラス(\ ``Mvc.MethodArgumentBuilderWrapper``\ )のオブジェクトが返却される。
+        | \ ``Mvc.MethodArgumentBuilderWrapper``\ クラスは、ラップしている\ ``MvcUriComponentsBuilder.MethodArgumentBuilder``\オブジェクトと同等の機能をもつ。
+        | \ ``MvcUriComponentsBuilder.MethodArgumentBuilder``\クラスには、
+        
         * \ ``arg``\ メソッド
         * \ ``build``\ メソッド
         * \ ``buildAndExpand``\ メソッド
-
-        が用意されており、それぞれ、以下の役割を持つ。
-
+         
+        | が用意されており、それぞれ、以下の役割を持つ。
+        
         * \ ``arg``\ メソッドは、Controllerのメソッドの引数に渡す値を指定するためのメソッドである。
         * \ ``build``\ メソッドは、リクエストURLを生成するためのメソッドである。
         * \ ``buildAndExpand``\ メソッドは、Controllerのメソッドの引数として宣言されていない動的な部分(パス変数など)に埋め込む値を指定した上で、リクエストURLを生成するためのメソッドである。
-
-        上記例では、リクエストURLが静的なURLであるため、\ ``build``\ メソッドのみを呼び出してリクエストURLを生成している。
-        リクエストURLが動的なURL(パス変数やクエリ文字列が存在するURL)の場合は、
-        \ ``arg``\ メソッドや\ ``buildAndExpand``\ メソッドを呼び出す必要がある。
-
-        \ ``arg``\ メソッドと\ ``buildAndExpand``\ メソッドの具体的な使用例については、
-        「\ `Spring Framework Reference Documentation(Building URIs to Controllers and methods from views) <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-links-to-controllers-from-views>`_\ 」を参照されたい。
-
+        
+        | 上記例では、リクエストURLが静的なURLであるため、\ ``build``\ メソッドのみを呼び出してリクエストURLを生成している。
+        | リクエストURLが動的なURL(パス変数やクエリ文字列が存在するURL)の場合は、\ ``arg``\ メソッドや\ ``buildAndExpand``\ メソッドを呼び出す必要がある。
+        | \ ``arg``\ メソッドと\ ``buildAndExpand``\ メソッドの具体的な使用例については、
+        | 「\ `Spring Framework Reference Documentation(Building URIs to Controllers and methods from views) <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-links-to-controllers-from-views>`_\ 」を参照されたい。
 
  .. note:: **リクエストマッピング名について**
 
@@ -3105,21 +3072,26 @@ HTMLの\ ``<form>``\ 要素(JSPタグライブラリの\ ``<form:form>``\ 要素
 
 |
 
-.. _view_jsp_form-label:
+.. _view_thymeleaf_message-label:
 
-HTML formへフォームオブジェクトをバインドする
+メッセージを表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-HTML formへフォームオブジェクトをバインドし、フォームオブジェクトで保持している値を表示する場合、Spring Frameworkから提供されているJSPタグライブラリを使用する。
+| プロパティファイルからメッセージを取得し表示する場合、Thymeleafのメッセージ式 ``#{}`` を使用する。
 
-Spring Frameworkから提供されている ``<form:form>`` タグを使用してバインドする。
+- properties
 
- .. code-block:: jsp
-    :emphasize-lines: 2-3
+ .. code-block:: properties
+    :emphasize-lines: 1-2
 
-    <form:form action="${pageContext.request.contextPath}/sample/hello"
-               modelAttribute="sampleForm"> <%-- (1) --%>
-        Id : <form:input path="id" /> <%-- (2) --%>
-    </form:form>
+    # (1)
+    label.orderStatus=注文ステータス
+
+- テンプレートHTML
+
+ .. code-block:: html
+    :emphasize-lines: 1
+
+    <span th:text="#{label.orderStatus}"></span> <!--/* (2) */-->
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -3129,31 +3101,46 @@ Spring Frameworkから提供されている ``<form:form>`` タグを使用し�
    * - 項番
      - 説明
    * - | (1)
-     - \ ``<form:form>``\ タグのmodelAttribute属性に、\ ``Model``\ に格納されているフォームオブジェクトの属性名を指定する。
+     - | プロパティファイルにラベルの値を定義する。
    * - | (2)
-     - \ ``<form:xxx>``\ タグのpath属性に、バインドしたいプロパティのプロパティ名を指定する。  ``xxx`` の部分は、入力項目のタイプによってかわる。
+     - | メッセージ式にプロパティファイルのキー名を指定するとキー名に一致するプロパティ値が表示される。
 
 .. note::
-    \ ``<form:form>``\ 、\ ``<form:xxx>``\ タグの詳細は、 `Using Spring's form tag library <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib>`_\ を参照されたい。
+    メッセージ式で指定したメッセージがなかったとき、 ``??label.orderStatus??`` のようなデフォルトメッセージが返却されるが、
+    ここで ``null`` を返却させたい場合は、 ``#messages.msgOrNull`` メソッドを利用すればよい。
+    詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects>`_\ を参照されたい。
 
 |
 
-.. _view_jsp_errors-label:
+ここではThymeleafのメッセージ式 ``#{}`` を利用してプロパティファイルからメッセージを取得し表示する、という方法をとったが、実際には画面名、項目名などについてはテンプレートHTMLに直接記載してもよい。
 
-入力チェックエラーを表示する
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-入力チェックエラーの内容を表示する場合、Spring Frameworkから提供されているJSPタグライブラリを使用する。
+ただし、国際化の必要がある場合はこのような方法をとるのが望ましい。
 
-| Spring Frameworkから提供されている ``<form:errors>`` タグを使用して表示する。
-| 詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation` を参照されたい。
+詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization` を参照されたい。
 
- .. code-block:: jsp
-    :emphasize-lines: 3
+|
 
-    <form:form action="${pageContext.request.contextPath}/sample/hello"
-               modelAttribute="sampleForm">
-        Id : <form:input path="id" /><form:errors path="id" /><%-- (1) --%>
-    </form:form>
+.. _view_thymeleaf_textcombine-label:
+
+テキストを組み立てる
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+テキストやモデルに格納されている値などを組み合わせた文字列を出力したい場合、 ``+`` 演算子やパイプ( ``|`` )を使用する。
+
+- hello.html
+
+ .. code-block:: html
+    :emphasize-lines: 1-2
+
+    <span th:text="'Message : ' + ${helloBean.message}"></span> <!--/* (1) */-->
+    <span th:text="|Message : ${helloBean.message}|"></span> <!--/* (2) */-->
+
+- HTML created by View(hello.html)
+
+ .. code-block:: html
+    :emphasize-lines: 1-2
+
+    <span>Message : Bean Hello World!</span> <!-- (3) -->
+    <span>Message : Bean Hello World!</span> <!-- (3) -->
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -3163,25 +3150,96 @@ Spring Frameworkから提供されている ``<form:form>`` タグを使用し�
    * - 項番
      - 説明
    * - | (1)
-     - \ ``<form:errors>``\ タグのpath属性に、エラー表示したいプロパティのプロパティ名を指定する。
+     - | 変数式やシングルクォート ``''`` で囲んだテキストは、 ``+`` 演算子を利用することにより結合できる。
+   * - | (2)
+     - | パイプ( ``|`` )で囲むことにより、シングルクォートや ``+`` 演算子を利用せずに文字列を結合できる。
+   * - | (3)
+     - | HTMLの出力例。出力されるHTMLは2行とも同じになる。
+       | テキストの結合方法の混在は可読性を低下させるため、ここでは、パイプによる結合を推奨する。
 
 |
 
-.. _view_jsp_resultmessages-label:
+.. _view_thymeleaf_conditional-label:
 
-処理結果のメッセージを表示する
+条件を判定する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-処理結果を通知するメッセージを表示する場合、共通部品から提供しているJSPタグライブラリを使用する。
+| ThymeleafのテンプレートHTMLでは、式内で条件を判定し、その結果によって異なる動作をさせることができる。
+| 判定された結果は、 ``true`` または ``false`` で返却される。
+| 演算子の詳細については、"The Standard Dialect"の `4 Standard Expression Syntax <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#standard-expression-syntax>`_\ を参照されたい。
 
-| 共通部品から提供している ``<t:messagesPanel>`` タグを使用する。
-| 詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement` を参照されたい。
+演算子を用いた条件の判定の結果によって、2つの式のどちらかを選択する式を条件式という。
 
- .. code-block:: jsp
-    :emphasize-lines: 3
+ .. code-block:: html
+    :emphasize-lines: 1
 
-    <div class="messages">
-        <h2>Message pattern</h2>
-        <t:messagesPanel /> <%-- (1) --%>
+    <span th:text="${user.age} != null ? ${user.age} : 'no age specified'"></span> <!--/* (1) */-->
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | ``${user.age} != null`` という条件の判定が ``true`` であった場合、 ``${user.age}`` を表示する。
+       | ``false`` であった場合は、"no age specified"という文字列を表示する。
+       | このように、条件式は「条件 ? 式 : 式」と表されるため、3項演算子とも呼ばれる。
+
+条件式には、等価演算子のほかに、算術演算子や比較演算子も利用できる。
+
+ .. code-block:: html
+    :emphasize-lines: 1
+
+    <span th:text="${user.age} >= 12 ? 'adult' : 'child'"></span> <!--/* (1) */-->
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | ``${user.age}`` が12以上であった場合'adult'を、12未満であった場合'child'を表示する。
+
+.. note::
+    数値の配列やリストに対して、合計値や平均値を取得したい場合、 ``#aggregates`` オブジェクトを利用できる。
+    詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#aggregates>`_\ を参照されたい。
+
+条件の判定の結果によって処理が変わる式としては、条件式のほかに、デフォルト式と呼ばれるものもある。
+
+ .. code-block:: html
+    :emphasize-lines: 1
+
+    <span th:text="${user.age} ?: 'no age specified'"></span> <!--/* (2) */-->
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (2)
+     - | ``?:`` 演算子は、左式 (例では ``${user.age}`` )が ``null`` であったときに限って右式(例では"no age specified")を選択し、それ以外の場合は左式を選択する。
+       | これは上の3項演算子と同じ機能をもっており、このようにデフォルト式は簡単にnullチェックを行うことができる。
+
+|
+
+.. _view_thymeleaf_if-label:
+
+条件によって表示を切り替える
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+モデルが保持する値によって表示を切り替えたい場合は、Thymeleafの ``th:if`` 属性または ``th:switch`` 属性を使用する。
+
+``th:if`` 属性を使用して表示を切り替える。
+
+ .. code-block:: html
+    :emphasize-lines: 1
+
+    <div th:if="${orderForm.orderStatus} != 'complete'"> <!--/* (1) */-->
+            <!--/* ... */-->
     </div>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -3192,46 +3250,29 @@ Spring Frameworkから提供されている ``<form:form>`` タグを使用し�
    * - 項番
      - 説明
    * - | (1)
-     - ``"resultMessages"`` という属性名で格納されているメッセージを出力する。
+     - | ``th:if`` 属性に条件を指定する。
+       | 条件式が ``true`` の場合は ``th:if`` を記述した要素の表示処理が実行され、 ``false`` の場合は要素ごと削除され、表示処理は実行されない。
+       | 例では、注文ステータスが ``'complete'`` ではない場合に ``<div>`` 要素の表示処理が実行され、
+       | 注文ステータスが ``'complete'`` であった場合には ``<div>`` 要素が削除され、表示処理は実行されない。
+       | また、 ``th:if`` 属性の逆の機能として ``th:unless`` 属性があるが、 ``th:if`` と ``th:unless`` の混在は可読性を低下させる場合があるため、いずれかへの統一を推奨する。
+       | 本ガイドラインにおいては、 ``th:if`` に統一している。
 
-|
+``th:switch`` 属性を使用して表示を切り替える。
 
-.. _view_jsp_codelist-label:
+ .. code-block:: html
+    :emphasize-lines: 1-2,8
 
-コードリストを表示する
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-共通部品から提供されているコードリストを表示する場合は、Spring Frameworkから提供されているJSPタグライブラリを使用する。
-
-| JSPからコードリストを参照する場合は、 ``java.util.Map`` インタフェースと同じ方法で参照することができる。
-| 詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist` を参照されたい。
-
-コードリストをセレクトボックスに表示する。
-
- .. code-block:: jsp
-    :emphasize-lines: 3
-
-    <form:select path="orderStatus">
-        <form:option value="" label="--Select--" />
-        <form:options items="${CL_ORDERSTATUS}" /> <%-- (1) --%>
-    </form:select>
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-   :header-rows: 1
-   :widths: 10 90
-
-   * - 項番
-     - 説明
-   * - | (1)
-     - コードリスト名( ``"CL_ORDERSTATUS"`` ) を属性名として、コードリスト( ``java.util.Map`` インタフェース)が格納されている。
-       そのためJSPでは、EL式を使ってコードリスト( ``java.util.Map`` インタフェース)にアクセスすることができる。
-       取得した ``Map`` インタフェースを ``<form:options>`` のitems属性に渡すことで、コードリストをセレクトボックスに表示することができる。
-
-セレクトボックスで選択した値のコード名を表示する。
-
- .. code-block:: jsp
-
-    Order Status : ${f:h(CL_ORDERSTATUS[orderForm.orderStatus])}
+    <div th:switch="${customer.type}"> <!--/* (1) */-->
+        <div th:case="premium"> <!--/* (2) */-->
+            <!--/* ... */-->
+        </div>
+        <div th:case="general">
+            <!--/* ... */-->
+        </div>
+        <div th:case="*"> <!--/* (3) */-->
+            <!--/* ... */-->
+        </div>
+    </div>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -3241,139 +3282,33 @@ Spring Frameworkから提供されている ``<form:form>`` タグを使用し�
    * - 項番
      - 説明
    * - | (1)
-     - セレクトボックス作成時と同様に、コードリスト名( ``"CL_ORDERSTATUS"`` ) を属性名として、コードリスト( ``java.util.Map`` インタフェース)を取得する。
-       取得した ``Map`` インタフェースのキー値として、セレクトボックスで選択した値を指定することで、コード名を表示することができる。
-
-|
-
-.. _view_jsp_message-label:
-
-固定文言を表示する
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| 画面名、項目名、ガイダンス用のメッセージなどについては、国際化の必要がない場合はJSPに直接記載してもよい。
-| ただし、国際化の必要がある場合はSpring Frameworkから提供されているJSPタグライブラリを使用して、プロパティファイルから取得した値を表示する。
-
-| Spring Frameworkから提供されている ``<spring:message>`` タグを使用して表示する。
-| 詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization` を参照されたい。
-
-- properties
-
- .. code-block:: properties
-    :emphasize-lines: 1-2
-
-    # (1)
-    label.orderStatus=注文ステータス
-
-- jsp
-
- .. code-block:: jsp
-    :emphasize-lines: 1
-
-    <spring:message code="label.orderStatus" text="Order Status" /> : <%-- (2) --%>
-        ${f:h(CL_ORDERSTATUS[orderForm.orderStatus])}
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-   :header-rows: 1
-   :widths: 10 90
-
-   * - 項番
-     - 説明
-   * - | (1)
-     - プロパティファイルにラベルの値を定義する。
+     - | ``th:switch`` 属性に変数値を指定する。
    * - | (2)
-     - ``<spring:message>`` のcode属性にプロパティファイルのキー名を指定するとキー名に一致するプロパティ値が表示される。
-
-.. note::
-     text属性に指定した値は、プロパティ値が取得できなかった場合に表示される。
-
-|
-
-.. _view_jsp_if-label:
-
-条件によって表示を切り替える
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-モデルが保持する値によって表示を切り替えたい場合は、JSTLから提供されているJSPタグライブラリを使用する。
-
-JSTLのJSPタグライブラリから提供されている ``<c:if>`` タグ又は ``<c:choose>`` を使用して、表示の切り替えを行う。
-
-``<c:if>`` を使用して表示を切り替える。
-
- .. code-block:: jsp
-    :emphasize-lines: 1
-
-    <c:if test="${orderForm.orderStatus != 'complete'}"> <%-- (1) --%>
-            <%-- ... --%>
-    </c:if>
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-   :header-rows: 1
-   :widths: 10 90
-
-   * - 項番
-     - 説明
-   * - | (1)
-     - ``<c:if>`` のtest属性に分岐に入る条件を実装する。例では注文ステータスが ``'complete'`` ではない場合に分岐内の表示処理が実行される。
-
-``<c:choose>`` を使用して表示を切り替える。
-
- .. code-block:: jsp
-    :emphasize-lines: 2,8
-
-    <c:choose>
-        <c:when test="${customer.type == 'premium'}"> <%-- (1) --%>
-            <%-- ... --%>
-        </c:when>
-        <c:when test="${customer.type == 'general'}">
-            <%-- ... --%>
-        </c:when>
-        <c:otherwise> <%-- (2) --%>
-            <%-- ... --%>
-        </c:otherwise>
-    </c:choose>
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-   :header-rows: 1
-   :widths: 10 90
-
-   * - 項番
-     - 説明
-   * - | (1)
-     - ``<c:when>`` タグのtest属性に分岐に入る条件を実装する。例では顧客の種別が ``'premium'`` の場合に分岐内の表示処理が実行される。
-       test属性で指定した条件が ``false`` の場合は、次の ``<c:when>`` タグの処理が実行される。
-   * - | (2)
-     - 全ての ``<c:when>`` タグのtest属性の結果が ``false`` の場合、 ``<c:otherwise>`` タグ内の表示処理が実行される。
-
-.. note::
-    詳細は、 `JavaServer Pages Standard Tag Library(Version 1.2) <http://download.oracle.com/otndocs/jcp/jstl-1.2-mrel2-eval-oth-JSpec/>`_\ の "CHAPTER 5 Conditional Actions" を参照されたい。
+     - | ``th:case`` 属性に条件を指定する。 ``th:case`` で指定した値が ``th:switch`` で指定した変数値と等しかった場合、その要素の表示処理が実行される。
+       | ``th:case`` 属性は上から順に評価され、最初に合致した条件における表示処理が実行される。
+   * - | (3)
+     - | いずれの条件にも合致しなかった場合に実行したい表示処理は、 ``th:case="*"`` を最後に指定して記述する。
 
 |
 
-.. _view_jsp_forEach-label:
+.. _view_thymeleaf_each-label:
 
 コレクションの要素に対して表示処理を繰り返す
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-モデルが保持するコレクションに対して表示処理を繰り返したい場合は、JSTLから提供されているJSPタグライブラリを使用する。
+モデルが保持するコレクションや配列、Map等に対して表示処理を繰り返したい場合は、Thymeleafの ``th:each`` 属性を使用する。
 
-JSTLのJSPタグライブラリから提供されている ``<c:forEach>`` を使用して表示処理を繰り返す。
-
-
- .. code-block:: jsp
-    :emphasize-lines: 6,8-9
+ .. code-block:: html
+    :emphasize-lines: 6-8
 
     <table>
         <tr>
-            <th>No</th>
             <th>Name</th>
+            <th>Address</th>
         </tr>
-        <c:forEach var="customer" items="${customers}" varStatus="status"> <%-- (1) --%>
-            <tr>
-                <td>${status.count}</td> <%-- (2) --%>
-                <td>${f:h(customer.name)}</td> <%-- (3) --%>
-            </tr>
-        </c:forEach>
+        <tr th:each="customer : ${customers}"> <!--/* (1) */-->
+            <td th:text="${customer.name}"></td> <!--/* (2) */-->
+            <td th:text="${customer.address}"></td> <!--/* (2) */-->
+        </tr>
     </table>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -3384,42 +3319,292 @@ JSTLのJSPタグライブラリから提供されている ``<c:forEach>`` を�
    * - 項番
      - 説明
    * - | (1)
-     - ``<c:forEach>`` タグのitems属性にコレクションを指定する事で、``<c:forEach>`` タグ内の表示処理が繰り返し実行される。
-       処理対象となっている要素のオブジェクトを参照する場合は、var属性にオブジェクトを格納するための変数名を指定する。
+     - | ``th:each`` 属性の右項にコレクションを指定し、左項にはコレクション内の各オブジェクトを格納する変数名を指定する。
+       | ``<tr>`` 要素は、コレクション内のオブジェクトごとに繰り返し処理される。
    * - | (2)
-     - ``<c:forEach>`` タグのvarStatus属性で指定した変数から現在処理を行っている要素位置(count)を取得している。
-       count以外の属性については、 ``javax.servlet.jsp.jstl.core.LoopTagStatus`` の `JavaDoc <http://download.oracle.com/otndocs/jcp/jstl-1.2-mrel2-eval-oth-JSpec/>`_\ を参照されたい。
-   * - | (3)
-     - ``<c:forEach>`` タグのvar属性で指定した変数に格納されているオブジェクトから値を取得している。
+     - | ``th:each`` 属性の左項に指定した変数に格納されているオブジェクトから変数値を取得している。
+
+コレクション内のオブジェクトに対してインデックスなどを取りたい場合は、次のようにテンプレートHTMLを実装する。
+
+ .. code-block:: html
+    :emphasize-lines: 6-8
+
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+        <tr th:each="customer, status : ${customers}"> <!--/* (1) */-->
+            <td th:text="${status.count}"></td> <!--/* (2) */-->
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.address}"></td>
+        </tr>
+    </table>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | ``th:each`` 属性の左項に、要素の番号を格納する変数を2つ目に指定する。
+   * - | (2)
+     - | ``th:each`` 属性の左項で2つ目に指定した変数から、現在処理を行っている要素の位置を取得している。countは、要素の位置を1始まりで取得している。
+       | count以外の属性については、"The Standard Dialect"の `6.2 Keeping iteration status <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#keeping-iteration-status>`_\ を参照されたい。
 
 .. note::
-    詳細は、 `JavaServer Pages Standard Tag Library(Version 1.2) <http://download.oracle.com/otndocs/jcp/jstl-1.2-mrel2-eval-oth-JSpec/>`_\ の "CHAPTER 6 Iterator Actions" を参照されたい。
+    ``th:each`` 属性の詳細は、"The Standard Dialect"の `6 Iteration basis <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#iteration>`_\ を参照されたい。
 
 |
 
-.. _view_jsp_pagination-label:
+.. _view_thymeleaf_object-label:
+
+オブジェクトのプロパティを省略して指定する
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Thymeleafの ``th:object`` 属性を用いると、オブジェクトのプロパティを省略して指定することができる。
+
+ .. code-block:: html
+    :emphasize-lines: 1
+
+    <div th:object="${helloBean}"> <!--/* (1) */-->
+        <span th:text="*{message}"></span> <!--/* (2) */-->
+    </div>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | ``th:object``\ 属性にオブジェクトを変数式 ``${}`` で指定する。
+   * - | (2)
+     - | オブジェクトのプロパティを選択変数式 ``*{}`` で指定する。これは、変数式を用いて ``th:text="${helloBean.message}`` と指定するのと同じ結果になる。
+
+|
+
+.. _view_thymeleaf_with-label:
+
+ローカル変数を定義する
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+| Thymeleafでは、テンプレートHTMLの特定の要素に定義され、その要素内でのみ評価可能な変数のことをローカル変数と呼ぶ。
+| このローカル変数を定義する場合、 ``th:with`` 属性を使用する。
+
+ .. code-block:: html
+    :emphasize-lines: 1
+
+    <div th:with="localvar=|Hello, ${user.name}|"> <!--/* (1) */-->
+        <span th:text="${localvar}"></span> <!--/* (2) */-->
+    </div>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | \ ``th:with``\ 属性に"変数名=値"の形式で設定すると、指定した値をもつローカル変数を定義できる。
+       | 例では、 ``localvar`` という名の変数を定義し、 ``Hello, (ユーザー名)`` という文字列を代入している。
+       | このローカル変数は、 ``th:with`` 属性を指定した ``<div>`` 要素内でのみ有効となる。
+   * - | (2)
+     - | 変数式 ``${}`` にローカル変数 ``localvar`` を指定する。
+
+|
+
+.. _view_thymeleaf_preprocessing-label:
+
+優先的に式を処理する
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+| ThymeleafのテンプレートHTMLでは通常、式は左から順に評価される。
+| そのため、先に処理したい部分が式内にある場合は特殊な記法が必要となり、それはプリプロセッシングと呼ばれている。
+
+ .. code-block:: html
+    :emphasize-lines: 1
+
+    <div th:each="address, status : ${userForm.addresses}">
+        <span th:text="*{addresses[__${status.index}__].name}"></span> <!--/* (1) */-->
+        <span th:text="*{addresses[__${status.index}__].postcode}"></span>    
+        <span th:text="*{addresses[__${status.index}__].address}"></span>
+    </div>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | 添え字などを先に解決する場合、プリプロセッシングが利用される。
+       | 例では、現在 ``th:each`` で処理を行っている要素の位置を ``status.index`` で取得してから、 ``addresses`` オブジェクトの添え字としている。
+       | プリプロセッシングを利用しない場合、 ``addresses[${status.index}]`` に対して処理を行おうとしてしまい、 ``java.lang.NumberFormatException`` エラーが発生する。
+
+|
+
+.. _view_thymeleaf_form-label:
+
+フォームオブジェクトのプロパティをバインドする
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Thymeleaf+Springの ``th:field`` 属性を使用すると、フォームオブジェクトのプロパティをバインドすることができる。
+
+ .. code-block:: html
+    :emphasize-lines: 1-2
+
+    <form th:action="@{/sample/hello}" th:object="${sampleForm}" method="post"> <!--/* (1) */-->
+        Id : <input th:field="*{id}" /> <!--/* (2) */-->
+    </form>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - \ ``<form>``\ タグの ``th:object`` 属性に、\ ``Model``\ に格納されているフォームオブジェクトを指定する。
+   * - | (2)
+     - \ ``<input>``\ タグの ``th:field`` 属性に、バインドするプロパティ名を指定する。
+
+|
+
+.. _view_thymeleaf_errors-label:
+
+入力チェックエラーを表示する
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+入力チェックエラーの内容を表示する場合、Thymeleaf+Springの ``th:errors`` 属性を使用する。詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation` を参照されたい。
+
+ .. code-block:: html
+    :emphasize-lines: 2
+
+    <form th:action="@{/sample/hello}" th:object="${sampleForm}" method="post">
+        Id : <input th:field="*{id}"><span th:errors="*{id}"></span><!--/* (1) */-->
+    </form>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | \ ``th:errors``\ 属性に、エラー表示したいプロパティのプロパティ名を指定する。
+       | なお、指定したプロパティに入力チェックエラーがなかった場合、出力されるHTMLにおいて、 ``th:errors`` 属性を含む要素(ここでは ``<span>`` )は削除される。
+
+|
+
+.. _view_thymeleaf_resultmessages-label:
+
+処理結果のメッセージを表示する
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+処理結果を通知するメッセージを表示する場合、Springのメッセージリソースからメッセージを取得する。
+なお、以下では、TERASOLUNAのJSPタグである ``<t:messagesPanel>`` のデフォルト設定で出力するHTMLを生成する例として、以下のようにソースコードを記述している。
+詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement` を参照されたい。
+
+ .. code-block:: html
+    :emphasize-lines: 3-4
+
+    <div class="messages">
+        <h2>Message pattern</h2>
+        <div th:if="${resultMessages} != null" class="alert"
+            th:classappend="|alert-${resultMessages.type}|"> <!--/* (1) */-->
+            <ul>
+                <li th:each="message : ${resultMessages}" 
+                    th:text="${message.code} != null ? ${#messages.msgWithParams(message.code, message.args)} : ${message.text}"></li> <!--/* (2) */-->
+            </ul>
+        </div>
+    </div>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | ``resultMessages`` オブジェクトが ``null`` でないとき、 ``<div>`` とその配下の要素が実行される。
+   * - | (2)        
+     - | ``resultMessages`` オブジェクトに格納された ``message`` プロパティを、Thymeleafの ``#messages`` オブジェクトを使用して繰り返し取得し、出力する。
+       | ``resultMessages`` はコードで登録される場合と文字列で登録される場合があり、コードで登録された場合は ``message.code`` と ``message.args`` を表示し、
+       | 文字列で登録された場合(コードが ``null`` の場合)は ``message.text`` を表示する。
+       
+|
+
+.. _view_thymeleaf_codelist-label:
+
+コードリストを表示する
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+| ThymeleafのテンプレートHTMLからコードリストを参照する場合は、 ``java.util.Map`` インタフェースと同じ方法で参照することができる。
+| 詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist` を参照されたい。
+
+コードリストをセレクトボックスに表示する。
+
+ .. code-block:: html
+    :emphasize-lines: 3
+
+    <select th:field="${orderForm.orderStatus}">
+        <option value="">--Select--</option>
+        <option th:each="var : ${CL_ORDERSTATUS.asMap()}" th:value="${var.key}"
+        th:text="${var.value}" /> <!--/* (1) */-->
+    </select>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | コードリスト名( ``"CL_ORDERSTATUS"`` )を属性名として、コードリスト( ``java.util.Map`` インタフェース)が格納されている。
+       | ``asMap`` メソッドで取得したコードリストから、セレクトボックスに各コードのキー値を表示し、選択されたコード名を ``th:field`` 属性で指定されたオブジェクトに代入している。
+       | ``th:each`` 属性については、 :ref:`view_thymeleaf_each-label` も参照されたい。
+
+セレクトボックスで選択した値のコード名を表示する。
+
+ .. code-block:: html
+
+    <span th:text="|Order Status : ${CL_ORDERSTATUS.asMap()[__${orderForm.orderStatus}__]}|"></span> <!-- (1) -->
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | セレクトボックス作成時と同様に、コードリスト名( ``"CL_ORDERSTATUS"`` ) を属性名として格納されたコードリスト( ``java.util.Map`` インタフェース)を、 ``asMap`` メソッドで取得する。
+       | 取得したコードリストのキー値として、セレクトボックスで選択した値を指定することで、コード名を表示することができる。
+
+|
+
+.. _view_thymeleaf_pagination-label:
 
 ページネーション用のリンクを表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-一覧表示を行う画面にてページネーション用のリンクを表示する場合は、共通部品から提供しているJSPタグライブラリを使用する。
-
-共通部品から提供している ``<t:pagination>`` を使用してページネーション用のリンクを表示する。
-詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Pagination` を参照されたい。
+一覧表示を行う画面にてページネーション用のリンクを表示する場合、Spring Dataから提供されている仕組みを使用する。
+ページネーションは今回のリリースでは対応していないので、次版移行で対応予定である。
 
 
 |
 
-.. _view_jsp_authorization-label:
+.. _view_thymeleaf_authorization-label:
 
 権限によって表示を切り替える
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-ログインしているユーザの権限によって表示を切り替える場合は、Spring Securityから提供されているJSPタグライブラリを使用する。
+| ログインしているユーザの権限によって表示を切り替える場合は、ThymeleafのSpring Security連携用ダイアレクトで提供されているオブジェクトや属性を使用する。
+| Spring Security連携用ダイアレクトで提供されている ``sec:authentication`` 属性や ``#authorization`` オブジェクトを使用して、表示の切り替えを行う。
+| 詳細は、 :doc:`../Security/Authorization` を参照されたい。
 
-Spring Securityから提供されている ``<sec:authorize>`` を使用して表示の切り替えを行う。
-詳細は、 :doc:`../Security/Authorization` を参照されたい。
-
-
-|
 |
 
 JavaScriptの実装
@@ -3436,13 +3621,10 @@ JavaScriptの実装
 
 スタイルシートの実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| 画面のデザインに関わる属性値の指定はJSP(HTML)に直接指定するのではなく、スタイルシート(cssファイル)に指定することを推奨する。
-| JSP(HTML)では、項目を一意に特定するためのid属性の指定と項目の分類を示すclass属性の指定を行い、実際の項目の配置や見た目にかかわる属性値の指定はスタイルシート(cssファイル)で指定する。
-| このような構成にすることで、JSPの実装からデザインに関わる処理を減らすことができる。
-| 同時にちょっとしたデザイン変更であれば、JSPを修正せずにスタイルシート(cssファイル)の修正のみで対応可能となる。
-
-.. note::
-    ``<form:xxx>`` タグを使ってフォームを生成した場合、id属性は自動で設定される。class属性については、アプリケーション開発者によって指定が必要。
+| 画面のデザインに関わる属性値の指定はテンプレートHTMLに直接指定するのではなく、スタイルシート(cssファイル)に指定することを推奨する。
+| テンプレートHTMLでは、項目を一意に特定するためのid属性の指定と項目の分類を示すclass属性の指定を行い、実際の項目の配置や見た目にかかわる属性値の指定はスタイルシート(cssファイル)で指定する。
+| このような構成にすることで、HTMLの実装からデザインに関わる処理を減らすことができる。
+| 同時にちょっとしたデザイン変更であれば、テンプレートHTMLを修正せずにスタイルシート(cssファイル)の修正のみで対応可能となる。
 
 |
 
@@ -4068,3 +4250,4 @@ HandlerMethodArgumentResolverを実装してControllerの引数として受け�
 .. raw:: latex
 
    \newpage
+

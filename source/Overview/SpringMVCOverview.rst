@@ -44,8 +44,8 @@ Implementations of each component
 
 これまで説明したコンポーネントのうち、拡張可能なコンポーネントを紹介する。
 
-Implementaion of HandlerMapping
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Implementation of HandlerMapping
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Springから提供されている\ ``HandlerMapping``\ のクラス階層を、以下に示す。
 
@@ -62,8 +62,8 @@ Springから提供されている\ ``HandlerMapping``\ のクラス階層を、�
 | (\ ``<mvc:annotation-driven>``\ アノテーションで有効になる設定は、\ `Web MVC framework <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-config-enable>`_\ を参照されたい。)
 
 
-Implementaion of HandlerAdapter
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Implementation of HandlerAdapter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Springから提供されている\ ``HandlerAdapter``\ のクラス階層を、以下に示す。
 
@@ -75,23 +75,19 @@ Springから提供されている\ ``HandlerAdapter``\ のクラス階層を、�
 
 | このクラスもSpring Framework 3.1からは、\ ``<mvc:annotation-driven>``\ の設定がある場合、デフォルトで設定される。
 
-Implementaion of ViewResolver
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Implementation of ViewResolver
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Springおよび依存ライブラリから提供されている\ ``ViewResolver``\ のクラスを、以下に示す。
 
 .. figure:: ./images/ViewResolver-Hierarchy.png
    :alt: ViewResolver Hierarchy
 
-通常(JSPを使う場合)は、
+Thymeleafを使う場合は、
 
-*  \ ``org.springframework.web.servlet.view.InternalResourceViewResolver``\ を使用するが、
+*  \ ``org.thymeleaf.spring4.view.ThymeleafViewResolver``\ 
 
-テンプレートエンジンTilesを使う場合は、
-
-* \ ``org.springframework.web.servlet.view.tiles3.TilesViewResolver``\
-
-ファイルダウンロード用にストリームを返す場合は
+を使用するが、ファイルダウンロード用にストリームを返す場合は
 
 * ``org.springframework.web.servlet.view.BeanNameViewResolver``
 
@@ -99,13 +95,13 @@ Springおよび依存ライブラリから提供されている\ ``ViewResolver`
 
 | 複数の種類の\ ``View``\ を扱う場合、\ ``ViewResolver``\ の定義が複数必要となるケースがある。
 | 複数の\ ``ViewResolver``\ を使う代表的な例として、ファイルのダウンロード処理が存在する画面アプリケーションが挙げられる。
-| 画面(JSP)は、\ ``InternalResourceViewResolver``\ で\ ``View``\ を解決し、
+| 画面(Thymeleaf)は、\ ``ThymeleafViewResolver``\ で\ ``View``\ を解決し、
 | ファイルダウンロードは、\ ``BeanNameViewResolver``\ などを使って\ ``View``\ を解決する。
 | 詳細は\ :doc:`../ArchitectureInDetail/WebApplicationDetail/FileDownload`\ を参照されたい。
 
 
-Implementaion of View
-^^^^^^^^^^^^^^^^^^^^^
+Implementation of View
+^^^^^^^^^^^^^^^^^^^^^^
 
 Springおよび依存ライブラリから提供されている\ ``View``\ のクラスを、以下に示す。
 
@@ -113,7 +109,7 @@ Springおよび依存ライブラリから提供されている\ ``View``\ の�
    :alt: View Hierarchy
 
 | \ ``View``\ は、返したいレスポンスの種類によって変わる。
-| JSPを返す場合、\ ``org.springframework.web.servlet.view.JstlView``\ が使用される。
+| Thymeleafにより生成されたHTMLを返す場合、\ ``org.thymeleaf.spring4.view.ThymeleafView``\ が使用される。
 
 | Springおよび依存ライブラリから提供されていない\ ``View``\ を扱いたい場合、\ ``View``\ インタフェースを実装したクラスを拡張する必要がある。
 | 詳細は\ :doc:`../ArchitectureInDetail/WebApplicationDetail/FileDownload`\ を参照されたい。

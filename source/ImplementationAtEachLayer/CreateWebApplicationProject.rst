@@ -18,6 +18,7 @@ Webアプリケーション向け開発プロジェクトの作成
 --------------------------------------------------------------------------------
 
 ブランクプロジェクトは、使用用途に応じて以下の２種類を提供している。
+（いずれのブランクプロジェクトも、ViewにはThymeleafを用いる設定になっている。）
 
 .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
 .. list-table::
@@ -26,23 +27,20 @@ Webアプリケーション向け開発プロジェクトの作成
 
     * - 種別
       - 使用用途
-    * - | `マルチプロジェクト構成のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank>`_
+    * - | `マルチプロジェクト構成のブランクプロジェクト <https://github.com/Macchinetta/macchinetta-web-multi-blank>`_
       - 商用環境にリリースするような本格的なアプリケーションを開発する際に使用する。
 
-        プロジェクトの雛形は、MavenのArchetypeとして、以下の3種類を用意している。
+        プロジェクトの雛形は、MavenのArchetypeとして、以下の1種類を用意している。
 
         * MyBatis3用の設定が盛り込まれた雛形
-        * JPA(Spring Data JPA)用の設定が盛り込まれた雛形
 
         **本ガイドラインでは、マルチプロジェクト構成のプロジェクトを使用する事を推奨している。**
-    * - | `シングルプロジェクト構成のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-blank>`_
+    * - | `シングルプロジェクト構成のブランクプロジェクト <https://github.com/Macchinetta/macchinetta-web-blank>`_
       - POC(Proof Of Concept)、プロトタイプ、サンプルなどの簡易的なアプリケーションを作成する際に使用する。
 
-        プロジェクトの雛形は、MavenのArchetypeとして、以下の4種類を用意している。
-        (EclipseのWTP用のプロジェクトも用意しているが、本節では説明は割愛する)
+        プロジェクトの雛形は、MavenのArchetypeとして、以下の2種類を用意している。
 
         * MyBatis3用の設定が盛り込まれた雛形
-        * JPA(Spring Data JPA)用の設定が盛り込まれた雛形
         * O/R Mapperに依存しない雛形
 
         本ガイドラインでは、各種チュートリアルについてシングルプロジェクトを使用して行う手順となっている。
@@ -69,7 +67,7 @@ Webアプリケーション向け開発プロジェクトの作成
 
 |
 
-マルチプロジェクトを作成するためのArchetypeとして、以下の2種類を用意している。
+マルチプロジェクトを作成するためのArchetypeとして、以下の1種類を用意している。
 
 .. tabularcolumns:: |p{0.05\linewidth}|p{0.30\linewidth}|p{0.65\linewidth}|
 .. list-table::
@@ -80,11 +78,8 @@ Webアプリケーション向け開発プロジェクトの作成
       - Archetype(ArtifactId)
       - 説明
     * - 1.
-      - terasoluna-gfw-multi-web-blank-mybatis3-archetype
+      - macchinetta-multi-web-blank-thymeleaf-archetype
       - O/R MapperとしてMyBatis3を使用するためのプロジェクトを生成するためのArchetype。
-    * - 2.
-      - terasoluna-gfw-multi-web-blank-jpa-archetype
-      - O/R MapperとしてJPA(with Spring Data JPA and Hibernate)を使用するためのプロジェクトを生成するためのArchetype。
 
 |
 
@@ -101,9 +96,9 @@ Webアプリケーション向け開発プロジェクトの作成
 .. code-block:: console
 
     mvn archetype:generate -B^
-     -DarchetypeGroupId=org.terasoluna.gfw.blank^
-     -DarchetypeArtifactId=terasoluna-gfw-multi-web-blank-mybatis3-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeGroupId=com.github.macchinetta.blank^
+     -DarchetypeArtifactId=macchinetta-multi-web-blank-thymeleaf-archetype^
+     -DarchetypeVersion=1.5.0.RELEASE^
      -DgroupId=com.example.todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
@@ -122,12 +117,10 @@ Webアプリケーション向け開発プロジェクトの作成
     * - | \-DarchetypeArtifactId
       - ブランクプロジェクトのarchetypeId(雛形を特定するためのID)を指定する。**(カスタマイズが必要)**
 
-        以下の何れかのarchetypeIdを指定する。
+        以下のarchetypeIdを指定する。
 
-        * ``terasoluna-gfw-multi-web-blank-mybatis3-archetype``
-        * ``terasoluna-gfw-multi-web-blank-jpa-archetype``
+        * ``macchinetta-multi-web-blank-thymeleaf-archetype``
 
-        上記例では、\ ``terasoluna-gfw-multi-web-blank-mybatis3-archetype``\ を指定している。
     * - | \-DarchetypeVersion
       - ブランクプロジェクトのバージョンを指定する。(固定)
     * - | \-DgroupId
@@ -152,7 +145,7 @@ Webアプリケーション向け開発プロジェクトの作成
 
     (... omit)
     [INFO] ----------------------------------------------------------------------------
-    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-multi-web-blank-mybatis3-archetype:5.3.0.RELEASE
+    [INFO] Using following parameters for creating project from Archetype: macchinetta-multi-web-blank-thymeleaf-archetype:1.5.0.RELEASE
     [INFO] ----------------------------------------------------------------------------
     [INFO] Parameter: groupId, Value: com.example.todo
     [INFO] Parameter: artifactId, Value: todo
@@ -257,10 +250,10 @@ Maven Archetypeで作成したプロジェクトのPOMファイルでは、
 
     <!-- ... -->
 
-    <name>TERASOLUNA Server Framework for Java (5.x) Web Blank Multi Project</name>
-    <description>Web Blank Multi Project using TERASOLUNA Server Framework for Java (5.x)</description>
-    <url>http://terasoluna.org</url>
-    <inceptionYear>2014</inceptionYear>
+    <name>Macchinetta Server Framework (1.x) Web Blank Multi Project</name>
+    <description>Web Blank Multi Project using Macchinetta Server Framework (1.x)</description>
+    <url>http://macchinetta.github.io</url>
+    <inceptionYear>2017</inceptionYear>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -269,9 +262,21 @@ Maven Archetypeで作成したプロジェクトのPOMファイルでは、
         </license>
     </licenses>
     <organization>
-        <name>TERASOLUNA Framework Team</name>
-        <url>http://terasoluna.org</url>
+        <name>Macchinetta Framework Team</name>
+        <url>http://macchinetta.github.io</url>
     </organization>
+    <developers>
+        <developer>
+            <name>Macchinetta</name>
+            <organization>Macchinetta</organization>
+            <organizationUrl>http://macchinetta.github.io</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git@github.com:Macchinetta/macchinetta-web-multi-blank.git</connection>
+        <developerConnection>scm:git:git@github.com:Macchinetta/macchinetta-web-multi-blank</developerConnection>
+        <url>git@github.com:Macchinetta/macchinetta-web-multi-blank</url>
+    </scm>
 
     <!-- ... -->
 
@@ -317,14 +322,14 @@ Maven Archetypeで作成したプロジェクトでは、\ ``x.xx.fw.9999``\ 形
 
     e.xx.fw.5001 = Resource not found.
 
-**[JSP]**
+**[HTML]**
 
-.. code-block:: jsp
+.. code-block:: html
 
-    <div class="error">
-        <c:if test="${!empty exceptionCode}">[${f:h(exceptionCode)}]</c:if>
-        <spring:message code="e.xx.fw.5001" />
-    </div>
+        <div class="error">
+            <span th:text="${#strings.isEmpty(exceptionCode)} ? #{e.xx.fw.5001} : |[${exceptionCode}] #{e.xx.fw.5001}|">[e.xx.fw.5001]
+            Resource not found.</span>
+        </div>
 
 **[applicationContext.xml]**
 
@@ -366,10 +371,10 @@ Maven Archetypeで作成したプロジェクトでは、\ ``x.xx.fw.9999``\ 形
         ``artifactId/artifactId-web/src/main/resources/i18n/application-messages.properties``
       - プロパティキーに指定しているメッセージIDのプロジェクト区分の暫定値「\ ``xx``\ 」を、適切な値に修正する。
     * - 2.
-      - エラー画面用のJSP
+      - エラー画面用のテンプレートHTML
 
-        ``artifactId/artifactId-web/src/main/webapp/WEB-INF/views/common/error/*.jsp``
-      - \ ``<spring:message>``\ 要素の\ ``code``\ 属性に指定しているメッセージIDのプロジェクト区分の暫定値「\ ``xx``\ 」を、適切な値に修正する。
+        ``artifactId/artifactId-web/src/main/webapp/WEB-INF/views/common/error/*.html（unhandledSystemError.htmlを除く）``
+      - \ ``<div>``\ 要素の\ ``th:text``\ 属性に指定しているメッセージIDのプロジェクト区分の暫定値「\ ``xx``\ 」を、適切な値に修正する。
     * - 3.
       - Webアプリケーション用のアプリケーションコンテキストを作成するためのBean定義ファイル
 
@@ -433,34 +438,40 @@ Maven Archetypeで作成したプロジェクトでは、いくつかのメッ�
 エラー画面
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Maven Archetypeで作成したプロジェクトでは、エラーの種類毎にエラー画面を表示するためのJSP及びHTMLを提供しているが、
+Maven Archetypeで作成したプロジェクトでは、エラーの種類毎にエラー画面を表示するためのテンプレートHTML及び静的なHTMLを提供しているが、
 
 * 画面レイアウト
 * 画面タイトル
 * メッセージの文言
 
-などが簡易的な実装になっている。実際のJSPの実装(サンプリング)を以下に示す。
+などが簡易的な実装になっている。実際のテンプレートHTMLの実装(サンプリング)を以下に示す。
 
-**[JSP]**
+**[HTML]**
 
-.. code-block:: jsp
+.. code-block:: html
 
     <!DOCTYPE html>
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <meta charset="utf-8">
     <title>Resource Not Found Error!</title>
     <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+        href="../../../../resources/app/css/styles.css" th:href="@{/resources/app/css/styles.css}">
     </head>
     <body>
         <div id="wrapper">
             <h1>Resource Not Found Error!</h1>
             <div class="error">
-                <c:if test="${!empty exceptionCode}">[${f:h(exceptionCode)}]</c:if>
-                <spring:message code="e.xx.fw.5001" />
+                <span th:text="${#strings.isEmpty(exceptionCode)} ? #{e.xx.fw.5001} : |[${exceptionCode}] #{e.xx.fw.5001}|">[e.xx.fw.5001]
+                Resource not found.</span>
             </div>
-            <t:messagesPanel />
+            <div th:if="${resultMessages} != null" class="alert alert-error" th:class="|alert alert-${resultMessages.type}|">
+                <ul>
+                    <li th:each="message : ${resultMessages}"
+                        th:text="${message.code} != null ? ${#messages.msgWithParams(message.code, message.args)} : ${message.text}">error
+                        detail message</li>
+                </ul>
+            </div>
         <br>
         <!-- ... -->
         <br>
@@ -470,7 +481,7 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
 
 .. note::
 
-    **エラー画面を表示するためのJSPとHTMLについては、アプリケーション要件(UI規約など)に合わせて修正すること。**
+    **エラー画面を表示するためのテンプレートHTML及び静的なHTMLについては、アプリケーション要件(UI規約など)に合わせて修正すること。**
 
 |
 
@@ -485,14 +496,14 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
       - 対象ファイル
       - カスタマイズ方法
     * - 1.
-      - エラー画面用のJSP
+      - エラー画面用のテンプレートHTML
 
-        ``artifactId/artifactId-web/src/main/webapp/WEB-INF/views/common/error/*.jsp``
+        ``artifactId/artifactId-web/src/main/webapp/WEB-INF/views/common/error/*.html（unhandledSystemError.htmlを除く）``
       - アプリケーション要件(UI規約など)に合わせて修正する。
 
-        エラー画面を表示するJSPをカスタマイズする際は、「:doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling` の :ref:`exception-handling-how-to-use-codingpoint-jsp-label`」を参照されたい。
+        エラー画面を表示するテンプレートHTMLをカスタマイズする際は、「:doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling` の :ref:`exception-handling-how-to-use-codingpoint-jsp-label`」を参照されたい。
     * - 2.
-      - エラー画面用のHTML
+      - エラー画面用の静的なHTML
 
         ``artifactId/artifactId-web/src/main/webapp/WEB-INF/views/common/error/unhandledSystemError.html``
       - アプリケーション要件(UI規約など)に合わせて修正する。
@@ -504,25 +515,43 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
 画面フッターの著作権
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Maven Archetypeで作成したプロジェクトでは、Tilesを使用して画面レイアウトを構成しているが、
+Maven Archetypeで作成したプロジェクトでは、Thymeleafのテンプレートレイアウト用のHTMLファイルを使用して画面レイアウトを構成しているが、
 画面フッター部の著作権が暫定値「\ ``Copyright &copy; 20XX CompanyName``\ 」の状態になっている。
-実際のJSPの実装(サンプリング)を以下に示す。
+実際のHTMLの実装(サンプリング)を以下に示す。
 
-**[template.jsp]**
+**[template.html]**
 
-.. code-block:: jsp
+.. code-block:: html
 
+  <!DOCTYPE html>
+  <html class="no-js" xmlns:th="http://www.thymeleaf.org" th:fragment="layout (title,body)">
+
+  <!-- ... -->
+
+  <body>
     <div class="container">
-      <tiles:insertAttribute name="header" />
-      <tiles:insertAttribute name="body" />
+    <!--/*/
+      <div id="header" th:replace="~{layout/header :: header}"></div>
+      <div id="body" th:replace="${body}"></div>
+    /*/-->
+    <!--/*-->
+      <h1>
+        <a href="../welcome/home.html">projectName</a>
+      </h1>
+      <div id="wrapper">
+        <h1 id="title">Hello world!</h1>
+        <p>The time on the server is 2018/01/01 00:00:00 JST.</p>
+      </div>
+    <!--*/-->
       <hr>
-      <p style="text-align: center; background: #e5eCf9;">Copyright
-        &copy; 20XX CompanyName</p>
+      <p style="text-align: center; background: #e5eCf9;">Copyright &copy; 20XX CompanyName</p>
     </div>
+  </body>
+  </html>
 
 .. note::
 
-    **Tilesを使用して画面レイアウトを構成する場合は、著作権に適切な値を指定すること。**
+    **Thymeleafのテンプレートレイアウトを使用して画面レイアウトを構成する場合は、著作権に適切な値を指定すること。**
 
 |
 
@@ -537,9 +566,9 @@ Maven Archetypeで作成したプロジェクトでは、Tilesを使用して画
       - 対象ファイル
       - カスタマイズ方法
     * - 1.
-      - Tiles用のテンプレートJSP
+      - Thymeleafのテンプレートレイアウト用のHTMLファイル
 
-        ``artifactId/artifactId-web/src/main/webapp/WEB-INF/views/layout/template.jsp``
+        ``artifactId/artifactId-web/src/main/webapp/WEB-INF/views/layout/template.html``
       - 著作権の暫定値「\ ``Copyright &copy; 20XX CompanyName``\ 」を適切な値に修正する。
 
 |
@@ -802,15 +831,13 @@ Maven Archetypeで作成したプロジェクトは、以下の構成になっ�
 * Spring MVC用のBean定義ファイル
 * Spring Security用のBean定義ファイル
 * O/R Mapperの設定ファイル
-* Tiles用の設定ファイル
 * プロパティファイル(メッセージ定義ファイルなど)
 
 と、アプリケーション要件との依存度が低い(=どんなアプリケーションでも作成する必要がある)コンポーネントの簡易実装として、
 
-* Welcomeページを表示するためのControllerとJSP
-* エラー画面を表示するためのJSP(HTML)
-* Tiles用のテンプレートJSP
-* JSPタグライブラリの読み込み設定などが定義されているインクルード用JSP
+* Welcomeページを表示するためのControllerとテンプレートHTML
+* エラー画面を表示するためのControllerとテンプレートHTML
+* Thymeleafのテンプレートレイアウト用のHTML
 * アプリケーション全体の画面スタイルを定義するCSSファイル
 
 などが提供されている。
@@ -881,7 +908,7 @@ Maven Archetypeで作成したプロジェクトは、以下の構成になっ�
         * Controllerクラス
         * 相関チェック用のValidatorクラス
         * Formクラス(REST APIの場合はResourceクラス)
-        * View(JSP)
+        * View(Thymeleaf)
         * CSSファイル
         * JavaScriptファイル
         * アプリケーション層のコンポーネント用のJUnit
@@ -984,7 +1011,7 @@ Maven Archetypeで作成したプロジェクトは、以下の構成になっ�
     
     * bar-web-a
     
-      アプリケーション層のjavaクラス、jsp、設定ファイル、単体テストケース等を格納するプロジェクト。最終的にWebアプリケーションとして*.warファイル化する。
+      アプリケーション層のjavaクラス、html、設定ファイル、単体テストケース等を格納するプロジェクト。最終的にWebアプリケーションとして*.warファイル化する。
       bar-web-aは、bar-commonとbar-envへの依存性を持つ。
     
     * bar-web-b
@@ -1046,18 +1073,21 @@ webモジュールの構成
             │   │       └── example
             │   │           └── project
             │   │               └── app  ... (2)
+            │   │                   ├── common
+            │   │                   │  └── error
+            │   │                   │      └── CommonErrorController.java  ... (3)
             │   │                   └── welcome
-            │   │                       └── HelloController.java  ... (3)
+            │   │                       └── HelloController.java  ... (4)
             │   ├── resources
             │   │   ├── META-INF
-            │   │   │   ├── dozer  ... (4)
-            │   │   │   └── spring  ... (5)
-            │   │   │       ├── application.properties  ... (6)
-            │   │   │       ├── applicationContext.xml  ... (7)
-            │   │   │       ├── spring-mvc.xml  ... (8)
-            │   │   │       └── spring-security.xml  ... (9)
-            │   │   └── i18n  ... (10)
-            │   │       └── application-messages.properties  ... (11)
+            │   │   │   ├── dozer  ... (5)
+            │   │   │   └── spring  ... (6)
+            │   │   │       ├── application.properties  ... (7)
+            │   │   │       ├── applicationContext.xml  ... (8)
+            │   │   │       ├── spring-mvc.xml  ... (9)
+            │   │   │       └── spring-security.xml  ... (10)
+            │   │   └── i18n  ... (11)
+            │   │       └── application-messages.properties  ... (12)
 
 .. raw:: latex
 
@@ -1077,8 +1107,10 @@ webモジュールの構成
         REST APIを構築する場合は、パッケージ名を\ ``api``\ といった感じの名前にしておくと、
         コンポーネントの種類が識別しやすくなる。
     * - | (3)
-      - Welcomeページを表示するためのリクエストを受け取るためのControllerクラス。
+      - エラー画面を表示するためのControllerクラス。
     * - | (4)
+      - Welcomeページを表示するためのリクエストを受け取るためのControllerクラス。
+    * - | (5)
       - Dozer(Bean Mapper)のマッピング定義ファイルを格納するディレクトリ。
         Dozerについては、「:doc:`../ArchitectureInDetail/GeneralFuncDetail/Dozer`」を参照されたい。
 
@@ -1095,13 +1127,13 @@ webモジュールの構成
 
             ドメイン層のJavaBean同士のマッピングはドメイン層のディレクトリに格納することを推奨している。
 
-    * - | (5)
-      - Spring FrameworkのBean定義ファイルとプロパティファイルを格納するディレクトリ。
     * - | (6)
+      - Spring FrameworkのBean定義ファイルとプロパティファイルを格納するディレクトリ。
+    * - | (7)
       - アプリケーション層で使用する設定値を定義するプロパティファイル。
 
         作成時点では、空のファイルである。
-    * - | (7)
+    * - | (8)
       - Webアプリケーション用のアプリケーションコンテキストを作成するためのBean定義ファイル。
 
         このファイルには、以下のBeanを定義する。
@@ -1109,7 +1141,7 @@ webモジュールの構成
         * Webアプリケーション全体で使用するコンポーネント
         * ドメイン層のコンポーネント(ドメイン層のコンポーネントが定義されているBean定義ファイルをimportする)
 
-    * - | (8)
+    * - | (9)
       - \ ``DispatcherServlet``\ 用のアプリケーションコンテキストを作成するためのBean定義ファイル。
 
         このファイルには、以下のBeanを定義する。
@@ -1119,13 +1151,13 @@ webモジュールの構成
 
         REST APIを構築する場合は、ファイル名を\ ``spring-mvc-api.xml``\ といった感じの名前にしておくと、 アプリケーションの種類が識別しやすくなる。
 
-    * - | (9)
+    * - | (10)
       - Spring Securityのコンポーネントを定義するためのBean定義ファイル。
 
         このファイルは、Webアプリケーション用のアプリケーションコンテキストを作成する際に読み込む。
-    * - | (10)
-      - アプリケーション層で使用するメッセージ定義ファイルを格納するディレクトリ。
     * - | (11)
+      - アプリケーション層で使用するメッセージ定義ファイルを格納するディレクトリ。
+    * - | (12)
       - アプリケーション層で使用するメッセージを定義するプロパティファイル。
 
         作成時点では、いくつかの汎用的なメッセージが定義されている。
@@ -1150,31 +1182,28 @@ webモジュールの構成
 
             │   └── webapp
             │       ├── WEB-INF
-            │       │   ├── tiles  ... (12)
-            │       │   │   └── tiles-definitions.xml
             │       │   ├── views  ... (13)
             │       │   │   ├── common
-            │       │   │   │   ├── error  ... (14)
-            │       │   │   │   │   ├── accessDeniedError.jsp
-            │       │   │   │   │   ├── businessError.jsp
-            │       │   │   │   │   ├── dataAccessError.jsp
-            │       │   │   │   │   ├── invalidCsrfTokenError.jsp
-            │       │   │   │   │   ├── missingCsrfTokenError.jsp
-            │       │   │   │   │   ├── resourceNotFoundError.jsp
-            │       │   │   │   │   ├── systemError.jsp
-            │       │   │   │   │   ├── transactionTokenError.jsp
-            │       │   │   │   │   └── unhandledSystemError.html
-            │       │   │   │   └── include.jsp  ... (15)
-            │       │   │   ├── layout  ... (16)
-            │       │   │   │   ├── header.jsp
-            │       │   │   │   └── template.jsp
+            │       │   │   │   └── error  ... (14)
+            │       │   │   │        ├── accessDeniedError.html
+            │       │   │   │        ├── businessError.html
+            │       │   │   │        ├── dataAccessError.html
+            │       │   │   │        ├── invalidCsrfTokenError.html
+            │       │   │   │        ├── missingCsrfTokenError.html
+            │       │   │   │        ├── resourceNotFoundError.html
+            │       │   │   │        ├── systemError.html
+            │       │   │   │        ├── transactionTokenError.html
+            │       │   │   │        └── unhandledSystemError.html
+            │       │   │   ├── layout  ... (15)
+            │       │   │   │   ├── header.html
+            │       │   │   │   └── template.html
             │       │   │   └── welcome
-            │       │   │       └── home.jsp  ... (17)
-            │       │   └── web.xml  ... (18)
-            │       └── resources  ... (19)
+            │       │   │       └── home.html  ... (16)
+            │       │   └── web.xml  ... (17)
+            │       └── resources  ... (18)
             │           └── app
             │               └── css
-            │                   └── styles.css  ... (20)
+            │                   └── styles.css  ... (19)
             └── test
                 ├── java
                 └── resources
@@ -1187,34 +1216,25 @@ webモジュールの構成
 
     * - | 項番
       - | 説明
-    * - | (12)
-      - Tilesの設定ファイルを格納するディレクトリ。
-        Tilesの設定ファイルについては、「:doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout`」を参照されたい。
     * - | (13)
-      - Viewを構築するテンプレートファイル(JSPなど)を格納するディレクトリ。
+      - Viewを構築するテンプレートファイル(HTMLなど)を格納するディレクトリ。
     * - | (14)
-      - エラー画面を表示するためのJSP及びHTMLを格納するディレクトリ。
+      - エラー画面を表示するためのテンプレートHTML及び静的なHTMLを格納するディレクトリ。
 
-        作成時点では、アプリケーション実行時に発生する可能性があるエラーに対応するJSP(HTML)が格納されている。
+        作成時点では、アプリケーション実行時に発生する可能性があるエラーに対応するテンプレートHTML及び静的なHTMLが格納されている。
 
         .. note::
 
-            **エラー画面用のJSP及びHTMLについては、アプリケーションの要件(UI規約など)にあわせて必ず修正すること。**
+            **エラー画面用のテンプレートHTML及び静的なHTMLについては、アプリケーションの要件(UI規約など)にあわせて必ず修正すること。**
 
     * - | (15)
-      - インクルード用の共通JSPファイル。
-
-
-        このファイルは、全てのJSPファイルの先頭にインクルードされる。
-        インクルード用の共通JSPファイルについては、「:ref:`view_jsp_include-label`」を参照されたい。
+      - Thymeleafのテンプレートレイアウト用のHTMLファイルを格納するディレクトリ。
+        Thymeleafのテンプレートレイアウト用のHTMLファイルの記載内容については、「:doc:`../ArchitectureInDetail/WebApplicationDetail/TemplateLayout`」を参照されたい。
     * - | (16)
-      - Tilesのレイアウト用のJSPファイルを格納するディレクトリ。
-        Tilesのレイアウト用のJSPファイルについては、「:doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout`」を参照されたい。
+      - Welcomeページを表示するテンプレートHTMLファイル。
     * - | (17)
-      - Welcomeページを表示するJSPファイル。
-    * - | (18)
       - Webアプリケーションの構成定義ファイル。
-    * - | (19)
+    * - | (18)
       - 静的なリソースファイルを格納するディレクトリ。
 
         このディレクトリは、リクエストの内容によって応答する内容がかわらないファイルを格納する。
@@ -1227,7 +1247,7 @@ webモジュールの構成
 
         Spring MVCが提供する静的リソースの管理メカニズムを適用しやすくするために、
         専用のディレクトリを設ける構成を採用している。
-    * - | (20)
+    * - | (19)
       - アプリケーション全体に適用する画面スタイルを定義するCSSファイル。
 
 .. raw:: latex
@@ -1837,8 +1857,7 @@ Mavenはオンライン環境での動作が前提であるが、
 	[INFO] ------------------------------------------------------------------------
 	[INFO] Reactor Summary:
 	[INFO]
-	[INFO] TERASOLUNA Server Framework for Java (5.x) Web Blank Multi Project (MyBa
-	tis3) SUCCESS [  0.006 s]
+	[INFO] Macchinetta Server Framework (1.x) Web Blank Multi Project SUCCESS [  0.006 s]
 	[INFO] todo-env ........................................... SUCCESS [ 46.565 s]
 	[INFO] todo-domain ........................................ SUCCESS [  0.684 s]
 	[INFO] todo-web ........................................... SUCCESS [ 12.832 s]

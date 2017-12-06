@@ -142,7 +142,7 @@ Bean ValidationのAPI仕様クラス(\ ``javax.validation``\ パッケージの�
 
 * フォームクラスのフィールドに、Bean Validation用のアノテーションを付与する
 * Controllerに、検証するための\ ``@Validated``\ アノテーションを付与する
-* JSPに、検証エラーメッセージを表示するためのタグを追加する
+* テンプレートHTMLに、検証エラーメッセージを表示するためのタグを追加する
 
 が必要である。
 
@@ -348,32 +348,31 @@ Bean ValidationのAPI仕様クラス(\ ``javax.validation``\ パッケージの�
 
 .. _Validation_jsp_impl_sample:
 
-* JSP
+* HTML
 
-  \ ``<form:errors>``\ タグで、入力エラーがある場合にエラーメッセージを表示できる。
+  \ ``th:errors``\ 属性で、入力エラーがある場合にエラーメッセージを表示できる。
 
-  .. code-block:: jsp
+  .. code-block:: html
 
       <!DOCTYPE html>
-      <html>
-      <%-- WEB-INF/views/user/createForm.jsp --%>
+      <html xmlns:th="http://www.thymeleaf.org">
+      <!--/* WEB-INF/views/user/createForm.html */-->
       <body>
-          <form:form modelAttribute="userForm" method="post"
-              action="${pageContext.request.contextPath}/user/create">
-              <form:label path="name">Name:</form:label>
-              <form:input path="name" />
-              <form:errors path="name" /><%--(1) --%>
+          <form th:object="${userForm}" method="post" th:action="@{/user/create}">
+              <label for="name">Name:</label>
+              <input type="text" th:field="*{name}" />
+              <span id="name.errors" th:errors="*{name}"></span><!--/* (1) */-->
               <br>
-              <form:label path="email">Email:</form:label>
-              <form:input path="email" />
-              <form:errors path="email" />
+              <label for="email">Email:</label>
+              <input type="text" th:field="*{email}" />
+              <span id="email.errors" th:errors="*{email}"></span>
               <br>
-              <form:label path="age">Age:</form:label>
-              <form:input path="age" />
-              <form:errors path="age" />
+              <label for="age">Age:</label>
+              <input type="text" th:field="*{age}" />
+              <span id="age.errors" th:errors="*{age}"></span>
               <br>
-              <form:button name="confirm">Confirm</form:button>
-          </form:form>
+              <button id="confirm" name="confirm" type="submit" value="Submit">Confirm</button>
+          </form>
       </body>
       </html>
 
@@ -385,7 +384,7 @@ Bean ValidationのAPI仕様クラス(\ ``javax.validation``\ パッケージの�
      * - 項番
        - 説明
      * - | (1)
-       - | \ ``<form:errors>``\ タグの\ ``path``\ 属性に、対象のフィールド名を指定する。
+       - | \ ``<span>``\ タグの\ ``th:errors``\ 属性に、対象のフィールド名を指定する。
          | この例では、フィールド毎に入力フィールドの横にエラーメッセージを表示する。
 
 フォームは、以下のように表示される。
@@ -424,25 +423,24 @@ NameとEmailが空文字であることに対するエラーメッセージと�
 
 エラー時にスタイルを変更したい場合は、前述のフォームを、以下のように変更する。
 
-.. code-block:: jsp
+.. code-block:: html
 
-    <form:form modelAttribute="userForm" method="post"
-        class="form-horizontal"
-        action="${pageContext.request.contextPath}/user/create">
-        <form:label path="name" cssErrorClass="error-label">Name:</form:label><%-- (1) --%>
-        <form:input path="name" cssErrorClass="error-input" /><%-- (2) --%>
-        <form:errors path="name" cssClass="error-messages" /><%-- (3) --%>
+    <form th:object="${userForm}" method="post"
+        class="form-horizontal" th:action="@{/user/create}">
+        <label for="name" name="name" th:errorclass="error-label">Name:</label><!--/* (1) */-->
+        <input type="text" th:field="*{name}" th:errorclass="error-input" /><!--/* (2) */-->
+        <span id="name.errors" th:errors="*{name}" class="error-messages"></span><!--/* (3) */-->
         <br>
-        <form:label path="email" cssErrorClass="error-label">Email:</form:label>
-        <form:input path="email" cssErrorClass="error-input" />
-        <form:errors path="email" cssClass="error-messages" />
+        <label for="email" name="email" th:errorclass="error-label">Email:</label>
+        <input type="text" th:field="*{email}" th:errorclass="error-input" />
+        <span id="email.errors" th:errors="*{email}" class="error-messages"></span>
         <br>
-        <form:label path="age" cssErrorClass="error-label">Age:</form:label>
-        <form:input path="age" cssErrorClass="error-input" />
-        <form:errors path="age" cssClass="error-messages" />
+        <label for="age" name="age" th:errorclass="error-label">Age:</label>
+        <input type="text" th:field="*{age}" th:errorclass="error-input" />
+        <span id="age.errors" th:errors="*{age}" class="error-messages"></span>
         <br>
-        <form:button name="confirm">Confirm</form:button>
-    </form:form>
+        <button id="confirm" name="confirm" type="submit" value="Submit">Confirm</button>
+    </form>
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -453,13 +451,19 @@ NameとEmailが空文字であることに対するエラーメッセージと�
    * - 項番
      - 説明
    * - | (1)
-     - | エラー時に\ ``<label>``\ タグへ加えるクラス名を、\ ``cssErrorClass``\ 属性で指定する。
+     - | エラー時に\ ``<label>``\ タグへ加えるクラス名を、\ ``th:errorclass``\ 属性で指定する。
+       | また、対象のフィールド名を、\ ``name``\ 属性で指定する。
    * - | (2)
-     - | エラー時に\ ``<input>``\ タグへ加えるクラス名を、\ ``cssErrorClass``\ 属性で指定する。
+     - | エラー時に\ ``<input>``\ タグへ加えるクラス名を、\ ``th:errorclass``\ 属性で指定する。
    * - | (3)
-     - | エラーメッセージに加えるクラス名を、\ ``cssClass``\ 属性で指定する。
+     - | エラーメッセージに加えるクラス名を、\ ``class``\ 属性で指定する。
 
-このJSPに対して、例えば以下のCSSを適用すると、
+.. note::
+
+   ``class``\ 属性が指定されているタグに\ ``th:errorclass``\ 属性をあわせて指定した場合、
+   エラー時には、\ ``class``\ 属性で指定した値に\ ``th:errorclass``\ 属性で指定した値が追加される。
+
+このHTMLに対して、例えば以下のCSSを適用すると、
 
 .. code-block:: css
 
@@ -509,23 +513,21 @@ NameとEmailが空文字であることに対するエラーメッセージと�
 まとめて出力することもできる。
 
 
-.. code-block:: jsp
+.. code-block:: html
 
-    <form:form modelAttribute="userForm" method="post"
-        action="${pageContext.request.contextPath}/user/create">
-        <form:errors path="*" element="div" cssClass="error-message-list" /><%-- (1) --%>
-
-        <form:label path="name" cssErrorClass="error-label">Name:</form:label>
-        <form:input path="name" cssErrorClass="error-input" />
+    <form th:object="${userForm}" method="post" th:action="@{/user/create}">
+        <div id="userForm.errors" th:errors="*{*}" class="error-message-list"></div><!--/* (1) */-->
+        <label for="name" name="name" th:errorclass="error-label">Name:</label>
+        <input type="text" th:field="*{name}" th:errorclass="error-input" />
         <br>
-        <form:label path="email" cssErrorClass="error-label">Email:</form:label>
-        <form:input path="email" cssErrorClass="error-input" />
+        <label for="email" name="email" th:errorclass="error-label">Email:</label>
+        <input type="text" th:field="*{email}" th:errorclass="error-input" />
         <br>
-        <form:label path="age" cssErrorClass="error-label">Age:</form:label>
-        <form:input path="age" cssErrorClass="error-input" />
+        <label for="age" name="age" th:errorclass="error-label">Age:</label>
+        <input type="text" th:field="*{age}" th:errorclass="error-input" />
         <br>
-        <form:button name="confirm">Confirm</form:button>
-    </form:form>
+        <button id="confirm" name="confirm" type="submit" value="Submit">Confirm</button>
+    </form>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -535,12 +537,38 @@ NameとEmailが空文字であることに対するエラーメッセージと�
    * - 項番
      - 説明
    * - | (1)
-     - | \ ``<form:form>``\ タグ内で、\ ``<form:errors>``\ の\ ``path``\ 属性に\ ``*``\ を指定することで、
-       | \ ``<form:form>``\ の\ ``modelAttribute``\ 属性に指定したModelに関する全エラーメッセージを出力できる。
-       | ``element``\ 属性に、これらのエラーメッセージを包含するタグ名を指定できる。デフォルトでは、\ ``span``\ であるが、
-       | ここではエラーメッセージ一覧をブロック要素として出力するために、\ ``div``\ を指定する。
-       | また、CSSのクラスを ``cssClass``\ 属性に指定する。
+     - | \ ``<form>``\ タグ内で、メッセージを包含するタグの\ ``th:errors``\ 属性に\ ``*{*}``\ を指定することで、
+       | \ ``<form>``\ タグの\ ``th:object``\ 属性に指定したModelに関する全エラーメッセージを出力できる。
+       | （なお、\ ``*{*}``\ の部分を\ ``*{all}``\ と指定しても同等である。）
+       | ここではエラーメッセージ一覧をブロック要素として出力するために、\ ``div``\ を指定している。
+       | また、CSSのクラスを ``class``\ 属性に指定する。
 
+.. tip:: **エラーメッセージを一覧で表示する際のHTML構造を独自に定義する方法**
+
+   ``th:errors="*{*}"``\ と指定した場合、各エラーは\ ``<br />``\ 区切りで出力される。
+   \ ``<br />``\ 区切りではなく独自のHTML構造で出力したい場合は、\ ``#fields.allErrors()``\ メソッドを利用することで対応できる。
+
+   以下に、実装例を示す。
+
+     .. code-block:: html
+
+        <ul th:if="${#fields.hasAnyErrors()}"> <!--/* (1) */-->
+            <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li> <!--/* (2) */-->
+        </ul>
+
+     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+     .. list-table::
+       :header-rows: 1
+       :widths: 10 90
+
+       * - 項番
+         - 説明
+       * - | (1)
+         - | ``#fields.hasAnyErrors()``\ メソッドを利用してエラー有無を取得し、\ ``th:if``\ 属性を用いてエラーがない場合はタグを生成しないようにしている。
+           | （なお、\ ``#fields.hasAnyErrors()``\ の部分を\ ``#fields.hasErrors('*')``\ と指定しても同等である。）
+       * - | (2)
+         - | \ ``#fields.allErrors()``\ メソッドを利用してすべてのエラーを取得し、\ ``th:each``\ 属性を用いて繰り返し処理を行い\ ``li``\ タグを生成している。
+           | （なお、\ ``#fields.allErrors()``\ の部分を\ ``#fields.errors('*')``\ と指定しても同等である。）
 
 
 例として、以下のCSSクラスを適用した場合の、エラーメッセージ出力例を示す。
@@ -619,29 +647,25 @@ NameとEmailが空文字であることに対するエラーメッセージと�
 .. note::
 
 
-   エラーメッセージをまとめて表示する際に、\ ``<form:form>``\ タグの外に表示したい場合は以下のように\ ``<spring:nestedPath>``\ タグを使用する。
+   エラーメッセージをまとめて表示する際に、\ ``th:object``\ 属性を指定した要素（\ ``<form>``\ タグなど）の外に表示したい場合は以下のように\ ``th:errors``\ 属性に\ ``Modelに格納されているフォームオブジェクトの属性名.*``\ で指定する。
 
-     .. code-block:: jsp
-       :emphasize-lines: 1,4
+     .. code-block:: html
+       :emphasize-lines: 1
 
-       <spring:nestedPath path="userForm">
-           <form:errors path="*" element="div"
-               cssClass="error-message-list" />
-       </spring:nestedPath>
+       <div id="null.errors" th:errors="${userForm.*}" class="error-message-list"></div>
        <hr>
-       <form:form modelAttribute="userForm" method="post"
-           action="${pageContext.request.contextPath}/user/create">
-           <form:label path="name" cssErrorClass="error-label">Name:</form:label>
-           <form:input path="name" cssErrorClass="error-input" />
+       <form th:object="${userForm}" method="post" th:action="@{/user/create}">
+           <label for="name" name="name" th:errorclass="error-label">Name:</label>
+           <input type="text" th:field="*{name}" th:errorclass="error-input" />
            <br>
-           <form:label path="email" cssErrorClass="error-label">Email:</form:label>
-           <form:input path="email" cssErrorClass="error-input" />
+           <label for="email" name="email" th:errorclass="error-label">Email:</label>
+           <input type="text" th:field="*{email}" th:errorclass="error-input" />
            <br>
-           <form:label path="age" cssErrorClass="error-label">Age:</form:label>
-           <form:input path="age" cssErrorClass="error-input" />
+           <label for="age" name="age" th:errorclass="error-label">Age:</label>
+           <input type="text" th:field="*{age}" th:errorclass="error-input" />
            <br>
-           <form:button name="confirm">Confirm</form:button>
-       </form:form>
+           <button id="confirm" name="confirm" type="submit" value="Submit">Confirm</button>
+       </form>
 
 日時フォーマットのチェック
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -829,82 +853,81 @@ ECサイトにおける「注文」処理の例を考える。「注文」フォ
         }
     }
 
-* JSP
+* HTML
 
-  .. code-block:: jsp
+  .. code-block:: html
 
     <!DOCTYPE html>
-    <html>
-    <%-- WEB-INF/views/order/orderForm.jsp --%>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <!--/* WEB-INF/views/order/orderForm.html */-->
     <head>
     <style type="text/css">
       /* omitted (same as previous sample) */
     </style>
     </head>
     <body>
-        <form:form modelAttribute="orderForm" method="post"
-            class="form-horizontal"
-            action="${pageContext.request.contextPath}/order/order">
-            <form:label path="coupon" cssErrorClass="error-label">Coupon Code:</form:label>
-            <form:input path="coupon" cssErrorClass="error-input" />
-            <form:errors path="coupon" cssClass="error-messages" />
+        <form th:object="${orderForm}" method="post"
+            class="form-horizontal" th:action="@{/order/order}">
+            <label for="coupon" name="coupon" th:errorclass="error-label">Coupon Code:</label>
+            <input type="text" th:field="*{coupon}" th:errorclass="error-input" />
+            <span id="coupon.errors" th:errors="*{coupon}" class="error-messages"></span>
             <br>
         <fieldset>
             <legend>Receiver</legend>
-            <%-- (1) --%>
-            <form:errors path="receiverAddress"
-                cssClass="error-messages" />
-            <%-- (2) --%>
-            <form:label path="receiverAddress.name"
-                cssErrorClass="error-label">Name:</form:label>
-            <form:input path="receiverAddress.name"
-                cssErrorClass="error-input" />
-            <form:errors path="receiverAddress.name"
-                cssClass="error-messages" />
+            <!--/* (1) */-->
+            <span id="receiverAddress.errors" th:errors="*{receiverAddress}"
+                class="error-messages"></span>
+            <!--/* (2) */-->
+            <label for="receiverAddress.name" name="receiverAddress.name"
+                th:errorclass="error-label">Name:</label>
+            <input type="text" th:field="*{receiverAddress.name}"
+                th:errorclass="error-input" />
+            <span id="receiverAddress.name.errors" th:errors="*{receiverAddress.name}"
+                class="error-messages"></span>
             <br>
-            <form:label path="receiverAddress.postcode"
-                cssErrorClass="error-label">Postcode:</form:label>
-            <form:input path="receiverAddress.postcode"
-                cssErrorClass="error-input" />
-            <form:errors path="receiverAddress.postcode"
-                cssClass="error-messages" />
+            <label for="receiverAddress.postcode" name="receiverAddress.postcode"
+                th:errorclass="error-label">Postcode:</label>
+            <input type="text" th:field="*{receiverAddress.postcode}"
+                th:errorclass="error-input" />
+            <span id="receiverAddress.postcode.errors" th:errors="*{receiverAddress.postcode}"
+                class="error-messages"></span>
             <br>
-            <form:label path="receiverAddress.address"
-                cssErrorClass="error-label">Address:</form:label>
-            <form:input path="receiverAddress.address"
-                cssErrorClass="error-input" />
-            <form:errors path="receiverAddress.address"
-                cssClass="error-messages" />
+            <label for="receiverAddress.address" name="receiverAddress.address"
+                th:errorclass="error-label">Address:</label>
+            <input type="text" th:field="*{receiverAddress.address}"
+                th:errorclass="error-input" />
+            <span id="receiverAddress.address.errors" th:errors="*{receiverAddress.address}"
+                class="error-messages"></span>
         </fieldset>
         <br>
         <fieldset>
             <legend>Sender</legend>
-            <form:errors path="senderAddress"
-                cssClass="error-messages" />
-            <form:label path="senderAddress.name"
-                cssErrorClass="error-label">Name:</form:label>
-            <form:input path="senderAddress.name"
-                cssErrorClass="error-input" />
-            <form:errors path="senderAddress.name"
-                cssClass="error-messages" />
+            <span id="senderAddress.errors" th:errors="*{senderAddress}"
+                class="error-messages"></span>
+            <label for="senderAddress.name" name="senderAddress.name"
+                th:errorclass="error-label">Name:</label>
+            <input type="text" th:field="*{senderAddress.name}"
+                th:errorclass="error-input" />
+            <span id="senderAddress.name.errors" th:errors="*{senderAddress.name}"
+                class="error-messages"></span>
             <br>
-            <form:label path="senderAddress.postcode"
-                cssErrorClass="error-label">Postcode:</form:label>
-            <form:input path="senderAddress.postcode"
-                cssErrorClass="error-input" />
-            <form:errors path="senderAddress.postcode"
-                cssClass="error-messages" />
+            <label for="senderAddress.postcode" name="senderAddress.postcode"
+                th:errorclass="error-label">Postcode:</label>
+            <input type="text" th:field="*{senderAddress.postcode}"
+                th:errorclass="error-input" />
+            <span id="senderAddress.postcode.errors" th:errors="*{senderAddress.postcode}"
+                class="error-messages"></span>
             <br>
-            <form:label path="senderAddress.address"
-                cssErrorClass="error-label">Address:</form:label>
-            <form:input path="senderAddress.address"
-                cssErrorClass="error-input" />
-            <form:errors path="senderAddress.address"
-                cssClass="error-messages" />
+            <label for="senderAddress.address" name="senderAddress.address"
+                th:errorclass="error-label">Address:</label>
+            <input type="text" th:field="*{senderAddress.address}"
+                th:errorclass="error-input" />
+            <span id="senderAddress.address.errors" th:errors="*{senderAddress.address}"
+                class="error-messages"></span>
         </fieldset>
 
-            <form:button name="confirm">Confirm</form:button>
-        </form:form>
+            <button id="confirm" name="confirm" type="submit" value="Submit">Confirm</button>
+        </form>
     </body>
     </html>
 
@@ -918,8 +941,7 @@ ECサイトにおける「注文」処理の例を考える。「注文」フォ
      * - 項番
        - 説明
      * - | (1)
-       - | 不正な操作により、\ ``receiverAddress.name``\ 、\ ``receiverAddress.postcode``\ 、\ ``receiverAddress.address``\ のすべて
-         | がリクエストパラメータとして送信されない場合、\ ``receiverAddress``\ が\ ``null``\ とみなされ、この位置にエラーメッセージが表示される。
+       - | 不正な操作により、\ ``receiverAddress.name``\ 、\ ``receiverAddress.postcode``\ 、\ ``receiverAddress.address``\ のすべてがリクエストパラメータとして送信されない場合、\ ``receiverAddress``\ が\ ``null``\ とみなされ、この位置にエラーメッセージが表示される。
      * - | (2)
        - | 子フォームのフィールドは、\ ``親フィールド名.子フィールド名``\ で指定する。
 
@@ -994,13 +1016,13 @@ ECサイトにおける「注文」処理の例を考える。「注文」フォ
        - 説明
      * - | (1)
        - | コレクションのサイズチェックにも、\ ``@Size``\ アノテーションを使用できる。
-* JSP
+* HTML
 
-  .. code-block:: jsp
+  .. code-block:: html
 
     <!DOCTYPE html>
-    <html>
-    <%-- WEB-INF/views/user/createForm.jsp --%>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <!--/* WEB-INF/views/user/createForm.html */-->
     <head>
     <style type="text/css">
       /* omitted (same as previous sample) */
@@ -1008,60 +1030,60 @@ ECサイトにおける「注文」処理の例を考える。「注文」フォ
     </head>
     <body>
 
-        <form:form modelAttribute="userForm" method="post"
-            class="form-horizontal"
-            action="${pageContext.request.contextPath}/user/create">
-            <form:label path="name" cssErrorClass="error-label">Name:</form:label>
-            <form:input path="name" cssErrorClass="error-input" />
-            <form:errors path="name" cssClass="error-messages" />
+        <form th:object="${userForm}" method="post"
+            class="form-horizontal" th:action="@{/user/create}">
+            <label for="name" name="name" th:errorclass="error-label">Name:</label>
+            <input type="text" th:field="*{name}" th:errorclass="error-input" />
+            <span id="name.errors" th:errors="*{name}" class="error-messages"></span>
             <br>
-            <form:label path="email" cssErrorClass="error-label">Email:</form:label>
-            <form:input path="email" cssErrorClass="error-input" />
-            <form:errors path="email" cssClass="error-messages" />
+            <label for="email" name="email" th:errorclass="error-label">Email:</label>
+            <input type="text" th:field="*{email}" th:errorclass="error-input" />
+            <span id="email.errors" th:errors="*{email}" class="error-messages"></span>
             <br>
-            <form:label path="age" cssErrorClass="error-label">Age:</form:label>
-            <form:input path="age" cssErrorClass="error-input" />
-            <form:errors path="age" cssClass="error-messages" />
+            <label for="age" name="age" th:errorclass="error-label">Age:</label>
+            <input type="text" th:field="*{age}" th:errorclass="error-input" />
+            <span id="age.errors" th:errors="*{age}" class="error-messages"></span>
             <br>
-            <form:errors path="addresses" cssClass="error-messages" /><%-- (1) --%>
-            <c:forEach items="${userForm.addresses}" varStatus="status"><%-- (2) --%>
-                <fieldset class="address">
-                    <legend>Address${f:h(status.index + 1)}</legend>
-                    <form:label path="addresses[${status.index}].name"
-                        cssErrorClass="error-label">Name:</form:label><%-- (3) --%>
-                    <form:input path="addresses[${status.index}].name"
-                        cssErrorClass="error-input" />
-                    <form:errors path="addresses[${status.index}].name"
-                        cssClass="error-messages" />
-                    <br>
-                    <form:label path="addresses[${status.index}].postcode"
-                        cssErrorClass="error-label">Postcode:</form:label>
-                    <form:input path="addresses[${status.index}].postcode"
-                        cssErrorClass="error-input" />
-                    <form:errors path="addresses[${status.index}].postcode"
-                        cssClass="error-messages" />
-                    <br>
-                    <form:label path="addresses[${status.index}].address"
-                        cssErrorClass="error-label">Address:</form:label>
-                    <form:input path="addresses[${status.index}].address"
-                        cssErrorClass="error-input" />
-                    <form:errors path="addresses[${status.index}].address"
-                        cssClass="error-messages" />
-                    <c:if test="${status.index > 0}">
-                        <br>
-                        <button class="remove-address-button">Remove</button>
-                    </c:if>
-                </fieldset>
+            <span id="addresses.errors" th:errors="*{addresses}" class="error-messages"></span><!--/* (1) */-->
+            <fieldset class="address" th:each="address,status : *{addresses}"><!--/* (2) */-->
+                <legend th:text="|Address${status.count}|">Address1</legend>
+                <label th:for="|addresses${status.index}.name|" th:name="|addresses[${status.index}].name|"
+                    th:errorclass="error-label">Name:</label>
+                <input type="text" th:field="*{addresses[__${status.index}__].name}"
+                    th:errorclass="error-input" /><!--/* (3) */-->
+                <span th:id="|addresses${status.index}.name.errors|"
+                    th:errors="*{addresses[__${status.index}__].name}"
+                    class="error-messages"></span>
                 <br>
-            </c:forEach>
+                <label th:for="|addresses${status.index}.postcode|" th:name="|addresses[${status.index}].postcode|"
+                    th:errorclass="error-label">Postcode:</label>
+                <input type="text" th:field="*{addresses[__${status.index}__].postcode}"
+                    th:errorclass="error-input" />
+                <span th:id="|addresses${status.index}.postcode.errors|"
+                    th:errors="*{addresses[__${status.index}__].postcode}"
+                    class="error-messages"></span>
+                <br>
+                <label th:for="|addresses${status.index}.address|" th:name="|addresses[${status.index}].address|"
+                    th:errorclass="error-label">Address:</label>
+                <input type="text" th:field="*{addresses[__${status.index}__].address"
+                    th:errorclass="error-input" />
+                <span th:id="|addresses${status.index}.address.errors|"
+                    th:errors="*{addresses[__${status.index}__].address}"
+                    class="error-messages"></span>
+                <span th:if="${status.index > 0}">
+                    <br>
+                    <button class="remove-address-button">Remove</button>
+                </span>
+            </fieldset>
+            <br>
             <button id="add-address-button">Add address</button>
             <br>
-            <form:button name="confirm">Confirm</form:button>
-        </form:form>
+            <button id="confirm" name="confirm" type="submit" value="Submit">Confirm</button>
+        </form>
         <script type="text/javascript"
-            src="${pageContext.request.contextPath}/resources/vendor/js/jquery-1.10.2.min.js"></script>
+            th:src="@{/resources/vendor/js/jquery-1.10.2.min.js}"></script>
         <script type="text/javascript"
-            src="${pageContext.request.contextPath}/resources/app/js/AddressesView.js"></script>
+            th:src="@{/resources/app/js/AddressesView.js}"></script>
     </body>
     </html>
 
@@ -1076,9 +1098,11 @@ ECサイトにおける「注文」処理の例を考える。「注文」フォ
      * - | (1)
        - | \ ``addresses``\ フィールドに対するエラーメッセージを表示する。
      * - | (2)
-       - | 子フォームのコレクションを、\ ``<c:forEach>``\ タグを使ってループで処理する。
+       - | 子フォームのコレクションを、\ ``th:each``\ 属性を使ってループで処理する。
      * - | (3)
        - | コレクション中の子フォームのフィールドは、\ ``親フィールド名[インデックス].子フィールド名``\ で指定する。
+         | なお、インデックスを先に評価させる必要があるため、プリプロセッシング式（``__${...}__`` ）を利用している。
+         | プリプロセッシング式の詳細については、\ `公式ドキュメントのプリプロセッシング式の説明 <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#preprocessing>`_\ を参照されたい。
 
 
 * Controllerクラス
@@ -1317,37 +1341,36 @@ Bean Validationでグループを指定する場合、アノテーションの\ 
        - | グループを振り分けるための、フィールドを追加する。
 
 
-* JSP
+* HTML
 
-  JSPに大きな変更はない。
+  テンプレートHTMLに大きな変更はない。
 
-  .. code-block:: jsp
+  .. code-block:: html
 
-      <form:form modelAttribute="userForm" method="post"
-          class="form-horizontal"
-          action="${pageContext.request.contextPath}/user/create">
-          <form:label path="name" cssErrorClass="error-label">Name:</form:label>
-          <form:input path="name" cssErrorClass="error-input" />
-          <form:errors path="name" cssClass="error-messages" />
+      <form th:object="${userForm}" method="post"
+          class="form-horizontal" th:action="@{/user/create}">
+          <label for="name" name="name" th:errorclass="error-label">Name:</label>
+          <input type="text" th:field="*{name}" th:errorclass="error-input" />
+          <span id="name.errors" th:errors="*{name}" class="error-messages"></span>
           <br>
-          <form:label path="email" cssErrorClass="error-label">Email:</form:label>
-          <form:input path="email" cssErrorClass="error-input" />
-          <form:errors path="email" cssClass="error-messages" />
+          <label for="email" name="email" th:errorclass="error-label">Email:</label>
+          <input type="text" th:field="*{email}" th:errorclass="error-input" />
+          <span id="email.errors" th:errors="*{email}" class="error-messages"></span>
           <br>
-          <form:label path="age" cssErrorClass="error-label">Age:</form:label>
-          <form:input path="age" cssErrorClass="error-input" />
-          <form:errors path="age" cssClass="error-messages" />
+          <label for="age" name="age" th:errorclass="error-label">Age:</label>
+          <input type="text" th:field="*{age}" th:errorclass="error-input" />
+          <span id="age.errors" th:errors="*{age}" class="error-messages"></span>
           <br>
-          <form:label path="country" cssErrorClass="error-label">Country:</form:label>
-          <form:select path="country" cssErrorClass="error-input">
-              <form:option value="cn">China</form:option>
-              <form:option value="jp">Japan</form:option>
-              <form:option value="sg">Singapore</form:option>
-          </form:select>
-          <form:errors path="country" cssClass="error-messages" />
+          <label for="country" name="country" th:errorclass="error-label">Country:</label>
+          <select th:field="*{country}" th:errorclass="error-input">
+              <option value="cn">China</option>
+              <option value="jp">Japan</option>
+              <option value="sg">Singapore</option>
+          </select>
+          <span id="country.errors" th:errors="*{country}" class="error-messages"></span>
           <br>
-          <form:button name="confirm">Confirm</form:button>
-      </form:form>
+          <button id="confirm" name="confirm" type="submit" value="Submit">Confirm</button>
+      </form>
 
 * Controllerクラス
 
@@ -1584,9 +1607,9 @@ Bean Validationでグループを指定する場合、アノテーションの\ 
      * - | (2)
        - | \ ``Default``\ グループに対するルールを設定する。
 
-* JSP
+* HTML
 
-  JSPに変更はない
+  テンプレートHTMLに変更はない。
 
 * Controllerクラス
 
@@ -1968,35 +1991,36 @@ Spring Validatorによる相関項目チェック実装
      * - | (3)
        - | 入力チェックの実装は、これまで通りである。
 
-* JSP
+* HTML
 
-  JSPに特筆すべき点はない。
+  テンプレートHTMLに特筆すべき点はない。
 
-  .. code-block:: jsp
+  .. code-block:: html
 
     <!DOCTYPE html>
-    <html>
-    <%-- WEB-INF/views/password/resetForm.jsp --%>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <!--/* WEB-INF/views/password/resetForm.html */-->
     <head>
     <style type="text/css">
     /* omitted */
     </style>
     </head>
     <body>
-        <form:form modelAttribute="passwordResetForm" method="post"
-            class="form-horizontal"
-            action="${pageContext.request.contextPath}/password/reset">
-            <form:label path="password" cssErrorClass="error-label">Password:</form:label>
-            <form:password path="password" cssErrorClass="error-input" />
-            <form:errors path="password" cssClass="error-messages" />
+        <form th:object="${passwordResetForm}" method="post"
+            class="form-horizontal" th:action="@{/password/reset}">
+            <label for="password" name="password" th:errorclass="error-label">Password:</label>
+            <input type="password" th:field="*{password}" th:errorclass="error-input" />
+            <span id="password.errors" th:errors="*{password}"
+                class="error-messages"></span>
             <br>
-            <form:label path="confirmPassword" cssErrorClass="error-label">Password (Confirm):</form:label>
-            <form:password path="confirmPassword"
-                cssErrorClass="error-input" />
-            <form:errors path="confirmPassword" cssClass="error-messages" />
+            <label for="confirmPassword" name="confirmPassword" th:errorclass="error-label">Password (Confirm):</label>
+            <input type="password" th:field="*{confirmPassword}"
+                th:errorclass="error-input" />
+            <span id="confirmPassword.errors" th:errors="*{confirmPassword}"
+                class="error-messages"></span>
             <br>
-            <form:button>Reset</form:button>
-        </form:form>
+            <button type="submit" value="Submit">Reset</button>
+        </form>
     </body>
     </html>
 
@@ -2006,10 +2030,10 @@ Spring Validatorによる相関項目チェック実装
 .. figure:: ./images_Validation/validations-correlation-check1.png
   :width: 60%
 
-
 .. note::
 
-  \ ``<form:password>``\ タグを使用すると、再表示時に、データがクリアされる。
+  パスワード入力フィールド（\ ``<input type="password">``\ ）に\ ``th:field``\ 属性を付与すると、再表示時に、データがクリアされる。
+
 
 .. _Validation_how_to_cross-field_validation_for_multi_field_highlight:
 .. note::
@@ -2932,16 +2956,19 @@ Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@N
 
 |
 
-* JSP
+* HTML
 
-  .. code-block:: jsp
+  .. code-block:: html
 
-    <form:form modelAttribute="sampleForm">
+    <form th:object="${sampleForm}">
         <!-- (1) -->
-        <form:checkboxes path="roles" items="${CL_ROLE}"/>
-        <form:errors path="roles*"/>
-        <form:button>Submit</form:button>
-    </form:form>
+        <span th:each="role : ${CL_ROLE}">
+            <input type="checkbox" th:field="*{roles}" th:value="${role.key}" />
+            <label th:for="${#ids.prev('roles')}" th:text="${role.value}"></label>
+        </span>
+        <span id="roles*.errors" th:errors="*{roles*}" class="error-messages"></span>
+        <button type="submit" value="Submit">Submit</button>
+    </form>
 
 
   .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -2952,8 +2979,15 @@ Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@N
      * - 項番
        - 説明
      * - | (1)
-       - |  \ ``<form:checkboxes>``\ を実装する。
+       - |  チェックボックスとエラーメッセージを表示するタグを実装する。
 
+  .. note:: **#ids.prevメソッドについて**
+
+     ``#ids``\ オブジェクトを利用すると、繰り返し処理の中でIDを生成するのが容易になる。
+     上記の実装例では、\ ``label``\ タグの\ ``for``\ 属性に\ ``#ids.prev``\ メソッドを利用して対応するチェックボックス（\ ``<input type="checkbox">``\ ）のIDを取得している。
+     通常、\ ``#ids.prev``\ メソッドは直前に\ ``#ids.seq``\ メソッドを使用して生成されたIDを取得するために利用するが、チェックボックスに\ ``th:field``\ 属性を付与した場合は内部的に\ ``#ids.seq``\ メソッドと同等の処理を実行してIDを生成するため、\ ``#ids.prev``\ メソッドを利用してIDを取得することが可能である。
+
+     ``#ids``\ オブジェクトの詳細については、\ `公式ドキュメントの#idsオブジェクトの説明 <http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf_ja.html#id>`_\ を参照されたい。
 
 |
 
@@ -2972,7 +3006,7 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
 を利用して実装を行うことができる。
 
 Formatterで\ ``String``\ から\ ``Role``\ 、\ ``Role``\ から\ ``String``\ への型変換を追加することで、\ ``List<String>``\ にした時と同様に、
-複雑な実装をすることなく \ ``<form:checkboxes>``\ を使用した実装ができる。
+複雑な実装をすることなく \ ``th:field``\ を使用した実装ができる。
 
 主な手順は以下の通り。
 
@@ -2983,9 +3017,9 @@ Formatterで\ ``String``\ から\ ``Role``\ 、\ ``Role``\ から\ ``String``\ �
 * \ ``ConversionServiceFactoryBean``\ を使用し、作成した\ ``Formatter``\ をSpringに登録する。
 
 
-また、\ ``<form:checkboxes>``\ で正常に選択済みの項目を表示するためには、Formatterの実装に加えてラッパークラスの\ ``toString``\ メソッドをオーバーライドする必要がある。
+また、\ ``th:field``\ で正常に選択済みの項目を表示するためには、Formatterの実装に加えてラッパークラスの\ ``toString``\ メソッドをオーバーライドする必要がある。
 
-\ ``<form:checkboxes>``\ は\ ``items``\ 属性で指定されたコレクションの要素を選択項目として表示し、選択項目の値が\ ``path``\ 属性で指定されたプロパティの値と一致する場合は、選択済みの項目として表示する。
+\ ``th:field``\ 属性を設定したチェックボックスは、\ ``value``\ 属性の値とバインドされたフォームのプロパティの値とが一致する場合に、選択済みの項目として表示する。
 この一致性の判断には、プロパティが単項目の場合はFormatterが使用され、配列やコレクションの場合は指定されたプロパティの\ ``toString``\ メソッドの結果が使用される。
 
 正常に選択済みの項目として表示するためには、後述する例のようにラッパークラスで\ ``toString``\ メソッドをオーバーライドし、ラップしている値の文字列を返却する必要がある。
@@ -3088,7 +3122,7 @@ Formatterで\ ``String``\ から\ ``Role``\ 、\ ``Role``\ から\ ``String``\ �
 画面の入力（\ ``String``\ ）からラップした\ ``Role``\ への変換と、その逆変換を行うために、\ ``Formatter``\ による型変換の実装を行う。
 
 型変換を追加することで、\ ``String``\ と\ ``Role``\の相互変換が自動で行われる。
-Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ ``List``\ として扱えるようになる。
+Controller側では\ ``Role``\の\ ``List``\ 、テンプレートHTML側では\ ``String``\ の\ ``List``\ として扱えるようになる。
 
 * \ ``Formatter``\ クラス
 
@@ -3174,16 +3208,19 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
 |
 
 
-* JSP
+* HTML
 
-  .. code-block:: jsp
+  .. code-block:: html
 
-    <form:form modelAttribute="sampleForm">
+    <form th:object="${sampleForm}">
         <!-- (1) -->
-        <form:checkboxes path="roles" items="${CL_ROLE}"/>
-        <form:errors path="roles*"/>
-        <form:button>Submit</form:button>
-    </form:form>
+        <span th:each="role : ${CL_ROLE}">
+            <input type="checkbox" th:field="*{roles}" th:value="${role.key}" />
+            <label th:for="${#ids.prev('roles')}" th:text="${role.value}"></label>
+        </span>
+        <span id="roles*.errors" th:errors="*{roles*}" class="error-messages"></span>
+        <button type="submit" value="Submit">Submit</button>
+    </form>
 
 
   .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -3194,7 +3231,7 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
      * - 項番
        - 説明
      * - | (1)
-       - |  \ ``List<String>``\ にした時と同様に \ ``<form:checkboxes>``\ を使用することができる。
+       - |  \ ``List<String>``\ にした時と同様に \ ``th:field``\ を使用することができる。
 
 
 |

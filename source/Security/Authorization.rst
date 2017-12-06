@@ -22,9 +22,9 @@ Spring Securityでは、以下の3つのリソースに対してアクセスポ�
 * Webリソース
 * Javaメソッド
 * ドメインオブジェクト \ [#fSpringSecurityAuthorization1]_\
-* JSPの画面項目
+* 画面項目
 
-本節では、「Webリソース」「Javaメソッド」「JSPの画面項目」のアクセスに対して認可処理を適用するための実装例(定義例)を紹介しながら、Spring Securityの認可機能について説明する。
+本節では、「Webリソース」「Javaメソッド」「画面項目」のアクセスに対して認可処理を適用するための実装例(定義例)を紹介しながら、Spring Securityの認可機能について説明する。
 
 .. [#fSpringSecurityAuthorization1] ドメインオブジェクトのアクセスに対する認可処理については、 \ `Spring Security Reference -Domain Object Security (ACLs)- <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#domain-acls>`_\ を参照されたい。
 
@@ -707,31 +707,32 @@ Expression内で「\ ``returnObject``\ 」を指定すると、メソッドの�
 
 |
 
-JSPの画面項目への認可
+画面項目への認可
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Spring Securityは、JSPタグライブラリを使用してJSPの画面項目に対して認可処理を適用することができる。
+Spring Security Dialectは、Spring Securityが提供するJSPタグライブラリと同等の認可処理をThymeleafに適用することができる。
 
-ここでは最もシンプルな定義を例に、JSPの画面項目のアクセスに対して認可処理を適用する方法について説明する。
+ここでは最もシンプルな定義を例に、画面項目のアクセスに対して認可処理を適用する方法について説明する。
 
 |
 
 アクセスポリシーの定義
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-JSPタグライブラリを使用してJSPの画面項目に対してアクセスポリシーを定義する際は、表示を許可する条件(アクセスポリシー)をJSPに定義する。
+Spring Security Dialectを使用して画面項目に対してアクセスポリシーを定義する際は、表示を許可する条件(アクセスポリシー)をHTMLに定義する。
 
 * アクセスポリシー定義例
 
-.. code-block:: jsp
+.. code-block:: html
 
-    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    <html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-    <!-- (1) -->
-    <sec:authorize access="hasRole('ADMIN')"> <!-- (2) -->
+    <!--/* (1) */-->
+    <div sec:authorize="hasRole('ADMIN')"> <!--/* (2) */-->
         <h2>Admin Menu</h2>
-        <!-- omitted -->
-    </sec:authorize>
+        <!--/* omitted */-->
+    </div>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -741,9 +742,9 @@ JSPタグライブラリを使用してJSPの画面項目に対してアクセ�
     * - 項番
       - 説明
     * - | (1)
-      - | アクセスポリシーを適用したい部分を\ ``<sec:authorize>``\ タグで囲む。
+      - | アクセスポリシーを適用したい部分を\ ``sec:authorize``\ 属性を記述したタグで囲む。
     * - | (2)
-      - | \ ``access``\ 属性にアクセスポリシーを定義する。ここでは、「管理者の場合は表示を許可する」というアクセスポリシーを定義している。
+      - | 属性値にアクセスポリシーを定義する。ここでは、「管理者の場合は表示を許可する」というアクセスポリシーを定義している。
 
 |
 
@@ -751,21 +752,19 @@ Webリソースに指定したアクセスポリシーとの連動
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ボタンやリンクなど(サーバーへのリクエストを伴う画面項目)に対してアクセスポリシーを定義する際は、リクエスト先のWebリソースに定義されているアクセスポリシーと連動させる。
-Webリソースに指定したアクセスポリシーと連動させる場合は、\ ``<sec:authorize>``\ タグの\ ``url``\ 属性を使用する。
+Webリソースに指定したアクセスポリシーと連動させる場合は、\ ``sec:authorize-url``\ 属性を使用する。
 
-\ ``url``\ 属性に指定したWebリソースにアクセスできる場合に限り\ ``<sec:authorize>``\ タグの中に実装したJSPの処理が実行される。
+\ ``sec:authorize-url``\ 属性に指定したWebリソースにアクセスできる場合に限り\ ``sec:authorize-url``\ 属性を付与したタグの中に実装したThymeleafの処理が実行される。
 
 * Webリソースに定義されているアクセスポリシーとの連携例
 
-.. code-block:: jsp
+.. code-block:: html
 
     <ul>
-        <!-- (1) -->
-        <sec:authorize url="/admin/accounts"> <!-- (2) -->
-            <li>
-                <a href="<c:url value='/admin/accounts' />">Account Management</a>
-            </li>
-        </sec:authorize>
+        <!--/* (1) */-->
+        <li sec:authorize-url="/admin/accounts"> <!--/* (2) */-->
+            <a th:href="@{/admin/accounts}">Account Management</a>
+        </li>
     </ul>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -776,14 +775,14 @@ Webリソースに指定したアクセスポリシーと連動させる場合�
     * - 項番
       - 説明
     * - | (1)
-      - | ボタンやリンクを出力する部分を\ ``<sec:authorize>``\ タグで囲む。
+      - | ボタンやリンクを出力する部分を\ ``sec:authorize-url``\ 属性を記述したタグで囲む。
     * - | (2)
-      - | \ ``<sec:authorize>``\ タグの\ ``url``\ 属性にWebリソースへアクセスするためのURLを指定する。
+      - | \ ``sec:authorize-url``\ 属性にWebリソースへアクセスするためのURLを指定する。
         | ここでは、「\ ``"/admin/accounts"``\ というURLが割り振られているWebリソースにアクセス可能な場合は表示を許可する」というアクセスポリシーを定義しており、Webリソースに定義されているアクセスポリシーを直接意識する必要がない。
 
 .. note:: **HTTPメソッドによるポリシーの指定**
 
-    Webリソースのアクセスポリシーの定義をする際に、HTTPメソッドによって異なるアクセスポリシーを指定している場合は、\ ``<sec:authorize>``\ タグの\ ``method``\ 属性を指定して、連動させる定義を特定すること。
+    Webリソースのアクセスポリシーの定義をする際に、HTTPメソッドによって異なるアクセスポリシーを指定している場合は、\ ``sec:authorize-url``\ 属性の前半にmethodを指定して、スペースで区切りURLを記載することによって連動させる定義を特定すること。
 
 .. warning:: **表示制御に関する留意点**
 
@@ -797,18 +796,17 @@ Webリソースに指定したアクセスポリシーと連動させる場合�
 認可処理の判定結果を変数に格納
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-\ ``<sec:authorize>``\ タグを使って呼び出した認可処理の判定結果は、変数に格納して使いまわすことができる。
+\ 認可処理の判定結果は、変数に格納して使いまわすことができる。
 
-* JSPの実装例
+* Thymeleafのテンプレートの実装例
 
-.. code-block:: jsp
+.. code-block:: html
 
-    <sec:authorize url="/admin/accounts"
-                   var="hasAccountsAuthority"/> <!-- (1) -->
-
-    <c:if test="${hasAccountsAuthority}"> <!-- (2) -->
-        <!-- omitted -->
-    </c:if>
+    <div th:with="hasAccountsAuthority=${#authorization.url('/admin/accounts')}"> <!--/* (1) (2) */-->
+        <div th:if="${hasAccountsAuthority}"> <!--/* (3) */-->
+            <!--/* omitted */-->
+        </div>
+    </div>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -818,9 +816,13 @@ Webリソースに指定したアクセスポリシーと連動させる場合�
     * - 項番
       - 説明
     * - |  (1)
-      - | \ ``var``\ 属性に判定結果を格納するための変数名を指定する。
+      - | \ ``th:with``\ 属性に判定結果を格納するための変数名を指定する。
         | アクセスが許可された場合は、変数に\ ``true``\ が設定される。
-    * - | (2)
+    * - |  (2)
+      - | \ ``#authorization``\ はSpringSecurityDialectが提供するユーティリティオブジェクトで、
+        | urlメソッドによるURLによるアクセス制御やexpressionメソッドによるSpEL式を用いた認可制御を実装出来る。
+        | ここでは、\ ``#authorization.url('/admin/accounts')``\ で、'/admin/accounts'に対するアクセス可否情報を取得している。
+    * - | (3)
       - | 変数の値を参照して表示処理を実装する。
 
 |
@@ -930,7 +932,7 @@ Spring Securityのデフォルトの設定だと、認証済みのユーザー�
     <sec:http>
         <!-- omitted -->
         <sec:access-denied-handler
-            error-page="/WEB-INF/views/common/error/accessDeniedError.jsp" /> <!-- (1) -->
+            error-page="/common/error/accessDeniedError" /> <!-- (1) -->
         <!-- omitted -->
     </sec:http>
 
@@ -954,7 +956,7 @@ Spring Securityのデフォルトの設定だと、認証済みのユーザー�
 
          <error-page>
              <error-code>403</error-code>
-             <location>/WEB-INF/views/common/error/accessDeniedError.jsp</location>
+             <location>/common/error/accessDeniedError</location>
          </error-page>
 
 How to extend
@@ -1028,7 +1030,7 @@ Spring Securityが提供しているデフォルトの動作をカスタマイ�
         <constructor-arg>
             <bean class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
                 <property name="errorPage"
-                          value="/WEB-INF/views/common/error/accessDeniedError.jsp"/>
+                          value="/common/error/accessDeniedError"/>
             </bean>
         </constructor-arg>
     </bean>
@@ -1179,7 +1181,7 @@ Spring Securityが提供しているデフォルトの動作をカスタマイ�
 Webリソースの認可処理への適用
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-ロールの階層化を、WebリソースとJSPの画面項目に対する認可処理に適用する方法を説明する。
+ロールの階層化を、Webリソースと画面項目に対する認可処理に適用する方法を説明する。
 
 * spring-security.xmlの定義例
 

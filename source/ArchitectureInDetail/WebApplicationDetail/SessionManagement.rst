@@ -393,8 +393,8 @@ Spring Securityから提供されているセッションチェック処理を�
 * **デメリット**
 
   * | サーバの処理で必要となるデータを、リクエストパラメータとして送信する必要があるため、画面表示に表示していない項目についても、hidden項目に指定する必要がある。
-    | そのため、JSPの実装コードが増える。
-    | これは、JSPタグライブラリを作成することで、最小限に抑えることが可能である。
+    | そのため、ThymeleafのテンプレートHTMLの実装コードが増える。
+    | これは、独自のダイアレクトを作成することで、最小限に抑えることが可能である。
   * | サーバの処理で必要となるデータを、すべてのリクエストで送信する必要があるため、ネットワーク上に流れるデータ量が増える。
   * | 画面表示に必要なデータを、その都度取得する必要があるため、データの取得処理の実行回数が増える。
 
@@ -443,7 +443,7 @@ Spring Securityから提供されているセッションチェック処理を�
 セッションに格納するデータをコンパクトにするために、以下の条件にあてはまるデータについては、セッションスコープではなく、リクエストスコープに格納することを検討すること。
 
 * | 画面操作で編集することができない読み取り専用のデータ。
-  | データが必要になったタイミングで最新のデータを取得し、取得したデータをリクエストスコープへ格納した上でView(JSP)へ表示するようにすれば、セッションへ格納する必要はない。
+  | データが必要になったタイミングで最新のデータを取得し、取得したデータをリクエストスコープへ格納した上で画面へ表示するようにすれば、セッションへ格納する必要はない。
 * | 画面操作で編集できるが、生存期間がユースケース内の画面操作に閉じているデータ。
   | HTMLフォームのhidden項目として、全ての画面遷移でデータを引き回せば、セッションに格納する必要はない。
 
@@ -790,7 +790,7 @@ Controllerのハンドラメソッドの引数に渡すオブジェクトが、\
       - 説明
     * - | (5)
       - | 共通ライブラリから提供している\ ``SystemExceptionResolver``\ の\ ``exceptionMappings``\ に、\ ``HttpSessionRequiredException``\ の例外ハンドリングの定義を追加する。
-        | 上記例では、  例外発生時の遷移先として、\ ``/WEB-INF/views/common/error/operationError.jsp``\ を指定している。
+        | 上記例では、  例外発生時の遷移先として、\ ``common/error/operationError``\ を指定している。
     * - | (6)
       - | \ ``SystemExceptionResolver``\ の\ ``statusCodes``\ に、\ ``HttpSessionRequiredException``\ 発生時の、HTTPレスポンスコードを指定する。
         | 上記例では、  例外発生時のHTTPレスポンスコードとして、 Bad Request(\ ``400``\ )を指定している。
@@ -837,9 +837,9 @@ Controllerのハンドラメソッドの引数に渡すオブジェクトが、\
 
     \ ``SessionStatus``\ オブジェクトのsetCompleteメソッド自体は、内部のフラグを変更しているだけなので、実際の削除は、Controllerのハンドラメソッドの処理が終了した後に、フレームワークによって行われる。
 
- .. note:: **View(JSP)からのオブジェクトの参照について**
+ .. note:: **View(Thymeleaf)からのオブジェクトの参照について**
 
-    \ ``SessionStatus``\ オブジェクトのsetCompleteメソッドを呼び出すことで、セッションから削除されるが、同じオブジェクトが、\ ``Model``\ オブジェクトに残っているため、View(JSP)から参照することができる。
+    \ ``SessionStatus``\ オブジェクトのsetCompleteメソッドを呼び出すことで、セッションから削除されるが、同じオブジェクトが、\ ``Model``\ オブジェクトに残っているため、View(Thymeleaf)から参照することができる。
 
 |
 
@@ -901,7 +901,7 @@ Controllerのハンドラメソッドの引数に渡すオブジェクトが、\
       - | 完了画面を表示するためのハンドラメソッド。
     * - | (4)
       - | \ ``SessionStatus``\ オブジェクトのsetCompleteメソッドを呼び出し、オブジェクトをセッションから削除する。
-        | \ ``Model``\ オブジェクトに同じオブジェクトが残っているため、直接、View(JSP)の表示処理に影響は与えない。
+        | \ ``Model``\ オブジェクトに同じオブジェクトが残っているため、直接、View(Thymeleaf)の表示処理に影響は与えない。
 
 一連の画面操作を中止するためのリクエストで削除する際の実装例は、以下の通りである。
 
@@ -960,7 +960,7 @@ Controllerのハンドラメソッドの引数に渡すオブジェクトが、\
       - | 入力画面を表示するためのリクエスト(4)へ、リダイレクトする。
         | \ ``SessionStatus``\ オブジェクトのsetCompleteメソッドを呼び出すことで、
         | セッションからは削除されるが、\ ``Model``\ オブジェクトに同じオブジェクトが残っているため、
-        | 直接View(JSP)を呼び出してしまうと、入力途中の情報が表示されてしまう。
+        | 直接View(Thymeleaf)を呼び出してしまうと、入力途中の情報が表示されてしまう。
         | そのため、\ **セッションから削除したうえで、入力画面を表示するためのリクエストへ、リダイレクトする必要がある。**\
     * - | (4)
       - | 入力画面を表示するためのハンドラメソッド。
@@ -1126,23 +1126,25 @@ sessionスコープのBeanの利用
         | 返り値で返却される\ ``Cart``\ オブジェクトが、別のインスタンスになる可能性があるため、
         | 返却された\ ``Cart``\ オブジェクトをsessionスコープのBeanに設定している。
 
- .. note:: **View(JSP)からsessionスコープのBeanを参照する方法**
+ .. note:: **View(Thymeleaf)からsessionスコープのBeanを参照する方法**
 
-     SpEL(Spring Expression Language)式を用いることでControllerにおいて\ ``Model``\ オブジェクトへBeanを追加しなくても、JSPからsessionスコープのBeanを参照することができる。
+     Thymeleafでは標準でSpEL(Spring Expression Language)式を利用することができ、SpEL式を用いることでControllerにおいて\ ``Model``\ オブジェクトへBeanを追加しなくても、ThymeleafからsessionスコープのBeanを参照することができる。
 
- .. code-block:: jsp
+ .. code-block:: html
 
-    <spring:eval var="cart" expression="@sessionCart.cart" />     <%-- (1) --%>
+    <table th:with="cart=${@sessionCart.cart}">     <!-- (1) -->
     
-    <%-- omitted --%>
+    <!--/* omitted */-->
     
-    <c:forEach var="item" items="${cart.cartItems}">     <%-- (2) --%>
-        <tr>
-            <td>${f:h(item.id)}</td>
-            <td>${f:h(item.itemCode)}</td>
-            <td>${f:h(item.quantity)}</td>
-        </tr>
-    </c:forEach>
+    <tr th:each="item : ${cart.cartItems}">     <!-- (2) -->
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.itemCode}"></td>
+        <td th:text="${item.quantity}"></td>
+    </tr>
+    
+    <!--/* omitted */-->
+    
+    </table>
     
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -1152,10 +1154,12 @@ sessionスコープのBeanの利用
     * - 項番
       - 説明
     * - | (1)
-      - | sessionスコープのBeanを参照する
+      - | SpEL式を用いてsessionスコープのBeanを参照する。
+        | 参照したBeanは、 ``th:with`` 属性を利用して ``cart`` 変数に代入する。
+        | ``th:with`` 属性の詳細については、\ :ref:`view_thymeleaf_with-label`\ を参照されたい。
     * - | (2)
-      - | sessionスコープのBeanを表示する
-
+      - | sessionスコープのBeanを表示する。
+        | ``th:each`` 属性の詳細については、\ :ref:`view_thymeleaf_each-label`\ を参照されたい。
 
 セッションに格納したオブジェクトの削除
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1215,21 +1219,14 @@ sessionスコープのBeanを使った処理の実装例
 
 共通ライブラリの詳細は、\ :ref:`logging_appendix_httpsessioneventlogginglistener`\ を参照されたい。
 
-JSPの暗黙オブジェクト ``sessionScope`` を使用する
+ThymeleafのWeb Context Object ``#session`` を使用する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-JSPの暗黙オブジェクトである \ ``sessionScope``\ を使用する場合は、 pageディレクティブのsession属性の値を ``true`` にする必要がある。
-ブランクプロジェクトから提供している :file:`include.jsp` では、 ``false`` となっている。
+Thymeleafでは標準で ``HttpSession`` オブジェクトを参照することが可能であり、ThymeleafのWeb Context Object \ ``#session``\ を使用すると、HttpSessionオブジェクトの情報を取得することができる。
 
-:file:`include.jsp` は、 :file:`src/main/webapp/WEB-INF/views/common` ディレクトリに格納されている。
+ .. code-block:: html
 
-- :file:`include.jsp`
-
- .. code-block:: jsp
-
-    <%@ page session="true"%>     <%-- (1) --%>
+    <span th:text="${#session.getAttribute('testKey')"></span>     <!-- (1) -->
     
-    <%-- omitted --%>
-
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
     :widths: 10 90
@@ -1238,8 +1235,7 @@ JSPの暗黙オブジェクトである \ ``sessionScope``\ を使用する場�
     * - 項番
       - 説明
     * - | (1)
-      - |  pageディレクティブのsession属性の値を ``true`` にする。
-
+      - | ``HttpSession`` から ``testKey`` というidの属性値を取得する。
 
 |
 
@@ -1789,49 +1785,47 @@ Appendix
     }
 
 
-- 1ページ目の入力画面(JSP)
+- 1ページ目の入力画面(テンプレートHTML)
 
- .. code-block:: jsp
+ .. code-block:: html
 
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <title>Wizard Form(1/3)</title>
     </head>
     <body>
         <h1>Wizard Form(1/3)</h1>
-        <form:form action="${pageContext.request.contextPath}/wizard/save" 
-            modelAttribute="wizardForm">
-            <form:label path="field1">Field1</form:label> : 
-            <form:input path="field1" />
-            <form:errors path="field1" />
+        <form th:action="@{/wizard/save}" th:object="${wizardForm}" method="post">
+            <label for="field1">Field1</label>
+            <input th:field="*{field1}" />
+            <span th:errors="*{field1}"></span>
             <div>
-                <form:button name="form2">Next</form:button>
+                <button name="form2">Next</button>
             </div>
-        </form:form>
+        </form>
     </body>
     </html>
 
-- 2ページ目の入力画面(JSP)
+- 2ページ目の入力画面(テンプレートHTML)
 
- .. code-block:: jsp
+ .. code-block:: html
 
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <title>Wizard Form(2/3)</title>
     </head>
     <body>
         <h1>Wizard Form(2/3)</h1>
-        <%-- (31) --%>
-        <form:form action="${pageContext.request.contextPath}/wizard/save" 
-            modelAttribute="wizardForm">
-            <form:label path="field2">Field2</form:label> : 
-            <form:input path="field2" />
-            <form:errors path="field2" />
+        <!-- (31) -->
+        <form th:action="@{/wizard/save}" th:object="${wizardForm}" method="post">
+            <label for="field2">Field2</label>
+            <input th:field="*{field2}" />
+            <span th:errors="*{field2}"></span>
             <div>
-                <form:button name="redoForm1">Back</form:button>
-                <form:button name="form3">Next</form:button>
+                <button name="redoForm1">Back</button>
+                <button name="form3">Next</button>
             </div>
-        </form:form>
+        </form>
     </body>
     </html>
 
@@ -1845,27 +1839,26 @@ Appendix
     * - | (31)
       - | フォームオブジェクトをセッションに格納しているため、1ページ目の入力画面のフィールドを、hidden項目にする必要はない。
 
-- 3ページ目の入力画面(JSP)
+- 3ページ目の入力画面(テンプレートHTML)
 
- .. code-block:: jsp
+ .. code-block:: html
 
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <title>Wizard Form(3/3)</title>
     </head>
     <body>
         <h1>Wizard Form(3/3)</h1>
-        <%-- (32) --%>
-        <form:form action="${pageContext.request.contextPath}/wizard/save" 
-            modelAttribute="wizardForm">
-            <form:label path="field3">Field3</form:label> : 
-            <form:input path="field3" />
-            <form:errors path="field3" />
+        <!-- (32) -->
+        <form th:action="@{/wizard/save}" th:object="${wizardForm}" method="post">
+            <label for="field3">Field3</label> : 
+            <input th:field="*{field3}" />
+            <span th:errors="*{field3}"></span>
             <div>
-                <form:button name="redoForm2">Back</form:button>
-                <form:button name="confirm">Confirm</form:button>
+                <button name="redoForm2">Back</button>
+                <button name="confirm">Confirm</button>
             </div>
-        </form:form>
+        </form>
     </body>
     </html>
 
@@ -1879,33 +1872,26 @@ Appendix
     * - | (32)
       - | フォームオブジェクトをセッションに格納しているため、1ページ目と2ページ目の入力画面のフィールドを、hidden項目にする必要はない。
 
-- 確認画面(JSP)
+- 確認画面(テンプレートHTML)
 
- .. code-block:: jsp
+ .. code-block:: html
 
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <title>Confirm</title>
     </head>
     <body>
         <h1>Confirm</h1>
-        <%-- (33) --%>
-        <form:form action="${pageContext.request.contextPath}/wizard/save" 
-            modelAttribute="wizardForm">
+        <!-- (33) -->
+        <form th:action="@{/wizard/save}" th:object="${wizardForm}" method="post">
+            <div th:text="|Field1 : *{field1}|"></div>
+            <div th:text="|Field2 : *{field2}|"></div>
+            <div th:text="|Field3 : *{field3}|"></div>
             <div>
-                Field1 : ${f:h(wizardForm.field1)}
+                <button name="redoForm3">Back</button>
+                <button>OK</button>
             </div>
-            <div>
-                Field2 : ${f:h(wizardForm.field2)}
-            </div>
-            <div>
-                Field3 : ${f:h(wizardForm.field3)}
-            </div>
-            <div>
-                <form:button name="redoForm3">Back</form:button>
-                <form:button>OK</form:button>
-            </div>
-        </form:form>
+        </form>
     </body>
     </html>
 
@@ -1919,37 +1905,29 @@ Appendix
     * - | (33)
       - | フォームオブジェクトをセッションに格納しているため、入力画面のフィールドを、hidden項目にする必要はない。
 
-- 完了画面(JSP)
+- 完了画面(テンプレートHTML)
 
- .. code-block:: jsp
+ .. code-block:: html
 
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <title>Complete</title>
     </head>
     <body>
         <h1>Complete</h1>
         <div>
-            <div>
-                ID : ${f:h(entity.id)}
-            </div>
-            <div>
-                Field1 : ${f:h(entity.field1)}
-            </div>
-            <div>
-                Field2 : ${f:h(entity.field2)}
-            </div>
-            <div>
-                Field3 : ${f:h(entity.field3)}
-            </div>
+            <div th:text="|ID : ${entity.id}|"></div>
+            <div th:text="|Field1 : ${entity.field1}|"></div>
+            <div th:text="|Field2 : ${entity.field2}|"></div>
+            <div th:text="|Field3 : ${entity.field3}|"></div>
         </div>
         <div>
-            <a href="${pageContext.request.contextPath}/wizard/create">
+            <a th:href="@{/wizard/create}">
                 Continue operation of Create
             </a>
         </div>
         <div>
-            <a href="${pageContext.request.contextPath}/wizard/${entity.id}/update">
+            <a th:href="@{/wizard/{id}/update(id=${entity.id})}">
                 Continue operation of Update
             </a>
         </div>
@@ -1988,7 +1966,7 @@ Appendix
       - 説明
     * - | (34)
       - | 共通ライブラリから提供している\ ``SystemExceptionResolver``\ の\ ``exceptionMappings``\ に、保存処理実行時に不正なリクエストを検知したことを、通知する例外\ ``InvalidRequestException``\ の、例外ハンドリングの定義を追加する。
-        | 上記例では、 例外発生時の遷移先として、\ ``/WEB-INF/views/common/error/operationError.jsp``\ を指定している。
+        | 上記例では、 例外発生時の遷移先として、\ ``common/error/operationError``\ を指定している。
     * - | (35)
       - | \ ``SystemExceptionResolver``\ の\ ``statusCodes`` に、\ ``HttpSessionRequiredException``\ 発生時のHTTPレスポンスコードを指定する。
         | 上記例では、 例外発生時のHTTPレスポンスコードとして、Bad Request(\ ``400``\ )を指定している。
@@ -2148,7 +2126,7 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
         | sessionスコープのBeanに反映することで、\ ``Cart``\ オブジェクトがセッションに格納される。
     * - | (7)
       - | 商品をカートに追加した後に、カート画面を表示するためのリクエストに、リダイレクトする。
-        | **別Controllerの画面に遷移する場合は、直接View(JSP)を呼び出すのではなく、画面を表示するためのリクエストにリダイレクトすることを推奨する。**
+        | **別Controllerの画面に遷移する場合は、直接別Controllerにフォワードするのではなく、画面を表示するためのリクエストにリダイレクトすることを推奨する。**
 
 - CartController
 
@@ -2218,7 +2196,7 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
         | sessionスコープのBeanに反映することで、セッションに反映される。
     * - | (11)
       - | 数量変更を行った後に、カート画面(数量変更画面)を表示するためのリクエストに、リダイレクトする。
-        | **更新処理を行った場合は、直接View(JSP)を呼び出すのではなく、画面を表示するためのリクエストにリダイレクトすることを推奨する。**
+        | **更新処理を行った場合は、直接別Controllerにフォワードするのではなく、画面を表示するためのリクエストにリダイレクトしなければならない。**
 
 - OrderController
 
@@ -2272,32 +2250,31 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
     * - | (14)
       - | 注文完了画面を表示するためのハンドラメソッド。
 
-- 商品画面(JSP)
+- 商品画面(テンプレートHTML)
 
- .. code-block:: jsp
+ .. code-block:: html
 
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <title>Item</title>
     </head>
     <body>
         <h1>Item</h1>
-        <form:form action="${pageContext.request.contextPath}/item/add" 
-            modelAttribute="itemForm">
-            <form:label path="itemCode">Item Code</form:label> : 
-            <form:input path="itemCode" />
-            <form:errors path="itemCode" />
+        <form th:action="@{/item/add}" th:object="${itemForm}" method="post">
+            <label for="itemCode">Item Code</label> : 
+            <input th:field="*{itemCode}" />
+            <span th:errors="*{itemCode}"></span>
             <br>
-            <form:label path="quantity">Quantity</form:label> : 
-            <form:input path="quantity" />
-            <form:errors path="quantity" />
+            <label for="quantity">Quantity</label> : 
+            <input th:field="*{quantity}" />
+            <span th:errors="*{quantity}"></span>
             <div>
-                <%-- (15) --%>
-                <form:button>Add</form:button>
+                <!-- (15) -->
+                <button>Add</button>
             </div>
-        </form:form>
+        </form>
         <div>
-            <a href="${pageContext.request.contextPath}/cart">Go to Cart</a>
+            <a th:href="@{/cart}">Go to Cart</a>
         </div>
     </body>
     </html>
@@ -2312,26 +2289,23 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
     * - | (15)
       - | 商品を追加するためのボタン。
 
-- カート画面(JSP)
+- カート画面(テンプレートHTML)
 
- .. code-block:: jsp
+ .. code-block:: html
 
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <title>Cart</title>
     </head>
     <body>
-        <%-- (16) --%>
-        <spring:eval var="cart" experssion="@sessionCart.cart" />
-        <h1>Cart</h1>
-        <c:choose>
-            <c:when test="${ empty cart.cartItems }">
-                <div>Cart is empty.</div>
-            </c:when>
-            <c:otherwise>
+        <div th:with="cart=${@sessionCart.cart}">
+            <!-- (16) -->
+            <h1>Cart</h1>
+            <div th:if="${#lists.isEmpty(cart.cartItems)}" th:text="Cart is empty."></div>
+            <div th:if="${!#lists.isEmpty(cart.cartItems)}">
                 CART ID :
-                ${f:h(cart.id)}
-                <form:form modelAttribute="cartForm">
+                <span th:text="${cart.id}"></span>
+                <form th:object="${cartForm}" method="post">
                     <table border="1">
                         <thead>
                             <tr>
@@ -2341,35 +2315,27 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="item" 
-                                items="${cart.cartItems}" 
-                                varStatus="rowStatus">
-                                <tr>
-                                    <td>${f:h(item.id)}</td>
-                                    <td>${f:h(item.itemCode)}</td>
-                                    <td>
-                                        <form:input 
-                                            path="cartItems[${rowStatus.index}].quantity" />
-                                        <form:errors 
-                                            path="cartItems[${rowStatus.index}].quantity" />
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                            <tr th:each="item : ${cart.cartItems}">
+                                <td th:text="${item.id}"></td>
+                                <td th:text="${item.itemCode}"></td>
+                                <td>
+                                    <input th:field="${item.quantity}" />
+                                    <span th:errors="${item.quantity}"></span>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
-                    <%-- (17) --%>
-                    <form:button name="edit">Save</form:button>
-                </form:form>
-            </c:otherwise>
-        </c:choose>
-        <c:if test="${ not empty cart.cartItems }">
-            <div>
-                <%-- (18) --%>
-                <a href="${pageContext.request.contextPath}/order">Go to Order</a>
+                    <!-- (17) -->
+                    <button name="edit">Save</button>
+                </form>
             </div>
-        </c:if>
-        <div>
-            <a href="${pageContext.request.contextPath}/item">Back to Item</a>
+            <div th:if="${!#lists.isEmpty(cart.cartItems)}">
+                <!-- (18) -->
+                <a th:href="@{/order}">Go to Order</a>
+            </div>
+            <div>
+                <a th:href="@{/item}">Back to Item</a>
+            </div>
         </div>
     </body>
     </html>
@@ -2388,18 +2354,17 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
     * - | (18)
       - | 注文画面を表示するためのリンク。
 
-- 注文画面(JSP)
+- 注文画面(テンプレートHTML)
 
- .. code-block:: jsp
+ .. code-block:: html
 
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <title>Order</title>
     </head>
     <body>
-        <spring:eval var="cart" experssion="@sessionCart.cart" />
         <h1>Order</h1>
-        <table border="1">
+        <table border="1" th:with="cart=${@sessionCart.cart}">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -2408,25 +2373,24 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="item" items="${cart.cartItems}" 
-                    varStatus="rowStatus">
+                <span th:each="item, rowStatus : ${cart.cartItems}">
                     <tr>
-                        <td>${f:h(item.id)}</td>
-                        <td>${f:h(item.itemCode)}</td>
-                        <td>${f:h(item.quantity)}</td>
+                        <td th:text="${item.id}"></td>
+                        <td th:text="${item.itemCode}"></td>
+                        <td th:text="${item.quantity}"></td>
                     </tr>
-                </c:forEach>
+                </span>
             </tbody>
         </table>
-        <form:form modelAttribute="orderForm">
-            <%-- (19) --%>
-            <form:button>Order</form:button>
-        </form:form>
+        <form th:object="${orderForm}" method="post">
+            <!-- (19) -->
+            <button>Order</button>
+        </form>
         <div>
-            <a href="${pageContext.request.contextPath}/cart">Back to Cart</a>
+            <a th:href="@{/cart}">Back to Cart</a>
         </div>
         <div>
-            <a href="${pageContext.request.contextPath}/item">Back to Item</a>
+            <a th:href="@{/item}">Back to Item</a>
         </div>
     </body>
     </html>
@@ -2441,18 +2405,17 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
     * - | (19)
       - | 注文するためのボタン。
 
-- 注文完了画面(JSP)
+- 注文完了画面(テンプレートHTML)
 
- .. code-block:: jsp
+ .. code-block:: html
 
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org">
     <head>
     <title>Order Complete</title>
     </head>
     <body>
         <h1>Order Complete</h1>
-        ORDER ID :
-        ${f:h(order.id)}
+        <span th:text="|ORDER ID : ${order.id}|"></span>
         <table border="1">
             <thead>
                 <tr>
@@ -2462,19 +2425,18 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="item" items="${order.orderItems}" 
-                    varStatus="rowStatus">
+                <span th:each="item, rowStatus : ${cart.cartItems}"">
                     <tr>
-                        <td>${f:h(item.id)}</td>
-                        <td>${f:h(item.itemCode)}</td>
-                        <td>${f:h(item.quantity)}</td>
+                        <td th:text="${item.id}"></td>
+                        <td th:text="${item.itemCode}"></td>
+                        <td th:text="${item.quantity}"></td>
                     </tr>
-                </c:forEach>
+                </span>
             </tbody>
         </table>
         <br>
         <div>
-            <a href="${pageContext.request.contextPath}/item">Back to Item</a>
+            <a th:href="@{/item}">Back to Item</a>
         </div>
     </body>
     </html>
@@ -2484,4 +2446,5 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
 .. raw:: latex
 
    \newpage
+
 

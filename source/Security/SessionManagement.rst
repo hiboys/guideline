@@ -73,10 +73,12 @@ Webアプリケーションでセッションを扱う場合、一般的には�
             http://localhost:8080/;jsessionid=7E6EDE4D3317FC5F14FD912BEAC96646
 
     \ ``jsessionid=7E6EDE4D3317FC5F14FD912BEAC96646``\ の部分がURL RewritingされたセッションIDになる。
-    ServletのAPI仕様では、以下のメソッドを呼び出すとURL Rewritingが行われる可能性があり、JSTLやSpringが提供しているJSPタグライブラリの中でもこれらのメソッドを呼び出している。
+    ServletのAPI仕様では、以下のメソッドを呼び出すとURL Rewritingが行われる可能性がある。
 
     * \ ``HttpServletResponse#encodeURL(String)``\
     * \ ``HttpServletResponse#encodeRedirectURL(String)``\
+
+このうち、ThymeleafのリンクURL式 ``@{}`` も ``encodeURL`` メソッドをを呼び出している。
 
 URL Rewritingが行われるとURL内にセッションIDが露出してしまうため、セッションIDを盗まれるリスクが高くなる。
 そのため、Cookieを使うことができるクライアントのみをサポートする場合は、サーブレットコンテナのURL Rewriting機能を無効化することを推奨する。

@@ -198,26 +198,26 @@ Overview
          - |
        * - | 業務名
          - | 可変長：任意
-         - | spring-mvc.xmlで定義したviewResolverのprefixの下のディレクトリ（JSPの上位ディレクトリ）
+         - | spring-mvc.xmlで定義したviewResolverのprefixの下のディレクトリ（HTMLの上位ディレクトリ）
          - |
        * - | 画面名
          - | 可変長：任意
-         - | JSP名
-         - | ファイル名が"aaa.jsp"の場合"aaa"の部分
+         - | HTML名
+         - | ファイル名が"aaa.html"の場合"aaa"の部分
 
 * 定義例
 
     .. code-block:: properties
 
-        # "/WEB-INF/views/admin/top.jsp"の場合
+        # "/WEB-INF/views/admin/top.html"の場合
         title.admin.top=Admin Top
-        # "/WEB-INF/views/staff/createForm.jsp"の場合
+        # "/WEB-INF/views/staff/createForm.html"の場合
         title.staff.createForm=Staff Register Input
 
     .. tip::
 
-       本例は、Tilesを利用する場合に有効である。詳細は :doc:`../WebApplicationDetail/TilesLayout` を参照されたい。
-       Tilesを利用しない場合は、次に説明する\ :ref:`message-management_label-rule`\ の規約を利用しても良い。
+       本例は、テンプレートレイアウトを利用する場合に有効である。詳細は＜新章のリンク＞を参照されたい。
+       テンプレートレイアウトを利用しない場合は、次に説明する\ :ref:`message-management_label-rule`\ の規約を利用しても良い。
 
 |
 
@@ -589,35 +589,31 @@ How to use
         デフォルトではISO-8859-1が使用されるため、日本語等をpropertiesファイルに直接記述したい場合は、
         必ず\ ``defaultEncoding``\ を設定すること。
 
-* JSP
+* テンプレートHTML
 
-    上記で設定したメッセージをJSPからは、\ ``<spring:message>``\ タグを用いて表示できる。
-    \ :ref:`view_jsp_include-label`\ の設定が必要である。
+    上記で設定したメッセージは、Thymeleafのメッセージ式 ``#{}`` を用いて表示できる。
 
-    .. code-block:: jsp
+    .. code-block:: html
 
-        <spring:message code="label.aa.bb.year" />
-        <spring:message code="label.aa.bb.month" />
-        <spring:message code="label.aa.bb.day" />
+        <span th:text="#{label.aa.bb.year}"></span>
+        <span th:text="#{label.aa.bb.month}"></span>
+        <span th:text="#{label.aa.bb.day}"></span>
 
     フォームのラベルと使用する場合は、以下のように使用すれば良い。
 
-    .. code-block:: jsp
+    .. code-block:: html
         :emphasize-lines: 3,7,11
 
-        <form:form modelAttribute="sampleForm">
-            <form:label path="year">
-                <spring:message code="label.aa.bb.year" />
-            </form:label>: <form:input path="year" />
+        <form th:object="${sampleForm}" method="post">
+            <label for="year" th:text="#{label.aa.bb.year}">
+            </label>: <input th:field="*{year}"/>
             <br>
-            <form:label path="month">
-                <spring:message code="label.aa.bb.month" />
-            </form:label>: <form:input path="month" />
+            <label for="month" th:text="#{label.aa.bb.month}">
+            </label>: <input th:field="*{month}" />
             <br>
-            <form:label path="day">
-                <spring:message code="label.aa.bb.day" />
-            </form:label>: <form:input path="day" />
-        </form:form>
+            <label for="day" th:text="#{label.aa.bb.day}">
+            </label>: <input th:field="*{day}" />
+        </form>
 
 
     ブラウザで表示すると以下のように出力される。
@@ -662,12 +658,10 @@ How to use
   * - | ``ResultMessage``
     - | 結果メッセージのメッセージID、または、メッセージ本文を持つクラス。
 
-| この結果メッセージをJSPで表示するためのJSPタグライブラリとして、\ ``<t:messagesPanel>``\ タグも提供される。
-
 基本的な結果メッセージの使用方法
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t:messagesPanel>``\ タグを使用して、
-結果メッセージを表示する方法を説明する。
+Controllerで\ ``ResultMessages``\ を生成して画面に渡し、結果メッセージを表示する方法を説明する。
+なお、以下では、TERASOLUNAのJSPタグである ``<t:messagesPanel>`` のデフォルト設定で出力するHTMLを生成する、ThymeleafのテンプレートHTMLを記述している。
 
 * Controllerクラス
 
@@ -716,21 +710,27 @@ Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t
 
 
 
-* JSP
+* テンプレートHTML
 
-    WEB-INF/views/message/index.jspを、以下のように記述する。
+    WEB-INF/views/message/index.htmlを、以下のように記述する。
 
-    .. code-block:: jsp
+    .. code-block:: html
 
         <!DOCTYPE HTML>
-        <html>
+        <html xmlns:th="http://www.thymeleaf.org"> <!-- (1) -->
         <head>
-        <meta charset="utf-8">
         <title>Result Message Example</title>
         </head>
         <body>
             <h1>Result Message</h1>
-            <t:messagesPanel /><!-- (1) -->
+            <div th:if="${resultMessages} != null" class="alert"
+                th:classappend="|alert-${resultMessages.type}|"> <!-- (2) -->
+                <ul>
+                    <li th:each="message : ${resultMessages}"
+                         th:text="${message.code} != null ? ${#messages.msgWithParams(message.code, message.args)} : ${message.text}"></li> <!-- (3) -->
+                </ul>
+            </div>
+
         </body>
         </html>
 
@@ -743,18 +743,21 @@ Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t
       * - 項番
         - 説明
       * - | (1)
-        - | ``<t:messagesPanel>`` タグをデフォルト設定で使用する。
-          | デフォルトでは、属性名が"resultMessages"のオブジェクトを表示する。
-          | そのため、デフォルトではControllerからModelに\ ``ResultMessages``\ を設定する際に、属性名を設定する必要がない。
-
+        - | スタンダードダイアレクトが提供する属性を使用したとき、EclipseなどのIDEでの警告を抑止するため、ネームスペースを付与する。
+      * - | (2)
+        - | 属性名が"resultMessages"のオブジェクトがnullでないとき、 ``<div>`` とその配下の要素が実行される。
+          | ``th:classappend`` 属性は設定した値をもとからある ``class`` 属性の値に追加するもので、ここでは可変であるメッセージタイプを設定している。
+          | この ``class`` 属性と ``th:classappend`` 属性によって、出力されるHTMLにおける ``class`` 属性が構築される。
+      * - | (3)        
+        - | 属性名が"resultMessages"のオブジェクトに格納された ``message`` 変数を、Thymeleafのメッセージ式 ``#messages`` を使用して繰り返し取得し、出力する。
+         
     ブラウザで表示すると、以下のように出力される。
 
 
     .. figure:: ./images_MessageManagement/message-management-resultmessage-basic.png
         :width: 40%
 
-
-    \ ``<t:messagesPanel>`` によって出力されるHTMLを、以下に示す(説明しやすくするために整形している)。
+    出力されるHTMLを、以下に示す(説明しやすくするために整形している)。
 
     .. code-block:: html
 
@@ -772,14 +775,14 @@ Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t
       * - 項番
         - 説明
       * - | (1)
-        - | メッセージタイプに対応して"alert-error"クラスが付与されている。デフォルトでは\ ``<div>``\ タグのclassに"error error-[メッセージタイプ]"が付与される。
+        - | メッセージタイプに対応して"alert-error"クラスが付与されている。デフォルトでは\ ``<div>``\ タグのclassに"alert alert-[メッセージタイプ]"が付与される。
       * - | (2)
         - | 結果メッセージのリストが\ ``<ul>``\ タグで出力される。
       * - | (3)
         - | メッセージIDに対応するメッセージが\ ``MessageSource``\ から解決される。
 
 
-    ``<t:messagesPanel>``\ はclassを付けたHTMLを出力するだけであるため、見栄えは出力されたclassに合わせてCSSでカスタマイズする必要がある(後述する)。
+    出力されるメッセージはclassが付けられているにすぎないため、その見栄えは出力されたclassに合わせてCSSでカスタマイズする必要がある(後述する)。
 
     .. note::
 
@@ -796,7 +799,7 @@ Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t
     ResultMessages messages = ResultMessages.error().add("e.ex.an.8001", 1024);
     model.addAttribute(messages);
 
-この場合、\ ``<t:messagesPanel />``\ タグにより、以下のようなHTMLが出力される。
+この場合、以下のようなHTMLが出力される。
 
 .. code-block:: html
 
@@ -807,13 +810,6 @@ Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t
     </div>
 
 \
-
- .. warning:: **terasoluna-gfw-web 1.0.0.RELEASEを使用してプレースホルダに値を埋める場合の注意点**
-
-    terasoluna-gfw-web 1.0.0.RELEASEを使用している場合、\ **プレースホルダにユーザの入力値を埋め込むとXSS脆弱性の危険がある。**\
-    ユーザの入力値にXSS対策が必要な文字が含まれる可能性がある場合は、プレースホルダに値を埋め込まないようにすること。
-    
-    terasoluna-gfw-web 1.0.1.RELEASE以上を使用している場合は、ユーザの入力値をプレースホルダに埋め込んでもXSS脆弱性は発生しない。
 
  .. note::
 
@@ -837,7 +833,7 @@ Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t
         .add("e.ex.an.8001", 1024);
     model.addAttribute(messages);
 
-この場合は、次のようなHTMLが出力される(JSPの変更は、不要である)。
+この場合は、次のようなHTMLが出力される(テンプレートHTMLの変更は、不要である)。
 
 .. code-block:: html
 
@@ -941,21 +937,21 @@ infoメッセージを表示したい場合は、次のように\ ``ResultMessag
       border-color: rgba(216, 80, 48, 0.3);
     }
 
-* \ ``ResultMessages.error().add("e.ex.an.9001")``\ を\ ``<t:messagesPanel />``\ で出力した例
+* \ ``ResultMessages.error().add("e.ex.an.9001")``\ を出力した例
 
 
     .. figure:: ./images_MessageManagement/message-management-resultmessage-error.jpg
         :width: 100%
 
 
-* \ ``ResultMessages.warning().add("w.ex.an.2001")``\ を\ ``<t:messagesPanel />``\ で出力した例
+* \ ``ResultMessages.warning().add("w.ex.an.2001")``\ を出力した例
 
 
     .. figure:: ./images_MessageManagement/message-management-resultmessage-warn.jpg
         :width: 100%
 
 
-* \ ``ResultMessages.info().add("i.ex.an.0001", "XXXX")``\ を\ ``<t:messagesPanel />``\ で出力した例
+* \ ``ResultMessages.info().add("i.ex.an.0001", "XXXX")``\ を出力した例
 
 
     .. figure:: ./images_MessageManagement/message-management-resultmessage-info.jpg
@@ -967,7 +963,7 @@ infoメッセージを表示したい場合は、次のように\ ``ResultMessag
 
     .. tip::
 
-        CSSフレームワークである\ `Bootstrap <http://getbootstrap.com/>`_ 3.0.0の\ `Alertsコンポーネント <http://getbootstrap.com/components/#alerts>`_\ は、\ ``<t:messagesPanel />``\ のデフォルト設定で利用できる。
+        ``ResultMessages`` が持つメッセージタイプは、CSSフレームワークである\ `Bootstrap <http://getbootstrap.com/>`_ 3.0.0の\ `Alertsコンポーネント <http://getbootstrap.com/components/#alerts>`_\ を利用できるように設計されている。
 
     .. warning::
 
@@ -1012,12 +1008,12 @@ infoメッセージを表示したい場合は、次のように\ ``ResultMessag
         - | メッセージタイプが"info"である、\ ``ResultMessages``\ を属性名"messages2"でModelに追加する。
 
 
-* JSP (WEB-INF/views/message/showMessages.jsp)
+* テンプレートHTML (WEB-INF/views/message/showMessages.html)
 
-    .. code-block:: jsp
+    .. code-block:: html
 
         <!DOCTYPE HTML>
-        <html>
+        <html xmlns:th="http://www.thymeleaf.org"> <!-- (1) -->
         <head>
         <meta charset="utf-8">
         <title>Result Message Example</title>
@@ -1052,9 +1048,9 @@ infoメッセージを表示したい場合は、次のように\ ``ResultMessag
         <body>
             <h1>Result Message</h1>
             <h2>Messages1</h2>
-            <t:messagesPanel messagesAttributeName="messages1" /><!-- (1) -->
+            <div th:if="${messages1 != null}" th:text="${messages1}" class="alert" th:classappend="|alert-${messages1.type}|" /><!-- (2) -->
             <h2>Messages2</h2>
-            <t:messagesPanel messagesAttributeName="messages2" /><!-- (2) -->
+            <div th:if="${messages2 != null}" th:text="${messages2}" class="alert" th:classappend="|alert-${messages2.type}|" /><!-- (3) -->
         </body>
         </html>
 
@@ -1066,8 +1062,10 @@ infoメッセージを表示したい場合は、次のように\ ``ResultMessag
       * - 項番
         - 説明
       * - | (1)
-        - | 属性名が"messages1"である\ ``ResultMessages``\ を表示する。
+        - | スタンダードダイアレクトが提供する属性を使用したとき、EclipseなどのIDEでの警告を抑止するため、ネームスペースを付与する。
       * - | (2)
+        - | 属性名が"messages1"である\ ``ResultMessages``\ を表示する。
+      * - | (3)
         - | 属性名が"messages2"である\ ``ResultMessages``\ を表示する。
 
     ブラウザで表示すると、以下のように出力される。
@@ -1220,7 +1218,7 @@ How to extend
   * - | (1)
     - | \ ``ResultMessages``\ のコンストラクタに対象の\ ``ResultMessageType``\ を指定する。
 
-この場合、\ ``<t:messagesPanel />`` \ で以下のようなHTMLが出力される。
+この場合、以下のようなHTMLが出力される。
 
 .. code-block:: html
 
@@ -1243,201 +1241,25 @@ Appendix
 
 .. _message-management-messagepanel-attribute:
 
-<t:messagesPanel>タグの属性変更
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-\ ``<t:messagesPanel>``\ タグには、表示形式を変更する属性がいくつか用意されている。
-
-.. tabularcolumns:: |p{0.25\linewidth}|p{0.55\linewidth}|p{0.20\linewidth}|
-.. list-table:: \ ``<t:messagesPanel>``\ タグ 属性一覧
-   :header-rows: 1
-   :widths: 25 55 20
-
-   * - オプション
-     - 内容
-     - defaultの設定値
-   * - panelElement
-     - 結果メッセージ表示パネルの要素
-     - div
-   * - panelClassName
-     - 結果メッセージ表示パネルのCSS class名。
-     - alert
-   * - panelTypeClassPrefix
-     - CSS class名の接頭辞
-     - alert-
-   * - messagesType
-     - メッセージタイプ。この属性が設定された場合。設定されたメッセージタイプが\ ``ResultMessages``\ がもつメッセージタイプより優先されて使用される。
-     -
-   * - outerElement
-     - 結果メッセージ一覧を構成するHTMLの外側のタグ
-     - ul
-   * - innerElement
-     - 結果メッセージ一覧を構成するHTMLの内側のタグ
-     - li
-   * - disableHtmlEscape
-     - | HTMLエスケープ処理を無効化するためのフラグ。
-       | \ ``true``\ を指定する事で、出力するメッセージに対してHTMLエスケープ処理が行われなくなる。
-       | この属性は、出力するメッセージにHTMLを埋め込むことで、メッセージの装飾などができるようにするために用意している。
-       | **trueを指定する場合は、XSS対策が必要な文字がメッセージ内に含まれない事が保証されていること。**
-       |
-       | terasoluna-gfw-web 1.0.1.RELEASE以上で利用可能な属性である。
-     - ``false``
-
-
-例えば、CSSフレームワーク"\ `BlueTrip <http://www.bluetrip.org/>`_\ "では以下のようなCSSが用意されている。
-
-.. code-block:: css
-
-    .error,.notice,.success {
-        padding: .8em;
-        margin-bottom: 1.6em;
-        border: 2px solid #ddd;
-    }
-
-    .error {
-        background: #FBE3E4;
-        color: #8a1f11;
-        border-color: #FBC2C4;
-    }
-
-    .notice {
-        background: #FFF6BF;
-        color: #514721;
-        border-color: #FFD324;
-    }
-
-    .success {
-        background: #E6EFC2;
-        color: #264409;
-        border-color: #C6D880;
-    }
-
-| このCSSを使用したい場合、\ ``<div class="error">...</div>``\ というようにメッセージが出力されてほしい。
-| この場合、\ ``<t:messagesPanel>``\ タグを以下のように使用すればよい(Controllerは修正不要である)。
-
-.. code-block:: jsp
-
-    <t:messagesPanel panelClassName="" panelTypeClassPrefix="" />
-
-出力されるHTMLは以下のようになる。
-
-.. code-block:: html
-
-    <div class="error">
-      <ul>
-        <li>There are inconsistencies in the data.</li>
-      </ul>
-    </div>
-
-ブラウザで表示すると、以下のように出力される。
-
-.. figure:: ./images_MessageManagement/message-management-bluetrip-error.jpg
-    :width: 80%
-
-メッセージ一覧を表示するために\ ``<ul>``\ タグを使用したくない場合は、
-\ ``outerElement``\ 属性と\ ``innerElement``\ 属性を使用することでカスタマイズできる。
-
-以下のように属性を設定した場合は、
-
-.. code-block:: jsp
-
-    <t:messagesPanel outerElement="" innerElement="span" />
-
-
-次のようにHTMLが出力される。
-
-
-.. code-block:: html
-
-    <div class="alert alert-error">
-        <span>There are inconsistencies in the data.</span>
-        <span>Cannot upload, Because the file size must be less than 1,024MB.</span>
-    </div>
-
-以下のようCSSを設定することで、
-
-.. code-block:: css
-
-    .alert > span {
-        display: block; /* (1) */
-    }
-
-.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-.. list-table::
-  :header-rows: 1
-  :widths: 10 90
-
-  * - 項番
-    - 説明
-  * - | (1)
-    - | "alert"クラスの要素の子となる\ ``<span>``\ タグをブロックレベル要素にする。
-
-ブラウザで次のように表示される。
-
-
-.. figure:: ./images_MessageManagement/message-management-messagespanel-span.jpg
-    :width: 60%
-
-
-| disableHtmlEscape属性を\ ``true``\にした場合、以下のような出力イメージにする事ができる。
-| 下記の例では、メッセージの一部のフォントを「16pxの赤字」に装飾している。 
-
-- jsp
-
- .. code-block:: jsp
-    :emphasize-lines: 4
-
-    <spring:message var="informationMessage" code="i.ex.od.0001" />
-    <t:messagesPanel messagesAttributeName="informationMessage"
-        messagesType="alert alert-info"
-        disableHtmlEscape="true" />
-
-- properties
-
- .. code-block:: properties
-
-    i.ex.od.0001 = Please confirm order content. <font style="color: red; font-size: 16px;">If this orders submitted, cannot cancel.</font>
-
-- 出力イメージ
-
- .. figure:: ./images_MessageManagement/message-management-disableHtmlEscape-true.png
-    :width: 100%
-    
- disableHtmlEscape属性が\ ``false``\(デフォルト)の場合は、HTMLエスケープされて以下のような出力となる。
-
- .. figure:: ./images_MessageManagement/message-management-disableHtmlEscape-false.png
-    :width: 100%
-
-
 ResultMessagesを使用しない結果メッセージの表示
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-\ ``<t:messagesPanel>``\ タグは\ ``ResultMessages``\ オブジェクト以外にも
-
-* ``java.lang.String``
-* ``java.lang.Exception``
-* ``java.util.List``
-
-オブジェクトも出力できる。
-
-| 通常は\ ``<t:messagesPanel>``\ タグは\ ``ResultMessages``\ オブジェクトの出力用に使用するが、
-| フレームワークがリクエストスコープに設定した文字列(エラーメッセージなど)を表示する場合にも使用できる。
+``ResultMessages``\ オブジェクト以外にも、フレームワークがリクエストスコープに設定した文字列(エラーメッセージなど)を表示することができる。
 
 | 例えば、Spring Securityは認証エラー時に、"SPRING_SECURITY_LAST_EXCEPTION"という属性名で発生した例外クラスを
 | リクエストスコープに設定する。
 
-| この例外メッセージを、結果メッセージ同様に\ ``<t:messagesPanel>``\ タグで出力したい場合は、以下のように設定すればよい。
+| この例外メッセージを、 ``ResultMessages`` を使用したときとと同様に出力したい場合は、以下のように設定すればよい。
 
 
-.. code-block:: jsp
+.. code-block:: html
 
     <!DOCTYPE HTML>
-    <html>
+    <html xmlns:th="http://www.thymeleaf.org"> <!-- (1) -->
     <head>
-    <meta charset="utf-8">
     <title>Login</title>
     <style type="text/css">
-    /* (1) */
+    /* (2) */
     .alert {
         margin-bottom: 15px;
         padding: 10px;
@@ -1454,28 +1276,29 @@ ResultMessagesを使用しない結果メッセージの表示
     </style>
     </head>
     <body>
-        <c:if test="${param.containsKey('error')}">
-            <t:messagesPanel messagesType="error"
-                messagesAttributeName="SPRING_SECURITY_LAST_EXCEPTION" /><!-- (2) -->
-        </c:if>
-        <form:form
-            action="${pageContext.request.contextPath}/authentication"
-            method="post">
+        <div th:if="${!param.keySet().contains('error')}" th:remove="tag">
+            <div th:if="${#request.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}" class="alert alert-error" /> <!-- (3) -->
+                <ul>
+                    <li th:text="${#request.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}"></li>
+                </ul>
+            </div>
+        </div>
+        <form th:action="@{/authentication}" method="post">
             <fieldset>
                 <legend>Login Form</legend>
                 <div>
                     <label for="username">Username: </label><input
-                        type="text" id="username" name="username">
+                        id="username" name="username">
                 </div>
                 <div>
-                    <label for="username">Password:</label><input
+                    <label for="password">Password:</label><input
                         type="password" id="password" name="password">
                 </div>
                 <div>
                     <input type="submit" value="Login" />
                 </div>
             </fieldset>
-        </form:form>
+        </form>
     </body>
     </html>
 
@@ -1488,11 +1311,12 @@ ResultMessagesを使用しない結果メッセージの表示
   * - 項番
     - 説明
   * - | (1)
+    - | スタンダードダイアレクトが提供する属性を使用したとき、EclipseなどのIDEでの警告を抑止するため、ネームスペースを付与する。
+  * - | (2)
     - | 結果メッセージ表示用のCSSを再掲する。実際はCSSファイルに記述することを強く推奨する。
-  * - | (1)
-    - | ``Exception``\ オブジェクトが格納されている属性名を\ ``messagesAttributeName``\ 属性で指定する。
-      | また、\ ``ResultMessages``\ オブジェクトとは異なり、メッセージタイプの情報をもたないため、
-      | \ ``messagesType``\ 属性で、明示的に、メッセージタイプを指定する必要がある。
+  * - | (3)
+    - | ``Exception`` オブジェクトが格納されている属性名をThymeleafの ``#request.getAttribute`` メソッドを使用して指定する。
+      | また、 ``ResultMessages`` オブジェクトとは異なり、メッセージタイプの情報をもたないため、 ``class`` 属性で ``alert alert-error`` を明示的に指定している。
 
 認証エラー時に出力されるHTMLは
 
@@ -1509,7 +1333,7 @@ ResultMessagesを使用しない結果メッセージの表示
 
     .. tip::
 
-        ログイン用のJSPの内容については、\ :doc:`../../Security/Authentication`\ を参照されたい。
+        ログイン用のテンプレートHTMLの内容については、\ :doc:`../../Security/Authentication`\ を参照されたい。
 
 .. _message-management-messagekeysgen:
 
