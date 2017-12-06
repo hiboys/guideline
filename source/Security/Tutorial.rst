@@ -718,8 +718,7 @@ Spring Securityの設定
     <html>
     <head>
     <title>Login Page</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
         <div id="wrapper">
@@ -838,8 +837,7 @@ JSPからログインユーザーのアカウント情報へアクセス
     <head>
     <meta charset="utf-8">
     <title>Home</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
 
     <!-- (1) -->
@@ -897,8 +895,7 @@ JSPからログインユーザーのアカウント情報へアクセス
     <head>
     <meta charset="utf-8">
     <title>Home</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
 
     <sec:authentication property="principal.account" var="account" />
@@ -999,8 +996,7 @@ Controllerからログインユーザーのアカウント情報へアクセス
     <head>
     <meta charset="utf-8">
     <title>Home</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
         <div id="wrapper">
