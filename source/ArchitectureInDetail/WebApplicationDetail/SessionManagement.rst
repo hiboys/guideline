@@ -2351,14 +2351,12 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
                     <%-- (17) --%>
                     <form:button name="edit">Save</form:button>
                 </form:form>
+                <div>
+                    <%-- (18) --%>
+                    <a href="${pageContext.request.contextPath}/order">Go to Order</a>
+                </div>
             </c:otherwise>
         </c:choose>
-        <c:if test="${ not empty cart.cartItems }">
-            <div>
-                <%-- (18) --%>
-                <a href="${pageContext.request.contextPath}/order">Go to Order</a>
-            </div>
-        </c:if>
         <div>
             <a href="${pageContext.request.contextPath}/item">Back to Item</a>
         </div>
