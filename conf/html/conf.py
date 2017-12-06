@@ -188,7 +188,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'MacchinettaServerFrameworkDevelopmentGuideline.tex', u'Macchinetta Server Framework ()1.x) Development Guideline Documentation',
+  ('index', 'MacchinettaServerFrameworkDevelopmentGuideline.tex', u'Macchinetta Server Framework (1.x) Development Guideline Documentation',
    u'NTT Corporation', 'manual'),
 ]
 
