@@ -352,17 +352,19 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
 最後に、Welcomeページを表示するためThymeleafのテンプレートHTML (\ ``src/main/webapp/WEB-INF/views/welcome/home.html``\ ) について、簡単に説明する。
 
 .. code-block:: html
-    :emphasize-lines: 9
+    :emphasize-lines: 11
 
     <!DOCTYPE html>
     <html xmlns:th="http://www.thymeleaf.org"> <!--/* (10) */-->
     <head>
+    <meta charset="utf-8">
     <title>Home</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
         <div id="wrapper">
             <h1>Hello world!</h1>
-            <p th:text="|The time on the server is ${serverTime}.|"></p> <!--/* (11) */-->
+            <p th:text="|The time on the server is ${serverTime}.|">The time on the server is 2018/01/01 00:00:00 JST.</p> <!--/* (11) */-->
         </div>
     </body>
     </html>

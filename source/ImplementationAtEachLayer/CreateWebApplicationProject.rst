@@ -455,8 +455,7 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
     <head>
     <meta charset="utf-8">
     <title>Resource Not Found Error!</title>
-    <link rel="stylesheet"
-        href="../../../../resources/app/css/styles.css" th:href="@{/resources/app/css/styles.css}">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
         <div id="wrapper">
@@ -529,23 +528,23 @@ Maven Archetypeで作成したプロジェクトでは、Thymeleafのテンプ�
   <!-- ... -->
 
   <body>
-    <div class="container">
-    <!--/*/
-      <div id="header" th:replace="~{layout/header :: header}"></div>
-      <div id="body" th:replace="${body}"></div>
-    /*/-->
-    <!--/*-->
-      <h1>
-        <a href="../welcome/home.html">projectName</a>
-      </h1>
-      <div id="wrapper">
-        <h1 id="title">Hello world!</h1>
-        <p>The time on the server is 2018/01/01 00:00:00 JST.</p>
+      <div class="container">
+      <!--/*/
+          <div id="header" th:replace="~{layout/header :: header}"></div>
+          <div id="body" th:replace="${body}"></div>
+      /*/-->
+      <!--/*-->
+          <h1>
+              <a href="../welcome/home.html">projectName</a>
+          </h1>
+          <div id="wrapper">
+              <h1 id="title">Hello world!</h1>
+              <p>The time on the server is 2018/01/01 00:00:00 JST.</p>
+          </div>
+      <!--*/-->
+          <hr>
+          <p style="text-align: center; background: #e5eCf9;">Copyright &copy; 20XX CompanyName</p>
       </div>
-    <!--*/-->
-      <hr>
-      <p style="text-align: center; background: #e5eCf9;">Copyright &copy; 20XX CompanyName</p>
-    </div>
   </body>
   </html>
 
