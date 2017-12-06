@@ -133,15 +133,15 @@ Webアプリケーション向け開発プロジェクトの作成
     * - | \-DgroupId
       - 作成するプロジェクトのgroupIdを指定する。**(カスタマイズが必要)**
 
-        上記例では、\ ``"com.example.todo"``\ を指定している。
+        上記例では、\ ``com.example.todo``\ を指定している。
     * - | \-DartifactId
       - 作成するプロジェクトのartifactIdを指定する。**(カスタマイズが必要)**
 
-        上記例では、\ ``"todo"``\ を指定している。
+        上記例では、\ ``todo``\ を指定している。
     * - | \-Dversion
       - 作成するプロジェクトのバージョンを指定する。**(カスタマイズが必要)**
 
-        上記例では、\ ``"1.0.0-SNAPSHOT"``\ を指定している。
+        上記例では、\ ``1.0.0-SNAPSHOT``\ を指定している。
 
 |
 
@@ -374,7 +374,7 @@ Maven Archetypeで作成したプロジェクトでは、\ ``x.xx.fw.9999``\ 形
       - Webアプリケーション用のアプリケーションコンテキストを作成するためのBean定義ファイル
 
         ``artifactId/artifactId-web/src/main/resources/META-INF/spring/applicationContext.xml``
-      - BeanIDが\ ``"exceptionCodeResolver"``\ のBean定義内で指定している例外コード(メッセージID)のプロジェクト区分の暫定値「\ ``xx``\ 」を、適切な値に修正する。
+      - BeanIDが\ ``exceptionCodeResolver``\ のBean定義内で指定している例外コード(メッセージID)のプロジェクト区分の暫定値「\ ``xx``\ 」を、適切な値に修正する。
 
 |
 

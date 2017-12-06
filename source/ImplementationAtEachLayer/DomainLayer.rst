@@ -2007,9 +2007,9 @@ Spring Frameworkから提供されている「宣言型トランザクション�
 
  .. note:: **内部呼び出しをトランザクション管理対象にしたい場合**
 
-   AOPモードを\ ``"aspectj"``\ にすることで、内部呼び出しをトランザクション管理対象にすることができる。
+   AOPモードを\ ``aspectj``\ にすることで、内部呼び出しをトランザクション管理対象にすることができる。
    ただし、内部呼び出しもトランザクション管理対象にしてしまうと、トランザクション管理の経路が複雑になる可能性があるので、
-   基本的にはAOPモードはデフォルトの\ ``"proxy"``\ を使用することを推奨する。
+   基本的にはAOPモードはデフォルトの\ ``proxy``\ を使用することを推奨する。
 
 .. _service_enable_transaction_management:
 .. _DomainLayerAppendixTransactionManagement:
@@ -2158,7 +2158,7 @@ PlatformTransactionManagerの設定
 
     * - 2
       - mode
-      - AOPのモードを指定する。省略した場合、\ ``"proxy"``\ となる。\ ``"aspectj"``\ を指定できるが、原則デフォルトの\ ``"proxy"``\ を使う。
+      - AOPのモードを指定する。省略した場合、\ ``proxy``\ となる。\ ``aspectj``\ を指定できるが、原則デフォルトの\ ``proxy``\ を使う。
 
     * - 3
       - proxy-target-class

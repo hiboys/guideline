@@ -44,7 +44,7 @@ Ajax向けのアプリケーションの設定について説明する。
 
 Spring MVCのAjax関連の機能を有効化するための設定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Ajax通信時で使用されるContent-Type(``"application/xml"`` や ``"application/json"`` など)を、Controllerのハンドラメソッドでハンドリングできるようにする。
+Ajax通信時で使用されるContent-Type(``application/xml`` や ``application/json`` など)を、Controllerのハンドラメソッドでハンドリングできるようにする。
 
 - :file:`spring-mvc.xml`
 
@@ -478,12 +478,12 @@ Ajaxを使ってデータを取得する方法について説明する。
        | 上記例では、ボタンの押下をAjax通信のトリガーとしているが、テキストボックスのキーダウンやキーアップをトリガーとすることでリアルタイム検索などを実現することができる。
    * - | (14)
      - | レスポンスとして受け取るデータ形式を指定する。
-       | 上記例では ``"json"`` を指定しているため、Acceptヘッダーに ``"application/json"`` が設定される。
+       | 上記例では ``json`` を指定しているため、Acceptヘッダーに ``application/json`` が設定される。
    * - | (15)
-     - | Ajax通信が正常終了した時(Httpステータスコードが ``"200"`` の時)の処理を実装する。
+     - | Ajax通信が正常終了した時(Httpステータスコードが ``200`` の時)の処理を実装する。
        | 上記例では、実装は省略している。
    * - | (16)
-     - | Ajax通信が正常終了しなかった時(Httpステータスコードが ``"4xx"`` や ``"5xx"`` の時)の処理を実装する。
+     - | Ajax通信が正常終了しなかった時(Httpステータスコードが ``4xx`` や ``5xx`` の時)の処理を実装する。
        | 上記例では、実装は省略している。
        | エラー処理の実装例は、 :ref:`ajax_post_formdata` を参照されたい。
 
@@ -934,7 +934,7 @@ Ajaxを使ってフォームのデータをJSON形式に変換してからPOST�
    * - | (2)
      - | フォーム内のinput項目をJSON形式の文字列にするための関数。
    * - | (3)
-     - | リクエストBodyにJSONを格納するので、Content-Typeのメディアタイプを ``"application/json"`` にする。
+     - | リクエストBodyにJSONを格納するので、Content-Typeのメディアタイプを ``application/json`` にする。
 
 
 |
@@ -985,7 +985,7 @@ Ajaxを使ってフォームのデータをJSON形式に変換してからPOST�
 BindException のハンドリング
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | ``org.springframework.validation.BindException`` は、 リクエストパラメータとして送信したデータをJavaBeanにバインドする際に、入力値に不正な値が指定された場合に発生する例外クラスである。
-| GET時のリクエストパラメータや、フォームデータを ``"application/x-www-form-urlencoded"`` の形式として受け取る場合は、 ``BindException`` の例外ハンドリングが必要となる。
+| GET時のリクエストパラメータや、フォームデータを ``application/x-www-form-urlencoded`` の形式として受け取る場合は、 ``BindException`` の例外ハンドリングが必要となる。
 
 - Controller
 
@@ -1143,7 +1143,7 @@ BindException のハンドリング
 MethodArgumentNotValidException のハンドリング
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | ``org.springframework.web.bind.MethodArgumentNotValidException`` は、 ``@RequestBody`` アノテーションを使用してリクエストBodyに格納されているデータをJavaBeanにバインドする際に、入力値に不正な値が指定された場合に発生する例外クラスである。
-| ``"application/json"`` や ``"application/xml"`` などの形式として受け取る場合は、 ``MethodArgumentNotValidException`` の例外ハンドリングが必要となる。
+| ``application/json`` や ``application/xml`` などの形式として受け取る場合は、 ``MethodArgumentNotValidException`` の例外ハンドリングが必要となる。
 
 - Controller
 
@@ -1179,7 +1179,7 @@ MethodArgumentNotValidException のハンドリング
 HttpMessageNotReadableException のハンドリング
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | ``org.springframework.http.converter.HttpMessageNotReadableException`` は、 ``@RequestBody`` アノテーションを使用してリクエストBodyに格納されているデータをJavaBeanにバインドする際に、Bodyに格納されているデータからJavaBeanを生成できなかった場合に発生する例外クラスである。
-| ``"application/json"`` や ``"application/xml"`` などの形式として受け取る場合は、 ``MethodArgumentNotValidException`` の例外ハンドリングが必要となる。
+| ``application/json`` や ``application/xml`` などの形式として受け取る場合は、 ``MethodArgumentNotValidException`` の例外ハンドリングが必要となる。
 
     .. note::
 

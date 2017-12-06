@@ -403,7 +403,7 @@ EntityManagerの設定
         * - 項番
           - 説明
         * - | (9)
-          - | \ ``"hibernate.dialect"``\ に\ ``org.hibernate.dialect.Oracle12cDialect``\ を指定する。
+          - | \ ``hibernate.dialect``\ に\ ``org.hibernate.dialect.Oracle12cDialect``\ を指定する。
             | \ ``Oracle12cDialect``\ を指定することで、テーブル結合を行うSQLにANSI標準のJOIN句が使用される。
 
 | アプリケーションサーバから提供されているトランザクションマネージャ(JTA)を使用する場合は、以下の設定を行う。
@@ -446,10 +446,10 @@ EntityManagerの設定
       - 説明
     * - | (10)
       - | 永続層(DB)にアクセスする際に使用するデータソースを指定する。
-        | JTAを使用する場合は、\ ``"dataSource"``\ プロパティではなく、\ ``"jtaDataSource"``\ プロパティに、アプリケーションサーバで定義したDataSourceを指定する。
+        | JTAを使用する場合は、\ ``dataSource``\ プロパティではなく、\ ``jtaDataSource``\ プロパティに、アプリケーションサーバで定義したDataSourceを指定する。
         | アプリケーションサーバで定義したDataSourceの取得方法については、共通編の\ :ref:`data-access-common_howtouse_datasource`\ を参照されたい。
     * - | (11)
-      - | ``"jpaPropertyMap"`` プロパティに、JTAのプラットフォームの指定を追加する。
+      - | ``jpaPropertyMap`` プロパティに、JTAのプラットフォームの指定を追加する。
         | 上記は、WeblogicのJTAを使用する場合の設定例となる。
         | 設定可能な値(プラットフォーム)は、 ``org.hibernate.service.jta.platform.spi.JtaPlatform`` の実装クラスのFQCNとなる。
         | 主なアプリケーションサーバ向けの実装クラスについては、Hibernateから提供されている。
@@ -458,7 +458,7 @@ EntityManagerの設定
 
  .. note::
 
-    環境によって使用するトランザクションマネージャを切り替える必要がある場合は、 ``"entityManagerFactory"`` のbean定義は :file:`xxx-infra.xml` ではなく、 :file:`xxx-env.xml` に行うことを推奨する。
+    環境によって使用するトランザクションマネージャを切り替える必要がある場合は、 ``entityManagerFactory`` のbean定義は :file:`xxx-infra.xml` ではなく、 :file:`xxx-env.xml` に行うことを推奨する。
 
     トランザクションマネージャを環境によって切り替える必要がある具体例としては、ローカルの開発環境ではTomcatなどJTAの機能を持たないアプリケーションサーバを使用し、
     本番および各試験環境では、WeblogicなどのJTAの機能をもつアプリケーションサーバを使用するといったケースがあげられる。
@@ -556,7 +556,7 @@ Spring Data JPAを有効化するための設定
     * - 項番
       - 説明
     * - | (1)
-      - | Spring Data JPAのコンフィギュレーション用のスキーマ定義を取り込み、ネームスペースとして(\ ``"jpa"``\ )を付与する。
+      - | Spring Data JPAのコンフィギュレーション用のスキーマ定義を取り込み、ネームスペースとして(\ ``jpa``\ )を付与する。
     * - | (2)
       - | RepositoryインタフェースおよびカスタムRepositoryクラスが格納されているベースパッケージを指定する。
         | ``org.springframework.data.repository.Repository`` を継承しているインタフェースと、\ ``org.springframework.data.repository.RepositoryDefinition``\ アノテーションが付与されているインタフェースが、 Spring Data JPAのRepositoryクラスとして自動的にbean定義される。
@@ -581,8 +581,8 @@ Spring Data JPAを有効化するための設定
     * - 2.
       - transaction-manager-ref
       - | Repositoryのメソッドが呼び出された際に使用する ``PlatformTransactionManager`` を指定する。
-        | デフォルトは  ``"transactionManager"`` というbean名で登録されているbeanが使用される。
-        | 使用する ``PlatformTransactionManager`` のbean名が ``"transactionManager"`` でない場合は指定が必要である。
+        | デフォルトは  ``transactionManager`` というbean名で登録されているbeanが使用される。
+        | 使用する ``PlatformTransactionManager`` のbean名が ``transactionManager`` でない場合は指定が必要である。
     * - 3.
       - named-queries-location
       - | Named Queryが指定されているSpring Data JPAのプロパティファイルのロケーションを指定する。
@@ -590,7 +590,7 @@ Spring Data JPAを有効化するための設定
     * - 4.
       - query-lookup-strategy
       - | Queryメソッドが呼び出された特に実行するQueryをLookupする方法を指定する。
-        | デフォルトは ``"CREATE_IF_NOT_FOUND"`` となっている。詳細は、`Spring Data Commons - Reference Documentationの "Query lookup strategies" <http://docs.spring.io/spring-data/commons/docs/1.13.7.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies>`_\ を参照されたい。 特に理由がない場合は、デフォルトのままでよい。
+        | デフォルトは ``CREATE_IF_NOT_FOUND`` となっている。詳細は、`Spring Data Commons - Reference Documentationの "Query lookup strategies" <http://docs.spring.io/spring-data/commons/docs/1.13.7.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies>`_\ を参照されたい。 特に理由がない場合は、デフォルトのままでよい。
     * - 5.
       - factory-class
       - | Repositoryインタフェースのメソッドが呼び出された際の処理を実装するクラスを生成するためのFactoryを指定する。
@@ -599,7 +599,7 @@ Spring Data JPAを有効化するための設定
     * - 6.
       - repository-impl-postfix
       - | カスタムRepositoryの実装クラスであることを表す接尾辞を指定する。
-        | デフォルトは ``"Impl"`` となっている。例えば、Repositoryインタフェースの名前が ``OrderRepository`` の場合は、 ``OrderRepositoryImpl`` がカスタムRepositoryの実装クラスとなる。特に理由がない場合は、デフォルトのままでよい。
+        | デフォルトは ``Impl`` となっている。例えば、Repositoryインタフェースの名前が ``OrderRepository`` の場合は、 ``OrderRepositoryImpl`` がカスタムRepositoryの実装クラスとなる。特に理由がない場合は、デフォルトのままでよい。
         | カスタムRepositoryについては、「:ref:`custommethod_individual-label`」を参照されたい。
 
  .. raw:: latex
@@ -1351,9 +1351,9 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
 
 |
 
-| LIKE検索の一致方法(前方一致、後方一致、部分一致)が固定の場合は、JPQL内に ``"%"`` を指定することが出来る。
+| LIKE検索の一致方法(前方一致、後方一致、部分一致)が固定の場合は、JPQL内に ``%`` を指定することが出来る。
 | ただし、これはJPQLの標準形式ではなくSpring Data JPAの拡張形式になるので、``@Query`` アノテーションで指定するJPQLでのみ指定することが出来る。
-| Named queryとして指定するJPQL内に ``"%"`` を指定するとエラーになるので注意すること。
+| Named queryとして指定するJPQL内に ``%`` を指定するとエラーになるので注意すること。
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.20\linewidth}|p{0.50\linewidth}|
  .. list-table::
@@ -1396,7 +1396,7 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
  .. note:: **一致方法を動的に変化させる必要がある場合**
 
     一致方法(前方一致、後方一致、部分一致)を動的に変化させる必要がある場合は、
-    JPQL内に ``%`` を指定するのではなく、従来通りバインドするパラメータ値の前後に ``"%"`` を追加すること。
+    JPQL内に ``%`` を指定するのではなく、従来通りバインドするパラメータ値の前後に ``%`` を追加すること。
 
     ``org.terasoluna.gfw.common.query.QueryEscapeUtils`` クラスに一致方法に対応する検索条件値に変換するメソッドが用意されているため、
     要件を充たせる場合は、使用を検討すること。
@@ -1419,7 +1419,7 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
     * - 項番
       - 説明
     * - | (1)
-      - Queryに ``"ORDER BY"`` を指定する。降順にする場合は ``DESC`` を、昇順にする場合は ``ASC`` を指定する。DESC/ASCを省略した場合は、 ``ASC`` が適用される。
+      - Queryに ``ORDER BY`` を指定する。降順にする場合は ``DESC`` を、昇順にする場合は ``ASC`` を指定する。DESC/ASCを省略した場合は、 ``ASC`` が適用される。
 
 |
 
@@ -1676,12 +1676,12 @@ Spring Data JPAから提供されているプロパティファイル(classpath:
     * - 項番
       - 説明
     * - | (1)
-      - Named queryのLookup名は、Entityのクラス名とメソッド名を ``"."`` (dot) で連結したものが使用される。
-        上記例だと、 ``"Order.findAllByStatusCode"`` がLookup名となる。
+      - Named queryのLookup名は、Entityのクラス名とメソッド名を ``.`` (dot) で連結したものが使用される。
+        上記例だと、 ``Order.findAllByStatusCode`` がLookup名となる。
 
  .. tip:: **Named queryのLookup名を指定する方法**
 
-    デフォルトの動作では、Entityのクラス名とメソッド名を ``"."`` (dot) で連結したものがLookup名として使用されるが、任意のクエリ名を指定することも出来る。
+    デフォルトの動作では、Entityのクラス名とメソッド名を ``.`` (dot) で連結したものがLookup名として使用されるが、任意のクエリ名を指定することも出来る。
 
     * Entity取得用のLookup名に任意のクエリ名を指定したい場合は、 ``@Query`` アノテーションのname属性にクエリ名を指定する。
     * ページ検索時の件数カウント用のLookup名に任意のクエリ名を指定したい場合は、 ``@Query`` アノテーションのcountName属性にクエリ名を指定する。
@@ -1699,7 +1699,7 @@ Spring Data JPAから提供されているプロパティファイル(classpath:
     * - 項番
       - 説明
     * - | (2)
-      - 上記例では、``"OrderRepository.findAllByStatusCode"`` をLookup用のクエリ名として指定している。
+      - 上記例では、``OrderRepository.findAllByStatusCode`` をLookup用のクエリ名として指定している。
 
 |
 
@@ -1719,7 +1719,7 @@ Spring Data JPAから提供されているプロパティファイル(classpath:
       - 説明
     * - | (3)
       - | クエリー名をキーとして、実行するSQLを指定する。
-        | 上記例では、``"Order.findAllByStatusCode"`` をキーに、実行するSQLを指定している。
+        | 上記例では、``Order.findAllByStatusCode`` をキーに、実行するSQLを指定している。
 
  .. tip::
 
@@ -2782,7 +2782,7 @@ Entityを追加したい場合は、Entityオブジェクトを生成し、Repos
       - | JPAのID採番機能を使用するために必要なアノテーションを指定している。
         | JPAのID採番機能を使用する場合は、 ``@javax.persistence.GeneratedValue`` アノテーションを指定する。
         | シーケンスオブジェクトを使用する場合は、 ``@javax.persistence.SequenceGenerator`` アノテーション、採番テーブルを使用する場合は、 ``@javax.persistence.TableGenerator`` アノテーションの指定も必要となる。
-        | 上記例では、 ``"s_order_id"`` という名前のシーケンスオブジェクトを使ってIDを採番している。
+        | 上記例では、 ``s_order_id`` という名前のシーケンスオブジェクトを使ってIDを採番している。
     * - | (6)
       - | 主キーを保持するプロパティに、 ``@javax.persistence.Id`` アノテーションを付与する。
         | 複合キーの場合は、 ``@javax.persistence.EmbeddedId`` アノテーションを付与する。
@@ -3435,18 +3435,18 @@ LIKE検索時のエスケープについて
     * - 項番
       - 説明
     * - | (1)
-      - | ``@Query`` アノテーションに指定するJPQL内にLIKE検索用のワイルドカード( ``"%"`` または ``"_"`` )を指定する。
-        | 上記例では、引数 ``word`` の前後にワイルドカード( ``"%"`` )を指定することで、一致方法を部分一致にしている。
+      - | ``@Query`` アノテーションに指定するJPQL内にLIKE検索用のワイルドカード( ``%`` または ``_`` )を指定する。
+        | 上記例では、引数 ``word`` の前後にワイルドカード( ``%`` )を指定することで、一致方法を部分一致にしている。
     * - | (2)
-      - | 共通ライブラリから提供しているエスケープ処理は、エスケープ文字として ``"~"`` を使用しているため、 LIKE句の後ろに ``"ESCAPE '~'"`` を指定する。
+      - | 共通ライブラリから提供しているエスケープ処理は、エスケープ文字として ``~`` を使用しているため、 LIKE句の後ろに ``ESCAPE '~'`` を指定する。
 
  .. note :: **ワイルドカード文字 "_" について**
 
-    ワイルドカード文字 ``"%"`` は、「:ref:`how_to_specify_query_annotation-label`」で説明しているように、 ``@Query`` アノテーションを利用した場合に限り直接JPQL内で使用することができる。
-    ワイルドカード文字 ``"_"`` は直接JPQL内のLIKE検索に利用することはできないため、下記2方法で利用すること。
+    ワイルドカード文字 ``%`` は、「:ref:`how_to_specify_query_annotation-label`」で説明しているように、 ``@Query`` アノテーションを利用した場合に限り直接JPQL内で使用することができる。
+    ワイルドカード文字 ``_`` は直接JPQL内のLIKE検索に利用することはできないため、下記2方法で利用すること。
     
-    #. ワイルドカード文字 ``"_"`` をバインド変数内に含める。
-    #. ワイルドカード文字 ``"_"`` を ``CONCAT`` などのデータベース製品が持つ文字列結合機能を利用してバインド変数に結合する。
+    #. ワイルドカード文字 ``_`` をバインド変数内に含める。
+    #. ワイルドカード文字 ``_`` を ``CONCAT`` などのデータベース製品が持つ文字列結合機能を利用してバインド変数に結合する。
 
 |
 
@@ -3568,17 +3568,17 @@ JOIN FETCHについて
     * - 項番
       - 説明
     * - | (1)
-      - | ``"[LEFT [OUTER] | INNER] JOIN FETCH Join対象のプロパティ"`` の形式で指定する。
+      - | ``[LEFT [OUTER] | INNER] JOIN FETCH Join対象のプロパティ`` の形式で指定する。
         | 具体的には以下のパターンとなる。
         |
         | 1. ``LEFT JOIN FETCH``
         |    関連Entityが存在しない場合でもEntityは取得される。
-        |    SQLとしては、 ``"left outer join RelatedTable r on m.fkColumn = r.fkColumn"`` となる。
+        |    SQLとしては、 ``left outer join RelatedTable r on m.fkColumn = r.fkColumn`` となる。
         | 2. ``LEFT OUTER JOIN FETCH``
         |    1と同様。
         | 3. ``INNER JOIN FETCH``
         |    関連Entityが存在しない場合は、Entityは取得されない。
-        |    SQLとしては、 ``"inner join RelatedTable r on m.fkColumn = r.fkColumn"`` となる。
+        |    SQLとしては、 ``inner join RelatedTable r on m.fkColumn = r.fkColumn`` となる。
         | 4. ``JOIN FETCH``
         |    3と同様。
         |
@@ -3648,7 +3648,7 @@ Entity毎のRepositoryインタフェースに個別にカスタムメソッド�
       - 説明
     * - | (1)
       - | カスタムメソッドを定義するカスタムインタフェースを作成する。
-        | インタフェース名に特に制約はないが、Entity毎のRepositoryインタフェース名 + ``"Custom"`` とすることを推奨する。
+        | インタフェース名に特に制約はないが、Entity毎のRepositoryインタフェース名 + ``Custom`` とすることを推奨する。
     * - | (2)
       - | カスタムメソッドを定義する。
 
@@ -3679,7 +3679,7 @@ Entity毎のRepositoryインタフェースに個別にカスタムメソッド�
       - 説明
     * - | (3)
       - | カスタムインタフェースの実装クラスを作成する。
-        | クラス名は、Entity毎のRepositoryインタフェース名 + ``"Impl"`` とすること。
+        | クラス名は、Entity毎のRepositoryインタフェース名 + ``Impl`` とすること。
     * - | (4)
       - | Queryを実行するために必要となる ``javax.persistence.EntityManager`` は ``@javax.persistence.PersistenceContext`` アノテーションを使ってインジェクションする。
     * - | (5)
@@ -4056,7 +4056,7 @@ Spring Data JPAでは、新たに作成されたEntityと更新されたEntity�
       - | 作成日時を保持するフィールドに ``@org.springframework.data.annotation.CreatedDate`` アノテーションを付与する。
     * - | (3)
       - | ``org.joda.time.DateTime`` 型を使用する場合は、Hibernateで扱えるようにするために、 フィールドに ``@org.hibernate.annotations.Type`` アノテーションを付与する。
-        | type属性は、 ``"org.jadira.usertype.dateandtime.joda.PersistentDateTime"`` 固定。最終更新日時のフィールドも同様。
+        | type属性は、 ``org.jadira.usertype.dateandtime.joda.PersistentDateTime`` 固定。最終更新日時のフィールドも同様。
     * - | (4)
       - | 作成日時を保持するフィールドの型は、 ``org.joda.time.DateTime`` 、``java.util.Date`` 、``java.util.Calendar`` 、 ``java.lang.Long`` 、 ``long`` 型 、Java 8から追加されたDate and Time APIなどをサポートしている。
         | 最終更新日時のフィールドも同様。
@@ -4158,7 +4158,7 @@ Spring Data JPAでは、新たに作成されたEntityと更新されたEntity�
       - 説明
     * - | (11)
       - | <jpa:auditing>要素のauditor-aware-ref属性に、(7)で作成したEntityの操作者を解決するためのクラスのbeanを指定する。
-        | 上記例では、 ``SpringSecurityAuditorAware`` という実装クラスをcomponent-scanしているので、 ``"springSecurityAuditorAware"`` というbean名を指定している。
+        | 上記例では、 ``SpringSecurityAuditorAware`` という実装クラスをcomponent-scanしているので、 ``springSecurityAuditorAware`` というbean名を指定している。
 
 |
 
@@ -4220,7 +4220,7 @@ Spring Data JPAでは、新たに作成されたEntityと更新されたEntity�
       - 説明
     * - | (4)
       - | <jpa:auditing>要素のdate-time-provider-ref属性に、(1)で作成したEntityの操作日時に設定する値を返却するクラスのbeanを指定する。
-        | 上記例では、 ``AuditDateTimeProvider`` という実装クラスをcomponent-scanしているので、 ``"auditDateTimeProvider"`` というbean名を指定している。
+        | 上記例では、 ``AuditDateTimeProvider`` という実装クラスをcomponent-scanしているので、 ``auditDateTimeProvider`` というbean名を指定している。
 
 |
 
