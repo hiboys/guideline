@@ -9,8 +9,6 @@
 
 ## Fix Version/s
 (To be written later by project member)
-- [ ] 1.5.0 (master)
-- [ ] 1.4.2 (1.4.x)
 
 ## Issue Links
 - #XXX
