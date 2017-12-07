@@ -20,6 +20,15 @@
 
         記載内容の改善
 
+    * - 
+      - :doc:`../Overview/FrameworkStack`
+      - 利用するOSSのバージョンを更新
+
+        * Spring IO PlatformのバージョンをBrussels-SR5に更新
+        * MyBatisのバージョンを3.4.5に更新
+
+        Spring IO Platformのバージョン更新に伴い利用するOSSのバージョンを更新
+
     * -
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
       - 記載内容の追加

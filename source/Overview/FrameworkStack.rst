@@ -29,13 +29,13 @@ DIコンテナ
 DIコンテナとしてSpring Frameworkを利用する。
 
 
-* `Spring Framework 4.3 <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/beans.html>`_
+* `Spring Framework 4.3 <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/beans.html>`_
 
 MVCフレームワーク
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Web MVCフレームワークとしてSpring MVCを利用する。
 
-* `Spring MVC 4.3 <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html>`_
+* `Spring MVC 4.3 <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html>`_
 
 O/R Mapper
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -85,7 +85,7 @@ Viewのレイアウトを共通化する場合は、
 
   * 実装は、\ `Hibernate Validator 5.2 <http://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/>`_\ を利用する。
 
-* 相関チェックには\ `Bean Validation <http://download.oracle.com/otn-pub/jcp/bean_validation-1_1-fr-eval-spec/bean-validation-specification.pdf>`_\ 、もしくは\ `Spring Validation <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/validation.html#validator>`_\ を利用する。
+* 相関チェックには\ `Bean Validation <http://download.oracle.com/otn-pub/jcp/bean_validation-1_1-fr-eval-spec/bean-validation-specification.pdf>`_\ 、もしくは\ `Spring Validation <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/validation.html#validator>`_\ を利用する。
 
   * 使い分けについては\ :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`\ を参照されたい。
 
@@ -109,7 +109,7 @@ Viewのレイアウトを共通化する場合は、
 利用するOSSのバージョン
 --------------------------------------------------------------------------------
 
-version 1.4.0.RELEASEで利用するOSSの一覧を以下に示す。
+version 1.5.0.RELEASEで利用するOSSの一覧を以下に示す。
 
 .. tip::
 
@@ -125,7 +125,7 @@ version 1.4.0.RELEASEで利用するOSSの一覧を以下に示す。
     への依存関係を解決しており、
     Macchinetta Server Framework (1.x)で使用するOSSのバージョンは、原則として、Spring IO platformの定義に準じている。
 
-    なお、version 1.4.0.RELEASEで指定しているSpring IO platformのバージョンは、`Athens-SR2 <http://docs.spring.io/platform/docs/Athens-SR2/reference/htmlsingle/>`_\ である。
+    なお、version 1.5.0.RELEASEで指定しているSpring IO platformのバージョンは、`Brussels-SR5 <http://docs.spring.io/platform/docs/Brussels-SR5/reference/htmlsingle/>`_\ である。
 
 .. tabularcolumns:: |p{0.15\linewidth}|p{0.27\linewidth}|p{0.25\linewidth}|p{0.15\linewidth}|p{0.05\linewidth}|p{0.08\linewidth}|
 .. list-table::
@@ -142,133 +142,133 @@ version 1.4.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - Spring
       - org.springframework
       - spring-aop
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-aspects
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-beans
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-context
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-context-support
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-core
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-expression
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-jdbc
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-orm
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-tx
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-web
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-webmvc
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-jms
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-messaging
-      - 4.3.5.RELEASE
+      - 4.3.11.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.data
       - spring-data-commons
-      - 1.12.6.RELEASE
+      - 1.13.7.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.security
       - spring-security-acl
-      - 4.1.4.RELEASE
+      - 4.2.3.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.security
       - spring-security-config
-      - 4.1.4.RELEASE
+      - 4.2.3.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.security
       - spring-security-core
-      - 4.1.4.RELEASE
+      - 4.2.3.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.security
       - spring-security-taglibs
-      - 4.1.4.RELEASE
+      - 4.2.3.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.security
       - spring-security-web
-      - 4.1.4.RELEASE
+      - 4.2.3.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.security.oauth
       - spring-security-oauth2
-      - 2.0.12.RELEASE
+      - 2.0.14.RELEASE
       - \*
       -
     * - MyBatis3
       - org.mybatis
       - mybatis
-      - 3.4.2
+      - 3.4.5
       -
       - \*1
     * - MyBatis3
@@ -298,25 +298,25 @@ version 1.4.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - AOP
       - org.aspectj
       - aspectjrt
-      - 1.8.9
+      - 1.8.10
       - \*
       -
     * - AOP
       - org.aspectj
       - aspectjweaver
-      - 1.8.9
+      - 1.8.10
       - \*
       -
     * - ログ出力
       - ch.qos.logback
       - logback-classic
-      - 1.1.8
+      - 1.1.11
       - \*
       -
     * - ログ出力
       - ch.qos.logback
       - logback-core
-      - 1.1.8
+      - 1.1.11
       - \*
       - \*3
     * - ログ出力
@@ -328,43 +328,43 @@ version 1.4.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - ログ出力
       - org.slf4j
       - jcl-over-slf4j
-      - 1.7.22
+      - 1.7.25
       - \*
       -
     * - ログ出力
       - org.slf4j
       - slf4j-api
-      - 1.7.22
+      - 1.7.25
       - \*
       -
     * - JSON
       - com.fasterxml.jackson.core
       - jackson-annotations
-      - 2.8.5
+      - 2.8.0
       - \*
       -
     * - JSON
       - com.fasterxml.jackson.core
       - jackson-core
-      - 2.8.5
+      - 2.8.10
       - \*
       -
     * - JSON
       - com.fasterxml.jackson.core
       - jackson-databind
-      - 2.8.5
+      - 2.8.10
       - \*
       -
     * - JSON
       - com.fasterxml.jackson.datatype
       - jackson-datatype-joda
-      - 2.8.5
+      - 2.8.10
       - \*
       -
     * - JSON
       - com.fasterxml.jackson.datatype
       - jackson-datatype-jsr310
-      - 2.8.5
+      - 2.8.10
       - \*
       - \*5
     * - 入力チェック
@@ -376,19 +376,19 @@ version 1.4.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - 入力チェック
       - org.hibernate
       - hibernate-validator
-      - 5.2.4.Final
+      - 5.3.5.Final
       - \*
       -
     * - 入力チェック
       - org.jboss.logging
       - jboss-logging
-      - 3.3.0.Final
+      - 3.3.1.Final
       - \*
       - \*3
     * - 入力チェック
       - com.fasterxml
       - classmate
-      - 1.3.3
+      - 1.3.4
       - \*
       - \*3
     * - Bean変換
@@ -412,13 +412,13 @@ version 1.4.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - Bean変換
       - org.apache.commons
       - commons-lang3
-      - 3.4
+      - 3.5
       - \*
       - \*2
     * - 日付操作
       - joda-time
       - joda-time
-      - 2.9.6
+      - 2.9.9
       - \*
       -
     * - 日付操作
@@ -502,7 +502,7 @@ version 1.4.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - ユーティリティ
       - com.google.guava
       - guava
-      - 17.0
+      - 20.0
       - \*
       -
     * - ユーティリティ
