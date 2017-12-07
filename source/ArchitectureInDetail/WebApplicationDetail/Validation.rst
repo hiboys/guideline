@@ -18,7 +18,7 @@ Overview
 がある。
 
 1.の例としては必須チェックや、桁数チェックがあり、2.の例としては
-登録済みのEMailかどうかのチェックや、注文数が在庫数以内であるかどうかのチェックが挙げられる。
+登録済みのE-mailかどうかのチェックや、注文数が在庫数以内であるかどうかのチェックが挙げられる。
 
 本節では、基本的には前者のことを説明し、このチェックのことを「入力チェック」を呼ぶ。
 後者のチェックは「業務ロジックチェック」と呼ぶ。業務ロジックチェックについては
@@ -179,7 +179,7 @@ Bean ValidationのAPI仕様クラス(\ ``javax.validation``\ パッケージの�
      - | 入力必須
        | 1文字以上
        | 50文字以下
-       | Email形式
+       | E-mail形式
    * - | age
      - | ``java.lang.Integer``
      - | 入力必須
@@ -245,8 +245,9 @@ Bean ValidationのAPI仕様クラス(\ ``javax.validation``\ パッケージの�
          | 上記の通り、Spring MVCではデフォルトで、未入力の文字列フィールドには、空文字がバインドされるため、
          | 1文字以上というルールが入力必須を表す。
      * - | (3)
-       - | 対象のフィールドがRFC2822準拠のE-mail形式であることを示す\ ``org.hibernate.validator.constraints.Email``\ を付ける。
-         | E-mail形式の要件がRFC2822準拠の制限よりも緩い場合は、\ ``@Email``\ を使用せず、\ ``javax.validation.constraints.Pattern``\ を用いて、正規表現を指定する必要がある。
+       - | 対象のフィールドがE-mail形式であることを示す\ ``org.hibernate.validator.constraints.Email``\ を付ける。
+         | E-mail形式の要件が\ ``@Email`` \のチェックと合致しない場合は、\ ``javax.validation.constraints.Pattern``\を用いて、正規表現を指定する必要がある。
+         | \ ``@Email`` \については、\ :ref:`Validation_validator_list`\を参照されたい。
      * - | (4)
        - | 数値の入力フィールドに未入力の状態でフォームを送信した場合、フォームオブジェクトに\ ``null`` \ がバインドされるため、\ ``@NotNull``\ が\ ``age``\ の入力必須条件を表す。
      * - | (5)
@@ -417,7 +418,7 @@ NameとEmailが空文字であることに対するエラーメッセージと�
   :width: 60%
 
 | Nameの入力値は、チェック条件を満たすため、エラーメッセージが表示されない。
-| Emailの入力値は文字列長に関する条件は満たすが、Email形式ではないため、エラーメッセージが表示される。
+| E-mailの入力値は文字列長に関する条件は満たすが、E-mail形式ではないため、エラーメッセージが表示される。
 | Ageの入力値は最大値を超えているため、エラーメッセージが表示される。
 
 
@@ -4411,7 +4412,7 @@ Hibernate Validatorの代表的なアノテーション(\ ``org.hibernate.valida
             
    * - \ ``@Email``\
      - 任意の\ ``CharSequence``\ インタフェースの実装クラスに適用可能
-     - RFC2822に準拠したEmailアドレスかどうか検証する。
+     - E-mailアドレスとして妥当であること検証する。
      - .. code-block:: java
 
             @Email
@@ -4442,6 +4443,16 @@ Hibernate Validatorの代表的なアノテーション(\ ``org.hibernate.valida
 
             @NotEmpty
             private String password;
+
+.. warning::
+
+    E-mailの形式は\ `RFC2822 <https://www.ietf.org/rfc/rfc2822.txt>`_\ で定義されているが、\ ``@Email``\は厳密にRFC2822に準拠していることをチェックするものではない。
+
+    例えばマルチバイト文字（全角文字）を含んでいても\ ``@Email``\でのチェックをパスすることが確認されている。
+    また、実際に利用されているEmailアドレスも、必ずしもRFC2822に厳密に準拠しているわけではない。
+
+    これらの注意点を考慮した上で、利用・サポートするSMTPサーバなどによって適切なルールでの入力チェックを実装することを推奨する。
+    実装の際は、\ :ref:`Validation_convine_existing_constraint`\ を参照されたい。
 
 .. tip::
 
