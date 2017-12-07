@@ -1089,7 +1089,7 @@ Thymeleafから提供されている代表的なProcessorのインタフェー�
     * - | \ ``org.thymeleaf.processor.element.IElementTagProcessor``\
       - | 開始タグに対して実行される処理を定義するためのインタフェース。対象のタグの内容は参照可能だが、直接変更することはできない。structureHandlerを介してのみ対象のタグの属性やボディを変更することができる。
         | 通常は、\ ``IElementTagProcessor``\ を直接実装するのではなく、\ ``org.thymeleaf.processor.AbstractAttributeTagProcessor``\ などの\ ``IElementTagProcessor``\ を実装した抽象クラスを継承する。
-    * - | \ ``org.thymeleaf.processor.elementIElementModelProcessor``\
+    * - | \ ``org.thymeleaf.processor.element.IElementModelProcessor``\
       - | 開始タグから閉じタグまでの要素全体に対して実行される処理を定義するためのインタフェース。対象の要素全体をモデルとして処理するため、任意の要素を参照、直接変更することができる。また、閉じタグの後など、任意の箇所に要素を追加することもできる。
         | 通常は、\ ``IElementModelProcessor``\ を直接実装するのではなく、\ ``org.thymeleaf.processor.AbstractAttributeModelProcessor``\ などの\ ``IElementModelProcessor``\ を実装した抽象クラスを継承する。
 
