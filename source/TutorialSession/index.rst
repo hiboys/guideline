@@ -1912,7 +1912,7 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
 ``/session-tutorial-init-web/src/main/webapp/WEB-INF/views/goods/showGoods.jsp``
 
 .. code-block:: jsp
-    :emphasize-lines: 45, 53-59, 72-97
+    :emphasize-lines: 43, 51-57, 70-95
 
     <!DOCTYPE html>
     <html>
@@ -2037,7 +2037,7 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
 ``/session-tutorial-init-web/src/main/webapp/WEB-INF/views/goods/showGoodsDetail.jsp``
 
 .. code-block:: jsp
-    :emphasize-lines: 44-51, 57-81
+    :emphasize-lines: 43-50, 56-80
 
     <!DOCTYPE html>
     <html>
