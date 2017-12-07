@@ -1355,7 +1355,6 @@ NULLとブランク文字
 エラーを検知した際に応答するフォーマット例を以下に示す。
 
  .. code-block:: json
-    :emphasize-lines: 10, 20, 23
 
     {
       "code" : "e.ex.fw.7001",
@@ -3365,7 +3364,6 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
 * エラー情報は以下のJSON形式とする。
 
  .. code-block:: json
-    :emphasize-lines: 10, 20, 23
 
     {
       "code" : "e.ex.fw.7001",
