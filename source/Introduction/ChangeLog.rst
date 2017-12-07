@@ -41,7 +41,7 @@
 
         * \ ``@Compare`` \アノテーションの\ ``operator`` \属性に新たに追加された\ ``NOT_EQUAL`` \の説明を追加
 
-        * \ ``@Email`` \アノテーションを使用する際の注意事項を追加(\ `guideline#2930 <https://github.com/terasolunaorg/guideline/issues/2930>`_\ )
+        * \ ``@Email`` \アノテーションを使用する際の注意事項を追加
 
         ガイドラインのバグ修正
 
