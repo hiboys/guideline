@@ -1020,7 +1020,7 @@
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessCommon`
       - 共通ライブラリのバグ改修に伴う修正
 
-        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#78 <https://github.com/terasolunaorg/terasoluna-gfw/issues/78>`_\)に伴い、全角文字のワイルドカード文字(\ ``％``\ , \ ``＿``\ )\ の扱いに関する説明を追加。
+        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#78 <https://github.com/terasolunaorg/terasoluna-gfw/issues/78>`_\)に伴い、全角文字のワイルドカード文字("\ ``％``\" , "\ ``＿``\" )\ の扱いに関する説明を追加。
           修正内容の詳細は、\ `guideline#712のIssue <https://github.com/terasolunaorg/guideline/issues/712>`_\ を参照されたい。
 
         Spring Framework 4.1対応に伴う修正

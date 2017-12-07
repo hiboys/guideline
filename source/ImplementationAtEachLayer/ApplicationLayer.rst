@@ -779,7 +779,7 @@ Acceptヘッダでマッピング
 以下に、入力内容確認の動作について説明する。
 
 | 入力内容確認表示処理を呼び出す。
-| フォーム画面でInput1に ``aa`` を、Input2に ``5`` を入力し、Confirmボタンを押下する。
+| フォーム画面でInput1に ``aa`` を、Input2に "``5``" を入力し、Confirmボタンを押下する。
 | Confirmボタンを押下すると、 ``abc/create?confirm`` というURIにPOSTメソッドでアクセスする。
 | ``confirm`` というHTTPパラメータがあるため、ControllerのcreateConfirmメソッドが呼び出され、入力内容確認画面が表示される。
 
@@ -1217,7 +1217,7 @@ URLのパスから値を取得する
        | 上記例では、 ``sample/hello/aaaa/1`` というURLにアクセスした場合、引数idに文字列 ``aaaa`` が渡る。
    * - | (3)
      - | ``@PathVariable``\ アノテーションのvalue属性は省略可能で、省略した場合は引数名がリクエストパラメータ名となる。
-       | 上記例では、 ``sample/hello/aaaa/1`` というURLにアクセスした場合、引数versionに数値 ``1`` が渡る。
+       | 上記例では、 ``sample/hello/aaaa/1`` というURLにアクセスした場合、引数versionに数値 "``1``" が渡る。
        | ただしこの方法は、
 
        * \ ``-g``\ オプション(デバッグ情報を出力するモード)
@@ -1942,7 +1942,7 @@ HTMLを応答する
        \ ``BeanNameViewResolver``\ は、返却されたView名に一致するBeanをアプリケーションコンテキストから探してViewを解決するクラスとなっている。
    * - | (2)
      - JSP用の\ ``InternalViewResolver``\ や \ ``TilesViewResolver``\ と併用する場合は、これらの\ ``ViewResolver``\ より、高い優先度を指定する事を推奨する。
-       上記例では、 ``0`` を指定することで、\ ``InternalViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
+       上記例では、 "``0``" を指定することで、\ ``InternalViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
    * - | (3)
      - Spring Framework 4.1から追加された\ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
 
@@ -3083,7 +3083,7 @@ HTMLの\ ``<form>``\ 要素(JSPタグライブラリの\ ``<form:form>``\ 要素
  .. note:: **リクエストマッピング名について**
 
     リクエストマッピング名は、デフォルト実装(\ ``org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMethodMappingNamingStrategy``\ の実装)では、
-    「クラス名の大文字部分(クラスの短縮名) + \ ``#``\  + メソッド名」となる。
+    「クラス名の大文字部分(クラスの短縮名) + "\ ``#``\"  + メソッド名」となる。
 
     リクエストマッピング名は重複しないようにする必要がある。
     名前が重複してしまった場合は、\ ``@RequestMapping``\ アノテーションの\ ``name``\ 属性に一意となる名前を指定する必要がある。

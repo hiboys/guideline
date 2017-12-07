@@ -1924,7 +1924,7 @@ RESTful Web Service用のサーブレットの設定
 
  .. tip:: **@RequestMappingアノテーションのvalue属性に指定する値について**
 
-   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード(\ ``*``\)の部分の値を指定する。
+   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード("\ ``*``\")の部分の値を指定する。
    
    例えば、\ ``@RequestMapping(value = "members")``\と指定した場合、\ ``/api/v1/members``\といパスに対する処理を行うメソッドとしてデプロイされる。
    そのため、\ ``@RequestMapping``\アノテーションのvalue属性には、分割したサーブレットへマッピングするためパス(\ ``api/v1``\)を指定する必要はない。
@@ -2028,9 +2028,9 @@ REST APIの実装
         | (Code)
       - I/O
       - 1-1
-      - | ``0`` : UNKNOWN
-        | ``1`` : MEN
-        | ``2`` : WOMEN
+      - | "``0``" : UNKNOWN
+        | "``1``" : MEN
+        | "``2``" : WOMEN
     * - | (5)
       - dateOfBirth
       - Date
@@ -5197,7 +5197,7 @@ RESTful Web Service用の\ ``DispatcherServlet``\を設ける方法
 
  .. tip:: **@RequestMappingアノテーションのvalue属性に指定する値について**
 
-   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード(\ ``*``\)の部分の値を指定する。
+   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード("\ ``*``\")の部分の値を指定する。
    
    例えば、\ ``@RequestMapping(value = "members")``\と指定した場合、\ ``/api/v1/members``\といパスに対する処理を行うメソッドとしてデプロイされる。
    そのため、\ ``@RequestMapping``\アノテーションのvalue属性には、分割したサーブレットへマッピングするためパス(\ ``api/v1``\)を指定する必要はない。
@@ -5531,7 +5531,7 @@ POST時のLocationヘッダの設定
         | そのため、Spring Frameworkから提供される `URI\ Template\ Patterns <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\ 等を利用し、
         | リクエスト情報をベースにURIを組み立てる事により、リソースに依存しない汎用的な組み立て処理を実装することが可能となる。
         | 
-        | 例えば、上記例において\ ``http://example.com/api/v1/members``\に対してPOSTした場合、組み立てられるURIは、「リクエストされたURI + \ ``/``\ + 作成したリソースのID」となる。
+        | 例えば、上記例において\ ``http://example.com/api/v1/members``\に対してPOSTした場合、組み立てられるURIは、「リクエストされたURI + "\ ``/``\" + 作成したリソースのID」となる。
         | 具体的には、IDに\ ``M000000001``\を指定した場合、\ ``http://example.com/api/v1/members/M000000001``\となる。
         | 
         | 必要に応じてリンク情報に設定するURIを組み立てるためのメソッドを実装すること。
