@@ -32,6 +32,7 @@ Please create a new issue from [here](https://github.com/Macchinetta/server-guid
 
  ## Affects Version/s
  * 1.5.0.RELEASE
+ * 1.4.2.RELEASE
 
  ## Fix Version/s
  (To be written later by project member)
