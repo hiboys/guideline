@@ -126,6 +126,12 @@
 
         * その他修正内容の詳細は、\ `5.4.0のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.4.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
 
+    * -
+      - :doc:`../UnitTest/index`
+      - 新規追加
+
+        * 単体テストを追加(\ `guideline#1817 <https://github.com/terasolunaorg/guideline/issues/1817>`_\ )
+
     * - 2017-03-17
       - \-
       - 5.3.0 RELEASE版公開
