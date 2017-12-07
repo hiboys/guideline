@@ -654,15 +654,15 @@ Acceptヘッダでマッピング
 
     <h1>Abc Create Form</h1>
     <form th:action="@{/abc/create}" th:object="${abcForm}" method="post">
-      <label for="input1">Input1</label>
-      <input th:field="*{input1}">
-      <span th:errors="*{input1}"></span>
-      <br>
-      <label for="input2">Input2</label>
-      <input th:field="*{input2}">
-      <span th:errors="*{input2}"></span>
-      <br>
-      <input type="submit" name="confirm" value="Confirm"> <!-- (1) -->
+        <label for="input1">Input1</label>
+        <input th:field="*{input1}">
+        <span th:errors="*{input1}"></span>
+        <br>
+        <label for="input2">Input2</label>
+        <input th:field="*{input2}">
+        <span th:errors="*{input2}"></span>
+        <br>
+        <input type="submit" name="confirm" value="Confirm"> <!-- (1) -->
     </form>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -742,16 +742,16 @@ Acceptヘッダでマッピング
 
     <h1>Abc Create Form</h1>
     <form th:action="@{/abc/create}" th:object="${abcForm}" method="post">
-      <label for="input1">Input1</label>
-      <span th:text="*{input1}"></span>
-      <input th:field="*{input1}" type="hidden"> <!-- (1) -->
-      <br>
-      <label for="input2">Input2</label>
-      <span th:text="*{input2}"></span>
-      <input th:field="*{input2}" type="hidden"> <!-- (1) -->
-      <br>
-      <input type="submit" name="redo" value="Back"> <!-- (2) -->
-      <input type="submit" value="Create"> <!-- (3) -->
+        <label for="input1">Input1</label>
+        <span th:text="*{input1}"></span>
+        <input th:field="*{input1}" type="hidden"> <!-- (1) -->
+        <br>
+        <label for="input2">Input2</label>
+        <span th:text="*{input2}"></span>
+        <input th:field="*{input2}" type="hidden"> <!-- (1) -->
+        <br>
+        <input type="submit" name="redo" value="Back"> <!-- (2) -->
+        <input type="submit" value="Create"> <!-- (3) -->
     </form>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|

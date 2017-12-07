@@ -471,9 +471,9 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
                         detail message</li>
                 </ul>
             </div>
-        <br>
-        <!-- ... -->
-        <br>
+            <br>
+            <!-- ... -->
+            <br>
         </div>
     </body>
     </html>
