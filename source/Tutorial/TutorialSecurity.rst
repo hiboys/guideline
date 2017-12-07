@@ -810,7 +810,7 @@ JSPからログインユーザーのアカウント情報へアクセス
 | ``src/main/webapp/WEB-INF/views/welcome/home.jsp``
 
 .. code-block:: xml
-    :emphasize-lines: 10-11,17-18
+    :emphasize-lines: 9-10,16-17
   
     <!DOCTYPE html>
     <html>
@@ -868,7 +868,7 @@ JSPからログインユーザーのアカウント情報へアクセス
 | ``src/main/webapp/WEB-INF/views/welcome/home.jsp``
 
 .. code-block:: xml
-    :emphasize-lines: 18-21
+    :emphasize-lines: 17-20
 
     <!DOCTYPE html>
     <html>
