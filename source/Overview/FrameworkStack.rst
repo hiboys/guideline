@@ -410,7 +410,7 @@ version 5.4.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - JSON
       - com.fasterxml.jackson.core
       - jackson-annotations
-      - 2.8.10
+      - 2.8.0
       - \*
       -
     * - JSON
