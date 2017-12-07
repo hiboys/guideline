@@ -31,14 +31,14 @@ Please create a new issue from [here](https://github.com/Macchinetta/server-guid
  Modifying to `"Domain layer is independent from other layers and is reusable."`
 
  ## Affects Version/s
- * 1.4.1.RELEASE
+ * 1.5.0.RELEASE
 
  ## Fix Version/s
  (To be written later by project member)
 
  ## Issue Links
  * #999
- * http://macchinetta.github.io/server-guideline/1.4.0.RELEASE/ja/ImplementationAtEachLayer/DomainLayer.html
+ * http://macchinetta.github.io/server-guideline/1.5.0.RELEASE/ja/ImplementationAtEachLayer/DomainLayer.html
  ```
 
 ## Fork a repository
