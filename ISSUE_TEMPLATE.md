@@ -5,7 +5,7 @@
 (Please write ideas or candidates of solutions for the problem if you have)
 
 ## Affects Version/s
-- 1.4.1.RELEASE
+- 1.X.X.RELEASE
 
 ## Fix Version/s
 (To be written later by project member)
