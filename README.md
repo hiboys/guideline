@@ -35,16 +35,16 @@ Please install the Python and Sphinx.
 
 ### Clone a repository
 
-Please clone a `Macchinetta/server-guideline` repository or forked your repository.
+Please clone a `Macchinetta/server-guideline-thymeleaf` repository or forked your repository.
 
 ```
-git clone https://github.com/Macchinetta/server-guideline.git
+git clone https://github.com/Macchinetta/server-guideline-thymeleaf.git
 ```
 
 or
 
 ```
-git clone https://github.com/{your account}/server-guideline.git
+git clone https://github.com/{your account}/server-guideline-thymeleaf.git
 ```
 
 ### Build HTML files
@@ -78,4 +78,4 @@ $ ./build-pdf.sh
 
 ## Terms of use
 
-Terms of use refer to [here](https://github.com/Macchinetta/server-guideline/blob/master/source/Introduction/TermsOfUse.rst).
+Terms of use refer to [here](https://github.com/Macchinetta/server-guideline-thymeleaf/blob/master/source/Introduction/TermsOfUse.rst).
