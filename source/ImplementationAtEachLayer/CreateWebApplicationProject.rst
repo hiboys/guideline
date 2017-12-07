@@ -712,9 +712,9 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
                 <spring:message code="e.xx.fw.5001" />
             </div>
             <t:messagesPanel />
-        <br>
-        <!-- ... -->
-        <br>
+            <br>
+            <!-- ... -->
+            <br>
         </div>
     </body>
     </html>
