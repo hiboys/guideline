@@ -9,7 +9,7 @@
 はじめに
 --------------------------------------------------------------------------------
 
-本章では、Macchinetta Server Framework (1.x)を使用したシステムにおける、JUnitを用いた単体テストについて提示する。
+本章では、TERASOLUNA Server Framework (5.x)を使用したシステムにおける、JUnitを用いた単体テストについて提示する。
 
 ここでの単体テストのスコープはレイヤまたはレイヤ間結合とし、テストに関するアクティビティのうち、テスト実装と
 テスト実施に関して解説する。
@@ -84,7 +84,7 @@ MVCフレームワーク
 
 .. tip::
 
-    version 1.1.0.RELEASEより、\ `Spring IO platform <http://platform.spring.io/platform/>`_\ の
+    version 5.0.0.RELEASEより、\ `Spring IO platform <http://platform.spring.io/platform/>`_\ の
     \ ``<dependencyManagement>``\ をインポートする構成を採用している。
 
     Spring IO platformの\ ``<dependencyManagement>``\ をインポートすることで、
@@ -93,10 +93,10 @@ MVCフレームワーク
     * Spring Frameworkが依存しているOSSライブラリ
     * Spring Frameworkと相性のよいOSSライブラリ
 
-    への依存関係を解決しており、Macchinetta Server Framework (1.x)で使用するOSSのバージョンは、原則として、
+    への依存関係を解決しており、TERASOLUNA Server Framework (5.x)で使用するOSSのバージョンは、原則として、
     Spring IO platformの定義に準じている。
 
-    なお、version 1.5.0.RELEASEで指定しているSpring IO platformのバージョンは、
+    なお、version 5.4.0.RELEASEで指定しているSpring IO platformのバージョンは、
     \ `Brussels-SR5 <https://docs.spring.io/platform/docs/Brussels-SR5/reference/htmlsingle/>`_\ である。
 
 |
