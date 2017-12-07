@@ -328,7 +328,7 @@ Maven Archetypeで作成したプロジェクトでは、\ ``x.xx.fw.9999``\ 形
 
         <div class="error">
             <span th:text="${#strings.isEmpty(exceptionCode)} ? #{e.xx.fw.5001} : |[${exceptionCode}] #{e.xx.fw.5001}|">[e.xx.fw.5001]
-            Resource not found.</span>
+                Resource not found.</span>
         </div>
 
 **[applicationContext.xml]**
@@ -463,7 +463,7 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
             <h1>Resource Not Found Error!</h1>
             <div class="error">
                 <span th:text="${#strings.isEmpty(exceptionCode)} ? #{e.xx.fw.5001} : |[${exceptionCode}] #{e.xx.fw.5001}|">[e.xx.fw.5001]
-                Resource not found.</span>
+                    Resource not found.</span>
             </div>
             <div th:if="${resultMessages} != null" class="alert alert-error" th:class="|alert alert-${resultMessages.type}|">
                 <ul>
@@ -472,9 +472,9 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
                         detail message</li>
                 </ul>
             </div>
-        <br>
-        <!-- ... -->
-        <br>
+            <br>
+            <!-- ... -->
+            <br>
         </div>
     </body>
     </html>
@@ -529,23 +529,23 @@ Maven Archetypeで作成したプロジェクトでは、Thymeleafのテンプ�
   <!-- ... -->
 
   <body>
-    <div class="container">
-    <!--/*/
-      <div id="header" th:replace="~{layout/header :: header}"></div>
-      <div id="body" th:replace="${body}"></div>
-    /*/-->
-    <!--/*-->
-      <h1>
-        <a href="../welcome/home.html">projectName</a>
-      </h1>
-      <div id="wrapper">
-        <h1 id="title">Hello world!</h1>
-        <p>The time on the server is 2018/01/01 00:00:00 JST.</p>
+      <div class="container">
+      <!--/*/
+          <div id="header" th:replace="~{layout/header :: header}"></div>
+          <div id="body" th:replace="${body}"></div>
+      /*/-->
+      <!--/*-->
+          <h1>
+              <a href="../welcome/home.html">projectName</a>
+          </h1>
+          <div id="wrapper">
+              <h1 id="title">Hello world!</h1>
+              <p>The time on the server is 2018/01/01 00:00:00 JST.</p>
+          </div>
+      <!--*/-->
+          <hr>
+          <p style="text-align: center; background: #e5eCf9;">Copyright &copy; 20XX CompanyName</p>
       </div>
-    <!--*/-->
-      <hr>
-      <p style="text-align: center; background: #e5eCf9;">Copyright &copy; 20XX CompanyName</p>
-    </div>
   </body>
   </html>
 
