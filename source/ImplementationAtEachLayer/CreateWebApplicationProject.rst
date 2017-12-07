@@ -27,7 +27,7 @@ Webアプリケーション向け開発プロジェクトの作成
 
     * - 種別
       - 使用用途
-    * - | `マルチプロジェクト構成のブランクプロジェクト <https://github.com/Macchinetta/macchinetta-web-multi-blank>`_
+    * - | `マルチプロジェクト構成のブランクプロジェクト <https://github.com/Macchinetta/macchinetta-web-multi-blank-thymeleaf>`_
       - 商用環境にリリースするような本格的なアプリケーションを開発する際に使用する。
 
         プロジェクトの雛形は、MavenのArchetypeとして、以下の1種類を用意している。
@@ -35,7 +35,7 @@ Webアプリケーション向け開発プロジェクトの作成
         * MyBatis3用の設定が盛り込まれた雛形
 
         **本ガイドラインでは、マルチプロジェクト構成のプロジェクトを使用する事を推奨している。**
-    * - | `シングルプロジェクト構成のブランクプロジェクト <https://github.com/Macchinetta/macchinetta-web-blank>`_
+    * - | `シングルプロジェクト構成のブランクプロジェクト <https://github.com/Macchinetta/macchinetta-web-blank-thymeleaf>`_
       - POC(Proof Of Concept)、プロトタイプ、サンプルなどの簡易的なアプリケーションを作成する際に使用する。
 
         プロジェクトの雛形は、MavenのArchetypeとして、以下の2種類を用意している。
@@ -273,9 +273,9 @@ Maven Archetypeで作成したプロジェクトのPOMファイルでは、
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:Macchinetta/macchinetta-web-multi-blank.git</connection>
-        <developerConnection>scm:git:git@github.com:Macchinetta/macchinetta-web-multi-blank</developerConnection>
-        <url>git@github.com:Macchinetta/macchinetta-web-multi-blank</url>
+        <connection>scm:git:git@github.com:Macchinetta/macchinetta-web-multi-blank-thymeleaf.git</connection>
+        <developerConnection>scm:git:git@github.com:Macchinetta/macchinetta-web-multi-blank-thymeleaf</developerConnection>
+        <url>git@github.com:Macchinetta/macchinetta-web-multi-blank-thymeleaf</url>
     </scm>
 
     <!-- ... -->
