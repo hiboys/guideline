@@ -122,7 +122,7 @@ Package Explorerに、次のようなプロジェクトが生成される。
 Spring MVCの設定方法を理解するために、生成されたSpring MVCの設定ファイル(src/main/resources/META-INF/spring/spring-mvc.xml)について、簡単に説明する。
 
 .. code-block:: xml
-    :emphasize-lines: 18-19, 32-33, 73-77, 82-85, 90-91, 93
+    :emphasize-lines: 18-19, 30-31, 62-71, 73-75, 82-84
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -188,29 +188,33 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
         <!-- (3) Resolves views selected for rendering by @Controllers -->
         <!-- Settings View Resolver. -->
         <mvc:view-resolvers>
-          <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-            <property name="templateEngine" ref="templateEngine" />
-            <property name="characterEncoding" value="UTF-8" />
-          </bean>
+            <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+                <property name="templateEngine" ref="templateEngine" />
+                <property name="characterEncoding" value="UTF-8" />
+                <property name="forceContentType" value="true" />
+                <property name="contentType" value="text/html;charset=UTF-8" />
+            </bean>
         </mvc:view-resolvers>
 
         <!-- (4) -->
-        <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
-          <property name="prefix" value="/WEB-INF/views/" />
-          <property name="suffix" value=".html" />
-          <property name="templateMode" value="HTML" />
-          <property name="characterEncoding" value="UTF-8" />
+        <bean id="templateResolver"
+            class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+            <property name="prefix" value="/WEB-INF/views/" />
+            <property name="suffix" value=".html" />
+            <property name="templateMode" value="HTML" />
+            <property name="characterEncoding" value="UTF-8" />
         </bean>
 
         <!-- (5) -->
+        <!-- TemplateEngine. -->
         <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
-          <property name="enableSpringELCompiler" value="true" />
-          <property name="templateResolver" ref="templateResolver" />
-          <property name="additionalDialects">
-            <set>
-              <bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect" />
-            </set>
-          </property>
+            <property name="templateResolver" ref="templateResolver" />
+            <property name="enableSpringELCompiler" value="true" />
+            <property name="additionalDialects">
+                <set>
+                    <bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect" />
+                </set>
+            </property>
         </bean>
 
         <bean id="requestDataValueProcessor"
@@ -547,12 +551,12 @@ Controllerの作成
     <title>Echo Application</title>
     </head>
     <body>
-      <!--/* (2) */-->
-      <form th:object="${echoForm}" th:action="@{/echo/hello}" method="post">
-        <label for="name">Input Your Name:</label>
-        <input th:field="*{name}" /> <!--/* (3) */-->
-        <input type="submit" />
-      </form>
+        <!--/* (2) */-->
+        <form th:object="${echoForm}" th:action="@{/echo/hello}" method="post">
+            <label for="name">Input Your Name:</label>
+            <input th:field="*{name}" /> <!--/* (3) */-->
+            <input type="submit" />
+        </form>
     </body>
     </html>
 
@@ -590,12 +594,12 @@ Controllerの作成
     <title>Echo Application</title>
     </head>
     <body>
-      <form action="/helloworld/echo/hello" method="post">
-        <input type="hidden" name="_csrf" value="43595f38-3edd-4c08-843b-3c31a00d2b15" />      
-        <label for="name">Input Your Name:</label>
-        <input id="name" name="name" value=""/>
-        <input type="submit" />
-      </form>
+        <form action="/helloworld/echo/hello" method="post">
+            <input type="hidden" name="_csrf" value="43595f38-3edd-4c08-843b-3c31a00d2b15" />      
+            <label for="name">Input Your Name:</label>
+            <input id="name" name="name" value=""/>
+            <input type="submit" />
+        </form>
     </body>
     </html>
 
@@ -614,7 +618,7 @@ Controllerの作成
     <title>Echo Application</title>
     </head>
     <body>
-      <p th:text="|Hello ${name}|"></p> <!--/* (4) */-->
+        <p th:text="|Hello ${name}|"></p> <!--/* (4) */-->
     </body>
     </html>
 
@@ -753,12 +757,12 @@ Spring MVCでは、 `Bean Validation <http://jcp.org/en/jsr/detail?id=349>`_\ �
     <title>Echo Application</title>
     </head>
     <body>
-      <form th:object="${echoForm}" th:action="@{/echo/hello}" method="post">
-        <label for="name">Input Your Name:</label>
-        <input th:field="*{name}" />
-        <span th:errors="*{name}" style="color:red"></span> <!--/* (1) */-->
-        <input type="submit" />
-      </form>
+        <form th:object="${echoForm}" th:action="@{/echo/hello}" method="post">
+            <label for="name">Input Your Name:</label>
+            <input th:field="*{name}" />
+            <span th:errors="*{name}" style="color:red"></span> <!--/* (1) */-->
+            <input type="submit" />
+        </form>
     </body>
     </html>
 
@@ -798,13 +802,13 @@ Spring MVCでは、 `Bean Validation <http://jcp.org/en/jsr/detail?id=349>`_\ �
     <title>Echo Application</title>
     </head>
     <body>
-      <form action="/helloworld/echo/hello" method="post">
-        <input type="hidden" name="_csrf" value="6e94a78d-4a2c-4a41-a514-0a60f0dbedaf" />
-        <label for="name">Input Your Name:</label>
-        <input id="name" name="name" value=""/>
-        <span style="color:red">size must be between 1 and 5</span>
-        <input type="submit" />
-      </form>
+        <form action="/helloworld/echo/hello" method="post">
+          <input type="hidden" name="_csrf" value="6e94a78d-4a2c-4a41-a514-0a60f0dbedaf" />
+          <label for="name">Input Your Name:</label>
+          <input id="name" name="name" value=""/>
+          <span style="color:red">size must be between 1 and 5</span>
+          <input type="submit" />
+        </form>
     </body>
     </html>
 

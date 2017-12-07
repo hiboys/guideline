@@ -328,7 +328,7 @@ Maven Archetypeで作成したプロジェクトでは、\ ``x.xx.fw.9999``\ 形
 
         <div class="error">
             <span th:text="${#strings.isEmpty(exceptionCode)} ? #{e.xx.fw.5001} : |[${exceptionCode}] #{e.xx.fw.5001}|">[e.xx.fw.5001]
-            Resource not found.</span>
+                Resource not found.</span>
         </div>
 
 **[applicationContext.xml]**
@@ -463,7 +463,7 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
             <h1>Resource Not Found Error!</h1>
             <div class="error">
                 <span th:text="${#strings.isEmpty(exceptionCode)} ? #{e.xx.fw.5001} : |[${exceptionCode}] #{e.xx.fw.5001}|">[e.xx.fw.5001]
-                Resource not found.</span>
+                    Resource not found.</span>
             </div>
             <div th:if="${resultMessages} != null" class="alert alert-error" th:class="|alert alert-${resultMessages.type}|">
                 <ul>

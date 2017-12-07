@@ -243,7 +243,7 @@ Spring Securityはフォーム認証用のログインフォームをデフォ�
         <h3>Login Screen</h3>
         <!--/* (1) */-->
         <div th:if="${param.keySet().contains('error')}"
-          th:with="exception=${#request.getAttribute('SPRING_SECURITY_LAST_EXCEPTION')} ?: ${session[SPRING_SECURITY_LAST_EXCEPTION]}">
+            th:with="exception=${#request.getAttribute('SPRING_SECURITY_LAST_EXCEPTION')} ?: ${session[SPRING_SECURITY_LAST_EXCEPTION]}">
             <div th:if="${exception != null}" class="alert alert-error">
                 <span th:text="${exception.message}"></span><!--/* (2) */-->
             </div>

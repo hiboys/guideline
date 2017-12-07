@@ -585,7 +585,7 @@ How to extend
   <meta charset="utf-8">
   <title>Business Error!</title>
   <link rel="stylesheet"
-      href="../../../../resources/app/css/styles.css" th:href="@{/resources/app/css/styles.css}" type="text/css">
+      href="../../../../resources/app/css/styles.css" th:href="@{/resources/app/css/styles.css}">
   </head>
   <body>
       <div id="wrapper">
