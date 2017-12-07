@@ -606,15 +606,6 @@ spring-mvc-rest.xmlの作成
                     <property name="codeListIdPattern" value="CL_.+" />
                 </bean>
             </mvc:interceptor>
-            <!--  REMOVE THIS LINE IF YOU USE JPA
-            <mvc:interceptor>
-                <mvc:mapping path="/**" />
-                <mvc:exclude-mapping path="/resources/**" />
-                <mvc:exclude-mapping path="/**/*.html" />
-                <bean
-                    class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor" />
-            </mvc:interceptor>
-                REMOVE THIS LINE IF YOU USE JPA  -->
         </mvc:interceptors>
 
         <!-- Settings View Resolver. -->
@@ -1243,9 +1234,6 @@ GET Todoの実装
             todo.setFinished(false);
 
             todoRepository.create(todo);
-            /* REMOVE THIS LINE IF YOU USE JPA
-                todoRepository.save(todo);
-               REMOVE THIS LINE IF YOU USE JPA */
 
             return todo;
         }
@@ -1262,9 +1250,6 @@ GET Todoの実装
             }
             todo.setFinished(true);
             todoRepository.update(todo);
-            /* REMOVE THIS LINE IF YOU USE JPA
-                todoRepository.save(todo);
-               REMOVE THIS LINE IF YOU USE JPA */
             return todo;
         }
 
@@ -1687,9 +1672,6 @@ DELETE Todoの実装
             todo.setFinished(false);
 
             todoRepository.create(todo);
-            /* REMOVE THIS LINE IF YOU USE JPA
-                todoRepository.save(todo);
-               REMOVE THIS LINE IF YOU USE JPA */
 
             return todo;
         }
@@ -1704,9 +1686,6 @@ DELETE Todoの実装
             }
             todo.setFinished(true);
             todoRepository.update(todo);
-            /* REMOVE THIS LINE IF YOU USE JPA
-                todoRepository.save(todo);
-               REMOVE THIS LINE IF YOU USE JPA */
             return todo;
         }
 

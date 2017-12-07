@@ -126,7 +126,6 @@ Entityクラスの作成方針
  .. warning::
 
     テーブルが正規化されていない場合は、 以下の点を考慮して **EntityクラスおよびRepositoryを作成する方式を採用すべきか検討した方がよい。**
-    特に正規化されていないテーブルとJPAとの相性はあまりよくないので、テーブルが正規化されていない場合は、JPAを使用してEntityオブジェクトを操作する方式は採用しない方が無難である。
 
     * | Entityを作成する難易度が高くなるため、適切なEntityクラスの作成が出来ない可能性がある。
       | 加えて、Entityクラスを作成するために、必要な工数が多くなる可能性も高い。
@@ -404,15 +403,6 @@ Repositoryは、RepositoryインタフェースとRepositoryImplで構成され�
     可能な限り、永続先に依存するロジックは、Serviceではなく、RepositoryImplで実装することを推奨するが、
     永続先に依存するロジックを排除するのが難しい場合や、排除することで得られるメリットが少ない場合は、
     無理に排除せず、業務ロジック(Service)の処理として、永続先に依存するロジックを実装してもよい。
-
-    排除できない具体例として、Spring Data JPAから提供されている\ ``org.springframework.data.jpa.repository.JpaRepository``\ インタフェース
-    のsaveメソッドの呼び出し時に、一意制約エラーをハンドリングしたい場合である。
-    JPAではEntityへの操作はキャッシュされ、トランザクションコミット時にSQLを発行する仕組みになっている。
-    そのため、JpaRepositoryのsaveメソッドを呼び出しても、SQLは発行されないので、一意制約違反をロジックでハンドリングすることができない。
-    JPAでは、明示的にSQLを発行する手段として、キャッシュされている操作を反映するためのメソッド（flushメソッド）があり、
-    JpaRepositoryではsaveAndFlush、flushというメソッドが同じ目的で提供されている。
-    そのため、Spring Data JPAのJpaRepositoryを使って、一意制約違反エラーをハンドリングする必要がある場合は、
-    JPA依存のメソッド（saveAndFlushや、flush）を呼び出す必要がある。
 
  .. warning::
 
@@ -1491,7 +1481,6 @@ ServiceおよびSharedServiceでは、アプリケーションで使用する業
 業務データ(Entity)の取得、更新の実装例については、
 
 * MyBatis3を使う場合は、\ :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`\
-* JPAを使う場合は、\ :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`\
 
 を参照されたい。
 

@@ -646,15 +646,9 @@ Spring Dataより提供されているページネーション機能と、共通
 
  .. note:: **Repositoryの実装について**
 
-    上記フローの(5)と(6)の処理は、使用するO/R Mapperによって実装方法が異なる。
-
-    * MyBatis3を使用する場合は、Java(Service)及びSQLマッピングファイルの実装が必要である。
-    * Spring Data JPAを使用する場合は、Spring Data JPAの機能で自動的で行われるため実装は不要である。
-
-    具体的な実装例については、
+    上記フローの(5)と(6)の具体的な実装例については、
 
     * :doc:`../DataAccessDetail/DataAccessMyBatis3`
-    * :doc:`../DataAccessDetail/DataAccessJpa`
 
     を参照されたい。
 
@@ -898,19 +892,6 @@ Spring Dataのページネーション機能を有効化するための設定
 
 * :ref:`DataAccessMyBatis3HowToUseFindPageUsingMyBatisFunction`
 * :ref:`DataAccessMyBatis3HowToUseFindPageUsingSqlFilter`
-
-を参照されたい。
-
-|
-
-ドメイン層の実装(JPA編)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-JPA(Spring Data JPA)を使用してデータベースにアクセスする場合は、Controllerから受け取った ``Pageable`` オブジェクトをRepositoryに引き渡す。
-
-ドメイン層で実装するページ検索処理の詳細については、
-
-* :ref:`DataAccessJpaHowToUseFindPage`
-
 
 を参照されたい。
 

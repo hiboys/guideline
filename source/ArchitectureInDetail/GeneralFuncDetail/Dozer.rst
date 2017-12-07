@@ -996,10 +996,6 @@ Dozerは、以下のCollectionタイプの双方向自動マッピングをサ�
     
     .. figure:: ./images/dozer-differrence2.png
        :width: 50%
-  
-  \ **コピー先がJPA (Hibernate)のエンティティで1対多や多対多の関連を持つ場合は要注意である**\ 。コピー先のエンティティがEntityManagerの管理下にある場合、予期せぬトラブルに遭うことがある。
-  例えばコレクションのコンテナが変更されると全件DELETE + 全件INSERTのSQLが発行され、「non-cumulativeかつremove-orphans=true」でコピーした場合は変更内容をUPDATE(要素数が異なる場合はDELETE or INSERT)のSQLが発行される場合がある。
-  どちらが良いかは要件次第である。
 
 
 .. warning::
