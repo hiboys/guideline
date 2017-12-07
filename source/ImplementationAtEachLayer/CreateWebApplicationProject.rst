@@ -455,7 +455,8 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
     <head>
     <meta charset="utf-8">
     <title>Resource Not Found Error!</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet"
+        href="../../../../resources/app/css/styles.css" th:href="@{/resources/app/css/styles.css}">
     </head>
     <body>
         <div id="wrapper">
