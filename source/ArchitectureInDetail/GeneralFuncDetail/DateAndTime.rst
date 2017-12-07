@@ -739,7 +739,8 @@ org.terasoluna.gfw.common.date パッケージの利用方法
 和暦（JapaneseDate）
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-| Date and Time APIでは``java.time.chrono.JapaneseDate`` という、和暦を扱うクラスが提供されている。
+| Date and Time APIでは ``java.time.chrono.JapaneseDate`` という、和暦を扱うクラスが提供されている。
+
 
     .. note::
 
@@ -806,7 +807,8 @@ org.terasoluna.gfw.common.date パッケージの利用方法
 西暦・和暦の変換
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| fromメソッドを使うことで``java.time.LocalDate`` からの変換を容易に行える。
+| fromメソッドを使うことで ``java.time.LocalDate`` からの変換を容易に行える。
+
 
 .. code-block:: java
 
