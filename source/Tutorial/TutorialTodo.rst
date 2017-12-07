@@ -568,7 +568,7 @@ Todoアプリケーションの開発を始める前に、プロジェクトの�
 以下のような実装となっている。
 
 .. code-block:: jsp
-    :emphasize-lines: 12
+    :emphasize-lines: 11
 
     <!DOCTYPE html>
     <html>
