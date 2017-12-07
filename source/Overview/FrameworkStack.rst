@@ -81,7 +81,7 @@ Viewには、Thymeleafを利用する。
 
   * 実装は、\ `Hibernate Validator 5.3 <http://docs.jboss.org/hibernate/validator/5.3/reference/en-US/html/>`_\ を利用する。
 
-* 相関チェックには\ `Bean Validation <http://download.oracle.com/otn-pub/jcp/bean_validation-1_1-fr-eval-spec/bean-validation-specification.pdf>`_\ 、もしくは\ `Spring Validation <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/validation.html#validator>`_\ を利用する。
+* 相関チェックには\ `Bean Validation <http://download.oracle.com/otn-pub/jcp/bean_validation-1_1-fr-eval-spec/bean-validation-specification.pdf>`_\ 、もしくは\ `Spring Validation <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/validation.html#validator>`_\ を利用する。
 
   * 使い分けについては\ :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`\ を参照されたい。
 
@@ -254,7 +254,7 @@ version 1.5.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - Spring
       - org.springframework.security.oauth
       - spring-security-oauth2
-      - 2.0.12.RELEASE
+      - 2.0.14.RELEASE
       - \*
       -
     * - MyBatis3
