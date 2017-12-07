@@ -17,6 +17,8 @@ Spring MVCは、公式で以下のように説明されている。
      that facilitates the development of web applications. Spring's DispatcherServlet however, does more than just that.
      It is completely integrated with the Spring IoC container and as such allows you to use every other feature that Spring has.
 
+.. _SpringMVCOverview:
+
 Overview of Spring MVC Processing Sequence
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
