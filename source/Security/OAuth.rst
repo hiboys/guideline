@@ -2658,7 +2658,7 @@ OAuth2RestTemplateの設定
 
     本実装例では、実装中に設定する各サーバのコンテキストルートを以下のプレースホルダで表現している。
 
-        .. tabularcolumns:: |p{0.15\linewidth}|p{0.20\linewidth}|p{0.65\linewidth}|
+        .. tabularcolumns:: |p{0.50\linewidth}|p{0.50\linewidth}|
         .. list-table::
             :header-rows: 1
             :stub-columns: 1
@@ -5066,7 +5066,7 @@ RFCに準拠したエンドポイントや、認可サーバ内でフォワー�
 以下に、コンポーネントとして登録されるエンドポイント、およびフォワード先のデフォルトパスと、
 エンドポイントのカスタマイズ時に変更する<oauth2:authorization-server>タグの属性値を示す。
 
-.. tabularcolumns:: |p{0.20\linewidth}|p{0.20\linewidth}|p{0.60\linewidth}|
+.. tabularcolumns:: |p{0.20\linewidth}|p{0.20\linewidth}|p{0.20\linewidth}|p{0.40\linewidth}|
 .. list-table:: **エンドポイント**
     :header-rows: 1
     :widths: 20 20 20 40
@@ -5093,7 +5093,7 @@ RFCに準拠したエンドポイントや、認可サーバ内でフォワー�
 
 |
 
-.. tabularcolumns:: |p{0.20\linewidth}|p{0.20\linewidth}|p{0.60\linewidth}|
+.. tabularcolumns:: |p{0.20\linewidth}|p{0.20\linewidth}|p{0.20\linewidth}|p{0.40\linewidth}|
 .. list-table:: **フォワード先**
     :header-rows: 1
     :widths: 20 20 20 40
