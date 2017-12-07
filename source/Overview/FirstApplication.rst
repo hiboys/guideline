@@ -355,7 +355,7 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
 最後に、Welcomeページを表示するためのJSP (\ ``src/main/webapp/WEB-INF/views/welcome/home.jsp``\ ) について、簡単に説明する。
 
 .. code-block:: jsp
-    :emphasize-lines: 12
+    :emphasize-lines: 11
 
     <!DOCTYPE html>
     <html>
