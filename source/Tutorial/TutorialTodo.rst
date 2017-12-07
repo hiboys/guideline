@@ -13,9 +13,9 @@
 このチュートリアルで学ぶこと
 --------------------------------------------------------------------------------
 
-* TERASOLUNA Server Framework for Java (5.x)による基本的なアプリケーションの開発方法
+* Macchinetta Server Framework (1.x)による基本的なアプリケーションの開発方法
 * MavenおよびSTS(Eclipse)プロジェクトの構築方法
-* TERASOLUNA Server Framework for Java (5.x)の :doc:`../Overview/ApplicationLayering` に従った開発方法
+* Macchinetta Server Framework (1.x)の :doc:`../Overview/ApplicationLayering` に従った開発方法
 
 
 対象読者
@@ -216,9 +216,9 @@ Delete TODO
      .. code-block:: bash
 
         mvn archetype:generate -B\
-         -DarchetypeGroupId=org.terasoluna.gfw.blank\
-         -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype\
-         -DarchetypeVersion=5.3.0.RELEASE\
+         -DarchetypeGroupId=com.github.macchinetta.blank\
+         -DarchetypeArtifactId=macchinetta-web-blank-noorm-thymeleaf-archetype\
+         -DarchetypeVersion=1.4.0.RELEASE\
          -DgroupId=todo\
          -DartifactId=todo\
          -Dversion=1.0.0-SNAPSHOT
@@ -236,9 +236,9 @@ O/R Mapperに依存しないブランクプロジェクトの作成
 .. code-block:: console
 
     mvn archetype:generate -B^
-     -DarchetypeGroupId=org.terasoluna.gfw.blank^
-     -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeGroupId=com.github.macchinetta.blank^
+     -DarchetypeArtifactId=macchinetta-web-blank-noorm-thymeleaf-archetype^
+     -DarchetypeVersion=1.4.0.RELEASE^
      -DgroupId=todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
@@ -254,9 +254,9 @@ MyBatis3を使用してデータベースにアクセスするRepositoryImpl用�
 .. code-block:: console
 
     mvn archetype:generate -B^
-     -DarchetypeGroupId=org.terasoluna.gfw.blank^
-     -DarchetypeArtifactId=terasoluna-gfw-web-blank-mybatis3-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeGroupId=com.github.macchinetta.blank^
+     -DarchetypeArtifactId=macchinetta-web-blank-thymeleaf-archetype^
+     -DarchetypeVersion=1.4.0.RELEASE^
      -DgroupId=todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
@@ -3184,11 +3184,11 @@ Service及びアプリケーション層を作成後にAPサーバーを起動�
 このチュートリアルでは、以下の内容を学習した。
 
 
-* TERASOLUNA Server Framework for Java (5.x)による基本的なアプリケーションの開発方法
+* Macchinetta Server Framework (1.x)による基本的なアプリケーションの開発方法
 
 * MavenおよびSTS(Eclipse)プロジェクトの構築方法
 
-* TERASOLUNA Server Framework for Java (5.x)のアプリケーションのレイヤ化に従った開発方法
+* Macchinetta Server Framework (1.x)のアプリケーションのレイヤ化に従った開発方法
 
  * POJO(+ Spring)を使用したドメイン層の実装
  * POJO(+ Spring MVC)とJSPタグライブラリを使用したアプリケーション層の実装

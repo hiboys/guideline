@@ -33,9 +33,9 @@ Spring Frameworkに関して、本ドキュメントを読むための基礎知�
 ================================================================================
 
 * \ :doc:`../Overview/index`\ 
-    Spring MVCの概要や、TERASOLUNA Server Framework for Java (5.x)の基本的な考え方を説明する。
+    Spring MVCの概要や、Macchinetta Server Framework (1.x)の基本的な考え方を説明する。
 * \ :doc:`../ImplementationAtEachLayer/index`\ 
-    TERASOLUNA Server Framework for Java (5.x)を利用してアプリケーション開発する上で必ず押さえておかなくてはならない知識や作法について説明する。
+    Macchinetta Server Framework (1.x)を利用してアプリケーション開発する上で必ず押さえておかなくてはならない知識や作法について説明する。
 * \ :doc:`../ArchitectureInDetail/WebApplicationDetail/index`\
     Webアプリケーション開発で必要となる機能をどう実装するか、何に気を付けるべきかを説明する。
 * \ :doc:`../ArchitectureInDetail/WebServiceDetail/index`\
@@ -49,9 +49,9 @@ Spring Frameworkに関して、本ドキュメントを読むための基礎知�
 * \ :doc:`../Security/index`\
     Spring Securityを中心としたセキュリティ対策について説明する。
 * \ :doc:`../Tutorial/index`\
-    簡単なアプリケーション開発を通して、TERASOLUNA Server Framework for Java (5.x)によるアプリケーション開発を体験する。
+    簡単なアプリケーション開発を通して、Macchinetta Server Framework (1.x)によるアプリケーション開発を体験する。
 * \ :doc:`../Appendix/index`\
-    TERASOLUNA Server Framework for Java (5.x)を利用する場合の付加情報を説明する。
+    Macchinetta Server Framework (1.x)を利用する場合の付加情報を説明する。
 
 このドキュメントの読み方
 ================================================================================
@@ -62,14 +62,14 @@ Spring Frameworkに関して、本ドキュメントを読むための基礎知�
 
 次に"\ :doc:`../Tutorial/index`\ "に進む。
 このチュートリアルでは"習うより慣れろ"を目的として、
-詳細な説明の前にまず手を動かして、TERASOLUNA Server Framework for Java (5.x)によるアプリケーション開発を体感していただきたい。
+詳細な説明の前にまず手を動かして、Macchinetta Server Framework (1.x)によるアプリケーション開発を体感していただきたい。
 
 チュートリアルを実践したのちに、"\ :doc:`../ImplementationAtEachLayer/index`\ "でアプリケーション開発の詳細を学ぶ。
 特に"\ :doc:`../ImplementationAtEachLayer/ApplicationLayer`\ "でSpring MVCによる開発のノウハウを凝集して説明しているため、
 何度も読み返すことを推奨する。
 本章を読み終えた後にもう一度"\ :doc:`../Tutorial/index`\ "を振り返るとより理解が深まる。
 
-**ここまではTERASOLUNA Server Framework for Java (5.x)を使用するすべての開発者が読むことを強く推奨する。**
+**ここまではMacchinetta Server Framework (1.x)を使用するすべての開発者が読むことを強く推奨する。**
 
 "\ :doc:`../ArchitectureInDetail/WebApplicationDetail/index`\ "、"\ :doc:`../ArchitectureInDetail/WebServiceDetail/index`\ "、"\ :doc:`../ArchitectureInDetail/DataAccessDetail/index`\ "、"\ :doc:`../ArchitectureInDetail/GeneralFuncDetail/index`\ "、"\ :doc:`../ArchitectureInDetail/MessagingDetail/index`\ "、"\ :doc:`../Security/index`\ "については
 目的に応じて必要なタイミングで参照すればよい。ただし、":doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`"はアプリケーション開発で通常は必要となるため、基本的には読んでおくこと。
@@ -95,7 +95,7 @@ Spring Frameworkに関して、本ドキュメントを読むための基礎知�
 ================================================================================
 
 本ガイドラインで説明している内容の動作検証環境については、
-「\ `テスト済み環境 <https://github.com/terasolunaorg/terasoluna-gfw-functionaltest/wiki/Tested-Environment>`_\」を参照されたい。
+「\ `テスト済み環境 <https://github.com/Macchinetta/spring-functionaltest/wiki/Tested-Environment>`_\」を参照されたい。
 
 
 .. raw:: latex

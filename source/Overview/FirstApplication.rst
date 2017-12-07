@@ -50,7 +50,7 @@ Spring MVCを用いたWebアプリケーションの開発に対するイメー�
 
     mvn archetype:generate -B^
      -DarchetypeGroupId=com.github.macchinetta.blank^
-     -DarchetypeArtifactId=macchinetta-web-blank-thymeleaf-archetype^
+     -DarchetypeArtifactId=macchinetta-web-blank-noorm-thymeleaf-archetype^
      -DarchetypeVersion=1.5.0.RELEASE^
      -DgroupId=com.example.helloworld^
      -DartifactId=helloworld^
@@ -61,9 +61,9 @@ Spring MVCを用いたWebアプリケーションの開発に対するイメー�
 .. code-block:: console
 
     C:\work>mvn archetype:generate -B^
-    More?  -DarchetypeGroupId=org.terasoluna.gfw.blank^
-    More?  -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
-    More?  -DarchetypeVersion=5.3.0.RELEASE^
+    More?  -DarchetypeGroupId=com.github.macchinetta.blank^
+    More?  -DarchetypeArtifactId=macchinetta-web-blank-noorm-thymeleaf-archetype^
+    More?  -DarchetypeVersion=1.4.0.RELEASE^
     More?  -DgroupId=com.example.helloworld^
     More?  -DartifactId=helloworld^
     More?  -Dversion=1.0.0-SNAPSHOT
@@ -79,9 +79,9 @@ Spring MVCを用いたWebアプリケーションの開発に対するイメー�
     [INFO]
     [INFO] --- maven-archetype-plugin:2.4:generate (default-cli) @ standalone-pom ---
     [INFO] Generating project in Batch mode
-    [INFO] Archetype repository not defined. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-archetype:5.3.0.RELEASE] found in catalog remote
+    [INFO] Archetype repository not defined. Using the one from [com.github.macchinetta.blank:macchinetta-web-blank-noorm-thymeleaf-archetype:1.4.0.RELEASE] found in catalog remote
     [INFO] ----------------------------------------------------------------------------
-    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-web-blank-archetype:5.3.0.RELEASE
+    [INFO] Using following parameters for creating project from Archetype: macchinetta-web-blank-noorm-thymeleaf-archetype:1.4.0.RELEASE
     [INFO] ----------------------------------------------------------------------------
     [INFO] Parameter: groupId, Value: com.example.helloworld
     [INFO] Parameter: artifactId, Value: helloworld

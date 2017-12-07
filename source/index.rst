@@ -1,9 +1,9 @@
-TERASOLUNA Server Framework for Java (5.x) Development Guideline
+Macchinetta Server Framework (1.x) Development Guideline
 ================================================================================
 
 .. note::
 
-  内容の誤りやコメントは\ `GithubのIssues <https://github.com/terasolunaorg/guideline/issues/new>`_\ にご登録お願いします。
+  内容の誤りやコメントは\ `GithubのIssues <https://github.com/Macchinetta/server-guideline/issues/new>`_\ にご登録お願いします。
 
 .. toctree::
    :maxdepth: 2

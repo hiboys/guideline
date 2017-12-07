@@ -75,7 +75,7 @@ JAX-WSとは
 
 JAX-WSを利用したWebサービスの開発について
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| TERASOLUNA Server Framework for Java (5.x)では、APサーバのJAX-WS実装とSpringの機能を利用してWebサービスの開発を行うことを推奨する。
+| Macchinetta Server Framework (1.x)では、APサーバのJAX-WS実装とSpringの機能を利用してWebサービスの開発を行うことを推奨する。
 | SOAPサーバ、クライアントどちらにおいても、通常のWebアプリケーション同様に、ブランクプロジェクト内のwebプロジェクトから作成したWARファイルをAPサーバにデプロイすることで、SOAP Web Serviceを実現することができる。
 
 .. Note::
