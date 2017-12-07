@@ -2675,28 +2675,25 @@ ThymeleafのテンプレートHTMLの実装
 
 Thymeleafのネームスペースを設定する
 """""""""""""""""""""""""""""""""""""""""""""""""
-| EclipseなどのIDEでテンプレートHTMLを作成するとき、Thymeleafのダイアレクトに対して警告が出る場合がある。
-| これは、 ``<html>`` タグにネームスペースを設定することで解除することができる。
+| Thymeleafを使用してテンプレートHTMLを作成する場合は、 ``th:text`` のようなThymeleaf独自の属性を使用する必要があるため、Thymeleafのネームスペースを付与する。
+| 通常は、テンプレートHTMLのどこでもThymeleaf独自の属性を使用できるように、 ``<html>`` 要素にネームスペースを付与することを推奨する。
 
  .. code-block:: html
     :emphasize-lines: 1
 
-    <html xmlns:th="http://www.thymeleaf.org"> <!-- (1) -->
+    <html xmlns:th="http://www.thymeleaf.org">
 
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-   :header-rows: 1
-   :widths: 10 90
+ .. note::
+     ネームスペースはXHTMLの標準で定義された以外の要素・属性を使用する場合に付与するものであり、HTML5では本来不要なものである。（事実、ネームスペースを付与しなくとも、テンプレートの解釈に問題は生じない。）
+     ただし、HTML5であっても標準で定義された以外の要素・属性を使用すると、EclipseなどのIDEで警告が出力されるため、これを抑止するためにネームスペースを付与すべきである。
 
-   * - 項番
-     - 説明
-   * - | (1)
-     - スタンダードダイアレクトが提供する属性を使用したとき、EclipseなどのIDEでの警告を抑止するため、ネームスペースを付与する。
+     なお、テンプレートを解釈して出力されるHTMLからは、ネームスペース（ ``xmlns:th`` ）は削除される。
 
-.. note::
-      ``xmlns:th`` 属性はIDE上での警告を抑止するものであり、テンプレートHTML上に記述しなくてもエラーは出ない。
-      ただし、出力されるHTMLには ``xmlns:th`` 属性は現れないことから、記述によるデメリットは特にない。
-      こうしたことから、IDEを利用してテンプレートHTMLを作成する際にはネームスペースを設定することを推奨する。
+ .. note::
+     本ガイドラインでは解説しないが、HTML5に準拠する形でThymeleafを使用することも可能である。
+     具体的には、HTML5で独自の属性を使用する場合は属性名に ``data-`` をつけるが、Thymeleafでもこれを使用して ``data-th-text`` のように属性を記述することができる。
+
+     詳細については、"The Standard Dialect"の `3.1 A multi-language welcome <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#a-multi-language-welcome>`_\ を参照されたい。
 
 |
 
@@ -2704,7 +2701,9 @@ Thymeleafのネームスペースを設定する
 
 モデルに格納されている値を表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-モデル（フォームオブジェクトやドメインオブジェクトなど）に格納されている値をHTMLに表示する場合、Thymeleafの ``th:text`` 属性に変数式 ``${}`` を指定する。
+| Thymeleafで動的な値をHTMLに表示するには、 ``th:text`` 属性を使用する。
+| モデル（フォームオブジェクトやドメインオブジェクトなど）に格納されている値をHTMLに表示する場合、 ``th:text`` 属性に変数式 ``${}`` を使用すれば良い。
+| なお、式にはThymeleaf Standard Expressionと呼ばれるEL式を利用して、オブジェクトやプロパティを指定することができる。
 
 - SampleController.java
 
@@ -2744,8 +2743,7 @@ Thymeleafのネームスペースを設定する
      - | View(テンプレートHTML)側では、 ``th:text`` などの属性において${属性名}のような式を記述することできる。
        | ``${}`` は変数式で、\ ``Model``\ オブジェクトに追加したデータを取得することができる。
        | 例では、取得したデータをHTMLエスケープして出力するために ``th:text`` 属性を利用し、「th:text="${hello}"」としている。
-       | なお、 ``th:utext`` を用いるとHTMLエスケープしないでデータを出力することができるが、XSS対策のため必ずHTMLエスケープを行うことを推奨する。
-       | HTMLエスケープの詳細については、 :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
+       | XSS対策のため必ずHTMLエスケープを行うことを推奨する。詳細については、 :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
 
 |
 
@@ -2760,30 +2758,63 @@ Thymeleafのネームスペースを設定する
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.30\linewidth}|p{0.60\linewidth}|
  .. list-table::
    :header-rows: 1
-   :widths: 10 30 60
+   :widths: 5 15 40 40
 
    * - 項番
      - メソッド名
      - 説明
+     - 使用例
    * - 1.
      - formatInteger
-     - 整数値にフォーマットする。引数には、数値型の値、最小桁数（、千の位の区切り文字）を設定する。
+     - 整数値にフォーマットする。
+
+       引数として、以下のパターンをとる。
+
+       * 整数型、最小桁数
+       * 整数型、最小桁数、千の位の区切り文字
+     - .. code-block:: text
+
+             ${#numbers.formatInteger(num, 1, 'COMMA')}
+
    * - 2.
      - formatDecimal
-     - 小数にフォーマットする。引数には、数値型の値、最小桁数（、千の位の区切り文字）、小数桁数（、小数点の文字）を設定する。
+     - 小数値にフォーマットする。
+
+       引数として、以下のパターンをとる。
+
+       * 浮動小数点型、最小桁数、小数桁数
+       * 浮動小数点型、最小桁数、小数桁数、小数点の文字
+       * 浮動小数点型、最小桁数、千の位の区切り文字、小数桁数、小数点の文字
+     - .. code-block:: text
+
+             ${#numbers.formatDecimal(num, 1, 'COMMA', 2, 'POINT')}
+
    * - 3.
      - formatPercent
-     - パーセント表示にフォーマットする。引数には、数値型の値、最小桁数を設定する。
+     - パーセント表示にフォーマットする。
+
+       引数として、以下のパターンをとる。
+
+       * 浮動小数点型
+       * 浮動小数点型、最小桁数、小数桁数
+     - .. code-block:: text
+
+             ${#numbers.formatPercent(num, 1, 2)}
 
  .. note::
      千の位の区切り文字、小数点の文字としては、以下のものが指定できる。
-     * 'POINT'
-     * 'COMMA'
-     * 'WHITESPACE'
-     * 'NONE'
-     * 'DEFAULT' (ロケールに依存)
 
-例えば小数を表示する際には、 ``#numbers.formatDecimal`` メソッドを使用してフォーマットする。
+      * 'POINT' - ピリオド ``.``
+      * 'COMMA' - カンマ ``,``
+      * 'WHITESPACE' - 半角スペース
+      * 'NONE' - 区切り文字なし
+      * 'DEFAULT' - ロケールに依存
+
+     指定しなかった場合、千の位の区切り文字には'NONE'が、小数点には'POINT'が設定される。
+
+|
+
+ 例えば小数を表示する際には、 ``#numbers.formatDecimal`` メソッドを使用してフォーマットする。
 
  .. code-block:: html
     :emphasize-lines: 1
@@ -2799,10 +2830,10 @@ Thymeleafのネームスペースを設定する
      - 説明
    * - | (1)
      - | 取得した値を ``#numbers.formatDecimal`` メソッドでフォーマットし、変数式 ``${}`` に指定する。
-       | 例では、最小桁数に1を、小数桁数に2を、小数点に ``'POINT'`` を、表示するフォーマットに設定している。
-       | 仮に ``helloBean.numberItem`` の値が ``"1.2"`` の場合、画面には ``"1.20"`` が出力される。
+       | 例では、最小桁数に1を、小数桁数に2を、小数点に ``POINT`` (ピリオド)を、表示するフォーマットに設定している。
+       | 仮に ``helloBean.numberItem`` の値が ``1.2`` の場合、画面には ``1.20`` が出力される。
 
-.. note::
+ .. note::
     ``#numbers`` は、配列やリストなどを対象にフォーマットを行うことも可能である。
 
      詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects>`_\ を参照されたい。
@@ -2831,10 +2862,10 @@ Thymeleafのネームスペースを設定する
      - 説明
    * - | (1)
      - | 取得した値を ``#dates.format`` メソッドでフォーマットし、変数式 ``${}`` に指定する。
-       | 例では、"``yyyy-MM-dd``" を引数として与え、表示するフォーマットに設定している。
-       | 仮に ``helloBean.dateItem`` の値が2013年3月2日の場合、画面には "``2013-03-02``" が出力される。
+       | 例では、日付を ``yyyy-MM-dd`` 形式でフォーマットしている。
+       | 仮に ``helloBean.dateItem`` の値が2013年3月2日の場合、画面には ``2013-03-02`` が出力される。
 
-.. note::
+ .. note::
       ``#dates`` は、配列やリストを対象にフォーマットを行うことも可能である。
       
       詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects>`_\ を参照されたい。
@@ -2857,10 +2888,10 @@ Thymeleafのネームスペースを設定する
      - 説明
    * - | (1)
      - | 取得した値を ``#calendars.format`` メソッドでフォーマットし、変数式 ``${}`` に指定する。
-       | 例では、"``yyyy-MM-dd``" を引数として与え、表示するフォーマットに設定している。
-       | 仮に ``helloBean.calendarItem`` の値が2013年3月2日の場合、画面には ``"2013-03-02"`` が出力される。
+       | 例では、日付を ``yyyy-MM-dd`` 形式でフォーマットしている。
+       | 仮に ``helloBean.calendarItem`` の値が2013年3月2日の場合、画面には ``2013-03-02`` が出力される。
 
-.. note::
+ .. note::
       ``#calendars`` は、配列やリストを対象にフォーマットを行うことも可能である。
       
       詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects>`_\ を参照されたい。
@@ -2876,7 +2907,7 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
 これらの属性では、以下のいずれかの方法によって生成されたリクエストURL(Controllerのメソッドを呼び出すためのURL)を設定する。
 
 * ThymeleafのリンクURL式 ``@{}`` を使用してリクエストURLを組み立てる
-* Thymeleaf+Springの ``#mvc.uri`` メソッドを使用してリクエストURLを組み立てる
+* Thymeleaf+Springの ``#mvc.url`` メソッドを使用してリクエストURLを組み立てる
 
  .. note::
 
@@ -2923,7 +2954,7 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
 
 まず、ThymeleafのリンクURL式 ``@{}`` を使用してリクエストURLを組み立てる方法について説明する。
 
-* コンテキストルート相対URLを使用する
+* コンテキストルートからの相対パスを指定する
 
  .. code-block:: html
 
@@ -2941,7 +2972,7 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
     * - | (2)
       - | リンクURL式 ``@{}`` に'/'から始まるパスを記述すると、記述したパスをコンテキストルートに付与したURLが生成される。
 
-* ページ相対URLを使用する
+* 現在のパスからの相対パスを指定する
 
  .. code-block:: html
 
@@ -2955,16 +2986,37 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
     * - 項番
       - 説明
     * - | (3)
-      - | リンクURL式 ``@{}`` にパスを記述すると、現在のページから見た相対的なURLが生成される。
+      - | リンクURL式 ``@{}`` にパスを記述すると、現在のパスから見た相対的なURLが生成される。
 
-.. note::
-    リンクURL式 ``@{}`` は、コンテキストルート相対URLやページ相対URLを生成するほか、サーバー相対URL、プロトコル相対URLも生成できる。
+ .. note::
+    リンクURL式 ``@{}`` は、コンテキストルートからの相対パスやページ現在のパスからの相対パスを生成するほか、サーバールートからの相対パス、プロトコルからの相対パスも生成できる。
 
     詳細については、"The Standard Dialect"の `4.4 Link URLs <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#link-urls>`_\ を参照されたい。
 
 |
 
-リンクURL式では、URLパラメータを設定することが可能である。
+リンクURL式には、パスの一部またはパラメータとして変数を埋め込むことが可能である。
+
+* パスの一部に変数を埋め込む
+
+ .. code-block:: html
+
+    <form th:action="@{/user/{userId}/details(userId=${user.id})}" method="post"> <!-- (4) -->
+        <!-- ... -->
+    </form>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (4)
+      - | リンクURL式 ``@{}`` のパス内で変数式を使うこともできる。
+        | 例では、パスの ``{userId}`` の部分に変数 ``${user.id}`` の値が代入され、 ``/user/3/details`` といったパスが生成される。
+
+* パラメータとして変数を埋め込む
 
  .. code-block:: html
 
@@ -2985,37 +3037,16 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
 
 |
 
-また、URLパス内で変数式を使用することもできる。
+**Thymeleaf+Springの#mvc.urlメソッドを使用してリクエストURLを組み立てる**
 
- .. code-block:: html
+つぎに、Thymeleaf+Springの\ ``#mvc.url``\メソッドを使用してリクエストURLを組み立てる方法について説明する。
 
-    <form th:action="@{/user/{userId}/details(userId=${user.id})}" method="post"> <!-- (4) -->
-        <!-- ... -->
-    </form>
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-    :header-rows: 1
-    :widths: 10 90
-
-    * - 項番
-      - 説明
-    * - | (4)
-      - | リンクURL式 ``@{}`` のパス内で変数式を使うこともできる。
-        | 例では、パスの ``{userId}`` の部分に変数 ``${user.id}`` の値が代入され、 ``/user/3/details`` といったパスが生成される。
-      
-|
-
-**Thymeleaf+Springのメソッドを使用してリクエストURLを組み立てる**
-
-つぎに、Thymeleaf+Springの\ ``#mvc.uri``\メソッドを使用してリクエストURLを組み立てる方法について説明する。
-
-\ ``#mvc.uri``\ メソッドを使用すると、Controllerのメソッドのメタ情報(メソッドシグネチャやアノテーションなど)と連携して、
+\ ``#mvc.url``\ メソッドを使用すると、Controllerのメソッドのメタ情報(メソッドシグネチャやアノテーションなど)と連携して、
 リクエストURLを組み立てる事ができる。
 
  .. code-block:: html
 
-    <form th:action="${(#mvc.uri('HC#hello')).build()}" method="post"> <!-- (3) -->
+    <form th:action="${(#mvc.url('HC#hello')).build()}" method="post"> <!-- (3) -->
         <!-- ... -->
     </form>
 
@@ -3027,8 +3058,8 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
     * - 項番
       - 説明
     * - | (4)
-      - | \ ``#mvc.uri``\ メソッドの引数には、呼び出すControllerのメソッドに割り振られているリクエストマッピング名を指定する。
-        | \ ``#mvc.uri``\ メソッドからは、リクエストURLを組み立てるクラス(\ ``Mvc.MethodArgumentBuilderWrapper``\ )のオブジェクトが返却される。
+      - | \ ``#mvc.url``\ メソッドの引数には、呼び出すControllerのメソッドに割り振られているリクエストマッピング名を指定する。
+        | \ ``#mvc.url``\ メソッドからは、リクエストURLを組み立てるクラス(\ ``Mvc.MethodArgumentBuilderWrapper``\ )のオブジェクトが返却される。
         | \ ``Mvc.MethodArgumentBuilderWrapper``\ クラスは、ラップしている\ ``MvcUriComponentsBuilder.MethodArgumentBuilder``\オブジェクトと同等の機能をもつ。
         | \ ``MvcUriComponentsBuilder.MethodArgumentBuilder``\クラスには、
         
@@ -3076,22 +3107,19 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
 
 メッセージを表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| プロパティファイルからメッセージを取得し表示する場合、Thymeleafのメッセージ式 ``#{}`` を使用する。
+| プロパティファイルからメッセージを取得し表示する場合、Thymeleafのメッセージ式 ``#{}`` または変数式で ``#messages`` オブジェクトを使用する。
+| 単純なメッセージの表示にはメッセージ式を使用することを推奨する。
 
-- properties
+| なお、画面名、項目名、ガイダンス用のメッセージなどについては、国際化の必要がない場合はHTMLに直接記載してもよい。
+| ただし、国際化の必要がある場合はプロパティファイルからメッセージを取得し表示することを推奨する。
+| 詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization` を参照されたい。
+
+* properties
 
  .. code-block:: properties
-    :emphasize-lines: 1-2
 
     # (1)
     label.orderStatus=注文ステータス
-
-- テンプレートHTML
-
- .. code-block:: html
-    :emphasize-lines: 1
-
-    <span th:text="#{label.orderStatus}"></span> <!--/* (2) */-->
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -3102,37 +3130,71 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
      - 説明
    * - | (1)
      - | プロパティファイルにラベルの値を定義する。
+
+* テンプレートHTML
+
+ * メッセージ式 ``#{}`` を使う場合
+
+ .. code-block:: html
+
+    <span th:text="#{label.orderStatus}"></span> <!--/* (2) */-->
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+   * - 項番
+     - 説明
    * - | (2)
      - | メッセージ式にプロパティファイルのキー名を指定するとキー名に一致するプロパティ値が表示される。
 
-.. note::
-    メッセージ式で指定したメッセージがなかったとき、 ``??label.orderStatus??`` のようなデフォルトメッセージが返却されるが、
-    ここで ``null`` を返却させたい場合は、 ``#messages.msgOrNull`` メソッドを利用すればよい。
-    詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects>`_\ を参照されたい。
+ * 変数式で ``#messages`` オブジェクトを使う場合
 
-|
+ .. code-block:: html
 
-ここではThymeleafのメッセージ式 ``#{}`` を利用してプロパティファイルからメッセージを取得し表示する、という方法をとったが、実際には画面名、項目名などについてはテンプレートHTMLに直接記載してもよい。
+    <span th:text="${#messages.msg(label.orderStatus)"></span> <!--/* (3) */-->
 
-ただし、国際化の必要がある場合はこのような方法をとるのが望ましい。
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 90
 
-詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization` を参照されたい。
+   * - 項番
+     - 説明
+   * - | (3)
+     - | 変数式で ``#messages.msg`` メソッドにプロパティファイルのキー名を指定するとキー名に一致するプロパティ値が表示される。
+
+ .. note::
+      メッセージ式で指定したキーに該当するメッセージが存在しない場合は、 ``??label.orderStatus??`` のようにメッセージキーが返却される。
+      しかし例えば、メッセージが存在しない場合にはデフォルトメッセージを表示したい場合など、メッセージキーが返却されると判定が複雑になってしまう。
+      このような場合は、 ``#messages.msgOrNull`` メソッドと、後述するデフォルト式を利用することで、簡潔に記述することができる。
+      以下にコード例を示す。
+
+     .. code-block:: html
+
+        <span th:text="${#messages.msgOrNull(label.orderStatus) ?: '不明なステータス'}"></span>
+
+      デフォルト式については、 :ref:`view_thymeleaf_conditional-label` も参照されたい。
 
 |
 
 .. _view_thymeleaf_textcombine-label:
 
-テキストを組み立てる
+文字列を組み立てる
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-テキストやモデルに格納されている値などを組み合わせた文字列を出力したい場合、 ``+`` 演算子やパイプ( ``|`` )を使用する。
+| リテラルやモデルに格納されている値などを組み合わせた文字列を出力したい場合、 ``+`` 演算子やパイプ( ``|`` )を使用する。
+
+| 単純に文字列を結合するのであれば、可読性の高いパイプの使用を推奨する。
+| ただしパイプ内では計算や条件判定ができないため、これらが必要な場合は ``+`` 演算子を使用すると良い。
 
 - hello.html
 
  .. code-block:: html
     :emphasize-lines: 1-2
 
-    <span th:text="'Message : ' + ${helloBean.message}"></span> <!--/* (1) */-->
-    <span th:text="|Message : ${helloBean.message}|"></span> <!--/* (2) */-->
+    <span th:text="|Message : ${helloBean.message}|"></span> <!--/* (1) */-->
+    <span th:text="'Message : ' + ${helloBean.message}"></span> <!--/* (2) */-->
 
 - HTML created by View(hello.html)
 
@@ -3150,9 +3212,9 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
    * - 項番
      - 説明
    * - | (1)
-     - | 変数式やシングルクォート ``''`` で囲んだテキストは、 ``+`` 演算子を利用することにより結合できる。
+     - | パイプ( ``|`` )で囲むことにより、結合された文字列を生成できる。
    * - | (2)
-     - | パイプ( ``|`` )で囲むことにより、シングルクォートや ``+`` 演算子を利用せずに文字列を結合できる。
+     - | ``+`` 演算子を利用すると、変数式やシングルクォート ``''`` で囲んだテキストを結合できる。
    * - | (3)
      - | HTMLの出力例。出力されるHTMLは2行とも同じになる。
        | テキストの結合方法の混在は可読性を低下させるため、ここでは、パイプによる結合を推奨する。
@@ -3203,7 +3265,7 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
    * - | (1)
      - | ``${user.age}`` が12以上であった場合'adult'を、12未満であった場合'child'を表示する。
 
-.. note::
+ .. note::
     数値の配列やリストに対して、合計値や平均値を取得したい場合、 ``#aggregates`` オブジェクトを利用できる。
     詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#aggregates>`_\ を参照されたい。
 
@@ -3225,6 +3287,14 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
      - | ``?:`` 演算子は、左式 (例では ``${user.age}`` )が ``null`` であったときに限って右式(例では"no age specified")を選択し、それ以外の場合は左式を選択する。
        | これは上の3項演算子と同じ機能をもっており、このようにデフォルト式は簡単にnullチェックを行うことができる。
 
+ .. note::
+    No Operation Token( ``_`` )は、記述した属性で何もしないことを指示するものである。
+    以下のコード例において、 ``user.age`` が ``null`` だった場合、 ``th:text`` 属性は処理されず、'no age specified'が表示される。
+
+     .. code-block:: html
+
+        <span th:text="${user.age} ?: _">no age specified</span>
+
 |
 
 .. _view_thymeleaf_if-label:
@@ -3233,7 +3303,11 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 モデルが保持する値によって表示を切り替えたい場合は、Thymeleafの ``th:if`` 属性または ``th:switch`` 属性を使用する。
 
-``th:if`` 属性を使用して表示を切り替える。
+ .. note::
+    ``th:if`` 属性の逆の機能として ``th:unless`` 属性があるが、 ``th:if`` と ``th:unless`` の混在は可読性を低下させる場合があるため、いずれかへの統一を推奨する。
+    本ガイドラインにおいては、 ``th:if`` に統一している。
+
+* ``th:if`` 属性を使用して表示を切り替える。
 
  .. code-block:: html
     :emphasize-lines: 1
@@ -3257,10 +3331,9 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
        | また、 ``th:if`` 属性の逆の機能として ``th:unless`` 属性があるが、 ``th:if`` と ``th:unless`` の混在は可読性を低下させる場合があるため、いずれかへの統一を推奨する。
        | 本ガイドラインにおいては、 ``th:if`` に統一している。
 
-``th:switch`` 属性を使用して表示を切り替える。
+* ``th:switch`` 属性を使用して表示を切り替える。
 
  .. code-block:: html
-    :emphasize-lines: 1-2,8
 
     <div th:switch="${customer.type}"> <!--/* (1) */-->
         <div th:case="premium"> <!--/* (2) */-->
@@ -3324,39 +3397,40 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
    * - | (2)
      - | ``th:each`` 属性の左項に指定した変数に格納されているオブジェクトから変数値を取得している。
 
-コレクション内のオブジェクトに対してインデックスなどを取りたい場合は、次のようにテンプレートHTMLを実装する。
+ .. note::
+    コレクション内のオブジェクトに対してインデックスなどを取りたい場合は、次のようにテンプレートHTMLを実装する。
 
- .. code-block:: html
-    :emphasize-lines: 6-8
+     .. code-block:: html
+        :emphasize-lines: 6-8
 
-    <table>
-        <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Address</th>
-        </tr>
-        <tr th:each="customer, status : ${customers}"> <!--/* (1) */-->
-            <td th:text="${status.count}"></td> <!--/* (2) */-->
-            <td th:text="${customer.name}"></td>
-            <td th:text="${customer.address}"></td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Address</th>
+            </tr>
+            <tr th:each="customer, status : ${customers}"> <!--/* (1) */-->
+                <td th:text="${status.count}"></td> <!--/* (2) */-->
+                <td th:text="${customer.name}"></td>
+                <td th:text="${customer.address}"></td>
+            </tr>
+        </table>
 
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-   :header-rows: 1
-   :widths: 10 90
+     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+     .. list-table::
+       :header-rows: 1
+       :widths: 10 90
 
-   * - 項番
-     - 説明
-   * - | (1)
-     - | ``th:each`` 属性の左項に、要素の番号を格納する変数を2つ目に指定する。
-   * - | (2)
-     - | ``th:each`` 属性の左項で2つ目に指定した変数から、現在処理を行っている要素の位置を取得している。countは、要素の位置を1始まりで取得している。
-       | count以外の属性については、"The Standard Dialect"の `6.2 Keeping iteration status <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#keeping-iteration-status>`_\ を参照されたい。
+       * - 項番
+         - 説明
+       * - | (1)
+         - | ``th:each`` 属性の左項に、要素の番号を格納する変数を2つ目に指定する。
+       * - | (2)
+         - | ``th:each`` 属性の左項で2つ目に指定した変数から、現在処理を行っている要素の位置を取得している。countは、要素の位置を1始まりで取得している。
+           | count以外の属性については、"The Standard Dialect"の `6.2 Keeping iteration status <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#keeping-iteration-status>`_\ を参照されたい。
 
-.. note::
-    ``th:each`` 属性の詳細は、"The Standard Dialect"の `6 Iteration basis <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#iteration>`_\ を参照されたい。
+ .. note::
+     ``th:each`` 属性の詳細は、"The Standard Dialect"の `6 Iteration basis <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#iteration>`_\ を参照されたい。
 
 |
 
@@ -3364,7 +3438,7 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
 
 オブジェクトのプロパティを省略して指定する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Thymeleafの ``th:object`` 属性を用いると、オブジェクトのプロパティを省略して指定することができる。
+Thymeleafの ``th:object`` 属性を用いると、オブジェクト名を省略してプロパティを指定することができる。
 
  .. code-block:: html
     :emphasize-lines: 1
@@ -3391,7 +3465,7 @@ Thymeleafの ``th:object`` 属性を用いると、オブジェクトのプロ�
 
 ローカル変数を定義する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| Thymeleafでは、テンプレートHTMLの特定の要素に定義され、その要素内でのみ評価可能な変数のことをローカル変数と呼ぶ。
+| Thymeleafでは、テンプレートHTMLの特定の要素に定義され、その要素と要素配下のみで評価可能な変数のことをローカル変数と呼ぶ。
 | このローカル変数を定義する場合、 ``th:with`` 属性を使用する。
 
  .. code-block:: html
@@ -3411,7 +3485,7 @@ Thymeleafの ``th:object`` 属性を用いると、オブジェクトのプロ�
    * - | (1)
      - | \ ``th:with``\ 属性に"変数名=値"の形式で設定すると、指定した値をもつローカル変数を定義できる。
        | 例では、 ``localvar`` という名の変数を定義し、 ``Hello, (ユーザー名)`` という文字列を代入している。
-       | このローカル変数は、 ``th:with`` 属性を指定した ``<div>`` 要素内でのみ有効となる。
+       | このローカル変数は、 ``th:with`` 属性を指定した ``<div>`` 要素とその要素配下でのみ有効となる。
    * - | (2)
      - | 変数式 ``${}`` にローカル変数 ``localvar`` を指定する。
 
@@ -3419,7 +3493,7 @@ Thymeleafの ``th:object`` 属性を用いると、オブジェクトのプロ�
 
 .. _view_thymeleaf_preprocessing-label:
 
-優先的に式を処理する
+プリプロセッシング
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | ThymeleafのテンプレートHTMLでは通常、式は左から順に評価される。
 | そのため、先に処理したい部分が式内にある場合は特殊な記法が必要となり、それはプリプロセッシングと呼ばれている。
@@ -3443,7 +3517,7 @@ Thymeleafの ``th:object`` 属性を用いると、オブジェクトのプロ�
    * - | (1)
      - | 添え字などを先に解決する場合、プリプロセッシングが利用される。
        | 例では、現在 ``th:each`` で処理を行っている要素の位置を ``status.index`` で取得してから、 ``addresses`` オブジェクトの添え字としている。
-       | プリプロセッシングを利用しない場合、 ``addresses[${status.index}]`` に対して処理を行おうとしてしまい、 ``java.lang.NumberFormatException`` エラーが発生する。
+       | プリプロセッシングを利用しない場合、 ``addresses[${status.index}]`` において ``${status.index}`` を文字列として扱ってしまい、、 ``java.lang.NumberFormatException`` エラーが発生する。
 
 |
 
@@ -3451,7 +3525,11 @@ Thymeleafの ``th:object`` 属性を用いると、オブジェクトのプロ�
 
 フォームオブジェクトのプロパティをバインドする
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Thymeleaf+Springの ``th:field`` 属性を使用すると、フォームオブジェクトのプロパティをバインドすることができる。
+| Thymeleaf+Springの ``th:field`` 属性を使用すると、フォームオブジェクトのプロパティをバインドすることができる。
+
+ .. note:: 
+    フォームオブジェクトのプロパティのバインドそのものは ``th:field`` を使用することで可能となるが、
+    ``th:object`` と併用することで簡潔な記述となり、可読性が高まるため、これを推奨する。
 
  .. code-block:: html
     :emphasize-lines: 1-2
@@ -3480,6 +3558,10 @@ Thymeleaf+Springの ``th:field`` 属性を使用すると、フォームオブ�
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 入力チェックエラーの内容を表示する場合、Thymeleaf+Springの ``th:errors`` 属性を使用する。詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation` を参照されたい。
 
+ .. note:: 
+    入力チェックそのものは ``th:errors`` を使用することで可能となるが、
+    ``th:object`` と併用することで簡潔な記述となり、可読性が高まるため、これを推奨する。
+
  .. code-block:: html
     :emphasize-lines: 2
 
@@ -3504,17 +3586,18 @@ Thymeleaf+Springの ``th:field`` 属性を使用すると、フォームオブ�
 
 処理結果のメッセージを表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-処理結果を通知するメッセージを表示する場合、Springのメッセージリソースからメッセージを取得する。
-なお、以下では、TERASOLUNAのJSPタグである ``<t:messagesPanel>`` のデフォルト設定で出力するHTMLを生成する例として、以下のようにソースコードを記述している。
-詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement` を参照されたい。
+| 処理結果を通知するメッセージを表示する場合、 ``ResultMessages`` オブジェクトから結果メッセージを取り出して表示する必要がある。
+| 結果メッセージはコードまたはメッセージ文字列として格納されており、前者はコードをキーにプロパティファイルからメッセージを取得して表示する必要がある。
+| 詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement` を参照されたい。
+
+以下では、TERASOLUNAのJSPタグである ``<t:messagesPanel>`` のデフォルト設定で出力するHTMLを生成する例として、以下のようにソースコードを記述している。
 
  .. code-block:: html
     :emphasize-lines: 3-4
 
     <div class="messages">
         <h2>Message pattern</h2>
-        <div th:if="${resultMessages} != null" class="alert"
-            th:classappend="|alert-${resultMessages.type}|"> <!--/* (1) */-->
+        <div th:if="${resultMessages} != null" th:class="|alert alert-${resultMessages.type}|"> <!--/* (1) */-->
             <ul>
                 <li th:each="message : ${resultMessages}" 
                     th:text="${message.code} != null ? ${#messages.msgWithParams(message.code, message.args)} : ${message.text}"></li> <!--/* (2) */-->
@@ -3533,8 +3616,6 @@ Thymeleaf+Springの ``th:field`` 属性を使用すると、フォームオブ�
      - | ``resultMessages`` オブジェクトが ``null`` でないとき、 ``<div>`` とその配下の要素が実行される。
    * - | (2)        
      - | ``resultMessages`` オブジェクトに格納された ``message`` プロパティを、Thymeleafの ``#messages`` オブジェクトを使用して繰り返し取得し、出力する。
-       | ``resultMessages`` はコードで登録される場合と文字列で登録される場合があり、コードで登録された場合は ``message.code`` と ``message.args`` を表示し、
-       | 文字列で登録された場合(コードが ``null`` の場合)は ``message.text`` を表示する。
        
 |
 
@@ -3542,7 +3623,7 @@ Thymeleaf+Springの ``th:field`` 属性を使用すると、フォームオブ�
 
 コードリストを表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| ThymeleafのテンプレートHTMLからコードリストを参照する場合は、 ``java.util.Map`` インタフェースと同じ方法で参照することができる。
+| コードリストは、 ``java.util.Map`` 型として取得することができ、 ``Map`` インタフェースと同じ方法で参照することができる。
 | 詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist` を参照されたい。
 
 コードリストをセレクトボックスに表示する。
@@ -3591,9 +3672,13 @@ Thymeleaf+Springの ``th:field`` 属性を使用すると、フォームオブ�
 
 ページネーション用のリンクを表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-一覧表示を行う画面にてページネーション用のリンクを表示する場合、Spring Dataから提供されている仕組みを使用する。
-ページネーションは今回のリリースでは対応していないので、次版移行で対応予定である。
+一覧表示を行う画面にてページネーション用のリンクを表示する場合、モデルから ``Page`` インタフェースを取得し、ページネーション用のリンクを生成する。
 
+.. todo::
+
+    **TBD**
+
+    次版以降で詳細を記載する予定である。
 
 |
 
@@ -3601,8 +3686,7 @@ Thymeleaf+Springの ``th:field`` 属性を使用すると、フォームオブ�
 
 権限によって表示を切り替える
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| ログインしているユーザの権限によって表示を切り替える場合は、ThymeleafのSpring Security連携用ダイアレクトで提供されているオブジェクトや属性を使用する。
-| Spring Security連携用ダイアレクトで提供されている ``sec:authentication`` 属性や ``#authorization`` オブジェクトを使用して、表示の切り替えを行う。
+| ログインしているユーザの権限によって表示を切り替える場合は、ThymeleafのSpring Security連携用ダイアレクトで提供されている ``sec:authorize`` 属性や ``#authorization`` オブジェクトを使用する。
 | 詳細は、 :doc:`../Security/Authorization` を参照されたい。
 
 |
