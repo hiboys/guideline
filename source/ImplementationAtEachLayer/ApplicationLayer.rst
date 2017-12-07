@@ -770,7 +770,7 @@ Acceptヘッダでマッピング
 
  .. note::
     ``th:text`` 属性を使用すると、値をHTMLエスケープして表示することができる。 
-    XSS対策のため、HTMLエスケープは必ず行うことを推奨する。詳細については :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
+    XSS対策のため、HTMLエスケープは必ず行うこと。詳細については :doc:`Cross Site Scripting <../Security/XSS>` を参照されたい。
 
 |
 
@@ -1775,7 +1775,7 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - ハンドラメソッドの返り値として ``"sample/hello"`` というView名を返却した場合、 ``ThymeleafViewResolver`` の設定により ``"/WEB-INF/views/sample/hello.html"`` が呼び出されHTMLが応答される。
+     - ハンドラメソッドの返り値として ``"sample/hello"`` というView名を返却した場合、 ``ThymeleafViewResolver`` の設定によりテンプレートHTMLとして ``"/WEB-INF/views/sample/hello.html"`` が解決され、HTMLが応答される。
 
 .. note::
     JSPやVelocity、FreeMarkerなど他のテンプレートエンジンを使用してHTMLを生成する場合でも、ハンドラメソッドの返り値は ``"sample/hello"`` のままでよい。
