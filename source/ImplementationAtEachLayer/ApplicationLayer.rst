@@ -1754,7 +1754,7 @@ HTMLを応答する
 | ハンドラメソッドの実行結果をHTMLとして応答する場合、ハンドラメソッドの返り値は、ThymeleafのView名を返却する。
 | Thymeleafを使ってHTMLを生成する場合の ``ViewResolver`` には、 ``ThymeleafViewResolver`` を用いる。
 
-| ``ThymeleafViewResolver`` を実際に使用する例については、＜新章のリンク＞を参照されたい。
+| ``ThymeleafViewResolver`` の設定例については、 :ref:`configuration-of-blank-project-label` を参照されたい。
   
 - SampleController.java
 
@@ -2624,7 +2624,7 @@ ThymeleafのテンプレートHTMLの実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | クライアントにHTMLを応答する場合は、Thymeleafを使用してViewを実装する。
 | Thymeleafによって生成されたHTMLを呼び出すための ``ViewResolver`` は、Thymeleaf+Springより提供されている ``ThymeleafViewResolver`` を使用する。
-| ``ViewResolver`` の設定方法については、＜新章のリンク＞を参照されたい。
+| ``ViewResolver`` の設定方法については、 :ref:`configuration-of-blank-project-label` を参照されたい。
 
 以下に、基本的なテンプレートHTMLの実装方法について説明する。
 

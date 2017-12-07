@@ -464,17 +464,10 @@ Spring Securityのコンポーネントをbean定義するため、以下のよ�
 
 |
 
-* xxx-web/src/main/resources/META-INF/spring/spring-mvc.xmlの定義例
+* xxx-web/src/main/resources/META-INF/spring/spring-mvc.xmlの定義例（抜粋）
 
 .. code-block:: xml
 
-    <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
-      <property name="prefix" value="/WEB-INF/views/" />
-      <property name="suffix" value=".html" />
-      <property name="templateMode" value="HTML" />
-      <property name="characterEncoding" value="UTF-8" />
-    </bean>
-  
     <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
       <property name="enableSpringELCompiler" value="true" />
       <property name="templateResolver" ref="templateResolver" />

@@ -705,7 +705,7 @@ Thymeleafに係るブランクプロジェクトの設定は、以下の4点で�
 
 1. Thymeleaf及び推奨ライブラリの依存関係の設定
 2. ThymeleafをSpring MVCのViewとして用いる為のBean定義
-3. テンプレートHTMLのレイアウト化 (テンプレートHTMLのレイアウト機能については、<新章へのリンク>を参照されたい。)
+3. テンプレートHTMLのレイアウト化 (テンプレートHTMLのレイアウト機能については、\ :doc:`./TemplateLayout`\ を参照されたい。)
 4. エラー画面のテンプレートHTMLをThymeleafで処理する為の設定及びControllerの実装
 
  | テンプレートHTMLに直接遷移した場合、Thymeleafによるテンプレートの解釈がされない。
