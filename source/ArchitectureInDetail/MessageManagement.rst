@@ -1300,9 +1300,9 @@ Appendix
 .. code-block:: html
 
     <div class="error">
-      <ul>
-        <li>There are inconsistencies in the data.</li>
-      </ul>
+        <ul>
+            <li>There are inconsistencies in the data.</li>
+        </ul>
     </div>
 
 ブラウザで表示すると、以下のように出力される。
