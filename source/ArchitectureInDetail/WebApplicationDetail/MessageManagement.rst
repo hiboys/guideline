@@ -900,7 +900,7 @@ infoメッセージを表示したい場合は、次のように\ ``ResultMessag
   * - | warning
     - | \ ``ResultMessages.warning()``\
     - | alert alert-warning
-    - | CSSフレームワークである\ `Bootstrap <http://getbootstrap.com/>`_ の\ `Alertsコンポーネント <http://getbootstrap.com/components/#alerts>`_\ で用意されているメッセージタイプをデフォルトでサポートするために、terasoluna-gfw-common 5.0.0.RELEASEから追加。
+    - | CSSフレームワークである\ `Bootstrap <http://getbootstrap.com/>`_ の\ `Alertsコンポーネント <http://bootstrapdocs.com/v3.0.0/docs/components/#alerts>`_\ で用意されているメッセージタイプをデフォルトでサポートするために、terasoluna-gfw-common 5.0.0.RELEASEから追加。
   * - | error
     - | \ ``ResultMessages.error()``\
     - | alert alert-error
@@ -963,7 +963,7 @@ infoメッセージを表示したい場合は、次のように\ ``ResultMessag
 
     .. tip::
 
-        ``ResultMessages`` が持つメッセージタイプは、CSSフレームワークである\ `Bootstrap <http://getbootstrap.com/>`_ 3.0.0の\ `Alertsコンポーネント <http://getbootstrap.com/components/#alerts>`_\ を利用できるように設計されている。
+        ``ResultMessages`` が持つメッセージタイプは、CSSフレームワークである\ `Bootstrap <http://getbootstrap.com/>`_ 3.0.0の\ `Alertsコンポーネント <http://bootstrapdocs.com/v3.0.0/docs/components/#alerts>`_\ を利用できるように設計されている。
 
     .. warning::
 
