@@ -569,7 +569,7 @@ webserviceプロジェクト内にWebサービスを呼び出すインターフ�
         :alt: Server and Client Projects for SOAP
         :width: 50%
 
-    仕様ではないが、Namespaceとパッケージの命名について、\ `XML Namespace Mapping(Red Hat JBoss Fuse) <https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.0/html/Developing_Applications_Using_JAX-WS/files/JAXWSDataNamespaceMapping.html>`_\ にまとまっている。
+    仕様ではないが、Namespaceとパッケージの命名について、\ `XML Namespace Mapping(Red Hat JBoss Fuse) <https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.0/html/developing_applications_using_jax-ws/jaxwsdatanamespacemapping>`_\ にまとまっている。
 
 |
 
@@ -1856,7 +1856,7 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
         .. warning:: **タイムアウト定義に使用するキーについて**
 
             それぞれのタイムアウトを定義するキーはJAX-WSの実装により異なる値を設定する必要がある。
-            詳細は\ `JAX_WS-1166 Standardize timeout settings <https://java.net/jira/browse/JAX_WS-1166>`_\を参照されたい。
+            詳細は\ `JAX_WS-1166 Standardize timeout settings <https://github.com/javaee/metro-jax-ws/issues/1166>`_\を参照されたい。
 
         .. note::
 
