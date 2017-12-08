@@ -4685,7 +4685,7 @@ How to extend
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | \ ``@JsonView``\ を使用することによって、Resourceオブジェクト内のプロパティーをグループ分けすることができる。
 | この機能はSpring FrameworkがJacksonの機能をサポートすることにより実現している。
-| 詳細は、\ `JacksonJsonViews <http://wiki.fasterxml.com/JacksonJsonViews>`_\ を参照されたい。
+| 詳細は、\ `JacksonJsonViews <http://www.baeldung.com/jackson-json-view-annotation>`_\ を参照されたい。
 
 | Controllerにてグループを指定することで、指定したグループに所属するプロパティーのみ出力することができる。
 | 1つのプロパティーは、複数のグループに所属することも可能である。
