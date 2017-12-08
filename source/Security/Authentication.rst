@@ -1249,9 +1249,9 @@ Spring Securityは、以下のような流れでログアウト処理を行う�
    本ガイドラインでは説明を割愛するが、 \ ``<sec:logout>``\ タグには、ログアウト時に指定したCookieを削除するための\ ``delete-cookies``\ 属性が存在する。
    ただし、この属性を使用しても正常にCookieが削除できないケースが報告されている。
 
-   詳細はSpring Securityの以下のIssueを参照されたい。
+   詳細はSpring Securityの以下のJIRAを参照されたい。
 
-   * https://github.com/spring-projects/spring-security/issues/2325
+   * https://jira.spring.io/browse/SEC-2091?redirect=false
 
 デフォルトの動作
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
