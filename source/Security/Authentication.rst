@@ -1242,7 +1242,7 @@ Spring Securityは、以下のような流れでログアウト処理を行う�
 
    詳細はSpring Securityの以下のJIRAを参照されたい。
 
-   * https://jira.spring.io/browse/SEC-2091
+   * https://jira.spring.io/browse/SEC-2091?redirect=false
 
 デフォルトの動作
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
