@@ -386,7 +386,7 @@ multipart/form-dataリクエストの時、ファイルアップロードで許�
    * - | (2)
      - | \ ``MultipartException``\ が発生した際に表示するファイルを指定する。
        |
-       | 上記例では、\ ``"/WEB-INF/views/common/error/fileUploadError.jsp"``\ を指定している。
+       | 上記例では、\ ``/WEB-INF/views/common/error/fileUploadError.jsp``\ を指定している。
 
 - :file:`fileUploadError.jsp`
 
@@ -411,8 +411,8 @@ multipart/form-dataリクエストの時、ファイルアップロードで許�
    * - | (3)
      - | HTTPステータスコードは、\ ``HttpServletResponse``\ のAPIを呼び出して設定する。
        |
-       | 上記例では、\ ``"400"``\ (Bad Request) を設定している。
-       | 明示的に設定しない場合、HTTPステータスコードは\ ``"500"``\ (Internal Server Error)となる。
+       | 上記例では、\ ``400``\ (Bad Request) を設定している。
+       | 明示的に設定しない場合、HTTPステータスコードは\ ``500``\ (Internal Server Error)となる。
 
 |
 
@@ -454,11 +454,11 @@ multipart/form-dataリクエストの時、ファイルアップロードで許�
    * - | (4)
      - | \ ``SystemExceptionResolver``\ の\ ``exceptionMappings``\ に、\ ``MultipartException``\ が発生した際に表示するView(JSP)の定義を追加する。
        |
-       | 上記例では、\ ``"common/error/fileUploadError"``\ を指定している。
+       | 上記例では、\ ``common/error/fileUploadError``\ を指定している。
    * - | (5)
      - | ``MultipartException`` が発生した際に応答するHTTPステータスコードの定義を追加する。
        |
-       | 上記例では、\ ``"400"``\ (Bad Request) を指定している。
+       | 上記例では、\ ``400``\ (Bad Request) を指定している。
        | クライアントエラー(HTTPレスポンスコード = 4xx)を指定することで、
        | 共通ライブラリの例外ハンドリング機能から提供しているクラス( ``HandlerExceptionResolverLoggingInterceptor`` )によって出力されるログは、\ ``ERROR``\ レベルではなく、\ ``WARN``\ レベルとなる。
 
@@ -496,7 +496,7 @@ multipart/form-dataリクエストの時、ファイルアップロードで許�
    * - | (6)
      - | \ ``SimpleMappingExceptionCodeResolver``\ の\ ``exceptionMappings``\ に、\ ``MultipartException``\ が発生した際に適用する、例外コードを追加する。
        |
-       | 上記例では、\ ``"e.xx.fw.6001"``\ を指定している。
+       | 上記例では、\ ``e.xx.fw.6001``\ を指定している。
        | 個別に定義を行わない場合は、\ ``defaultExceptionCode``\ に指定した例外コードが適用される。
 
 
@@ -582,13 +582,13 @@ JSPの実装
    * - 項番
      - 説明
    * - | (1)
-     - | \ ``<form:form>``\ 要素のenctype属性に、\ ``"multipart/form-data"``\ を指定する。
+     - | \ ``<form:form>``\ 要素のenctype属性に、\ ``multipart/form-data``\ を指定する。
    * - | (2)
      - | \ ``<form:form>``\ 要素のmodelAttribute属性に、フォームオブジェクトの属性名を指定する。
-       | 上記例では、\ ``"fileUploadForm"``\ を指定している。
+       | 上記例では、\ ``fileUploadForm``\ を指定している。
    * - | (3)
-     - | \ ``<form:input>``\ 要素type属性に、\ ``"file"``\ を指定し、path属性に、\ ``MultipartFile``\ プロパティ名を指定する。
-       | 上記例では、アップロードされたファイルは、\ ``FileUploadForm``\ オブジェクトの\ ``"file"``\ プロパティに格納される。
+     - | \ ``<form:input>``\ 要素type属性に、\ ``file``\ を指定し、path属性に、\ ``MultipartFile``\ プロパティ名を指定する。
+       | 上記例では、アップロードされたファイルは、\ ``FileUploadForm``\ オブジェクトの\ ``file``\ プロパティに格納される。
 
 
 Controllerの実装
@@ -677,7 +677,7 @@ Controllerの実装
      - 説明
    * - | (1)
      - | ファイルアップロード用のフォームオブジェクトを、\ ``Model``\ に格納するためのメソッド。
-       | 上記例では、\ ``Model``\ に格納するための属性名は、\ ``"fileUploadForm"``\ となる。
+       | 上記例では、\ ``Model``\ に格納するための属性名は、\ ``fileUploadForm``\ となる。
    * - | (2)
      - | アップロード画面を表示するためのハンドラメソッド。
    * - | (3)
@@ -1100,7 +1100,7 @@ JSPの実装
      - 説明
    * - | (1)
      - | アップロードファイルをバインドするList内の位置を指定する。
-       | バインドするリスト内の位置は、\ ``[]``\ の中に指定する。開始位置は、\ ``0``\ 開始となる。
+       | バインドするリスト内の位置は、\ ``[]``\ の中に指定する。開始位置は、"\ ``0``\" 開始となる。
 
 
 Controllerの実装
@@ -1628,7 +1628,7 @@ How to extend
      - 説明
    * - | (3)
      - | 不要ファイルを削除するPOJOクラスをbean登録する。
-       | 上記例では、 ``"uploadTemporaryFileCleaner"`` というIDで登録している。
+       | 上記例では、 ``uploadTemporaryFileCleaner`` というIDで登録している。
    * - | (4)
      - | 不要ファイルを削除する処理を、実行するためのタスクスケジューラのbeanを、登録する。
        | 上記例では、pool-size属性を省略しているため、このタスクスケジュールは、シングルスレッドでタスクを実行する。
@@ -1810,7 +1810,7 @@ Commons FileUploadを使用する場合は以下の設定を行う。
      - | 説明
    * - | (1)
      - | Commons FileUploadを使用した\ ``MultipartResolver``\ 実装である\ ``CommonsMultipartResolver``\のbean定義を行う。
-       | bean IDには\ ``"filterMultipartResolver"``\ を指定する。
+       | bean IDには\ ``filterMultipartResolver``\ を指定する。
    * - | (2)
      - | ファイルアップロードで許容する最大サイズを設定する。
        | Commons FileUploadの場合、最大値はHTTPヘッダを含めたリクエスト全体のサイズであることに注意すること。
@@ -1870,7 +1870,7 @@ Commons FileUploadを使用する場合は以下の設定を行う。
 
 .. tip::
 
-    \ ``MultipartFilter``\ は、DIコンテナ(:file:`applicationContext.xml`)から\ ``"filterMultipartResolver"``\ というbean IDで登録されている\ ``MultipartResolver``\ を取得して、
+    \ ``MultipartFilter``\ は、DIコンテナ(:file:`applicationContext.xml`)から\ ``filterMultipartResolver``\ というbean IDで登録されている\ ``MultipartResolver``\ を取得して、
     ファイルアップロード処理を行う仕組みになっている。
 
 |
