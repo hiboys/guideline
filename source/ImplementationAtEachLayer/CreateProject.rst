@@ -305,7 +305,7 @@ TomcatのVirtualWebappLoaderのように、Webアプリケーションごとに�
 .. note::
 
     * \ ``-DgroupId``\ 、\ ``-DartifactId``\ 、\ ``-Dversion``\ 、\ ``-Ddest``\ には、適切な値を指定すること。
-    * Linux系で実行する場合は、行末の \ ``^``\  を \ ``\``\  に読み替えること。
+    * Linux系で実行する場合は、行末の "\ ``^``\"  を \ ``\``\  に読み替えること。
 
 |
 

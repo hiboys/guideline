@@ -210,7 +210,7 @@ Delete TODO
 
 .. tip::
 
-    Bash上で\ ``mvn archetype:generate``\ を実行する場合は、以下のように\ ``^``\ を\ ``\``\ に置き換えて実行すればよい。
+    Bash上で\ ``mvn archetype:generate``\ を実行する場合は、以下のように"\ ``^``\" を\ ``\``\ に置き換えて実行すればよい。
 
      .. code-block:: bash
 
@@ -535,13 +535,13 @@ Todoアプリケーションの開発を始める前に、プロジェクトの�
      - | (4)でログ出力するためのロガーを生成している。
        | ロガーの実装はlogbackのものであるが、APIはSLF4Jの\ ``org.slf4j.Logger``\ を使用している。
    * - | (3)
-     - | ``@RequestMapping`` アノテーションを使用して、\ ``"/"``\ (ルート)へのアクセスに対するメソッドとしてマッピングを行っている。
+     - | ``@RequestMapping`` アノテーションを使用して、"\ ``/``\" (ルート)へのアクセスに対するメソッドとしてマッピングを行っている。
    * - | (4)
      - | メソッドが呼ばれたことを通知するためのログをinfoレベルで出力している。
    * - | (5)
-     - | 画面に表示するための日付文字列を、\ ``"serverTime"``\ という属性名でModelに設定している。
+     - | 画面に表示するための日付文字列を、\ ``serverTime``\ という属性名でModelに設定している。
    * - | (6)
-     - | view名として\ ``"welcome/home"``\ を返す。\ ``ViewResolver``\ の設定により、\ ``WEB-INF/views/welcome/home.jsp``\ が呼び出される。
+     - | view名として\ ``welcome/home``\ を返す。\ ``ViewResolver``\ の設定により、\ ``WEB-INF/views/welcome/home.jsp``\ が呼び出される。
 
 |
 
@@ -576,7 +576,7 @@ Todoアプリケーションの開発を始める前に、プロジェクトの�
    * - 項番
      - 説明
    * - | (7)
-     - | ControllerでModelに設定した\ ``"serverTime"``\ を表示する。
+     - | ControllerでModelに設定した\ ``serverTime``\ を表示する。
        | ここでは、XSS対策を行っていないが、ユーザの入力値を表示する場合は、\ ``f:h()``\ 関数を用いて、必ずXSS対策を行うこと。
 
 |
@@ -603,7 +603,7 @@ todoが「Configured」に含まれていることを確認して「Finish」を
 |
 
 起動すると以下のようなログが出力される。
-\ ``"/"``\ というパスに対して\ ``todo.app.welcome.HelloController``\ のhelloメソッドがマッピングされていることが分かる。
+\ ``/``\ というパスに対して\ ``todo.app.welcome.HelloController``\ のhelloメソッドがマッピングされていることが分かる。
 
 
 .. code-block:: console
@@ -1397,7 +1397,7 @@ Controllerの実装
    * - | (2)
      - | Formを初期化する。
        |
-       | \ ``@ModelAttribute``\ アノテーションをつけることで、このメソッドの返り値のformオブジェクトが、\ ``"todoForm"``\ という名前で\ ``Model``\ に追加される。
+       | \ ``@ModelAttribute``\ アノテーションをつけることで、このメソッドの返り値のformオブジェクトが、\ ``todoForm``\ という名前で\ ``Model``\ に追加される。
        | これは、\ ``TodoController``\ の各処理で、\ ``model.addAttribute("todoForm", form)``\ を実装するのと同義である。
    * - | (3)
      - | \ ``/todo/list``\ というパスにリクエストされた際に、一覧画面表示処理用のメソッド(\ ``list``\ メソッド)が実行されるように\ ``@RequestMapping``\ アノテーションを設定する。
@@ -1406,7 +1406,7 @@ Controllerの実装
    * - | (4)
      - | \ ``Model``\ にTodoのリストを追加して、Viewに渡す。
    * - | (5)
-     - | View名として\ ``"todo/list"``\ を返すと、spring-mvc.xmlに定義した\ ``ViewResolver``\ によって、\ :file:`WEB-INF/views/todo/list.jsp`\がレンダリングされることになる。
+     - | View名として\ ``todo/list``\ を返すと、spring-mvc.xmlに定義した\ ``ViewResolver``\ によって、\ :file:`WEB-INF/views/todo/list.jsp`\がレンダリングされることになる。
 
 JSPの作成
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3878,7 +3878,7 @@ spring-mvc.xml
        | \ ``/resources``\ 配下を除く任意のパスに適用されるように設定する。
    * - | (6)
      - | \ ``ViewResolver``\ の設定を行う。
-       | この設定により、例えばコントローラからview名として\ ``"hello"``\が返却された場合には\ ``/WEB-INF/views/hello.jsp``\ が実行される。
+       | この設定により、例えばコントローラからview名として\ ``hello``\が返却された場合には\ ``/WEB-INF/views/hello.jsp``\ が実行される。
 
        .. tip::
 

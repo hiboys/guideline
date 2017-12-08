@@ -572,7 +572,7 @@ Controllerの作成
      - | スタンダードダイアレクトが提供する属性を使用したとき、EclipseなどのIDEでの警告を抑止するため、ネームスペースを付与する。
    * - | (2)
      - | Thymeleafの属性を利用し、HTMLフォームを構築している。 ``th:object`` 属性に、Controllerで用意したフォームオブジェクトの名前を指定する。
-       | また、ThymeleafのリンクURL式 ``@{}`` に ``/`` から始まるパスを記述することでコンテキスト相対パスが生成され、 ``th:action`` 属性に指定できる。
+       | また、ThymeleafのリンクURL式 ``@{}`` に "``/``" から始まるパスを記述することでコンテキスト相対パスが生成され、 ``th:action`` 属性に指定できる。
        | これらの属性の詳細については `こちら <http://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html#creating-a-form>`_\を参照されたい。
    * - | (3)
      - | Thymeleaf+Springで提供される ``th:field`` 属性を用いて、特定のプロパティをHTML formにバインドすることができる。
