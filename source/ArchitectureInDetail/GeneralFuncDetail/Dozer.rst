@@ -438,7 +438,7 @@ src/main/resources/META-INF/dozerフォルダ内に、(任意の値)-mapping.xml
 すなわち前述の例では\ ``Source``\ オブジェクトから\ ``Destination``\ オブジェクトへのマッピングを行ったが、
 \ ``Destination``\ オブジェクトから\ ``Source``\ オブジェクトのマッピングも可能である。
 
-単方向のみを指定したい場合は、マッピング・フィールド定義に、\ ``<mapping>``\ タグの\ ``type``\ 属性に\ ``"one-way"``\ を設定する。
+単方向のみを指定したい場合は、マッピング・フィールド定義に、\ ``<mapping>``\ タグの\ ``type``\ 属性に\ ``one-way``\ を設定する。
 
 .. code-block:: xml
 

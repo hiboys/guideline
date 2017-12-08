@@ -1009,7 +1009,7 @@ GET Todosの実装
 Application Serverを起動し、実装したAPIの動作確認を行う。
 
 | REST API(Get Todos)にアクセスする。
-| DHCを開いてURLに\ ``"localhost:8080/todo/api/v1/todos"``\ を入力し、メソッドにGETを指定して、"Send"ボタンをクリックする。
+| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos``\ を入力し、メソッドにGETを指定して、"Send"ボタンをクリックする。
 
 .. figure:: ./images_rest/get-todos1.png
    :width: 100%
@@ -1109,7 +1109,7 @@ Todoリソースを新規作成するAPI(POST Todos)の処理を、\ ``TodoRestC
 |
 
 | DHCを使用して、実装したAPIの動作確認を行う。
-| DHCを開いてURLに\ ``"localhost:8080/todo/api/v1/todos"``\ を入力し、メソッドにPOSTを指定する。
+| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos``\ を入力し、メソッドにPOSTを指定する。
 | 「REQUEST」の「BODY」に以下のJSONを入力する。
 
 .. code-block:: json
@@ -1360,7 +1360,7 @@ GET Todoの実装
 |
 
 | DHCを使用して、実装したAPIの動作確認を行う。
-| DHCを開いてURLに\ ``"localhost:8080/todo/api/v1/todos/{todoId}"``\ を入力し、メソッドにGETを指定する。
+| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos/{todoId}``\ を入力し、メソッドにGETを指定する。
 | \ ``{todoId}``\ の部分は実際のIDを入れる必要があるので、POST TodosまたはGET Todosを実行してResponse中の\ ``todoId``\ をコピーして貼り付けてから、"Send"ボタンをクリックする。
 
 "200 OK"のHTTPステータスが返却され、「RESPONSE」の「Body」に指定したTodoリソースのJSONが表示される。
@@ -1465,7 +1465,7 @@ Todoリソースを一件更新(完了状態へ更新)するAPI(PUT Todo)の処�
 |
 
 | DHCを使用して、実装したAPIの動作確認を行う。
-| DHCを開いてURLに\ ``"localhost:8080/todo/api/v1/todos/{todoId}"``\ を入力し、メソッドにPUTを指定する。
+| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos/{todoId}``\ を入力し、メソッドにPUTを指定する。
 | \ ``{todoId}``\ の部分は実際のIDを入れる必要があるので、POST TodosまたはGET Todosを実行してResponse中の\ ``todoId``\ をコピーして貼り付けてから、"Send"ボタンをクリックする。
 
 .. figure:: ./images_rest/put-todo1.png
@@ -1585,7 +1585,7 @@ DELETE Todoの実装
 |
 
 | DHCを使用して、実装したAPIの動作確認を行う。
-| DHCを開いてURLに\ ``"localhost:8080/todo/api/v1/todos/{todoId}"``\ を入力し、メソッドにDELETEを指定する。
+| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos/{todoId}``\ を入力し、メソッドにDELETEを指定する。
 | \ ``{todoId}``\ の部分は実際のIDを入れる必要があるので、POST TodosまたはGET Todosを実行してResponse中の\ ``todoId``\ をコピーして貼り付けてから、"Send"ボタンをクリックする。
 
 .. figure:: ./images_rest/delete-todo1.png
@@ -1600,7 +1600,7 @@ DELETE Todoの実装
 
 |
 
-| DHCのURLに\ ``"localhost:8080/todo/api/v1/todos"``\ を入力し、メソッドにGETを指定してから"Send"ボタンをクリックする。
+| DHCのURLに\ ``localhost:8080/todo/api/v1/todos``\ を入力し、メソッドにGETを指定してから"Send"ボタンをクリックする。
 | Todoリソースが削除されている事が確認できる。
 
 .. figure:: ./images_rest/delete-todo3.png
@@ -1945,7 +1945,7 @@ HTTPレスポンスBODYにエラー情報を出力するための実装
 |
 
 | DHCを使用して、実装したエラーハンドリングの動作確認を行う。
-| DHCを開いてURLに\ ``"localhost:8080/todo/api/v1/todos"``\を入力し、メソッドにPUTを指定してから、"Send"ボタンをクリックする。
+| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos``\を入力し、メソッドにPUTを指定してから、"Send"ボタンをクリックする。
 
 "405 Method Not Allowed"のHTTPステータスが返却され、「RESPONSE」の「Body」には、エラー情報のJSONが表示される。
 
@@ -2041,7 +2041,7 @@ HTTPレスポンスBODYにエラー情報を出力するための実装
 |
 
 | DHCを使用して、実装したエラーハンドリングの動作確認を行う。
-| DHCを開いてURLに\ ``"localhost:8080/todo/api/v1/todos"``\ を入力し、メソッドにPOSTを指定する。
+| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos``\ を入力し、メソッドにPOSTを指定する。
 | 「REQUEST」の「BODY」に以下のJSONを入力する。
 
 .. code-block:: json
@@ -2159,7 +2159,7 @@ HTTPレスポンスBODYにエラー情報を出力するための実装
 |
 
 | DHCを使用して、実装したエラーハンドリングの動作確認を行う。
-| DHCを開いてURLに\ ``"localhost:8080/todo/api/v1/todos/{todoId}"``\を入力し、メソッドにPUTを指定する。
+| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos/{todoId}``\を入力し、メソッドにPUTを指定する。
 | {todoId}の部分は実際のIDを入れる必要があるので、POST TodosまたはGET Todosを実行してResponse中の\ ``todoId``\ をコピーして貼り付けてから、”Send”ボタンを2回クリックする。
 | 未完了状態のTodoの\ ``todoId``\ を指定すること。
 
@@ -2277,7 +2277,7 @@ HTTPレスポンスBODYにエラー情報を出力するための実装
 |
 
 | DHCを使用して、実装したエラーハンドリングの動作確認を行う。
-| DHCを開いてURLに\ ``"localhost:8080/todo/api/v1/todos/{todoId}"``\ を入力し、メソッドにGETを指定する。
+| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos/{todoId}``\ を入力し、メソッドにGETを指定する。
 | {todoId}の部分には存在しないIDを指定して、”Send”ボタンをクリックする。
 
 "404 Not Found"のHTTPステータスが返却され、「RESPONSE」の「Body」には、エラー情報のJSONが表示される。
@@ -2422,7 +2422,7 @@ HTTPレスポンスBODYにエラー情報を出力するための実装
     
 |
 
-DHCを開いてURLに\ ``"localhost:8080/todo/api/v1/todos"``\ を入力し、メソッドにGETを指定して、”Send”ボタンをクリックする。
+DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos``\ を入力し、メソッドにGETを指定して、”Send”ボタンをクリックする。
 
 "500 Internal Server Error"のHTTPステータスが返却され、「RESPONSE」の「Body」には、エラー情報のJSONが表示される。
 

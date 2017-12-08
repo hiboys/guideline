@@ -772,7 +772,7 @@ HTTPメソッドによるリソースの操作
 
 |
 
-| ブラウザにHTMLを返却するような伝統的なWebシステムでは、処理結果に関係なく\ ``"200 OK"``\を応答し、処理結果はエンティティボディ(HTML)の中で表現するという事が一般的であった。
+| ブラウザにHTMLを返却するような伝統的なWebシステムでは、処理結果に関係なく\ ``200 OK``\を応答し、処理結果はエンティティボディ(HTML)の中で表現するという事が一般的であった。
 | HTMLを返却するような伝統的なWebアプリケーションでは、処理結果を判断するのはオペレータ(人間)のため、この仕組みでも問題が発生する事はなかった。
 | しかし、この仕組みでRESTful Web Serviceを構築した場合、以下のような問題が潜在的に存在することになるため、適切なHTTPステータスコードを設定することを推奨する。
 
@@ -1339,10 +1339,10 @@ NULLとブランク文字
         ]
     }
 
- * \ ``"rel"``\と\ ``"href"``\という2つのフィールドを持ったLinkオブジェクトをコレクション形式で保持する。
- * \ ``"rel"``\には、なんのリンクか識別するためのリンク名を指定する。
- * \ ``"href"``\には、リソースにアクセスするためのURIを指定する。
- * Linkオブジェクトをコレクション形式で保持するフィールドは、\ ``"links"``\とする。
+ * \ ``rel``\と\ ``href``\という2つのフィールドを持ったLinkオブジェクトをコレクション形式で保持する。
+ * \ ``rel``\には、なんのリンクか識別するためのリンク名を指定する。
+ * \ ``href``\には、リソースにアクセスするためのURIを指定する。
+ * Linkオブジェクトをコレクション形式で保持するフィールドは、\ ``links``\とする。
 
 |
 
@@ -1436,7 +1436,7 @@ HTTPステータスコードは、以下の指針に則って応答する。
 
  .. tip::
  
-    \ ``"200 OK``\ と \ ``"204 No Content"``\の違いは、レスポンスボディにリソースの情報を出力する/しないの違いとなる。
+    \ ``"200 OK``\ と \ ``204 No Content``\の違いは、レスポンスボディにリソースの情報を出力する/しないの違いとなる。
 
 |
 
@@ -1798,7 +1798,7 @@ RESTful Web Serviceで必要となるSpring MVCのコンポーネントを有効
         | \ ``OpenEntityManagerInViewInterceptor``\については、「\ :doc:`../DataAccessDetail/DataAccessJpa`\」を参照されたい。
     * - | (6)
       - | RESTful Web Service用のアプリケーション層のコンポーネント(ControllerやHelperクラスなど)をスキャンしてbean登録する。
-        | \ ``"com.example.project.api"``\ の部分は\ **プロジェクト毎のパッケージ名となる。**\
+        | \ ``com.example.project.api``\ の部分は\ **プロジェクト毎のパッケージ名となる。**\
     * - | (7)
       - | Spring MVCのフレームワークでハンドリングされた例外を、ログ出力するためのAOP定義を指定する。
         | \ ``HandlerExceptionResolverLoggingInterceptor``\については、「\ :doc:`../WebApplicationDetail/ExceptionHandling`\」を参照されたい。
@@ -1909,27 +1909,27 @@ RESTful Web Service用のサーブレットの設定
       - 説明
     * - | (1)
       - | \ ``<servlet-name>``\要素に、RESTful Web Service用のサーブレットであることを示す名前を指定する。
-        | 上記例では、サーブレット名として\ ``"restAppServlet"``\を指定している。
+        | 上記例では、サーブレット名として\ ``restAppServlet``\を指定している。
     * - | (2)
       - | RESTful Web Service用の\ ``DispatcherServlet``\を構築する際に使用するSpring MVCのbean定義ファイルを指定する。
         | 上記例では、Spring MVCのbean定義ファイルとして、クラスパス上にある\ :file:`META-INF/spring/spring-mvc-rest.xml`\を指定している。
     * - | (3)
       - | RESTful Web Service用の\ ``DispatcherServlet``\へマッピングするサーブレットパスのパターンの指定を行う。
-        | 上記例では、\ ``"/api/v1/"``\配下のサーブレットパスをRESTful Web Service用の\ ``DispatcherServlet``\にマッピングしている。
+        | 上記例では、\ ``/api/v1/``\配下のサーブレットパスをRESTful Web Service用の\ ``DispatcherServlet``\にマッピングしている。
         | 具体的には、
-        |   \ ``"/api/v1/"``\
-        |   \ ``"/api/v1/members"``\
-        |   \ ``"/api/v1/members/xxxxx"``\
-        | といったサーブレットパスが、RESTful Web Service用の\ ``DispatcherServlet``\(\ ``"restAppServlet"``\)にマッピングされる。
+        |   \ ``/api/v1/``\
+        |   \ ``/api/v1/members``\
+        |   \ ``/api/v1/members/xxxxx``\
+        | といったサーブレットパスが、RESTful Web Service用の\ ``DispatcherServlet``\(\ ``restAppServlet``\)にマッピングされる。
 
  .. tip:: **@RequestMappingアノテーションのvalue属性に指定する値について**
 
-   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード(\ ``*``\)の部分の値を指定する。
+   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード("\ ``*``\")の部分の値を指定する。
    
-   例えば、\ ``@RequestMapping(value = "members")``\と指定した場合、\ ``"/api/v1/members"``\といパスに対する処理を行うメソッドとしてデプロイされる。
-   そのため、\ ``@RequestMapping``\アノテーションのvalue属性には、分割したサーブレットへマッピングするためパス(\ ``"api/v1"``\)を指定する必要はない。
+   例えば、\ ``@RequestMapping(value = "members")``\と指定した場合、\ ``/api/v1/members``\といパスに対する処理を行うメソッドとしてデプロイされる。
+   そのため、\ ``@RequestMapping``\アノテーションのvalue属性には、分割したサーブレットへマッピングするためパス(\ ``api/v1``\)を指定する必要はない。
    
-   \ ``@RequestMapping(value = "api/v1/members")``\と指定すると、\ ``"/api/v1/api/v1/members"``\というパスに対する処理を行うメソッドとしてデプロイされてしまうので、注意すること。
+   \ ``@RequestMapping(value = "api/v1/members")``\と指定すると、\ ``/api/v1/api/v1/members``\というパスに対する処理を行うメソッドとしてデプロイされてしまうので、注意すること。
 
 |
 
@@ -1956,7 +1956,7 @@ REST APIの実装
 
  | 会員情報のリソースの形式は、以下のようなJSON形式とする。
  | 下記の例では、全フィールドを表示しているが、全てのAPIのリクエストとレスポンスで使用するわけではない。
- | 例えば、\ ``"password"``\はリクエストのみで使用、\ ``"createdAt"``\や\ ``"lastModifiedAt"``\はレスポンスのみ使用などの違いがある。
+ | 例えば、\ ``password``\はリクエストのみで使用、\ ``createdAt``\や\ ``lastModifiedAt``\はレスポンスのみ使用などの違いがある。
 
  .. code-block:: json
 
@@ -2028,9 +2028,9 @@ REST APIの実装
         | (Code)
       - I/O
       - 1-1
-      - | ``"0"`` : UNKNOWN
-        | ``"1"`` : MEN
-        | ``"2"`` : WOMEN
+      - | "``0``" : UNKNOWN
+        | "``1``" : MEN
+        | "``2``" : WOMEN
     * - | (5)
       - dateOfBirth
       - Date
@@ -2606,7 +2606,7 @@ URIで指定されたMemberリソースのコレクションをページ検索�
         | 検索条件が不要な場合は、JavaBeanの作成は不要である。
     * - | (2)
       - | プロパティ名は、リクエストパラメータのパラメータ名と一致させる。
-        | 上記例では、\ ``/api/v1/members?name=John``\ というリクエストの場合、JavaBeanのnameプロパティに \ ``"John"``\ という値が設定される。
+        | 上記例では、\ ``/api/v1/members?name=John``\ というリクエストの場合、JavaBeanのnameプロパティに \ ``John``\ という値が設定される。
 
 |
 
@@ -3073,7 +3073,7 @@ URIで指定されたMemberリソースを取得するREST APIの実装例を、
       - | リソースを一意に識別するための値を、パス変数から取得する。
         | 引数アノテーションとして、\ ``@PathVariable("memberId")``\を指定することで、パス変数(\ ``{memberId}``\)に指定された値をメソッドの引数として受け取ることが出来る。
         | パス変数の詳細については、 「:ref:`controller_method_argument-pathvariable-label`」を参照されたい。
-        | 上記例だと、URIが\ ``/api/v1/members/M12345``\の場合、引数の\ ``memberId``\に\ ``"M12345"``\が格納される。
+        | 上記例だと、URIが\ ``/api/v1/members/M12345``\の場合、引数の\ ``memberId``\に\ ``M12345``\が格納される。
     * - | (4)
       - | ドメイン層のServiceのメソッドを呼び出し、パス変数から取得したIDに一致するリソースの情報(Entityなど)を取得する。
         | ドメイン層の実装については、「:doc:`../../ImplementationAtEachLayer/DomainLayer`」を参照されたい。
@@ -4570,7 +4570,7 @@ Filterでエラーが発生した場合や\ ``HttpServletResponse#sendError``\�
       - 説明
     * - | (1)
       - | 必要に応じてレスポンスコードによるエラーページの定義を追加する。
-        | 上記例では、\ ``"404 Not Found"``\が発生した際に、「\ ``/api/v1/error``\」というリクエストにマッピングされているController(\ ``ApiErrorPageController``\)を呼び出してエラー応答を行っている。
+        | 上記例では、\ ``404 Not Found``\が発生した際に、「\ ``/api/v1/error``\」というリクエストにマッピングされているController(\ ``ApiErrorPageController``\)を呼び出してエラー応答を行っている。
     * - | (2)
       - | 致命的なエラーをハンドリングするための定義を追加する。
         | 致命的なエラーが発生していた場合、レスポンス情報を作成する処理で二重障害が発生する可能性があるため、予め用意している静的なJSONを応答する事を推奨する。
@@ -5182,27 +5182,27 @@ RESTful Web Service用の\ ``DispatcherServlet``\を設ける方法
     * - | (2)
       - | RESTful Web Service用のリクエストを受けるServlet(\ ``DispatcherServlet``\)を追加する。
         | \ ``<servlet-name>``\要素に、RESTful Web Service用サーブレットであることを示す名前を指定する。
-        | 上記例では、サーブレット名として\ ``"restAppServlet"``\を指定している。
+        | 上記例では、サーブレット名として\ ``restAppServlet``\を指定している。
     * - | (3)
       - | RESTful Web Service用の\ ``DispatcherServlet``\を構築する際に使用するSpring MVCのbean定義ファイルを指定する。
         | 上記例では、Spring MVCのbean定義ファイルとして、クラスパス上にある\ :file:`META-INF/spring/spring-mvc-rest.xml`\を指定している。
     * - | (4)
       - | RESTful Web Service用の\ ``DispatcherServlet``\へマッピングするサーブレットパスのパターンの指定を行う。
-        | 上記例では、\ ``"/api/v1/"``\配下のサーブレットパスをRESTful Web Service用の\ ``DispatcherServlet``\にマッピングしている。
+        | 上記例では、\ ``/api/v1/``\配下のサーブレットパスをRESTful Web Service用の\ ``DispatcherServlet``\にマッピングしている。
         | 具体的には、
-        |   \ ``"/api/v1/"``\
-        |   \ ``"/api/v1/members"``\
-        |   \ ``"/api/v1/members/xxxxx"``\
-        | といったサーブレットパスが、RESTful Web Service用の\ ``DispatcherServlet``\(\ ``"restAppServlet"``\)にマッピングされる。
+        |   \ ``/api/v1/``\
+        |   \ ``/api/v1/members``\
+        |   \ ``/api/v1/members/xxxxx``\
+        | といったサーブレットパスが、RESTful Web Service用の\ ``DispatcherServlet``\(\ ``restAppServlet``\)にマッピングされる。
 
  .. tip:: **@RequestMappingアノテーションのvalue属性に指定する値について**
 
-   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード(\ ``*``\)の部分の値を指定する。
+   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード("\ ``*``\")の部分の値を指定する。
    
-   例えば、\ ``@RequestMapping(value = "members")``\と指定した場合、\ ``"/api/v1/members"``\といパスに対する処理を行うメソッドとしてデプロイされる。
-   そのため、\ ``@RequestMapping``\アノテーションのvalue属性には、分割したサーブレットへマッピングするためパス(\ ``"api/v1"``\)を指定する必要はない。
+   例えば、\ ``@RequestMapping(value = "members")``\と指定した場合、\ ``/api/v1/members``\といパスに対する処理を行うメソッドとしてデプロイされる。
+   そのため、\ ``@RequestMapping``\アノテーションのvalue属性には、分割したサーブレットへマッピングするためパス(\ ``api/v1``\)を指定する必要はない。
    
-   \ ``@RequestMapping(value = "api/v1/members")``\と指定すると、\ ``"/api/v1/api/v1/members"``\というパスに対する処理を行うメソッドとしてデプロイされてしまうので、注意すること。
+   \ ``@RequestMapping(value = "api/v1/members")``\と指定すると、\ ``/api/v1/api/v1/members``\というパスに対する処理を行うメソッドとしてデプロイされてしまうので、注意すること。
 
 |
 
@@ -5319,7 +5319,7 @@ JSONの中に関連リソースへのハイパーメディアリンクを含め�
       - | リンク情報を追加するためのメソッドを用意する。
     * - | (5)
       - | 必要に応じて共通的なリンク情報を追加するためのメソッドを用意する。
-        | 上記例では、自身のリソースにアクセスするためのリンク情報(\ ``"self"``\)と、親のリソースにアクセスするためのリンク情報(\ ``"parent"``\)を追加するためのメソッドを用意している。
+        | 上記例では、自身のリソースにアクセスするためのリンク情報(\ ``self``\)と、親のリソースにアクセスするためのリンク情報(\ ``parent``\)を追加するためのメソッドを用意している。
 
 |
 
@@ -5531,8 +5531,8 @@ POST時のLocationヘッダの設定
         | そのため、Spring Frameworkから提供される `URI\ Template\ Patterns <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\ 等を利用し、
         | リクエスト情報をベースにURIを組み立てる事により、リソースに依存しない汎用的な組み立て処理を実装することが可能となる。
         | 
-        | 例えば、上記例において\ ``http://example.com/api/v1/members``\に対してPOSTした場合、組み立てられるURIは、「リクエストされたURI + \ ``"/"``\ + 作成したリソースのID」となる。
-        | 具体的には、IDに\ ``"M000000001"``\を指定した場合、\ ``http://example.com/api/v1/members/M000000001``\となる。
+        | 例えば、上記例において\ ``http://example.com/api/v1/members``\に対してPOSTした場合、組み立てられるURIは、「リクエストされたURI + "\ ``/``\" + 作成したリソースのID」となる。
+        | 具体的には、IDに\ ``M000000001``\を指定した場合、\ ``http://example.com/api/v1/members/M000000001``\となる。
         | 
         | 必要に応じてリンク情報に設定するURIを組み立てるためのメソッドを実装すること。
     * - | (3)

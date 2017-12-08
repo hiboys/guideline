@@ -183,7 +183,7 @@ Controllerクラスの作成方法
 
 リクエストパスでマッピング
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-下記の定義の場合、``"sample/hello"`` というURLにアクセスすると、helloメソッドが実行される。
+下記の定義の場合、``sample/hello`` というURLにアクセスすると、helloメソッドが実行される。
 
  .. code-block:: java
 
@@ -191,7 +191,7 @@ Controllerクラスの作成方法
     public String hello() {
 
 | 複数指定した場合は、OR条件で扱われる。
-| 下記の定義の場合、 ``"sample/hello"`` 又は ``"sample/bonjour"`` というURLにアクセスすると、helloメソッドが実行される。
+| 下記の定義の場合、 ``sample/hello`` 又は ``sample/bonjour`` というURLにアクセスすると、helloメソッドが実行される。
 
  .. code-block:: java
 
@@ -211,7 +211,7 @@ Controllerクラスの作成方法
 
 HTTPメソッドでマッピング
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-下記の定義の場合、 ``"sample/hello"`` というURLにPOSTメソッドでアクセスすると、helloメソッドが実行される。
+下記の定義の場合、 ``sample/hello`` というURLにPOSTメソッドでアクセスすると、helloメソッドが実行される。
 サポートしているHTTPメソッドの一覧は `RequestMethodのJavadoc <http://docs.spring.io/spring/docs/4.3.11.RELEASE/javadoc-api/org/springframework/web/bind/annotation/RequestMethod.html>`_ を参照されたい。
 指定しない場合、サポートしている全てのHTTPメソッドがマッピング対象となる。
 
@@ -222,7 +222,7 @@ HTTPメソッドでマッピング
 
 
 | 複数指定した場合は、OR条件で扱われる。
-| 下記の定義の場合、 ``"sample/hello"`` というURLにGET又はHEADメソッドでアクセスすると、helloメソッドが実行される。
+| 下記の定義の場合、 ``sample/hello`` というURLにGET又はHEADメソッドでアクセスすると、helloメソッドが実行される。
 
  .. code-block:: java
 
@@ -235,7 +235,7 @@ HTTPメソッドでマッピング
 
 リクエストパラメータでマッピング
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| 下記の定義の場合、 ``"sample/hello?form"`` というURLにアクセスすると、helloメソッドが実行される。
+| 下記の定義の場合、 ``sample/hello?form`` というURLにアクセスすると、helloメソッドが実行される。
 | POSTでリクエストする場合は、リクエストパラメータはURLになくてもリクエストBODYに存在していればよい。
 
  .. code-block:: java
@@ -245,7 +245,7 @@ HTTPメソッドでマッピング
 
 
 | 複数指定した場合は、AND条件で扱われる。
-| 下記の定義の場合、 ``"sample/hello?form&formType=foo"`` というURLにアクセスすると、helloメソッドが実行される。
+| 下記の定義の場合、 ``sample/hello?form&formType=foo`` というURLにアクセスすると、helloメソッドが実行される。
 
  .. code-block:: java
 
@@ -383,7 +383,7 @@ Acceptヘッダでマッピング
 必要となるリクエストのURLの設計を行う。
 
 - | 機能内で必要となるリクエストのリクエストURLをグループ化する。
-  | ここではAbcというEntityのCRUD操作を行う機能となるので、 ``"/abc/"`` から始まるURLとする。
+  | ここではAbcというEntityのCRUD操作を行う機能となるので、 ``/abc/`` から始まるURLとする。
 
 - 処理毎にリクエストURLを設ける。
 
@@ -413,7 +413,7 @@ Acceptヘッダでマッピング
 
  .. note::
 
-     Entity参照、Entity更新、Entity削除処理のURL内に指定している ``"{id}"`` は、`URI Template Patterns <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\ と呼ばれ、任意の値を指定する事ができる。
+     Entity参照、Entity更新、Entity削除処理のURL内に指定している ``{id}`` は、`URI Template Patterns <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\ と呼ばれ、任意の値を指定する事ができる。
      サンプルアプリケーションでは、操作するEntityのIDを指定する。
 
  画面フロー図に各処理に割り振られたURLをマッピングすると以下のようになる。
@@ -554,7 +554,7 @@ Acceptヘッダでマッピング
 
 | Entity新規作成、Entity更新、Entity削除処理では、処理内に複数のリクエストが存在しているため、HTTPメソッドとHTTPパラメータによってハンドラメソッドを切り替えている。
 | 以下に、Entity新規作成処理を例に、処理内に複数のリクエストが存在する場合のリクエストフローを示す。
-| URLは全て ``"/abc/create"`` で、HTTPメソッドとHTTPパラメータの組み合わせでハンドラメソッドを切り替えている点に注目すること。
+| URLは全て ``/abc/create`` で、HTTPメソッドとHTTPパラメータの組み合わせでハンドラメソッドを切り替えている点に注目すること。
 
 .. figure:: images_ApplicationLayer/applicationScreenflow.png
    :alt: Request flow of entity create processing
@@ -601,7 +601,7 @@ Acceptヘッダでマッピング
    * - 項番
      - 説明
    * - | (1)
-     - params属性に ``"form"`` を指定する。
+     - params属性に ``form`` を指定する。
    * - | (2)
      - フォーム画面を描画するためのJSPのView名を返却する。
 
@@ -681,7 +681,7 @@ Acceptヘッダでマッピング
 以下に、フォーム表示の動作について説明する。
 
 | フォーム表示処理を呼び出す。
-| ``"abc/create?form"`` というURIにアクセスする。
+| ``abc/create?form`` というURIにアクセスする。
 | ``form`` というHTTPパラメータの指定があるため、ControllerのcreateFormメソッドが呼び出されフォーム画面が表示される。
 
  .. figure:: images_ApplicationLayer/applicationCreateFormDisplay.png
@@ -716,7 +716,7 @@ Acceptヘッダでマッピング
    * - 項番
      - 説明
    * - | (1)
-     - method属性に ``RequestMethod.POST`` 、params属性に ``"confirm"`` を指定する。
+     - method属性に ``RequestMethod.POST`` 、params属性に ``confirm`` を指定する。
    * - | (2)
      - 入力チェックエラーが発生した場合の処理は、フォーム再表示用のハンドラメソッドを呼び出すことを推奨する。フォーム画面を再表示するための処理の共通化を行うことができる。
    * - | (3)
@@ -779,8 +779,8 @@ Acceptヘッダでマッピング
 以下に、入力内容確認の動作について説明する。
 
 | 入力内容確認表示処理を呼び出す。
-| フォーム画面でInput1に ``"aa"`` を、Input2に ``"5"`` を入力し、Confirmボタンを押下する。
-| Confirmボタンを押下すると、 ``"abc/create?confirm"`` というURIにPOSTメソッドでアクセスする。
+| フォーム画面でInput1に ``aa`` を、Input2に "``5``" を入力し、Confirmボタンを押下する。
+| Confirmボタンを押下すると、 ``abc/create?confirm`` というURIにPOSTメソッドでアクセスする。
 | ``confirm`` というHTTPパラメータがあるため、ControllerのcreateConfirmメソッドが呼び出され、入力内容確認画面が表示される。
 
  .. figure:: images_ApplicationLayer/applicationCreateConfirmDisplay.png
@@ -816,7 +816,7 @@ Confirmボタンを押下するとPOSTメソッドでHTTPパラメータが送�
    * - 項番
      - 説明
    * - | (1)
-     - method属性に ``RequestMethod.POST`` 、params属性に ``"redo"`` を指定する。
+     - method属性に ``RequestMethod.POST`` 、params属性に ``redo`` を指定する。
    * - | (2)
      - 入力内容確認画面を描画するためのJSPのView名を返却する。
 
@@ -899,10 +899,10 @@ Backボタンを押下するとPOSTメソッドでHTTPパラメータが送信�
 
 | 新規作成処理を呼び出す。
 | 入力内容確認画面で、Createボタンを押下する。
-| Createボタンを押下すると、 ``"abc/create"`` というURIにPOSTメソッドでアクセスする。
+| Createボタンを押下すると、 ``abc/create`` というURIにPOSTメソッドでアクセスする。
 | ボタンを識別するためのHTTPパラメータを送信していないので、Entity新規作成処理のメインのリクエストと判断され、Controllerのcreateメソッドが呼び出される。
 
-| 新規作成リクエストでは、直接画面を返さず、新規作成完了表示( ``"/abc/create?complete"`` )へリダイレクトしているため、HTTPステータスが302になっている。
+| 新規作成リクエストでは、直接画面を返さず、新規作成完了表示( ``/abc/create?complete`` )へリダイレクトしているため、HTTPステータスが302になっている。
 
  .. figure:: images_ApplicationLayer/applicationCreateNetwork.png
    :width: 90%
@@ -933,7 +933,7 @@ Backボタンを押下するとPOSTメソッドでHTTPパラメータが送信�
    * - 項番
      - 説明
    * - | (1)
-     - params属性に ``"complete"`` を指定する。
+     - params属性に ``complete`` を指定する。
    * - | (2)
      - 新規作成完了画面を描画するため、JSPのView名を返却する。
 
@@ -944,7 +944,7 @@ Backボタンを押下するとPOSTメソッドでHTTPパラメータが送信�
 
 以下に、「新規作成完了表示」の動作について説明する。
 
-| 新規作成完了後、リダイレクト先に指定されたURI( ``"/abc/create?complete"`` )にアクセスする。
+| 新規作成完了後、リダイレクト先に指定されたURI( ``/abc/create?complete`` )にアクセスする。
 | ``complete`` というHTTPパラメータがあるため、ControllerのcreateCompleteメソッドが呼び出され、新規作成完了画面が表示される。
 
 
@@ -976,7 +976,7 @@ HTML form上に複数のボタンを配置する場合の実装
 
    **Picture - Multiple button in the HTML form**
 
-Backボタンを押下した場合、新規作成フォーム画面を再表示するためのリクエスト( ``"/abc/create?redo"`` )を送信する必要があるため、
+Backボタンを押下した場合、新規作成フォーム画面を再表示するためのリクエスト( ``/abc/create?redo`` )を送信する必要があるため、
 HTML form内に以下のコードが必要となる。
 
  .. code-block:: jsp
@@ -993,7 +993,7 @@ HTML form内に以下のコードが必要となる。
    * - 項番
      - 説明
    * - | (1)
-     - 上記のように、入力内容確認画面( ``"abc/createConfirm.jsp"`` )のBackボタンに\ ``name="redo"``\ というパラメータを指定する。
+     - 上記のように、入力内容確認画面( ``abc/createConfirm.jsp`` )のBackボタンに\ ``name="redo"``\ というパラメータを指定する。
 
 Backボタン押下時の動作については、 :ref:`controller-mapping-policy-sampleapp-redo-impl-label` を参照されたい。
 
@@ -1160,7 +1160,7 @@ Backボタン押下時の動作については、 :ref:`controller-mapping-polic
      - \ ``Model``\ オブジェクトを引数として受け取る。
    * - | (2)
      - | 引数で受け取った\ ``Model``\ オブジェクトの\ ``addAttribute``\ メソッドを呼び出し、渡したいデータを\ ``Model``\ オブジェクトに追加する。
-       | 例では、``"hello"`` という属性名で ``"HelloWorld!"`` という文字列のデータを追加している。
+       | 例では、``hello`` という属性名で ``HelloWorld!`` という文字列のデータを追加している。
    * - | (3)
      - | \ ``addAttribute``\ メソッドの第一引数を省略すると値のクラス名の先頭を小文字にした文字列が属性名になる。
        | 例では、 ``model.addAttribute("helloBean", new HelloBean());`` を行ったのと同じ結果となる。
@@ -1211,13 +1211,13 @@ URLのパスから値を取得する
      - 説明
    * - | (1)
      - | \ ``@RequestMapping``\ アノテーションのvalue属性に、抜き出したい箇所をパス変数として指定する。パス変数は、「{変数名}」の形式で指定する。
-       | 上記例では、 ``"id"`` と ``"version"`` という二つのパス変数を指定している。
+       | 上記例では、 ``id`` と ``version`` という二つのパス変数を指定している。
    * - | (2)
      - | \ ``@PathVariable``\ アノテーションのvalue属性には、パス変数の変数名を指定する。
-       | 上記例では、 ``"sample/hello/aaaa/1"`` というURLにアクセスした場合、引数idに文字列 ``"aaaa"`` が渡る。
+       | 上記例では、 ``sample/hello/aaaa/1`` というURLにアクセスした場合、引数idに文字列 ``aaaa`` が渡る。
    * - | (3)
      - | ``@PathVariable``\ アノテーションのvalue属性は省略可能で、省略した場合は引数名がリクエストパラメータ名となる。
-       | 上記例では、 ``"sample/hello/aaaa/1"`` というURLにアクセスした場合、引数versionに数値 ``"1"`` が渡る。
+       | 上記例では、 ``sample/hello/aaaa/1`` というURLにアクセスした場合、引数versionに数値 "``1``" が渡る。
        | ただしこの方法は、
 
        * \ ``-g``\ オプション(デバッグ情報を出力するモード)
@@ -1227,7 +1227,7 @@ URLのパスから値を取得する
 
  .. note::
     バインドする引数の型はString以外でも良い。型が合わない場合は\ ``org.springframework.beans.TypeMismatchException``\ がスローされ、デフォルトの動作は400(Bad Request)が応答される。
-    例えば、上記例で ``"sample/hello/aaaa/v1"`` というURLでアクセスした場合、``"v1"`` をIntegerに変換できないため、例外がスローされる。
+    例えば、上記例で ``sample/hello/aaaa/v1`` というURLでアクセスした場合、``v1`` をIntegerに変換できないため、例外がスローされる。
 
  .. warning::
     ``@PathVariable``\ アノテーションのvalue属性を省略する場合、デプロイするアプリケーションは\ ``-g``\ オプション又はJava8から追加された\ ``-parameters``\ オプションを指定してコンパイルする必要がある。
@@ -1265,10 +1265,10 @@ URLのパスから値を取得する
      - 説明
    * - | (1)
      - | \ ``@RequestParam``\ アノテーションのvalue属性には、リクエストパラメータ名を指定する。
-       | 上記例では、 ``"sample/hello?id=aaaa"`` というURLにアクセスした場合、引数idに文字列 ``"aaaa"`` が渡る。
+       | 上記例では、 ``sample/hello?id=aaaa`` というURLにアクセスした場合、引数idに文字列 ``aaaa`` が渡る。
    * - | (2)
      - | ``@RequestParam``\ アノテーションのvalue属性は省略可能で、省略した場合は引数名がリクエストパラメータ名となる。
-       | 上記例では、 ``"sample/hello?name=bbbb&...."`` というURLにアクセスした場合、引数nameに文字列 ``"bbbb"`` が渡る。
+       | 上記例では、 ``sample/hello?name=bbbb&....`` というURLにアクセスした場合、引数nameに文字列 ``bbbb`` が渡る。
        | ただしこの方法は、
 
        * \ ``-g``\ オプション(デバッグ情報を出力するモード)
@@ -1280,7 +1280,7 @@ URLのパスから値を取得する
        | 上記例では、``age`` というリクエストパラメータがない状態でアクセスした場合、引数ageに\ ``null``\ が渡る。
    * - | (4)
      - | 指定したリクエストパラメータが存在しない場合にデフォルト値を使用したい場合は、defaultValue属性にデフォルト値を指定する。
-       | 上記例では、``genderCode`` というリクエストパラメータがない状態でアクセスした場合、引数genderCodeに ``"unknown"`` が渡る。
+       | 上記例では、``genderCode`` というリクエストパラメータがない状態でアクセスした場合、引数genderCodeに ``unknown`` が渡る。
 
 
  .. note::
@@ -1289,7 +1289,7 @@ URLのパスから値を取得する
 
  .. note::
     バインドする引数の型はString以外でも良い。型が合わない場合は\ ``org.springframework.beans.TypeMismatchException``\ がスローされ、デフォルトの動作は400(Bad Request)が応答される。
-    例えば、上記例で ``"sample/hello?age=aaaa&..."`` というURLでアクセスした場合、 ``"aaaa"`` をIntegerに変換できないため、例外がスローされる。
+    例えば、上記例で ``sample/hello?age=aaaa&...`` というURLでアクセスした場合、 ``aaaa`` をIntegerに変換できないため、例外がスローされる。
 
 |
 
@@ -1346,7 +1346,7 @@ URLのパスから値を取得する
  .. note::
   **リクエストパラメータ名とフォームオブジェクトのプロパティ名は一致させる必要がある。**
 
-  上記のフォームオブジェクトに対して ``"id=aaa&name=bbbb&age=19&genderCode=men?tel=01234567"`` というパラメータが送信された場合、
+  上記のフォームオブジェクトに対して ``id=aaa&name=bbbb&age=19&genderCode=men?tel=01234567`` というパラメータが送信された場合、
   ``id`` , ``name`` , ``age`` , ``genderCode`` は名前が一致するプロパティに値が格納されるが、 ``tel`` は名前が一致するプロパティがないため、フォームオブジェクトに取り込まれない。
 
 ``@RequestParam`` を使って個別に受け取っていたリクエストパラメータをフォームオブジェクトとして受け取るようにする。
@@ -1506,7 +1506,7 @@ URLのパスから値を取得する
      - \ ``RedirectAttributes``\ オブジェクトを引数として受け取る。
    * - | (2)
      - | \ ``RedirectAttributes``\ オブジェクトの\ ``addFlashAttribute``\ メソッドを呼び出し、渡したいデータを\ ``RedirectAttributes``\ オブジェクトに追加する。
-       | 例では、 ``"hello"`` という属性名で ``"HelloWorld!"`` という文字列のデータを追加している。
+       | 例では、 ``hello`` という属性名で ``HelloWorld!`` という文字列のデータを追加している。
    * - | (3)
      - | \ ``addFlashAttribute``\ メソッドの第一引数を省略すると値に渡したオブジェクトのクラス名の先頭を小文字にした文字列が属性名になる。
        | 例では、 ``model.addFlashAttribute("helloBean", new HelloBean());`` を行ったのと同じ結果となる。
@@ -1571,7 +1571,7 @@ URLのパスから値を取得する
      - 説明
    * - | (1)
      - | 属性名にリクエストパラメータ名、属性値にリクエストパラメータの値を指定して、\ ``RedirectAttributes``\ オブジェクトの\ ``addAttribute``\ メソッドを呼び出す。
-       | 上記例では、 ``"/sample/hello?complete&id=aaaa"`` にリダイレクトされる。
+       | 上記例では、 ``/sample/hello?complete&id=aaaa`` にリダイレクトされる。
 
 .. warning::
     上記例ではコメント化しているが、``return "redirect:/sample/hello?complete&id=" + id;``\ と結果は同じになる。
@@ -1609,7 +1609,7 @@ URLのパスから値を取得する
      - | 属性名とパスに埋め込みたい値を指定して、\ ``RedirectAttributes``\ オブジェクトの\ ``addAttribute``\ メソッドを呼び出す。
    * - | (2)
      - | リダイレクトURLの埋め込みたい箇所に「{属性名}」のパス変数を指定する。
-       | 上記例では、 ``"/sample/hello/aaaa?complete"`` にリダイレクトされる。
+       | 上記例では、 ``/sample/hello/aaaa?complete`` にリダイレクトされる。
 
 .. warning::
     上記例ではコメント化しているが、``"redirect:/sample/hello/" + id + "?complete";``\ と結果は同じになる。
@@ -1680,7 +1680,7 @@ Cookieに値を書き込む
      - Cookieを書き込むために、\ ``HttpServletResponse``\ オブジェクトを引数に指定する。
    * - | (2)
      - | \ ``Cookie``\ オブジェクトを生成し、\ ``HttpServletResponse``\ オブジェクトに追加する。
-       | 上記例では、 ``"foo"`` というCookie名で ``"HelloWorld!"`` という値を設定している。
+       | 上記例では、 ``foo`` というCookie名で ``HelloWorld!`` という値を設定している。
 
 .. tip::
 
@@ -1815,7 +1815,7 @@ HTMLを応答する
      - Spring Framework 4.1から追加された\ ``<mvc:jsp>``\ 要素に使用して、JSP用の\ ``InternalViewResolver``\ を定義する。
 
        * \ ``prefix``\ 属性には、JSPファイルが格納されているベースディレクトリ(ファイルパスのプレフィックス)を指定する。
-       * \ ``suffix``\ 属性には、デフォルト値として\ ``".jsp"``\が適用されているため、明示的に指定する必要はない。
+       * \ ``suffix``\ 属性には、デフォルト値として\ ``.jsp``\が適用されているため、明示的に指定する必要はない。
 
        .. note::
 
@@ -1823,11 +1823,11 @@ HTMLを応答する
            本ガイドラインでは\ ``<mvc:view-resolvers>``\ を使用することを推奨する。
 
    * - | (6)
-     - ハンドラメソッドの返り値として ``"sample/hello"`` というView名を返却した場合、 ``"/WEB-INF/views/sample/hello.jsp"`` が呼び出されてHTMLが応答される。
+     - ハンドラメソッドの返り値として ``sample/hello`` というView名を返却した場合、 ``/WEB-INF/views/sample/hello.jsp`` が呼び出されてHTMLが応答される。
 
 
 .. note::
-    上記の例ではJSPを使ってHTMLを生成しているが、VelocityやFreeMarkerなど他のテンプレートエンジンを使用してHTMLを生成する場合でも、ハンドラメソッドの返り値は ``"sample/hello"`` のままでよい。
+    上記の例ではJSPを使ってHTMLを生成しているが、VelocityやFreeMarkerなど他のテンプレートエンジンを使用してHTMLを生成する場合でも、ハンドラメソッドの返り値は ``sample/hello`` のままでよい。
     使用するテンプレートエンジンでの差分は ``ViewResolver`` によって解決される。
 
 
@@ -1856,7 +1856,7 @@ HTMLを応答する
 
 ダウンロードデータを応答する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| データベースなどに格納されているデータをダウンロードデータ(\ ``"application/octet-stream"``\ 等 )として応答する場合、
+| データベースなどに格納されているデータをダウンロードデータ(\ ``application/octet-stream``\ 等 )として応答する場合、
 | レスポンスデータの生成(ダウンロード処理)を行うViewを作成し、処理を委譲することを推奨する。
 | ハンドラメソッドでは、ダウンロード対象となるデータを \ ``Model``\ に追加し、ダウンロード処理を行うViewのView名を返却する。
 
@@ -1942,7 +1942,7 @@ HTMLを応答する
        \ ``BeanNameViewResolver``\ は、返却されたView名に一致するBeanをアプリケーションコンテキストから探してViewを解決するクラスとなっている。
    * - | (2)
      - JSP用の\ ``InternalViewResolver``\ や \ ``TilesViewResolver``\ と併用する場合は、これらの\ ``ViewResolver``\ より、高い優先度を指定する事を推奨する。
-       上記例では、 ``"0"`` を指定することで、\ ``InternalViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
+       上記例では、 "``0``" を指定することで、\ ``InternalViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
    * - | (3)
      - Spring Framework 4.1から追加された\ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
 
@@ -1954,11 +1954,11 @@ HTMLを応答する
            \ ``<mvc:view-resolvers>``\ 要素を使用すると、\ ``ViewResolver``\ をシンプルに定義することが出来るため、
            本ガイドラインでは\ ``<mvc:view-resolvers>``\ を使用することを推奨する。
    * - | (4)
-     - ハンドラメソッドの返り値として ``"sample/report"`` というView名を返却した場合、 (5)でBean登録されたViewインスタンスによって生成されたデータがダウンロードデータとして応答される。
+     - ハンドラメソッドの返り値として ``sample/report`` というView名を返却した場合、 (5)でBean登録されたViewインスタンスによって生成されたデータがダウンロードデータとして応答される。
    * - | (5)
      - コンポーネントの名前にView名を指定して、ViewオブジェクトをBeanとして登録する。
 
-       上記例では、 ``"sample/report"`` というbean名(View名)で ``x.y.z.app.views.XxxExcelView`` のインスタンスがBean登録される。
+       上記例では、 ``sample/report`` というbean名(View名)で ``x.y.z.app.views.XxxExcelView`` のインスタンスがBean登録される。
    * - | (6)
      - Viewの実装例。
 
@@ -2330,8 +2330,8 @@ Spring Frameworkでは、HTML formから送信されたリクエストパラメ�
    * - 項番
      - 説明
    * - | (1)
-     - HTML formから送信されるリクエストパラメータの数値形式を指定する。例では、patternとして ``"#,#"`` 形式を指定しているので、「,」でフォーマットされた値をバインドすることができる。
-       リクエストパラメータの値が ``"1,050"`` の場合、フォームオブジェクトのpriceには ``"1050"`` のIntegerオブジェクトがバインドされる。
+     - HTML formから送信されるリクエストパラメータの数値形式を指定する。例では、patternとして ``#,#`` 形式を指定しているので、「,」でフォーマットされた値をバインドすることができる。
+       リクエストパラメータの値が ``1,050`` の場合、フォームオブジェクトのpriceには ``1050`` のIntegerオブジェクトがバインドされる。
 
 ``@NumberFormat``\ アノテーションで指定できる属性は以下の通り。
 
@@ -2375,8 +2375,8 @@ Spring Frameworkでは、HTML formから送信されたリクエストパラメ�
    * - 項番
      - 説明
    * - | (1)
-     - HTML formから送信されるリクエストパラメータの日時形式を指定する。例では、patternとして ``"yyyyMMdd"`` 形式を指定している。
-       リクエストパラメータの値が ``"20131001"`` の場合、フォームオブジェクトのbirthDateには 2013年10月1日のDateオブジェクトがバインドされる。
+     - HTML formから送信されるリクエストパラメータの日時形式を指定する。例では、patternとして ``yyyyMMdd`` 形式を指定している。
+       リクエストパラメータの値が ``20131001`` の場合、フォームオブジェクトのbirthDateには 2013年10月1日のDateオブジェクトがバインドされる。
 
 \ ``@DateTimeFormat``\ アノテーションで指定できる属性は以下の通り。
 
@@ -2445,10 +2445,10 @@ Controller単位の型変換
    * - | (1)
      - \ ``@InitBinder``\ アノテーション を付与したメソッド用意すると、バインド処理が行われる前にこのメソッドが呼び出され、デフォルトの動作をカスタマイズすることができる。
    * - | (2)
-     - 例では、Long型のフィールドの数値形式を ``"#,#"`` に指定しているので、「,」でフォーマットされた値をバインドすることができる。
+     - 例では、Long型のフィールドの数値形式を ``#,#`` に指定しているので、「,」でフォーマットされた値をバインドすることができる。
    * - | (3)
      - \ ``@InitBinder``\ アノテーションのvalue属性にフォームオブジェクトの属性名を指定することで、フォームオブジェクト毎にデフォルトの動作をカスタマイズすることもできる。
-       例では、 ``"sampleForm"`` という属性名のフォームオブジェクトに対するバインド処理が行われる前にメソッドが呼び出される。
+       例では、 ``sampleForm`` という属性名のフォームオブジェクトに対するバインド処理が行われる前にメソッドが呼び出される。
 
 |
 
@@ -2510,10 +2510,10 @@ form-backing beanの初期化は、\ ``@ModelAttribute``\ アノテーション�
    * - 項番
      - 説明
    * - | (1)
-     - \ ``Model``\ に追加するための属性名は、クラス名の先頭を小文字にした値（デフォルト値）が設定される。この例では ``"sampleForm"`` が属性名になる。
+     - \ ``Model``\ に追加するための属性名は、クラス名の先頭を小文字にした値（デフォルト値）が設定される。この例では ``sampleForm`` が属性名になる。
        返却したオブジェクトは、\ ``model.addAttribute(form)``\ 相当の処理が実行され\ ``Model``\ に追加される。
    * - | (2)
-     -  ``Model``\ に追加するための属性名を指定したい場合は、\ ``@ModelAttribute``\ アノテーションのvalue属性に指定する。この例では ``"xxx"`` が属性名になる。
+     -  ``Model``\ に追加するための属性名を指定したい場合は、\ ``@ModelAttribute``\ アノテーションのvalue属性に指定する。この例では ``xxx`` が属性名になる。
         返却したオブジェクトは、``model.addAttribute("xxx", form)``\ 相当の処理が実行され\ ``Model``\ に追加される。
         デフォルト値以外の属性名を指定した場合、ハンドラメソッドの引数としてフォームオブジェクトを受け取る時に\ ``@ModelAttribute("xxx")``\ の指定が必要になる。
    * - | (3)
@@ -2907,8 +2907,8 @@ JSTLのJSPタグライブラリから提供されている ``<c:out>`` タグを
    * - 項番
      - 説明
    * - | (1)
-     - | EL式で取得した値を ``<fmt:formatNumber>`` タグのvalue属性に指定する。表示するフォーマットはpattern属性に指定する。例では、"``0.00``" を指定している。
-       | 仮に ``${helloBean.numberItem}`` で取得した値が ``"1.2"`` の場合、画面には ``"1.20"`` が出力される。
+     - | EL式で取得した値を ``<fmt:formatNumber>`` タグのvalue属性に指定する。表示するフォーマットはpattern属性に指定する。例では、``0.00`` を指定している。
+       | 仮に ``${helloBean.numberItem}`` で取得した値が ``1.2`` の場合、画面には ``1.20`` が出力される。
 
 .. note::
     ``<fmt:formatNumber>`` の詳細は、`JavaServer Pages Standard Tag Library(Version 1.2) <http://download.oracle.com/otndocs/jcp/jstl-1.2-mrel2-eval-oth-JSpec/>`_\ の "CHAPTER 9 Formatting Actions" を参照されたい。
@@ -2936,8 +2936,8 @@ JSTLのJSPタグライブラリから提供されている ``<fmt:formatDate>`` 
    * - 項番
      - 説明
    * - | (1)
-     - | EL式で取得した値を ``<fmt:formatDate>`` タグのvalue属性に指定する。表示するフォーマットはpattern属性に指定する。例では、"``yyyy-MM-dd``" を指定している。
-       | 仮に ``${helloBean.dateItem}`` で取得した値が2013年3月2日の場合、画面には ``"2013-03-02"`` が出力される。
+     - | EL式で取得した値を ``<fmt:formatDate>`` タグのvalue属性に指定する。表示するフォーマットはpattern属性に指定する。例では、``yyyy-MM-dd`` を指定している。
+       | 仮に ``${helloBean.dateItem}`` で取得した値が2013年3月2日の場合、画面には ``2013-03-02`` が出力される。
 
 .. note::
     ``<fmt:formatDate>`` の詳細は、`JavaServer Pages Standard Tag Library(Version 1.2) <http://download.oracle.com/otndocs/jcp/jstl-1.2-mrel2-eval-oth-JSpec/>`_\ の "CHAPTER 9 Formatting Actions" を参照されたい。
@@ -2997,7 +2997,7 @@ HTMLの\ ``<form>``\ 要素(JSPタグライブラリの\ ``<form:form>``\ 要素
     * - 項番
       - 説明
     * - | (1)
-      - このメソッドに割り当てられるリクエストURLは、\ "``{コンテキストパス}/hello"``\ となる。
+      - このメソッドに割り当てられるリクエストURLは、\ ``{コンテキストパス}/hello``\ となる。
 
 |
 
@@ -3083,7 +3083,7 @@ HTMLの\ ``<form>``\ 要素(JSPタグライブラリの\ ``<form:form>``\ 要素
  .. note:: **リクエストマッピング名について**
 
     リクエストマッピング名は、デフォルト実装(\ ``org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMethodMappingNamingStrategy``\ の実装)では、
-    「クラス名の大文字部分(クラスの短縮名) + \ ``"#"``\  + メソッド名」となる。
+    「クラス名の大文字部分(クラスの短縮名) + "\ ``#``\"  + メソッド名」となる。
 
     リクエストマッピング名は重複しないようにする必要がある。
     名前が重複してしまった場合は、\ ``@RequestMapping``\ アノテーションの\ ``name``\ 属性に一意となる名前を指定する必要がある。
@@ -3192,7 +3192,7 @@ Spring Frameworkから提供されている ``<form:form>`` タグを使用し�
    * - 項番
      - 説明
    * - | (1)
-     - ``"resultMessages"`` という属性名で格納されているメッセージを出力する。
+     - ``resultMessages`` という属性名で格納されているメッセージを出力する。
 
 |
 
@@ -3223,7 +3223,7 @@ Spring Frameworkから提供されている ``<form:form>`` タグを使用し�
    * - 項番
      - 説明
    * - | (1)
-     - コードリスト名( ``"CL_ORDERSTATUS"`` ) を属性名として、コードリスト( ``java.util.Map`` インタフェース)が格納されている。
+     - コードリスト名( ``CL_ORDERSTATUS`` ) を属性名として、コードリスト( ``java.util.Map`` インタフェース)が格納されている。
        そのためJSPでは、EL式を使ってコードリスト( ``java.util.Map`` インタフェース)にアクセスすることができる。
        取得した ``Map`` インタフェースを ``<form:options>`` のitems属性に渡すことで、コードリストをセレクトボックスに表示することができる。
 
@@ -3241,7 +3241,7 @@ Spring Frameworkから提供されている ``<form:form>`` タグを使用し�
    * - 項番
      - 説明
    * - | (1)
-     - セレクトボックス作成時と同様に、コードリスト名( ``"CL_ORDERSTATUS"`` ) を属性名として、コードリスト( ``java.util.Map`` インタフェース)を取得する。
+     - セレクトボックス作成時と同様に、コードリスト名( ``CL_ORDERSTATUS`` ) を属性名として、コードリスト( ``java.util.Map`` インタフェース)を取得する。
        取得した ``Map`` インタフェースのキー値として、セレクトボックスで選択した値を指定することで、コード名を表示することができる。
 
 |
@@ -3937,7 +3937,7 @@ HandlerMethodArgumentResolverを実装してControllerの引数として受け�
 |
 
 | 以下に、\ ``@InitBinder``\ メソッドの実装サンプルを示す。
-| サンプルコードでは、 リクエストパラメータで指定できる日付型で形式を ``"yyyy/MM/dd"`` に設定している。
+| サンプルコードでは、 リクエストパラメータで指定できる日付型で形式を ``yyyy/MM/dd`` に設定している。
 
  .. code-block:: java
     :emphasize-lines: 1,2,5-6
