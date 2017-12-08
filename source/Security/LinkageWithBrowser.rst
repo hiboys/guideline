@@ -46,9 +46,9 @@ Spring Securityがデフォルトでサポートしているレスポンスヘ�
 
     これらのヘッダに対する処理は、一部のブラウザではサポートされていない。ブラウザの公式サイトまたは以下のページを参照されたい。
 
-    * https://www.owasp.org/index.php/HTTP_Strict_Transport_Security (Strict-Transport-Security)
+    * https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet (Strict-Transport-Security)
     * https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet (X-Frame-Options)
-    * https://www.owasp.org/index.php/List_of_useful_HTTP_headers (X-Content-Type-Options, X-XSS-Protection, Content-Security-Policy, Public-Key-Pins)
+    * https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#tab=Headers (X-Content-Type-Options, X-XSS-Protection, Content-Security-Policy, Public-Key-Pins)
 
 
 Cache-Control
