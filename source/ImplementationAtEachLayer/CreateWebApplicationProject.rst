@@ -990,14 +990,14 @@ Maven Archetypeで作成したプロジェクトでは、インメモリデー�
                              <version>${postgresql.version}</version>
                          </dependency>
         <!--             <dependency> -->
-        <!--                 <groupId>com.oracle</groupId> -->
+        <!--                 <groupId>com.oracle.jdbc</groupId> -->
         <!--                 <artifactId>ojdbc7</artifactId> -->
         <!--                 <version>${ojdbc.version}</version> -->
         <!--             </dependency> -->
 
             <!-- ... -->
 
-            <postgresql.version>9.4-1206-jdbc41</postgresql.version>
+            <postgresql.version>9.4.1212</postgresql.version>
             <ojdbc.version>12.1.0.2</ojdbc.version>
 
     * ``artifactId/artifactId-web/pom.xml``
@@ -1010,7 +1010,7 @@ Maven Archetypeで作成したプロジェクトでは、インメモリデー�
                          <scope>runtime</scope><!-- (1) -->
                      </dependency>
         <!--         <dependency> -->
-        <!--             <groupId>com.oracle</groupId> -->
+        <!--             <groupId>com.oracle.jdbc</groupId> -->
         <!--             <artifactId>ojdbc7</artifactId> -->
         <!--             <scope>runtime</scope> -->
         <!--         </dependency> -->
