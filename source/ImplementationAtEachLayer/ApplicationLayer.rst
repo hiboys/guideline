@@ -2755,10 +2755,11 @@ Thymeleafのネームスペースを設定する
 
 ``#numbers`` オブジェクトは、数値のフォーマットを行う以下のようなメソッドをもつ。
 
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.30\linewidth}|p{0.60\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.15\linewidth}|p{0.40\linewidth}|p{0.40\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 5 15 40 40
+   :class: longtable
 
    * - 項番
      - メソッド名
