@@ -87,7 +87,7 @@
 
         記載内容の修正
 
-        * Spring Securityでパス変数を使用するアクセスポリシーの定義に関する記載内容を修正(\ `guideline#3090 <https://github.com/terasolunaorg/guideline/issues/3090>`_\ )
+        * Spring Securityでパス変数を使用するアクセスポリシーの定義に関する記載内容を修正
 
     * - 
       - :doc:`../Security/XSS`
