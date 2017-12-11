@@ -1438,6 +1438,7 @@ Thymeleafからのアクセス
             <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"><!--/* (1) */-->
             <!--/* omitted */-->
             <p th:text="|ようこそ、${#authentication.principal.account.lastName}さん。|"></p><!--/* (2) */-->
+
      .. tabularcolumns:: |p{0.25\linewidth}|p{0.75\linewidth}|
      .. list-table::
          :header-rows: 1
@@ -1450,6 +1451,7 @@ Thymeleafからのアクセス
              | \ ``#authentication``\ オブジェクトを使用する際には、\ ``xmlns:sec``\ 属性の定義は不要である。
          * - | (2)
            - | \ ``#authentication``\ オブジェクトにて認証情報よりlastNameを取得し、lastNameの前後にリテラル置換を行っている。
+
 |
 
 .. _SpringSecurityAuthenticationIntegrationWithSpringMVC:
