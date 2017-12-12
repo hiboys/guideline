@@ -2836,7 +2836,7 @@ Thymeleafのネームスペースを設定する
  .. note::
     ``#numbers`` は、配列やリストなどを対象にフォーマットを行うことも可能である。
 
-     詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects>`_\ を参照されたい。
+     詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects 内のNumbers <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#numbers>`_\ を参照されたい。
 
 |
 
@@ -2868,7 +2868,7 @@ Thymeleafのネームスペースを設定する
  .. note::
       ``#dates`` は、配列やリストを対象にフォーマットを行うことも可能である。
       
-      詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects>`_\ を参照されたい。
+      詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects 内のDates <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#dates>`_\ を参照されたい。
 
 |
 
@@ -2894,7 +2894,7 @@ Thymeleafのネームスペースを設定する
  .. note::
       ``#calendars`` は、配列やリストを対象にフォーマットを行うことも可能である。
       
-      詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects>`_\ を参照されたい。
+      詳細については、"The Standard Dialect"の `19 Appendix B: Expression Utility Objects 内のCalendars <http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#calendars>`_\ を参照されたい。
 
 |
 
