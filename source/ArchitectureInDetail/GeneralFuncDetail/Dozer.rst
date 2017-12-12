@@ -832,9 +832,9 @@ Dozerは、以下のCollectionタイプの双方向自動マッピングをサ�
     [a@example.com, d@example.com, e@example.com, a@example.com, b@example.com, c@example.com]
 
 コピー元BeanのCollectionの全要素が、コピー先BeanのCollectionに追加されている。
-\ ``a@exmample.com``\ をもつ2つの\ ``Email``\ オブジェクトは "等価"であるが、単純に追加される。
+\ ``a@exmample.com``\ をもつ2つの\ ``Email``\ オブジェクトは "等価" であるが、単純に追加される。
 
-(ここでいう "等価"とは\ ``Email.equals`` で比較すると\ ``true``\ になり、\ ``Email.hashCode``\ の値も同じであることを意味する。)
+(ここでいう "等価" とは\ ``Email.equals`` で比較すると\ ``true``\ になり、\ ``Email.hashCode``\ の値も同じであることを意味する。)
 
 上記の振る舞いは、Dozerの用語では\ **cumulative**\ と呼ばれ、Collectionをマッピングする際のデフォルトの挙動となっている。
 
@@ -1244,7 +1244,7 @@ dozer-configration-mapping.xml
 
 .. note::
 
-    ``String``\ から\ ``java.utl.Date``\ など標準の日付・時刻オブジェクトへの変換については ":ref:`beanconverter-string-and-datetime`"で述べる。
+    ``String``\ から\ ``java.utl.Date``\ など標準の日付・時刻オブジェクトへの変換については ":ref:`beanconverter-string-and-datetime`" で述べる。
 
 Appendix
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

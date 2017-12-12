@@ -930,7 +930,7 @@ STSにインポートしたプロジェクトを対象として、アプリケ�
    :alt: Login Page
    :width: 40%
    
-ログイン画面上にある "here"のリンクを選択すると、アカウント作成を行うことができる。
+ログイン画面上にある "here" のリンクを選択すると、アカウント作成を行うことができる。
 
 .. figure:: images/materialSessionTutorialCreateAccountPages.png
    :alt: Account Create Pages

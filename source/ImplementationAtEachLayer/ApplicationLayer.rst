@@ -886,7 +886,7 @@ Backボタンを押下するとPOSTメソッドでHTTPパラメータが送信�
      -  :abbr:`PRG (Post-Redirect-Get)` パターンとするため、新規作成完了表示リクエストにリダイレクトするためのURLをView名として返却する。
 
  .. note::
-    "redirect:/xxx"を返却すると "/xxx"へリダイレクトさせることができる。
+    "redirect:/xxx" を返却すると "/xxx" へリダイレクトさせることができる。
 
 .. warning::
     PRGパターンとすることで、ブラウザのF5ボタン押下時のリロードによる二重送信を防ぐ事はできるが、二重送信の対策としては十分ではない。
@@ -1577,7 +1577,7 @@ URLのパスから値を取得する
     上記例ではコメント化しているが、``return "redirect:/sample/hello?complete&id=" + id;``\ と結果は同じになる。
     ただし、 ``RedirectAttributes``\ オブジェクトの\ ``addAttribute``\ メソッドを用いるとURIエンコーディングも行われるので、
     動的に埋め込むリクエストパラメータについては、**返り値のリダイレクトURLとして組み立てるのではなく、必ずaddAttributeメソッドを使用してリクエストパラメータに設定すること。**
-    動的に埋め込まないリクエストパラメータ(上記例だと "complete")については、返り値のリダイレクトURLに直接指定してよい。
+    動的に埋め込まないリクエストパラメータ(上記例だと "complete" )については、返り値のリダイレクトURLに直接指定してよい。
 
 |
 
@@ -1642,7 +1642,7 @@ Cookieから取得したい場合は、引数に\ ``@CookieValue``\ アノテー
      - 説明
    * - | (1)
      - | \ ``@CookieValue``\ アノテーションのvalue属性には、Cookie名を指定する。
-       | 上記例では、Cookieから "JSESSIONID"というCookie名の値が引数sessionIdに渡る。
+       | 上記例では、Cookieから "JSESSIONID" というCookie名の値が引数sessionIdに渡る。
 
 .. note::
     ``@RequestParam``\ 同様、required属性、defaultValue属性があり、引数の型にはString型以外の指定も可能である。

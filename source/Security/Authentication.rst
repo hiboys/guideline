@@ -938,7 +938,7 @@ BCryptPasswordEncoder
       - | passwordEncoderのクラスに\ ``BCryptPasswordEncoder``\ を指定する。
     * - | (2)
       - | コンストラクタの引数に、ハッシュ化のストレッチング回数のラウンド数を指定する。
-        | 本引数は省略可能であり、指定できる値は "\ ``4``\"から "\ ``31``\" である。
+        | 本引数は省略可能であり、指定できる値は "\ ``4``\" から "\ ``31``\" である。
         | なお、未指定時のデフォルト値は\ ``10``\ である。
         | 本ガイドラインでは説明を省略するが、コンストラクタ引数として\ ``java.security.SecureRandom.SecureRandom``\ を指定することも可能である。
 
@@ -2769,7 +2769,7 @@ Spring MVCでリクエストを受けてログインフォームを表示する�
     * - 項番
       - 説明
     * - | (1)
-      - | view名として "login"を返却する。\ ``InternalResourceViewResolver``\ によってsrc/main/webapp/WEB-INF/views/login.jspが出力される。
+      - | view名として "login" を返却する。\ ``InternalResourceViewResolver``\ によってsrc/main/webapp/WEB-INF/views/login.jspが出力される。
 
 本例のように、単純にview名を返すだけのメソッドが一つだけあるControllerであれば、\ ``<mvc:view-controller>``\ を使用して代用することも可能である。  
 

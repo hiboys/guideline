@@ -339,11 +339,11 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
    * - | (4)
      - ``@Controller`` アノテーションを付けることで、DIコンテナにより、コントローラクラスが自動で読み込まれる。前述「Spring MVCの設定ファイルの説明(2)」の設定により、component-scanの対象となっている。
    * - | (5)
-     - HTTPメソッドがGETまたはPOSTで、Resource（もしくはRequest URL）が "/"で、アクセスする際に実行される。
+     - HTTPメソッドがGETまたはPOSTで、Resource（もしくはRequest URL）が "/" で、アクセスする際に実行される。
    * - | (6)
      - Viewに渡したいオブジェクトを\ ``Model``\ に設定する。
    * - | (7)
-     - View名を返却する。前述「Spring MVCの設定ファイルの説明(3)」の設定により、 "WEB-INF/views/welcome/home.jsp"がレンダリングされる。
+     - View名を返却する。前述「Spring MVCの設定ファイルの説明(3)」の設定により、 "WEB-INF/views/welcome/home.jsp" がレンダリングされる。
 
 |
 
@@ -384,7 +384,7 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
 
 サーバーを起動する
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| STSで、 "helloworld"プロジェクトを右クリックして、 "Run As" -> "Run On Server" -> "localhost" -> "Pivotal tc Server Developer Edition v3.0" -> "Finish"を実行し、helloworldプロジェクトを起動する。
+| STSで、 "helloworld" プロジェクトを右クリックして、 "Run As" -> "Run On Server" -> "localhost" -> "Pivotal tc Server Developer Edition v3.0" -> "Finish"を実行し、helloworldプロジェクトを起動する。
 | ブラウザに "http://localhost:8080/helloworld/" を入力し、実行すると下記の画面が表示される。
 
 .. figure:: images/AppHelloWorldIndex.png
@@ -498,12 +498,12 @@ Controllerの作成
      - | ``@ModelAttribute`` というアノテーションを、メソッドに付加する。このアノテーションがついたメソッドの返り値は、自動でModelに追加される。
        | Modelの属性名を、 ``@ModelAttribute`` で指定することもできるが、デフォルトでは、クラス名の先頭を小文字にした値が、属性名になる。この場合は、”echoForm”である。フォームの属性名は、次に説明する  ``form:form タグ`` の ``modelAttribute`` 属性の値に一致している必要がある。
    * - | (2)
-     - | メソッドに付加した ``@RequestMapping`` アノテーションの ``value`` 属性に、何も指定しない場合、クラスに付加した ``@RequestMapping`` のルートに、マッピングされる。この場合、 "<contextPath>/echo"にアクセスすると、 ``index`` メソッドが呼ばれる。
+     - | メソッドに付加した ``@RequestMapping`` アノテーションの ``value`` 属性に、何も指定しない場合、クラスに付加した ``@RequestMapping`` のルートに、マッピングされる。この場合、 "<contextPath>/echo" にアクセスすると、 ``index`` メソッドが呼ばれる。
        | ``method`` 属性に何もしない場合は、任意のHTTPメソッドでマッピングされる。
    * - | (3)
-     - | View名で "echo/index"を返すので、ViewResolverにより、 "WEB-INF/views/echo/index.jsp"がレンダリングされる。
+     - | View名で "echo/index"を返すので、ViewResolverにより、 "WEB-INF/views/echo/index.jsp" がレンダリングされる。
    * - | (4)
-     - | メソッドに付加した ``@RequestMapping`` アノテーションの\ ``value``\ 属性に "hello"を、\ ``method``\ 属性に\ ``RequestMethod.POST``\ を指定しているので、この場合、 "<contextPath>/echo/hello"にPOSTメソッドを使用してアクセスすると ``hello`` メソッドが呼ばれる。
+     - | メソッドに付加した ``@RequestMapping`` アノテーションの\ ``value``\ 属性に "hello" を、\ ``method``\ 属性に\ ``RequestMethod.POST``\ を指定しているので、この場合、 "<contextPath>/echo/hello" にPOSTメソッドを使用してアクセスすると ``hello`` メソッドが呼ばれる。
    * - | (5)
      - | 引数に、EchoFormには(1)によりModelに追加されたEchoFormオブジェクトが渡される。
    * - | (6)
@@ -615,7 +615,7 @@ JSPの作成
    * - 項番
      - 説明
    * - | (2)
-     - | Controllerから渡された "name"を出力する。 ``c:out`` タグにより、XSS対策を行っている。
+     - | Controllerから渡された "name" を出力する。 ``c:out`` タグにより、XSS対策を行っている。
 
 .. note::
 

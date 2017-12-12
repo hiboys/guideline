@@ -43,7 +43,7 @@ Spring Framework理解度チェックテスト
     
 #. Scopeがsingletonの場合とprototypeの場合の違いを説明してください。
 
-#. Scopeに関する次の説明で(1)～(3)を埋めてください。ただし(1)、(2)には "singleton"または "prototype"のどちらが入り、同じ値は入りません。またimport文は省略してください。
+#. Scopeに関する次の説明で(1)～(3)を埋めてください。ただし(1)、(2)には "singleton" または "prototype" のどちらが入り、同じ値は入りません。またimport文は省略してください。
 
     .. code-block:: java
     

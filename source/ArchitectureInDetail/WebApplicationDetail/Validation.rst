@@ -2177,11 +2177,11 @@ Spring MVCによるBean Validationのエラーメッセージは、以下の順�
    | Springのデフォルトのルールについては、「`DefaultMessageCodesResolverのJavaDoc <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_」を参照されたい。
 #. 1.でメッセージが見つからない場合、アノテーションの\ ``message``\ 属性に、指定されたメッセージからエラーメッセージを取得する (Bean Validationのルール)
 
-  #. \ ``message``\ 属性に指定されたメッセージが、 "{メッセージキー}"形式でない場合、そのテキストをエラーメッセージとして使用する。
-  #. \ ``message``\ 属性に指定されたメッセージが、 "{メッセージキー}"形式の場合、クラスパス直下のValidationMessages.propertiesから、メッセージキーに対応するメッセージを探す。
+  #. \ ``message``\ 属性に指定されたメッセージが、 "{メッセージキー}" 形式でない場合、そのテキストをエラーメッセージとして使用する。
+  #. \ ``message``\ 属性に指定されたメッセージが、 "{メッセージキー}" 形式の場合、クラスパス直下のValidationMessages.propertiesから、メッセージキーに対応するメッセージを探す。
 
     #. メッセージキーに対応するメッセージが定義されている場合は、そのメッセージを使用する
-    #. メッセージキーに対応するメッセージが定義されていない場合は、 "{メッセージキー}"をそのままエラーメッセージとして使用する
+    #. メッセージキーに対応するメッセージが定義されていない場合は、 "{メッセージキー}" をそのままエラーメッセージとして使用する
 
 基本的にエラーメッセージは、propertiesファイルに定義することを推奨する。
 
@@ -5112,7 +5112,7 @@ OSコマンドインジェクションが発生する可能性がある。
     * - 項番
       - 説明
     * - | (1)
-      - | 例えば、\ ``script``\ に "exec.sh ; cat /etc/passwd" が入ると、文字列中のセミコロンが\ ``/bin/sh``\ により区切り文字として解釈され、 "cat /etc/passwd"が実行される。
+      - | 例えば、\ ``script``\ に "exec.sh ; cat /etc/passwd" が入ると、文字列中のセミコロンが\ ``/bin/sh``\ により区切り文字として解釈され、 "cat /etc/passwd" が実行される。
         | そのため、標準出力の扱い方によっては\ ``/etc/passwd``\ が出力される可能性がある。
 
 .. warning:: **ScriptEngineやScriptTemplateViewResolverの利用について**

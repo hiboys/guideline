@@ -137,7 +137,7 @@ Overview
    | Track ID を出力させることで、不規則に出力された場合でも、ログを結びつけることができる。
    | 上記の例だと、4行目と8,9行目が、同じリクエストに関するログであることがわかる。
    | 共通ライブラリでは、リクエスト毎のユニークキーを生成し、MDCに追加する\ ``org.terasoluna.gfw.web.logging.mdc.XTrackMDCPutFilter``\ を提供している。
-   | \ ``XTrackMDCPutFilter``\ は、HTTPレスポンスヘッダの "X-Track"にもTrack IDを設定する。ログ中では、Track IDのラベルとして、X-Trackを使用している。
+   | \ ``XTrackMDCPutFilter``\ は、HTTPレスポンスヘッダの "X-Track" にもTrack IDを設定する。ログ中では、Track IDのラベルとして、X-Trackを使用している。
    | 使用方法については、\ :ref:`MDCについて<log_MDC>`\ を参照されたい。
 
 3. | ログのマスクについて
@@ -332,7 +332,7 @@ logback.xml
    * - | (2)
      - | ログの出力形式を指定する。何も記述しなければ、メッセージだけが出力される。
        | 時刻やメッセージレベルなど、業務要件に合わせて出力させる。
-       | ここでは "ラベル:値<TAB>ラベル:値<TAB>..."形式のLTSV(Labeled Tab Separated Value)フォーマットを設定している。
+       | ここでは "ラベル:値<TAB>ラベル:値<TAB>..." 形式のLTSV(Labeled Tab Separated Value)フォーマットを設定している。
    * - | (3)
      - | アプリケーションログを出力するための、アペンダ定義を指定する。
        | どのアペンダを使用するかは、<logger>に指定することもできるが、ここではアプリケーションログはデフォルトで使用するため、root（11）に参照させている。
@@ -486,7 +486,7 @@ SLF4Jのロガー(\ ``org.slf4j.Logger``\ )の各ログレベルに応じたメ�
    * - | (1)
      - | \ ``org.slf4j.LoggerFactory``\ から\ ``Logger``\ を生成する。\ ``getLogger``\ の引数にClassオブジェクトを
        | 設定した場合は、ロガー名は、そのクラスのFQCNになる。
-       | この例では、 "com.example.sample.app.welcome.HomeController"が、ロガー名になる。
+       | この例では、 "com.example.sample.app.welcome.HomeController" が、ロガー名になる。
    * - | (2)
      - | TRACEレベルのログを出力する。
    * - | (3)
@@ -1265,7 +1265,7 @@ logback.xmlの\ ``<pattern>``\ に\ ``%X{X-Track}``\ および、\ ``%X{USER}``\
              * - 項番
                - 説明
              * - | (1)
-               - | Bean定義した\ ``UserIdMDCPutFilter`` \ を "ANONYMOUS_FILTER"の後に追加する。
+               - | Bean定義した\ ``UserIdMDCPutFilter`` \ を "ANONYMOUS_FILTER" の後に追加する。
              * - | (2)
                - | \ ``UserIdMDCPutFilter`` \ を定義する。
 
@@ -1375,7 +1375,7 @@ ExceptionLogger
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 例外発生時のロガーとして、\ ``org.terasoluna.gfw.common.exception.ExceptionLogger``\ が提供されている。
 
-使用方法は、 "\ :doc:`../WebApplicationDetail/ExceptionHandling`\ "の "\ :ref:`exception-handling-how-to-use-label`\ "を参照されたい。
+使用方法は、 "\ :doc:`../WebApplicationDetail/ExceptionHandling`\ " の "\ :ref:`exception-handling-how-to-use-label`\ " を参照されたい。
 
 .. raw:: latex
 
