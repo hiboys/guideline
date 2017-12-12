@@ -384,7 +384,7 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
 
 サーバーを起動する
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| STSで、 "helloworld" プロジェクトを右クリックして、 "Run As" -> "Run On Server" -> "localhost" -> "Pivotal tc Server Developer Edition v3.0" -> "Finish"を実行し、helloworldプロジェクトを起動する。
+| STSで、 "helloworld" プロジェクトを右クリックして、 "Run As" -> "Run On Server" -> "localhost" -> "Pivotal tc Server Developer Edition v3.0" -> "Finish" を実行し、helloworldプロジェクトを起動する。
 | ブラウザに "http://localhost:8080/helloworld/" を入力し、実行すると下記の画面が表示される。
 
 .. figure:: images/AppHelloWorldIndex.png
@@ -501,7 +501,7 @@ Controllerの作成
      - | メソッドに付加した ``@RequestMapping`` アノテーションの ``value`` 属性に、何も指定しない場合、クラスに付加した ``@RequestMapping`` のルートに、マッピングされる。この場合、 "<contextPath>/echo" にアクセスすると、 ``index`` メソッドが呼ばれる。
        | ``method`` 属性に何もしない場合は、任意のHTTPメソッドでマッピングされる。
    * - | (3)
-     - | View名で "echo/index"を返すので、ViewResolverにより、 "WEB-INF/views/echo/index.jsp" がレンダリングされる。
+     - | View名で "echo/index" を返すので、ViewResolverにより、 "WEB-INF/views/echo/index.jsp" がレンダリングされる。
    * - | (4)
      - | メソッドに付加した ``@RequestMapping`` アノテーションの\ ``value``\ 属性に "hello" を、\ ``method``\ 属性に\ ``RequestMethod.POST``\ を指定しているので、この場合、 "<contextPath>/echo/hello" にPOSTメソッドを使用してアクセスすると ``hello`` メソッドが呼ばれる。
    * - | (5)
