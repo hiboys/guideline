@@ -210,7 +210,7 @@ JSPの実装
 
 .. note::
 
-  インクルード用の共通jspファイルの詳細は :ref:`view_jsp_include-label` を参照されたい。
+  インクルード用の共通jspファイルの詳細はインクルード用の共通JSPの作成を参照されたい。
 
 |
 
@@ -454,7 +454,7 @@ JSPの実装
 .. tip::
 
     * インクルード用の共通jspにSpringのタグライブラリを定義する必要がある。
-    * インクルード用の共通jspファイルの詳細は :ref:`view_jsp_include-label` を参照されたい。
+    * インクルード用の共通jspファイルの詳細はインクルード用の共通JSPの作成を参照されたい。
 
 |
 
@@ -469,7 +469,7 @@ JSPの実装
 
 .. note::
 
-    同様に、JSPを直接指定した遷移の場合\ :doc:`../WebApplicationDetail/TilesLayout`\ で使用する\ ``ViewResolver``\ を経由しないためTilesが適用されない。
+    同様に、JSPを直接指定した遷移の場合Tilesによる画面レイアウトで使用する\ ``ViewResolver``\ を経由しないためTilesが適用されない。
 
 
 |

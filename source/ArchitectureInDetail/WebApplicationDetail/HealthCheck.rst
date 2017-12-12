@@ -351,7 +351,7 @@ Apache Tilesの設定を受けないようにする
 
 | \ :ref:`HealthCheckHowToUseController`\で示した通り、Apache Tilesの設定を受けないよう、tiles-definitions.xmlの\ ``<put-attribute>``\タグに従わないディレクトリ配下にJSPファイルを配置する必要がある。
 | ブランクプロジェクトのデフォルトの設定では、 \ ``/WEB-INF/views/{1}/{2}.jsp``\に該当するJSPにApache Tilesが適用される設定となっているため、1階層深いディレクトリを作成し、\ ``/WEB-INF/views/common/healthcheck/``\配下にJSPファイルを配置している。 
-| 詳細は\ :doc:`../../../ArchitectureInDetail/WebApplicationDetail/TilesLayout`\を参照されたい。
+| 詳細はTilesによる画面レイアウトを参照されたい。
 
 .. _HealthCheckAppendixHeader:
 
