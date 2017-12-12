@@ -1493,7 +1493,7 @@ Bean Validationでグループを指定する場合、アノテーションの\ 
 
 .. warning::
 
-   このControllerの実装は、\ ``country``\ の値が、 "cn"、 "jp"、 "sg"のいずれでもない場合のハンドリングが行われておらず、不十分である。
+   このControllerの実装は、\ ``country``\ の値が、 "cn" 、 "jp" 、 "sg" のいずれでもない場合のハンドリングが行われておらず、不十分である。
    \ ``country``\ の値が、想定外の場合に、400エラーが返却される。
 
 次にチェック対象の国が増えたため、成人条件18歳以上をデフォルトルールとしたい場合を考える。
@@ -2190,7 +2190,7 @@ Spring MVCによるBean Validationのエラーメッセージは、以下の順�
 * \ ``org.springframework.context.MessageSource``\ が読み込むpropertiesファイル
 * \ クラスパス直下のValidationMessages.properties
 
-以下の説明では、applicationContext.xmlに次の設定があることを前提とし、前者を "application-messages.properties"、後者を "ValidationMessages.properties"と呼ぶ。
+以下の説明では、applicationContext.xmlに次の設定があることを前提とし、前者を "application-messages.properties" 、後者を "ValidationMessages.properties" と呼ぶ。
 
 .. code-block:: xml
 

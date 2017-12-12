@@ -420,7 +420,7 @@ SQLログを出力するために、 :doc:`../DataAccessDetail/DataAccessCommon`
 
 .. tip::
 
-    差分値の単位を "minutes"以外にしたい場合は、以下のようなSQLを\ ``adjustedValueQuery``\ プロパティに指定すればよい。
+    差分値の単位を "minutes" 以外にしたい場合は、以下のようなSQLを\ ``adjustedValueQuery``\ プロパティに指定すればよい。
 
      .. tabularcolumns:: |p{0.25\linewidth}|p{0.75\linewidth}|
      .. list-table::
