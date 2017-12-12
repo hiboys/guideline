@@ -2416,7 +2416,7 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
                 </tr>
             </thead>
             <tbody>
-                <span th:each="item, rowStatus : ${cart.cartItems}"">
+                <span th:each="item, rowStatus : ${cart.cartItems}">
                     <tr>
                         <td th:text="${item.id}"></td>
                         <td th:text="${item.itemCode}"></td>

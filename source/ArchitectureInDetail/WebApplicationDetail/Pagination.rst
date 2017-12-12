@@ -1382,7 +1382,7 @@ JSPの実装(基本編)
 
     terasoluna-gfw-web 5.0.1.RELEASEより、ネスト構造をもつJavaBeanと\ ``Map``\ オブジェクトを指定できるように改善されている。
 
-    \ ``f:query``\ の詳細な仕様(URLエンコーディングの仕様など)については、「:ref:`TagLibAndELFunctionsHowToUseELFunctionQuery`」を参照されたい。
+    \ ``f:query``\ の詳細な仕様(URLエンコーディングの仕様など)については、「f:query()」を参照されたい。
 
  .. warning:: **f:queryを使用して生成したクエリ文字列をqueryTmpl属性に指定した際の動作について**
 
