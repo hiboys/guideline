@@ -72,6 +72,12 @@
         * SOAP Web Serviceの実装に伴うインジェクションで使用するアノテーションを\ ``@Inject`` \から\ ``@Autowired`` \に変更
         * Spring FrameworkのJAX-WS連携機能についての誤記修正と、SOAPサーバがJavaEEサーバのJAW-WS実装上で動作することに伴なう注意事項の追記
 
+    * - 
+      - :doc:`../ArchitectureInDetail/MessagingDetail/JMS`
+      - 記載内容の修正
+
+        * 非同期送信のトランザクション管理はChainedTransactionManagerではなくDefaultMessageListenerContainerで行うよう記述を修正
+
     * -
       - :doc:`../Security/Authentication`
       - 記載内容の修正
@@ -126,9 +132,17 @@
 
         * 単体テストを追加
 
+    * - 2017-11-10
+      - \-
+      - 1.4.1 RELEASE版公開
+
+    * -
+      - 全般
+      - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
+
     * - 2017-03-10
       - \-
-      - 1.4.0 RC1版公開
+      - 1.4.0 RELEASE版公開
 
 .. raw:: latex
 
