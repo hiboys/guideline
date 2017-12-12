@@ -852,7 +852,7 @@ terasoluna-gfw-web-jspは以下の部品を提供している。
     * - :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`
       - 結果メッセージ表示用のJSPタグ
       - 処理結果を表示するためのJSPタグライブラリを提供する。
-    * - :ref:`TagLibAndELFunctionsOverviewELFunctions`
+    * - EL Functions
       - XSS対策用EL関数
       - XSS対策用のEL関数を提供する。
     * -
