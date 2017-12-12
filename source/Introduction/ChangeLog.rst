@@ -14,21 +14,15 @@
       - \-
       - 5.4.0 RELEASE版公開
 
-        * 更新内容の詳細は、\ `5.4.0のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.4.0%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
-
     * -
       - 全般
       - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
-        * 修正内容の詳細は、\ `5.4.0のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.4.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
-
         記載内容の改善
-
-        * 改善内容の詳細は、\ `5.4.0のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.4.0%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
 
     * - 
       - :doc:`../Overview/FrameworkStack`
-      - 利用するOSSのバージョンを更新(\ `guideline#3061 <https://github.com/terasolunaorg/guideline/issues/3061>`_\ )
+      - 利用するOSSのバージョンを更新(管理ID#3061)
 
         * Spring IO PlatformのバージョンをBrussels-SR5に更新
         * MyBatisのバージョンを3.4.5に更新
@@ -39,116 +33,121 @@
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
       - 記載内容の追加
 
-        * \ ``@Transactional`` \アノテーションの\ ``timeout`` \属性に関する記載を追加(\ `guideline#1776 <https://github.com/terasolunaorg/guideline/issues/1776>`_\ ) 
+        * \ ``@Transactional`` \アノテーションの\ ``timeout`` \属性に関する記載を追加(管理ID#1776)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - 記載内容の追加
 
-        * \ ``@Compare`` \アノテーションの\ ``operator`` \属性に新たに追加された\ ``NOT_EQUAL`` \の説明を追加(\ `guideline#2842 <https://github.com/terasolunaorg/guideline/issues/2842>`_\ )
+        * \ ``@Compare`` \アノテーションの\ ``operator`` \属性に新たに追加された\ ``NOT_EQUAL`` \の説明を追加(管理ID#2842)
 
-        * \ ``@Email`` \アノテーションを使用する際の注意事項を追加(\ `guideline#2930 <https://github.com/terasolunaorg/guideline/issues/2930>`_\ )
+        * \ ``@Email`` \アノテーションを使用する際の注意事項を追加(管理ID#2930)
 
         ガイドラインのバグ修正
 
-        * 共通ライブラリのチェックルールの拡張方法の実装例を修正(\ `guideline#2822 <https://github.com/terasolunaorg/guideline/issues/2822>`_\ )
+        * 共通ライブラリのチェックルールの拡張方法の実装例を修正(管理ID#2822)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
       - 記載内容の修正
 
-        * 共通ライブラリ(\ ``ExceptionLoggingFilter`` \)の変更に伴う修正、及び既存の誤記の修正(\ `guideline#2794 <https://github.com/terasolunaorg/guideline/issues/2794>`_\ )
+        * 共通ライブラリ(\ ``ExceptionLoggingFilter`` \)の変更に伴う修正、及び既存の誤記の修正(管理ID#2794)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout`
       - 記載内容の修正
 
-        * \ ``<definition>`` \タグ(Tiles定義ファイル)の\ ``name`` \属性のマッチングに関する説明、及び関連する箇所の誤解を招く表現を修正(\ `guideline#2717 <https://github.com/terasolunaorg/guideline/issues/2717>`_\ )
+        * \ ``<definition>`` \タグ(Tiles定義ファイル)の\ ``name`` \属性のマッチングに関する説明、及び関連する箇所の誤解を招く表現を修正(管理ID#2717)
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
       - Spring Framework 4.3対応に伴う修正
 
-        * Basic認証用のリクエストヘッダの設定に関する記載を変更(\ `guideline#2742 <https://github.com/terasolunaorg/guideline/issues/2742>`_\ )
+        * Basic認証用のリクエストヘッダの設定に関する記載を変更(管理ID#2742)
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/SOAP`
       - 記載内容の修正
 
-        * SOAP Web Serviceの実装に伴うインジェクションで使用するアノテーションを\ ``@Inject`` \から\ ``@Autowired`` \に変更(\ `guideline#2763 <https://github.com/terasolunaorg/guideline/issues/2763>`_\ )
-        * Spring FrameworkのJAX-WS連携機能についての誤記修正と、SOAPサーバがJavaEEサーバのJAW-WS実装上で動作することに伴なう注意事項の追記(\ `guideline#2770 <https://github.com/terasolunaorg/guideline/issues/2770>`_\ )
+        * SOAP Web Serviceの実装に伴うインジェクションで使用するアノテーションを\ ``@Inject`` \から\ ``@Autowired`` \に変更(管理ID#2763)
+        * Spring FrameworkのJAX-WS連携機能についての誤記修正と、SOAPサーバがJavaEEサーバのJAW-WS実装上で動作することに伴なう注意事項の追記(管理ID#2770)
+
+    * - 
+      - :doc:`../ArchitectureInDetail/MessagingDetail/JMS`
+      - 記載内容の修正
+
+        * 非同期送信のトランザクション管理はChainedTransactionManagerではなくDefaultMessageListenerContainerで行うよう記述を修正(管理ID#2814)
 
     * -
       - :doc:`../Security/Authentication`
       - 記載内容の修正
 
-        * パスワードハッシュ化のためのクラス（\ ``Pbkdf2PasswordEncoder``\ ）の説明を追記し、それに伴い\ ``BCryptPasswordEncoder``\を推奨する記述を削除(\ `guideline#3011 <https://github.com/terasolunaorg/guideline/issues/3011>`_\ )
-
+        * パスワードハッシュ化のためのクラス（\ ``Pbkdf2PasswordEncoder``\ ）の説明を追記し、それに伴い\ ``BCryptPasswordEncoder``\を推奨する記述を削除(管理ID#3011)
 
     * -
       - :doc:`../Security/Authorization`
       - Spring Framework 4.3対応に伴う修正
 
-        * ブランクプロジェクトから\ ``mvc:path-matching`` \の定義を削除しSpring MVCのデフォルト設定を使用するよう変更したことに伴う記載内容の修正(\ `guideline#2941 <https://github.com/terasolunaorg/guideline/issues/2941>`_\ )
+        * ブランクプロジェクトから\ ``mvc:path-matching`` \の定義を削除しSpring MVCのデフォルト設定を使用するよう変更したことに伴う記載内容の修正(管理ID#2941)
 
         記載内容の修正
 
-        * Spring Securityでパス変数を使用するアクセスポリシーの定義に関する記載内容を修正(\ `guideline#3090 <https://github.com/terasolunaorg/guideline/issues/3090>`_\ )
+        * Spring Securityでパス変数を使用するアクセスポリシーの定義に関する記載内容を修正(管理ID#3090)
 
     * - 
       - :doc:`../Security/XSS`
       - 記載内容の修正、追加
 
-        * JavaScript Escapingのサンプルソースを修正(\ `guideline#2531 <https://github.com/terasolunaorg/guideline/issues/2531>`_\ )
-        * \ ``document.write()`` \を使用する際の注意事項を追加(\ `guideline#2531 <https://github.com/terasolunaorg/guideline/issues/2531>`_\ )
+        * JavaScript Escapingのサンプルソースを修正(管理ID#2531)
+        * \ ``document.write()`` \を使用する際の注意事項を追加(管理ID#2531)
 
     * -
       - :doc:`../Security/OAuth`
       - 構成見直し
 
-        * How to useをグラントタイプ毎に説明する章構成に変更(\ `guideline#2818 <https://github.com/terasolunaorg/guideline/issues/2818>`_\ )
+        * How to useをグラントタイプ毎に説明する章構成に変更(管理ID#2818)
 
         記載内容の追加
 
-        * Spring Security OAuthで発生する例外の一覧とハンドリング方法の追加(\ `guideline#2819 <https://github.com/terasolunaorg/guideline/issues/2819>`_\ )
+        * Spring Security OAuthで発生する例外の一覧とハンドリング方法の追加(管理ID#2819)
 
-        * Spring Security OAuthの拡張ポイントについての説明を追加(\ `guideline#2820 <https://github.com/terasolunaorg/guideline/issues/2820>`_\ )
+        * Spring Security OAuthの拡張ポイントについての説明を追加(管理ID#2820)
 
-        * リソースサーバに対するBasic認証設定方法の追加(\ `guideline#2891 <https://github.com/terasolunaorg/guideline/issues/2891>`_\ )
+        * リソースサーバに対するBasic認証設定方法の追加(管理ID#2891)
 
-        * インプリシットにおける後処理（アクセストークンクリア）の追加(\ `guideline#2891 <https://github.com/terasolunaorg/guideline/issues/2891>`_\ )
+        * インプリシットにおける後処理（アクセストークンクリア）の追加(管理ID#2891)
 
         記載内容の改善
 
-        * サンプルコードの修正(\ `guideline#2891 <https://github.com/terasolunaorg/guideline/issues/2891>`_\ )
+        * サンプルコードの修正(管理ID#2891)
 
-        * フロー図およびその説明の改善(\ `guideline#2891 <https://github.com/terasolunaorg/guideline/issues/2891>`_\ )
-
-        * その他修正内容の詳細は、\ `5.4.0のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.4.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
+        * フロー図およびその説明の改善(管理ID#2891)
 
     * -
       - :doc:`../UnitTest/index`
       - 新規追加
 
-        * 単体テストを追加(\ `guideline#1817 <https://github.com/terasolunaorg/guideline/issues/1817>`_\ )
+        * 単体テストを追加(管理ID#1817)
 
-    * - 2017-03-17
+    * - 2017-11-10
       - \-
-      - 5.3.0 RELEASE版公開
-
-        * 更新内容の詳細は、\ `5.3.0のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
+      - 5.3.1 RELEASE版公開
 
     * -
       - 全般
       - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
-        * 修正内容の詳細は、\ `5.3.0のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
+    * - 2017-03-17
+      - \-
+      - 5.3.0 RELEASE版公開
+
+    * -
+      - 全般
+      - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
         記載内容の改善
 
-        * 改善内容の詳細は、\ `5.3.0のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
-
-        ブランクプロジェクト生成用のMavenアーキタイプのデプロイ先変更(`Maven Central <https://search.maven.org/>`_\に変更)に伴う起動オプションの修正(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
+        ブランクプロジェクト生成用のMavenアーキタイプのデプロイ先変更(`Maven Central <https://search.maven.org/>`_\に変更)に伴う起動オプションの修正(管理ID#2444)
 
         * :doc:`../Overview/FirstApplication`
         * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
@@ -159,17 +158,17 @@
       - :doc:`../Introduction/CriteriaBasedMapping`
       - 記載内容の追加
 
-        * セキュリティ対策に関するマッピングにCVEによる観点をまとめた表を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+        * セキュリティ対策に関するマッピングにCVEによる観点をまとめた表を追加(管理ID#2439)
 
     * -
       - :doc:`../Introduction/TermsOfUse`
       - 記載内容の修正
 
-        * 利用規約の修正(\ `guideline#2625 <https://github.com/terasolunaorg/guideline/issues/2625>`_\ )
+        * 利用規約の修正(管理ID#2625)
 
     * - 
       - :doc:`../Overview/FrameworkStack`
-      - 利用するOSSのバージョンを更新(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+      - 利用するOSSのバージョンを更新(管理ID#2441)
 
         * Spring IO PlatformのバージョンをAthens-SR2に更新
         * MyBatisのバージョンを3.4.2に更新
@@ -182,190 +181,178 @@
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
       - 記載内容の改善
 
-        * シグネチャを制限するインタフェースおよび基底クラスの実装サンプルを修正(\ `guideline#2219 <https://github.com/terasolunaorg/guideline/issues/2219>`_\ )
+        * シグネチャを制限するインタフェースおよび基底クラスの実装サンプルを修正(管理ID#2219)
 
     * -
       - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
       - 記載内容の追加
 
-        * 単純なview controllerを作成したい場合、\ ``<mvc:view-controller>`` \を使用する様に追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+        * 単純なview controllerを作成したい場合、\ ``<mvc:view-controller>`` \を使用する様に追記(管理ID#2371)
 
-        * Cookieの名前や値に使用できない文字が存在することの注意事項を追加(\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
+        * Cookieの名前や値に使用できない文字が存在することの注意事項を追加(管理ID#2518)
 
         Spring Framework 4.3対応に伴う修正
 
-        * JSR-310 Date and Time APIのクラスに対して、\ ``@DateTimeFormat`` \を使用する際の注意点を削除(\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+        * JSR-310 Date and Time APIのクラスに対して、\ ``@DateTimeFormat`` \を使用する際の注意点を削除(管理ID#2505)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - 記載内容の追加
 
-        * コレクション内の値に対する入力チェック方法を追加(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+        * コレクション内の値に対する入力チェック方法を追加(管理ID#407)
 
         記載内容の改善
 
-        * メッセージに入力チェック対象を含める方法の説明を追加(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
-        * @URLによる入力チェックのチェック内容に関する記述を修正(\ `guideline#2260 <https://github.com/terasolunaorg/guideline/issues/2260>`_\ )
+        * メッセージに入力チェック対象を含める方法の説明を追加(管理ID#2002)
+        * @URLによる入力チェックのチェック内容に関する記述を修正(管理ID#2260)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
       - Spring Framework 4.3対応に伴う修正
 
-        * 致命的なエラーのハンドリング方法について追記(\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
+        * 致命的なエラーのハンドリング方法について追記(管理ID#2368)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
       - 記載内容の追加
 
-        * セッションスコープに格納しているオブジェクトを受け取る際にリクエストパラメータのバインドを防止する方法について追記(\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )
+        * セッションスコープに格納しているオブジェクトを受け取る際にリクエストパラメータのバインドを防止する方法について追記(管理ID#1293)
 
     * - 
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
       - 記載内容の追加
 
-        * 国際化が適用されない場合の例とその対策方法を追加(\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
+        * 国際化が適用されない場合の例とその対策方法を追加(管理ID#2427)
 
     * - 
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload`
       - 記載内容の追加
 
-        * JBoss EAP 7.0使用時の文字化け回避方法に関する説明を追加(\ `guideline#2403 <https://github.com/terasolunaorg/guideline/issues/2403>`_\ )
+        * JBoss EAP 7.0使用時の文字化け回避方法に関する説明を追加(管理ID#2403)
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
       - Spring Framework 4.3対応に伴う修正
 
-        * HEADとOPTIONSメソッドが暗黙的に用意される説明を追加(\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
+        * HEADとOPTIONSメソッドが暗黙的に用意される説明を追加(管理ID#1704)
 
         記載内容の追加
 
-        * HTTPステータスコードの説明句（\ ``reason-phrase``\）の出力仕様に関する説明を追加(\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
+        * HTTPステータスコードの説明句（\ ``reason-phrase``\）の出力仕様に関する説明を追加(管理ID#2518)
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
       - Spring Framework 4.3対応に伴う修正
 
-        * 非同期リクエストの共通処理の実装に関する説明を追加(\ `guideline#2369 <https://github.com/terasolunaorg/guideline/issues/2369>`_\ )
+        * 非同期リクエストの共通処理の実装に関する説明を追加(管理ID#2369)
 
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
       - 記載内容の変更、追加
 
-        * JSR-310 Date and Time APIを使う場合の設定方法に関する記載を変更 (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
+        * JSR-310 Date and Time APIを使う場合の設定方法に関する記載を変更 (管理ID#2365)
 
         記載内容の追加
 
-        * コミット時にエラーが発生した場合にロールバック処理を呼び出すための設定に関する記載を追加(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
+        * コミット時にエラーが発生した場合にロールバック処理を呼び出すための設定に関する記載を追加(管理ID#2375)
 
         記載内容の修正
 
-        * BLOBとCLOBを使用する場合の実装例を修正 (\ `guideline#1775 <https://github.com/terasolunaorg/guideline/issues/1775>`_\ )
-        * "Lazy Load"を実行するのタイミングを制御するオプションの説明を修正 (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
+        * BLOBとCLOBを使用する場合の実装例を修正 (管理ID#1775)
+        * "Lazy Load"を実行するのタイミングを制御するオプションの説明を修正 (管理ID#2364)
 
     * -
       - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
       - 記載内容の追記
 
-        * PostgreSQL使用時に"nowait"句が付加されない不具合に対する注意事項を追加(\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
+        * PostgreSQL使用時に"nowait"句が付加されない不具合に対する注意事項を追加(管理ID#2372)
 
     * -
       - | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
       - 記載内容の追記
 
-        * PostgreSQL使用時に"nowait"句が付加されない不具合に対する注意事項を追加(\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
+        * PostgreSQL使用時に"nowait"句が付加されない不具合に対する注意事項を追加(管理ID#2372)
 
     * - 
       - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
       - 記載内容の追加
 
-        * JavaMailで発生する問題とその回避方法を追加(\ `guideline#2190 <https://github.com/terasolunaorg/guideline/issues/2190>`_\ )
+        * JavaMailで発生する問題とその回避方法を追加(管理ID#2190)
 
     * -
       - :doc:`../Security/Authentication`
       - 記載内容の追加
 
-        * Remember Me認証に使用するチェックボックスのvalue属性値について追記(\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
+        * Remember Me認証に使用するチェックボックスのvalue属性値について追記(管理ID#785)
 
-        * \ ``<mvc:view-controller>`` \を使用する際の注意点を追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+        * \ ``<mvc:view-controller>`` \を使用する際の注意点を追記(管理ID#2371)
 
         記載内容の修正
 
-        * SecureRandomの使用についての記載を修正(\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
+        * SecureRandomの使用についての記載を修正(管理ID#2177)
 
     * -
       - :doc:`../Security/Authorization`
       - Spring Framework 4.3対応に伴う修正
 
-        * \ ``AntPathMatcher``\の \ ``trimTokens``\プロパティのデフォルト値が変更されたことに伴い、\ `CVE-2016-5007 <https://pivotal.io/security/cve-2016-5007>`_\の対応方法に関する説明及び注意点を修正(\ `guideline#2565 <https://github.com/terasolunaorg/guideline/issues/2565>`_\ )
+        * \ ``AntPathMatcher``\の \ ``trimTokens``\プロパティのデフォルト値が変更されたことに伴い、\ `CVE-2016-5007 <https://pivotal.io/security/cve-2016-5007>`_\の対応方法に関する説明及び注意点を修正(管理ID#2565)
 
         記載内容の追加
 
-        * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+        * 特定URLに対するアクセス制限に関するWarningを追記(管理ID#2399)
 
-        * パス変数の使用方法の説明と使用時の注意点を追記(\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
+        * パス変数の使用方法の説明と使用時の注意点を追記(管理ID#2406)
 
-        * \ ``AntPathRequestMatcher``\のパスマッチングの仕様変更に対する注意点を追記(\ `guideline#2428 <https://github.com/terasolunaorg/guideline/issues/2428>`_\ )
+        * \ ``AntPathRequestMatcher``\のパスマッチングの仕様変更に対する注意点を追記(管理ID#2428)
 
     * - 
       - :doc:`../Security/LinkageWithBrowser`
       - Spring Security 4.1.4対応に伴う修正
 
-        * Content Security Policy (CSP)"に関する記載を追加(\ `guideline#2400 <https://github.com/terasolunaorg/guideline/issues/2400>`_\ )
-        * HTTP Public Key Pinning (HPKP)に関する記載を追加(\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
+        * Content Security Policy (CSP)"に関する記載を追加(管理ID#2400)
+        * HTTP Public Key Pinning (HPKP)に関する記載を追加(管理ID#2401)
 
     * -
       - :doc:`../Security/OAuth`
       - 新規追加
 
-        * OAuthを追加(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )
+        * OAuthを追加(管理ID#2145)
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - 記載内容の修正
 
-        * JPAを利用する場合のEntityのコード例の修正 (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
+        * JPAを利用する場合のEntityのコード例の修正 (管理ID#2476)
 
     * -
       - :doc:`../Appendix/Nexus`
       - Maven Centralへの移行に伴う修正
 
-        * TERASOLUNA Server Framework for Java (5.x)のリポジトリに関する記述を削除(\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
+        * TERASOLUNA Server Framework for Java (5.x)のリポジトリに関する記述を削除(管理ID#2496)
 
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE版公開
 
-        * 更新内容の詳細は、\ `5.2.0のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.2.0%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
-
     * -
       - 全般
       - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
-        * 修正内容の詳細は、\ `5.2.0のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.2.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
-
         記載内容の改善
-
-        * 改善内容の詳細は、\ `5.2.0のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.2.0%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
 
         章立てを全面見直し
 
-        * 更新内容の詳細は、\ `Optimize the order of chapters and sections #1683 <https://github.com/terasolunaorg/guideline/issues/1683>`_\ を参照されたい。
-
         共通ライブラリのバージョンを5.2.0.RELEASEに更新
 
-        * 更新内容の詳細は、\ `Check Version  #2076 <https://github.com/terasolunaorg/guideline/issues/2076>`_\ を参照されたい。
-
         記載内容の改善
-
-        * 共通ライブラリのpomの依存性について追加 (\ `guideline#1982 <https://github.com/terasolunaorg/guideline/issues/1982>`_\ )
 
     * -
       - :doc:`../Overview/FrameworkStack`
       - 記載内容の追加
 
-        * ブランクプロジェクトの共通ライブラリ標準の組込状況を追加(\ `guideline#1700 <https://github.com/terasolunaorg/guideline/issues/1700>`_\ )
-        * mybatis-typehandlers-jsr310 、jackson-datatype-jsr310をOSSスタックに追加 (\ `guideline#1966 <https://github.com/terasolunaorg/guideline/issues/1966>`_\ )
-        * spring-jmsおよびその依存ライブラリをOSSスタックに追加 (\ `guideline#1992 <https://github.com/terasolunaorg/guideline/issues/1992>`_\ )
+        * ブランクプロジェクトの共通ライブラリ標準の組込状況を追加(管理ID#1700)
+        * mybatis-typehandlers-jsr310 、jackson-datatype-jsr310をOSSスタックに追加 (管理ID#1966)
+        * spring-jmsおよびその依存ライブラリをOSSスタックに追加 (管理ID#1992)
 
         利用するOSSのバージョン(Spring IO Platformのバージョン)を更新
 
@@ -379,41 +366,41 @@
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
       - 記載内容の追加
 
-        * MyBatis 3.3 + MyBatis-Spring 1.2 において、 @Transactinal  の  timeout  属性に指定した値は使用されない旨を追加(\ `guideline#1777 <https://github.com/terasolunaorg/guideline/issues/1777>`_\ )
+        * MyBatis 3.3 + MyBatis-Spring 1.2 において、 @Transactinal  の  timeout  属性に指定した値は使用されない旨を追加(管理ID#1777)
 
     * -
       - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
       - 記載内容の追加
 
-        * HttpSessionをハンドラメソッドの引数として使用すべきでない旨を追加(\ `guideline#1313 <https://github.com/terasolunaorg/guideline/issues/1313>`_\ )
-        * JSR-310 Date and Time APIを使用する際の注意点を記載 (\ `guideline#1991 <https://github.com/terasolunaorg/guideline/issues/1991>`_\ )
+        * HttpSessionをハンドラメソッドの引数として使用すべきでない旨を追加(管理ID#1313)
+        * JSR-310 Date and Time APIを使用する際の注意点を記載 (管理ID#1991)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - 記載内容の改善
 
-        * メッセージプロパティファイルをNative to Asciiせずに直接扱う方法を追加(\ `guideline#994 <https://github.com/terasolunaorg/guideline/issues/994>`_\ )
-        * cross-field validationについて追加(\ `guideline#1561 <https://github.com/terasolunaorg/guideline/issues/1561>`_\ )
-        * @DateTimeFormat  の説明を追加(\ `guideline#1873 <https://github.com/terasolunaorg/guideline/issues/1873>`_\ )
-        * ValidationMessages.propertiesについての説明を修正 (\ `guideline#1948 <https://github.com/terasolunaorg/guideline/issues/1948>`_\ )
-        * Method Validationを利用した入力チェックの注意事項を追加(\ `guideline#1998 <https://github.com/terasolunaorg/guideline/issues/1998>`_\ )
+        * メッセージプロパティファイルをNative to Asciiせずに直接扱う方法を追加(管理ID#994)
+        * cross-field validationについて追加(管理ID#1561)
+        * @DateTimeFormat  の説明を追加(管理ID#1873)
+        * ValidationMessages.propertiesについての説明を修正 (管理ID#1948)
+        * Method Validationを利用した入力チェックの注意事項を追加(管理ID#1998)
 
         記載内容の追加
 
-        * OSコマンドインジェクションに関する記載を追加 (\ `guideline#1957 <https://github.com/terasolunaorg/guideline/issues/1957>`_\ )
+        * OSコマンドインジェクションに関する記載を追加 (管理ID#1957)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
       - Spring Framework 4.2.7対応に伴う修正
       
-        * HTTPレスポンスヘッダー出力に関する説明内容を修正(\ `guideline#1965 <https://github.com/terasolunaorg/guideline/issues/1965>`_\ )
+        * HTTPレスポンスヘッダー出力に関する説明内容を修正(管理ID#1965)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/DoubleSubmitProtection`
       - 記載内容の追加
       
         * \ ``@TransactionTokenCheck``\アノテーションのtype属性に新たに追加された \ ``TransactionTokenType.CHECK``\の仕様、利用方法に関する記載の追加 
-          (\ `guideline#2071 <https://github.com/terasolunaorg/guideline/issues/2071>`_\ )
+          (管理ID#2071)
 
         「How To Extend プログラマティックにトランザクショントークンのライフサイクルを管理する方法について」を削除。
 
@@ -425,94 +412,94 @@
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
       - 記載内容の改善
 
-        *   リクエストパラメータ(デフォルトのパラメータ名)の説明の位置を修正(\ `guideline#1354 <https://github.com/terasolunaorg/guideline/issues/1354>`_\ )
+        *   リクエストパラメータ(デフォルトのパラメータ名)の説明の位置を修正(管理ID#1354)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload`
       - 記載内容の追加
 
-        * \ `CVE-2016-3092 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3092>`_\ (File Uploadの脆弱性)に関する注意喚起を追加(\ `guideline#1973 <https://github.com/terasolunaorg/guideline/issues/1973>`_\ )
-        * ディレクトリトラバーサル攻撃に関する記載を追加 (\ `guideline#2010 <https://github.com/terasolunaorg/guideline/issues/2010>`_\ )
+        * \ `CVE-2016-3092 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3092>`_\ (File Uploadの脆弱性)に関する注意喚起を追加(管理ID#1973)
+        * ディレクトリトラバーサル攻撃に関する記載を追加 (管理ID#2010)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/HealthCheck`
       - 新規追加
 
-        * ヘルスチェックを追加(\ `guideline#1698 <https://github.com/terasolunaorg/guideline/issues/1698>`_\ )
+        * ヘルスチェックを追加(管理ID#1698)
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
       - 記載内容の変更、追加
 
-        * JSR-310 Date and Time API / Joda Timeを使う場合の設定の記述を変更 (\ `guideline#1966 <https://github.com/terasolunaorg/guideline/issues/1966>`_\ )
-        * JacksonをJava SE 7環境で使用する場合の注意点を記載 (\ `guideline#1966 <https://github.com/terasolunaorg/guideline/issues/1966>`_\ )
-        * JSONでJSR-310 Date and Time APIを使う場合の設定を記載 (\ `guideline#1966 <https://github.com/terasolunaorg/guideline/issues/1966>`_\ )
+        * JSR-310 Date and Time API / Joda Timeを使う場合の設定の記述を変更 (管理ID#1966)
+        * JacksonをJava SE 7環境で使用する場合の注意点を記載 (管理ID#1966)
+        * JSONでJSR-310 Date and Time APIを使う場合の設定を記載 (管理ID#1966)
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
       - 記載内容の改善
 
-        * RestClientにおけるHTTP Proxyサーバの設定を追加(\ `guideline#1856 <https://github.com/terasolunaorg/guideline/issues/1856>`_\ )
+        * RestClientにおけるHTTP Proxyサーバの設定を追加(管理ID#1856)
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/SOAP`
       - 記載内容の追加
 
-        * SOAPクライアント起動時にSOAPサーバに接続しないオプションを追加(\ `guideline#1871 <https://github.com/terasolunaorg/guideline/issues/1871>`_\ )
-        * SOAPクライアントのenvプロジェクトに関する説明の修正(\ `guideline#1901 <https://github.com/terasolunaorg/guideline/issues/1901>`_\ )
-        * SOAP Webサービス例外発生時のステータスコード取得方法について追加(\ `guideline#2007 <https://github.com/terasolunaorg/guideline/issues/2007>`_\ )
+        * SOAPクライアント起動時にSOAPサーバに接続しないオプションを追加(管理ID#1871)
+        * SOAPクライアントのenvプロジェクトに関する説明の修正(管理ID#1901)
+        * SOAP Webサービス例外発生時のステータスコード取得方法について追加(管理ID#2007)
 
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
       - 記載内容の追加
 
-        * 暫定的なWARNログ出力回避方法を削除(\ `guideline#1292 <https://github.com/terasolunaorg/guideline/issues/1292>`_\ )
-        * JSR-310 Date and Time APIをMybatis3.3で使用するための設定方法を記載 (\ `guideline#1966 <https://github.com/terasolunaorg/guideline/issues/1966>`_\ )
-        * MyBatisをJava SE 7環境で使用する場合の注意点を記載 (\ `guideline#1966 <https://github.com/terasolunaorg/guideline/issues/1966>`_\ )
+        * 暫定的なWARNログ出力回避方法を削除(管理ID#1292)
+        * JSR-310 Date and Time APIをMybatis3.3で使用するための設定方法を記載 (管理ID#1966)
+        * MyBatisをJava SE 7環境で使用する場合の注意点を記載 (管理ID#1966)
 
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
       - 記載内容の追加
 
-        *  ExclusionControlにwarningメッセージを追加(\ `guideline#1694 <https://github.com/terasolunaorg/guideline/issues/1694>`_\ )
+        *  ExclusionControlにwarningメッセージを追加(管理ID#1694)
 
     * -
       - :doc:`../ArchitectureInDetail/GeneralFuncDetail/Logging`
       - 記載内容の追加
         
-        * ID付きログメッセージを出力するための拡張方法を記載 (\ `guideline#1928 <https://github.com/terasolunaorg/guideline/issues/1928>`_\ )
+        * ID付きログメッセージを出力するための拡張方法を記載 (管理ID#1928)
 
     * -
       - :doc:`../ArchitectureInDetail/GeneralFuncDetail/StringProcessing`
       - 記載内容の追加
 
-        * terasoluna-gfw-stringをdependencyに追加する例を追加(\ `guideline#1699 <https://github.com/terasolunaorg/guideline/issues/1699>`_\ )
-        * @Size アノテーションの説明にサロゲートペアについての注意を追加(\ `guideline#1874 <https://github.com/terasolunaorg/guideline/issues/1874>`_\ )
-        * JIS漢字\ ``U+2014``\(EM DASH)のUCS(Unicode)文字対応について記載を追加(\ `guideline#1914 <https://github.com/terasolunaorg/guideline/issues/1914>`_\ )
+        * terasoluna-gfw-stringをdependencyに追加する例を追加(管理ID#1699)
+        * @Size アノテーションの説明にサロゲートペアについての注意を追加(管理ID#1874)
+        * JIS漢字\ ``U+2014``\(EM DASH)のUCS(Unicode)文字対応について記載を追加(管理ID#1914)
 
     * -
       - :doc:`../ArchitectureInDetail/GeneralFuncDetail/Dozer`
       - 記載内容の追加
 
-        * JSR-310 Date and Time APIを使用する際の注意点を記載 (\ `guideline#1966 <https://github.com/terasolunaorg/guideline/issues/1966>`_\ )
+        * JSR-310 Date and Time APIを使用する際の注意点を記載 (管理ID#1966)
 
     * -
       - :doc:`../ArchitectureInDetail/MessagingDetail/JMS`
       - 新規追加
 
-        * JMSを追加(\ `guideline#1407 <https://github.com/terasolunaorg/guideline/issues/1407>`_\ )
+        * JMSを追加(管理ID#1407)
 
     * -
       - :doc:`../Security/Authentication`
       - Spring Security 4.0.4対応に伴う修正
 
-        * Spring Security 4.0.4にて authentication-failure-url の仕様が改善されたことによるコード例の修正とNoteの削除 (\ `guideline#1963 <https://github.com/terasolunaorg/guideline/issues/1963>`_\ )
+        * Spring Security 4.0.4にて authentication-failure-url の仕様が改善されたことによるコード例の修正とNoteの削除 (管理ID#1963)
 
     * -
       - :doc:`../Security/Authorization`
       - 記載内容の追加
 
-        * \ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\ の対応方法を追加 (\ `guideline#1976 <https://github.com/terasolunaorg/guideline/issues/1976>`_\ )
+        * \ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\ の対応方法を追加 (管理ID#1976)
 
     * -
       - :doc:`../Security/SecureLoginDemo`
@@ -525,20 +512,17 @@
       - :doc:`../Appendix/ReferenceBooks`
       - 記載内容の追加
 
-        * 「Spring徹底入門」を参考書籍として追加(\ `guideline#2043 <https://github.com/terasolunaorg/guideline/issues/2043>`_\ )
+        * 「Spring徹底入門」を参考書籍として追加(管理ID#2043)
 
     * - 2016-02-24
       - \-
       - 5.1.0 RELEASE版公開
 
-        * 更新内容の詳細は、\ `5.1.0のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?q=is%3Aissue+milestone%3A5.1.0+is%3Aclosed>`_\ を参照されたい。
     * -
       - 全般
       - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
         記載内容の改善
-
-        * 改善内容の詳細は、\ `5.1.0のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?q=milestone%3A5.1.0+label%3Aimprovement+is%3Aclosed>`_\ を参照されたい。
 
     * -
       - :doc:`index`
@@ -555,8 +539,6 @@
         * Spring Securityのバージョンを4.0.3.RELEASEに更新
 
         Spring IO Platformのバージョン更新に伴い利用するOSSのバージョンを更新
-
-        * 使用するOSSのバージョンを更新。更新内容は、\ `version 5.1.0の移行ガイド <https://github.com/terasolunaorg/terasoluna-gfw/wiki/Migration-Guide-5.1.0_ja#step-1-update-dependency-libraries>`_\ を参照されたい。
 
         新規プロジェクト追加
 
@@ -579,7 +561,7 @@
       - :doc:`../Overview/FirstApplication`
       - 記述内容の改善
 
-        *  Spring Security 4 対応に伴うサンプルソースの修正 (\ `guideline#1519 <https://github.com/terasolunaorg/guideline/issues/1519>`_\ )
+        *  Spring Security 4 対応に伴うサンプルソースの修正 (管理ID#1519)
 
          * \ ``AuthenticationPrincipalArgumentResolver``\のパッケージ変更
 
@@ -587,7 +569,7 @@
       - :doc:`../Tutorial/TutorialTodo`
       - Spring Security 4 対応に伴う修正
 
-        *  Spring Security 4 対応に伴うソースの修正 (\ `guideline#1519 <https://github.com/terasolunaorg/guideline/issues/1519>`_\ )
+        *  Spring Security 4 対応に伴うソースの修正 (管理ID#1519)
 
          * \ ``AuthenticationPrincipalArgumentResolver``\のパッケージ変更
          *  デフォルトでtrueになる仕様のため、サンプルソースから\ ``<use-expressions="true">``\を削除
@@ -596,54 +578,54 @@
       - :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
       - 記述内容の改善
 
-        *  オフライン環境上でmvnコマンドを利用する方法を追加(\ `guideline#1197 <https://github.com/terasolunaorg/guideline/issues/1197>`_\ )
+        *  オフライン環境上でmvnコマンドを利用する方法を追加(管理ID#1197)
 
     * -
       - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
       - 記述内容の改善
 
-        *  EL関数を用いたリクエストURL作成方法について追加(\ `guideline#632 <https://github.com/terasolunaorg/guideline/issues/632>`_\ )
+        *  EL関数を用いたリクエストURL作成方法について追加(管理ID#632)
 
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessCommon`
       - 記載内容の追加
 
-        *  \ ``Log4jdbcProxyDataSource``\のオーバヘッドに対する注意点を追加(\ `guideline#1471 <https://github.com/terasolunaorg/guideline/issues/1471>`_\ )
+        *  \ ``Log4jdbcProxyDataSource``\のオーバヘッドに対する注意点を追加(管理ID#1471)
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
       - MyBatis 3.3 対応に伴う記載内容の追加
 
-        *  \ ``defaultFetchSize``\の設定方法を追加(\ `guideline#965 <https://github.com/terasolunaorg/guideline/issues/965>`_\ )
-        * 遅延読み込み時のデフォルトが \ ``JAVASSIST``\に変更されている点を追加(\ `guideline#1384 <https://github.com/terasolunaorg/guideline/issues/1384>`_\ )
-        * \ ``ResultHandler``\にGenericsを付与したサンプルコードに修正(\ `guideline#1384 <https://github.com/terasolunaorg/guideline/issues/1384>`_\ )
-        * 新規追加された\ ``@Flush``\アノテーションを利用したソース例、及び注意点を追加(\ `guideline#915 <https://github.com/terasolunaorg/guideline/issues/915>`_\ )
+        *  \ ``defaultFetchSize``\の設定方法を追加(管理ID#965)
+        * 遅延読み込み時のデフォルトが \ ``JAVASSIST``\に変更されている点を追加(管理ID#1384)
+        * \ ``ResultHandler``\にGenericsを付与したサンプルコードに修正(管理ID#1384)
+        * 新規追加された\ ``@Flush``\アノテーションを利用したソース例、及び注意点を追加(管理ID#915)
 
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
       - ガイドラインのバグ修正
 
-        *  Like条件を使用するユーティリティを適切に修正(\ `guideline#1464 <https://github.com/terasolunaorg/guideline/issues/1464>`_\ )
-        *  JPQLにおける真偽値の不適切な実装を修正(\ `guideline#1525 <https://github.com/terasolunaorg/guideline/issues/1525>`_\ )
-        *  ページネーションの不適切な実装を修正(\ `guideline#1463 <https://github.com/terasolunaorg/guideline/issues/1463>`_\ )
-        *  \ ``DateTimeProvider``\を実装したサンプルコードの不適切な実装を修正(\ `guideline#1327 <https://github.com/terasolunaorg/guideline/issues/1327>`_\ )
-        *  共通Repositoryインタフェースの実装クラスのインスタンスを生成するためのFactoryクラスにおいて不適切な実装を修正(\ `guideline#1327 <https://github.com/terasolunaorg/guideline/issues/1327>`_\ )
+        *  Like条件を使用するユーティリティを適切に修正(管理ID#1464)
+        *  JPQLにおける真偽値の不適切な実装を修正(管理ID#1525)
+        *  ページネーションの不適切な実装を修正(管理ID#1463)
+        *  \ ``DateTimeProvider``\を実装したサンプルコードの不適切な実装を修正(管理ID#1327)
+        *  共通Repositoryインタフェースの実装クラスのインスタンスを生成するためのFactoryクラスにおいて不適切な実装を修正(管理ID#1327)
 
         記載内容の改善
 
-        *  \ ``hibernate.hbm2ddl.auto``\のデフォルト値を修正(\ `guideline#1282 <https://github.com/terasolunaorg/guideline/issues/1282>`_\ )
+        *  \ ``hibernate.hbm2ddl.auto``\のデフォルト値を修正(管理ID#1282)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - 記述内容の改善
 
-        *  MethodValidationに対する記述を追加(\ `guideline#708 <https://github.com/terasolunaorg/guideline/issues/708>`_\ )
+        *  MethodValidationに対する記述を追加(管理ID#708)
 
     * -
       - :doc:`../ArchitectureInDetail/GeneralFuncDetail/Logging`
       - 記述内容の改善
 
-        * Logbackの設定に\ ``ServiceLoader``\の仕組みを利用した記述の追加(\ `guideline#1275 <https://github.com/terasolunaorg/guideline/issues/1275>`_\ )
-        * Spring Security 4 対応に伴うサンプルソースの修正 (\ `guideline#1519 <https://github.com/terasolunaorg/guideline/issues/1519>`_\ )
+        * Logbackの設定に\ ``ServiceLoader``\の仕組みを利用した記述の追加(管理ID#1275)
+        * Spring Security 4 対応に伴うサンプルソースの修正 (管理ID#1519)
 
          * デフォルトでtrueになる仕様のため、サンプルソースから\ ``<use-expressions="true">``\を削除
 
@@ -651,54 +633,54 @@
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
       - 記述内容の改善
 
-        *  SpEL式を用いたセッションスコープ参照の記述を追加(\ `guideline#1306 <https://github.com/terasolunaorg/guideline/issues/1306>`_\ )
+        *  SpEL式を用いたセッションスコープ参照の記述を追加(管理ID#1306)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
       - 記述内容の改善
 
-        *  JSPに適切にロケールを反映させるための記述を追加(\ `guideline#1439 <https://github.com/terasolunaorg/guideline/issues/1439>`_\ )
-        *  \ ``SessionLocalResolver``\の\ ``defaultLocale``\の説明を修正(\ `guideline#686 <https://github.com/terasolunaorg/guideline/issues/686>`_\ )
+        *  JSPに適切にロケールを反映させるための記述を追加(管理ID#1439)
+        *  \ ``SessionLocalResolver``\の\ ``defaultLocale``\の説明を修正(管理ID#686)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
       - 記載内容の追加
 
-        *  JdbcCodeListに\ ``JdbcTemplate``\を指定するパターンを推奨とする記述を追加(\ `guideline#501 <https://github.com/terasolunaorg/guideline/issues/501>`_\ )
+        *  JdbcCodeListに\ ``JdbcTemplate``\を指定するパターンを推奨とする記述を追加(管理ID#501)
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
       - 記述内容の改善
 
-        *  \ ``Jackson2ObjectMapperFactoryBean``\を利用したObjectMapper作成を追加(\ `guideline#1022 <https://github.com/terasolunaorg/guideline/issues/1022>`_\ )
-        *  REST APIアプリケーションのドメイン層の実装にMyBatis3を前提とした形に修正 (\ `guideline#1323 <https://github.com/terasolunaorg/guideline/issues/1323>`_\ )
+        *  \ ``Jackson2ObjectMapperFactoryBean``\を利用したObjectMapper作成を追加(管理ID#1022)
+        *  REST APIアプリケーションのドメイン層の実装にMyBatis3を前提とした形に修正 (管理ID#1323)
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
       - 新規追加
 
-        *  RESTクライアント（HTTPクライアント）を追加(\ `guideline#1307 <https://github.com/terasolunaorg/guideline/issues/1307>`_\ )
+        *  RESTクライアント（HTTPクライアント）を追加(管理ID#1307)
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/SOAP`
       - 新規追加
 
-        *  SOAP Web Service（サーバ/クライアント）を追加(\ `guideline#1340 <https://github.com/terasolunaorg/guideline/issues/1340>`_\ )
+        *  SOAP Web Service（サーバ/クライアント）を追加(管理ID#1340)
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload`
       - 記述内容の改善
 
-        * アップロード処理の基本フロー、及びその説明をSpringの\ ``MultipartFilter``\を用いた記述に修正 (\ `guideline#193 <https://github.com/terasolunaorg/guideline/issues/193>`_\ )
+        * アップロード処理の基本フロー、及びその説明をSpringの\ ``MultipartFilter``\を用いた記述に修正 (管理ID#193)
         * セキュリティ上の問題や、APサーバによって動作が異なる等の課題があるため、「クエリパラメータでCSRFトークンを送る方法」を削除。
-          ファイルアップロードの許容サイズを超過した場合、一部APサーバでCSRFトークンチェックが正しく行われない注意点を追加(\ `guideline#1602 <https://github.com/terasolunaorg/guideline/issues/1602>`_\ )
+          ファイルアップロードの許容サイズを超過した場合、一部APサーバでCSRFトークンチェックが正しく行われない注意点を追加(管理ID#1602)
 
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/FileDownload`
       - Spring Framework 4.2対応に伴う記載内容の追加
 
-        *  xlsx形式を操作する\ ``AbstractXlsxView``\の追加\(\ `guideline#996 <https://github.com/terasolunaorg/guideline/issues/996>`_\ )
+        *  xlsx形式を操作する\ ``AbstractXlsxView``\の追加\(管理ID#996)
 
         記述内容の改善
 
@@ -708,26 +690,26 @@
       - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
       - 新規追加
 
-        *  E-mail送信(SMTP)を追加(\ `guideline#1165 <https://github.com/terasolunaorg/guideline/issues/1165>`_\ )
+        *  E-mail送信(SMTP)を追加(管理ID#1165)
 
     * -
       - :doc:`../ArchitectureInDetail/GeneralFuncDetail/DateAndTime`
       - 新規追加
 
-        *  日付操作(JSR-310 Date and Time API)を追加(\ `guideline#1450 <https://github.com/terasolunaorg/guideline/issues/1450>`_\ )
+        *  日付操作(JSR-310 Date and Time API)を追加(管理ID#1450)
 
     * -
       - :doc:`../ArchitectureInDetail/GeneralFuncDetail/JodaTime`
       - 記載内容の改善・追加
 
-        *  タイムゾーンを利用しない年月日を扱うサンプルコードのオブジェクトを\ ``LocalDate``\に修正(\ `guideline#1283 <https://github.com/terasolunaorg/guideline/issues/1283>`_\ )
-        *  Java8未満のバージョンで和暦を扱う方法を追加(\ `guideline#1450 <https://github.com/terasolunaorg/guideline/issues/1450>`_\ )
+        *  タイムゾーンを利用しない年月日を扱うサンプルコードのオブジェクトを\ ``LocalDate``\に修正(管理ID#1283)
+        *  Java8未満のバージョンで和暦を扱う方法を追加(管理ID#1450)
 
     * -
       - :doc:`../ArchitectureInDetail/GeneralFuncDetail/StringProcessing`
       - 新規追加
 
-        *  文字列処理を追加(\ `guideline#1451 <https://github.com/terasolunaorg/guideline/issues/1451>`_\ )
+        *  文字列処理を追加(管理ID#1451)
 
     * -
       - :doc:`../Security/index`
@@ -750,11 +732,11 @@
       - :doc:`../Tutorial/TutorialSecurity`
       - Spring Security 4 対応に伴う修正
 
-        * チュートリアルのソースをSpring Security 4 に対応した形に修正 (\ `guideline#1519 <https://github.com/terasolunaorg/guideline/issues/1519>`_\ )
+        * チュートリアルのソースをSpring Security 4 に対応した形に修正 (管理ID#1519)
 
     * -
       - :doc:`../Security/Authentication`
-      - Spring Security 4 対応に伴う修正 (\ `guideline#1519 <https://github.com/terasolunaorg/guideline/issues/1519>`_\ )
+      - Spring Security 4 対応に伴う修正 (管理ID#1519)
 
         * 全記述の再編
 
@@ -765,7 +747,7 @@
 
     * -
       - :doc:`../Security/Authorization`
-      - Spring Security 4 対応に伴う修正 (\ `guideline#1519 <https://github.com/terasolunaorg/guideline/issues/1519>`_\ )
+      - Spring Security 4 対応に伴う修正 (管理ID#1519)
 
         * 全記述の再編
 
@@ -783,31 +765,31 @@
 
         * 記述内容の改善
 
-         * マルチパートリクエストに関する項目を :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload` に移動 (\ `guideline#1602 <https://github.com/terasolunaorg/guideline/issues/1602>`_\ )
+         * マルチパートリクエストに関する項目を :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload` に移動 (管理ID#1602)
 
     * -
       - :doc:`../Security/Encryption`
       - 新規追加
 
-        * 暗号化ガイドラインの追加 (\ `guideline#1106 <https://github.com/terasolunaorg/guideline/issues/1106>`_\ )
+        * 暗号化ガイドラインの追加 (管理ID#1106)
 
     * -
       - :doc:`../Security/SecureLoginDemo`
       - 新規追加
 
-        *  代表的なセキュリティ要件の実装例を追加(\ `guideline#1604 <https://github.com/terasolunaorg/guideline/issues/1604>`_\ )
+        *  代表的なセキュリティ要件の実装例を追加(管理ID#1604)
 
     * -
       - :doc:`../Tutorial/TutorialSession`
       - 新規追加
 
-        *  セッションチュートリアルを追加(\ `guideline#1599 <https://github.com/terasolunaorg/guideline/issues/1599>`_\ )
+        *  セッションチュートリアルを追加(管理ID#1599)
 
     * -
       - :doc:`../Tutorial/TutorialREST`
       - Spring Security 4 対応に伴う修正
 
-        *  Spring Security 4 対応に伴うソースの修正 (\ `guideline#1519 <https://github.com/terasolunaorg/guideline/issues/1519>`_\ )
+        *  Spring Security 4 対応に伴うソースの修正 (管理ID#1519)
 
          * CSRF無効化の設定を修正\ ``<sec:csrf disabled="true"/>``\
          *  デフォルトでtrueになる仕様のため、サンプルソースから\ ``<use-expressions="true">``\を削除
@@ -816,16 +798,11 @@
       - \-
       - 5.0.1 RELEASE版公開
 
-        * 更新内容の詳細は、\ `5.0.1のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?q=is%3Aissue+milestone%3A5.0.1+is%3Aclosed>`_\ を参照されたい。
     * -
       - 全般
       - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
-        * 修正内容の詳細は、\ `5.0.1のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?q=is%3Aclosed+milestone%3A5.0.1+label%3A%22clerical+error%22>`_\ を参照されたい。
-
         記載内容の改善
-
-        * 改善内容の詳細は、\ `5.0.1のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?q=milestone%3A5.0.1+label%3Aimprovement+is%3Aclosed>`_\ を参照されたい。
 
         アプリケーションサーバに関する記載内容の修正
 
@@ -846,9 +823,7 @@
 
         Spring IO Platformのバージョン更新に伴い利用するOSSのバージョンを更新
 
-        * 使用するOSSのバージョンを更新。更新内容は、\ `version 5.0.1の移行ガイド <https://github.com/terasolunaorg/terasoluna-gfw/wiki/Migration-Guide-5.0.1_ja#step-1-update-dependency-libraries>`_\ を参照されたい。
-
-        記載内容の改善 (\ `guideline#1148 <https://github.com/terasolunaorg/guideline/issues/1148>`_\ )
+        記載内容の改善 (管理ID#1148)
 
         * \ ``terasoluna-gfw-recommended-dependencies``\ 、\ ``terasoluna-gfw-recommended-web-dependencies``\ 、\ ``terasoluna-gfw-parent``\ プロジェクトの説明を追加。
         * プロジェクトの説明を修正。
@@ -857,65 +832,65 @@
       - :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
       - 記載内容の追加
 
-        * warファイルのビルド方法を追加 (\ `guideline#1146 <https://github.com/terasolunaorg/guideline/issues/1146>`_\ )
+        * warファイルのビルド方法を追加 (管理ID#1146)
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessCommon`
       - 記載内容の追加
 
-        * データソース切り替え機能の説明を追加 (\ `guideline#1071 <https://github.com/terasolunaorg/guideline/issues/1071>`_\ )
+        * データソース切り替え機能の説明を追加 (管理ID#1071)
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
       - ガイドラインのバグ修正
 
-        * バッチ実行のタイミングに関する説明を修正 (\ `guideline#903 <https://github.com/terasolunaorg/guideline/issues/903>`_\ )
+        * バッチ実行のタイミングに関する説明を修正 (管理ID#903)
     * -
       - :doc:`../ArchitectureInDetail/GeneralFuncDetail/Logging`
       - 記載内容の改善
 
-        * \ ``<logger>``\ タグの\ ``additivity``\ 属性に関する説明を追加 (\ `guideline#977 <https://github.com/terasolunaorg/guideline/issues/977>`_\ )
+        * \ ``<logger>``\ タグの\ ``additivity``\ 属性に関する説明を追加 (管理ID#977)
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
       - 記載内容の改善
 
-        * セッションスコープのBeanの定義方法に関する説明を修正 (\ `guideline#1082 <https://github.com/terasolunaorg/guideline/issues/1082>`_\ )
+        * セッションスコープのBeanの定義方法に関する説明を修正 (管理ID#1082)
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/DoubleSubmitProtection`
       - 記載内容の追加
 
-        * レスポンスをキャッシュしないように設定している時のトランザクショントークンチェックの動作を補足 (\ `guideline#1260 <https://github.com/terasolunaorg/guideline/issues/1260>`_\ )
+        * レスポンスをキャッシュしないように設定している時のトランザクショントークンチェックの動作を補足 (管理ID#1260)
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
       - 記載内容の追加
 
-        * コード名の表示方法を追加 (\ `guideline#1109 <https://github.com/terasolunaorg/guideline/issues/1109>`_\ )
+        * コード名の表示方法を追加 (管理ID#1109)
     * -
       - | :doc:`../ArchitectureInDetail/WebApplicationDetail/Ajax`
         | :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
       - \ `CVE-2015-3192 <http://pivotal.io/security/cve-2015-3192>`_\ (XMLの脆弱性)に関する注意喚起を追加
 
-        * StAX(Streaming API for XML)を使用する際の注意事項を追加 (\ `guideline#1211 <https://github.com/terasolunaorg/guideline/issues/1211>`_\ )
+        * StAX(Streaming API for XML)を使用する際の注意事項を追加 (管理ID#1211)
     * -
       - | :doc:`../ArchitectureInDetail/WebApplicationDetail/Pagination`
         | :doc:`../ArchitectureInDetail/WebApplicationDetail/TagLibAndELFunctions`
       - 共通ライブラリのバグ改修に伴う修正
 
-        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#297 <https://github.com/terasolunaorg/terasoluna-gfw/issues/297>`_\)に伴い、\ ``f:query``\ の仕様に関する説明を修正 (\ `guideline#1244 <https://github.com/terasolunaorg/guideline/issues/1244>`_\ )
+        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#297 <https://github.com/terasolunaorg/terasoluna-gfw/issues/297>`_\)に伴い、\ ``f:query``\ の仕様に関する説明を修正 (管理ID#1244)
     * -
       - :doc:`../Security/Authentication`
       - 記載内容の改善
 
-        * \ ``ExceptionMappingAuthenticationFailureHandler``\ の親クラスのプロパティの扱いに関する注意点を追加 (\ `guideline#812 <https://github.com/terasolunaorg/guideline/issues/812>`_\ )
-        * \ ``AbstractAuthenticationProcessingFilter``\ の\ ``requiresAuthenticationRequestMatcher``\ プロパティの設定例を修正 (\ `guideline#1110 <https://github.com/terasolunaorg/guideline/issues/1110>`_\ )
+        * \ ``ExceptionMappingAuthenticationFailureHandler``\ の親クラスのプロパティの扱いに関する注意点を追加 (管理ID#812)
+        * \ ``AbstractAuthenticationProcessingFilter``\ の\ ``requiresAuthenticationRequestMatcher``\ プロパティの設定例を修正 (管理ID#1110)
     * -
       - :doc:`../Security/Authorization`
       - ガイドラインのバグ修正
 
-        * \ ``<sec:authorize>``\ タグ(JSPタグライブラリ)の\ ``access``\ 属性の設定例を修正 (\ `guideline#1003 <https://github.com/terasolunaorg/guideline/issues/1003>`_\ )
+        * \ ``<sec:authorize>``\ タグ(JSPタグライブラリ)の\ ``access``\ 属性の設定例を修正 (管理ID#1003)
     * -
       - 環境依存性の排除
       - 記載内容の追加
 
-        * Tomcat8使用時の外部クラスパス(Tomcat7の\ ``VirtualWebappLoader``\ の代替機能)の適用方法を追加 (\ `guideline#1081 <https://github.com/terasolunaorg/guideline/issues/1081>`_\ )
+        * Tomcat8使用時の外部クラスパス(Tomcat7の\ ``VirtualWebappLoader``\ の代替機能)の適用方法を追加 (管理ID#1081)
     * - 2015-06-12
       - 全般
       - 5.0.0 RELEASE英語版公開
@@ -923,28 +898,21 @@
       - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
       - ガイドラインのバグ修正
 
-        * 例外ハンドリング用のサンプルコード(\ ``NullPointerException``\ が発生するコードが含まれている問題)を修正。
-          修正内容の詳細は、\ `guideline#918のIssue <https://github.com/terasolunaorg/guideline/issues/918>`_\ を参照されたい。
+        * 例外ハンドリング用のサンプルコード(\ ``NullPointerException``\ が発生するコードが含まれている問題)を修正 (管理ID#918)
     * -
       - :doc:`../Tutorial/TutorialREST`
       - ガイドラインのバグ修正
 
-        * 例外ハンドリングの処理で\ ``NullPointerException``\ が発生する問題を修正。
-          修正内容の詳細は、\ `guideline#918のIssue <https://github.com/terasolunaorg/guideline/issues/918>`_\ を参照されたい。
+        * 例外ハンドリングの処理で\ ``NullPointerException``\ が発生する問題を修正 (管理ID#918)
     * - 2015-02-23
       - \-
       - 5.0.0 RELEASE版公開
 
-        * 更新内容の詳細は、\ `5.0.0のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?q=is%3Aissue+milestone%3A5.0.0+is%3Aclosed>`_\ と\ `1.0.2のバックポートIssue一覧 <https://github.com/terasolunaorg/guideline/issues?q=is%3Aclosed+milestone%3A1.0.2+label%3Abackport>`_\ を参照されたい。
     * -
       - 全般
       - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
-        * 修正内容の詳細は、\ `1.0.2のバックポートIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?q=is%3Aclosed+milestone%3A1.0.2+label%3Abackport+label%3A%22clerical+error%22>`_\ を参照されたい。
-
         記載内容の改善
-
-        * 改善内容の詳細は、\ `5.0.0のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?q=milestone%3A5.0.0+label%3Aimprovement+is%3Aclosed>`_\ と\ `1.0.2のバックポートIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?q=is%3Aclosed+milestone%3A1.0.2+label%3Aimprovement+label%3Abackport>`_\ を参照されたい。
 
         新規追加
 
@@ -964,7 +932,6 @@
 
         OSSバージョンの更新
 
-        * 使用するOSSのバージョンを更新。更新内容は、\ `version 5.0.0の移行ガイド <https://github.com/terasolunaorg/terasoluna-gfw/wiki/Migration-Guide-5.0.0_ja#step-1-update-dependency-libraries>`_\ を参照されたい。
     * -
       - :doc:`../Overview/FirstApplication`
       - version 5.0.0対応に伴う更新
@@ -975,8 +942,7 @@
       - :doc:`../Overview/ApplicationLayering`
       - 英語翻訳のバグ修正
 
-        * ドメイン層と他の層との関係に関する翻訳ミスを修正。
-          修正内容の詳細は、\ `guideline#364のIssue <https://github.com/terasolunaorg/guideline/issues/364>`_\ を参照されたい。
+        * ドメイン層と他の層との関係に関する翻訳ミスを修正 (管理ID#364)
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - version 5.0.0対応に伴う更新
@@ -993,8 +959,7 @@
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
       - Spring Framework 4.1対応に伴う修正
 
-        * JTA 1.2の\ ``@Transactional``\ の扱いに関する記載を追加。
-          修正内容の詳細は、\ `guideline#562のIssue <https://github.com/terasolunaorg/guideline/issues/562>`_\ を参照されたい。
+        * JTA 1.2の\ ``@Transactional``\ の扱いに関する記載を追加 (管理ID#562)
         * JPA(Hibernate実装)使用時の\ ``@Transactional(readOnly = true)``\ の扱い関する説明を修正。
           \ `SPR-8959 <https://jira.spring.io/browse/SPR-8959>`_\ (Spring Framework 4.1以降)の対応により、
           JDBCドライバに対して「読み取り専用のトランザクション」として扱うように指示できるように改善された。
@@ -1002,7 +967,7 @@
         記載内容の追加
 
         * 「読み取り専用のトランザクション」が有効にならないケースに関する注意点を追加。
-          追加内容の詳細は、\ `guideline#861のIssue <https://github.com/terasolunaorg/guideline/issues/861>`_\ を参照されたい。
+          追加内容の詳細は、(管理ID#861)
     * -
       - :doc:`../ImplementationAtEachLayer/InfrastructureLayer`
       - MyBatis3対応に伴う修正
@@ -1012,16 +977,13 @@
       - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
       - Spring Framework 4.1対応に伴う修正
 
-        * \ ``@ControllerAdvice``\ に追加された属性(適用対象をControllerで絞り込むための属性)に関する説明を追加。
-          修正内容の詳細は、\ `guideline#549のIssue <https://github.com/terasolunaorg/guideline/issues/549>`_\ を参照されたい。
-        * \ ``<mvc:view-resolvers>``\ に関する説明を追加。
-          修正内容の詳細は、\ `guideline#609のIssue <https://github.com/terasolunaorg/guideline/issues/609>`_\ を参照されたい。
+        * \ ``@ControllerAdvice``\ に追加された属性(適用対象をControllerで絞り込むための属性)に関する説明を追加 (管理ID#549)
+        * \ ``<mvc:view-resolvers>``\ に関する説明を追加 (管理ID#609)
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessCommon`
       - 共通ライブラリのバグ改修に伴う修正
 
-        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#78 <https://github.com/terasolunaorg/terasoluna-gfw/issues/78>`_\)に伴い、全角文字のワイルドカード文字("\ ``％``\" , "\ ``＿``\" )\ の扱いに関する説明を追加。
-          修正内容の詳細は、\ `guideline#712のIssue <https://github.com/terasolunaorg/guideline/issues/712>`_\ を参照されたい。
+        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#78 <https://github.com/terasolunaorg/terasoluna-gfw/issues/78>`_\)に伴い、全角文字のワイルドカード文字("\ ``％``\" , "\ ``＿``\" )\ の扱いに関する説明を追加 (管理ID#712)
 
         Spring Framework 4.1対応に伴う修正
 
@@ -1040,8 +1002,7 @@
       - :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
       - ガイドラインのバグ修正
 
-        * ロングトランザクションの楽観ロックのサンプルコード(レコードが取得できない時の処理)の修正。
-          修正内容の詳細は、\ `guideline#450のIssue <https://github.com/terasolunaorg/guideline/issues/450>`_\ を参照されたい。
+        * ロングトランザクションの楽観ロックのサンプルコード(レコードが取得できない時の処理)の修正 (管理ID#450)
 
         Spring Framework 4.1対応に伴う修正
 
@@ -1055,18 +1016,16 @@
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - ガイドラインのバグ修正
 
-        * \ ``@GroupSequence``\ の説明を修正。
-          修正内容の詳細は、\ `guideline#296のIssue <https://github.com/terasolunaorg/guideline/issues/296>`_\ を参照されたい。
+        * \ ``@GroupSequence``\ の説明を修正 (管理ID#296)
 
         共通ライブラリのバグ改修に伴う修正
 
-        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#256 <https://github.com/terasolunaorg/terasoluna-gfw/issues/256>`_\)に伴い、\ ``ValidationMessages.properties``\ に関する注意点を追加。
-          修正内容の詳細は、\ `guideline#766のIssue <https://github.com/terasolunaorg/guideline/issues/766>`_\ を参照されたい。
+        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#256 <https://github.com/terasolunaorg/terasoluna-gfw/issues/256>`_\)に伴い、\ ``ValidationMessages.properties``\ に関する注意点を追加 (管理ID#766)
 
         記載内容の追加
 
         * Spring Validatorを使用した相関項目チェック時に、Bean ValidationのGroup Validationの仕組みと連携する方法を追加。
-          追加内容の詳細は、\ `guideline#320のIssue <https://github.com/terasolunaorg/guideline/issues/320>`_\ を参照されたい。
+          追加内容の詳細は、(管理ID#320)
 
         Bean Validation 1.1(Hibernate Validator 5.1)対応に伴う修正
 
@@ -1079,7 +1038,7 @@
       - 記載内容の追加
 
         * 513バイトより小さいサイズのエラーレスポンスを返すとInternet Explorerで簡易エラーページが表示される可能性がある旨の説明を追加。
-          追加内容の詳細は、\ `guideline#189のIssue <https://github.com/terasolunaorg/guideline/issues/189>`_\ を参照されたい。
+          追加内容の詳細は、(管理ID#189)
 
         Spring Framework 4.1対応に伴う修正
 
@@ -1095,16 +1054,13 @@
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`
       - 共通ライブラリの変更内容の反映
 
-        * 共通ライブラリの改善(\ `terasoluna-gfw#24 <https://github.com/terasolunaorg/terasoluna-gfw/issues/24>`_\)に伴い、新たに追加したメッセージタイプ(warning)と非推奨にしたメッセージタイプ(warn)に関する説明を追加。
-          修正内容の詳細は、\ `guideline#74のIssue <https://github.com/terasolunaorg/guideline/issues/74>`_\ を参照されたい。
+        * 共通ライブラリの改善(\ `terasoluna-gfw#24 <https://github.com/terasolunaorg/terasoluna-gfw/issues/24>`_\)に伴い、新たに追加したメッセージタイプ(warning)と非推奨にしたメッセージタイプ(warn)に関する説明を追加 (管理ID#74)
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Pagination`
       - 共通ライブラリの変更内容の反映
 
-        * 共通ライブラリの改善(\ `terasoluna-gfw#13 <https://github.com/terasolunaorg/terasoluna-gfw/issues/13>`_\)に伴い、active状態のページリンクの説明を変更。
-          修正内容の詳細は、\ `guideline#699のIssue <https://github.com/terasolunaorg/guideline/issues/699>`_\ を参照されたい。
-        * 共通ライブラリの改善(\ `terasoluna-gfw#14 <https://github.com/terasolunaorg/terasoluna-gfw/issues/14>`_\)に伴い、disabled状態のページリンクの説明を変更。
-          修正内容の詳細は、\ `guideline#700のIssue <https://github.com/terasolunaorg/guideline/issues/700>`_\ を参照されたい。
+        * 共通ライブラリの改善(\ `terasoluna-gfw#13 <https://github.com/terasolunaorg/terasoluna-gfw/issues/13>`_\)に伴い、active状態のページリンクの説明を変更 (管理ID#699)
+        * 共通ライブラリの改善(\ `terasoluna-gfw#14 <https://github.com/terasolunaorg/terasoluna-gfw/issues/14>`_\)に伴い、disabled状態のページリンクの説明を変更 (管理ID#700)
 
         Spring Data Common 1.9対応に伴う修正
 
@@ -1113,10 +1069,8 @@
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
       - 共通ライブラリのバグ改修に伴う修正
 
-        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#16 <https://github.com/terasolunaorg/terasoluna-gfw/issues/16>`_\)に伴い、\ ``ExistInCodeList`` のメッセージキーを変更とバージョンアップ時の注意点を追加。
-          修正内容の詳細は、\ `guideline#638のIssue <https://github.com/terasolunaorg/guideline/issues/638>`_\ を参照されたい。
-        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#256 <https://github.com/terasolunaorg/terasoluna-gfw/issues/256>`_\)に伴い、\ ``@ExistInCodeList``\ のメッセージ定義に関する注意点を追加。
-          修正内容の詳細は、\ `guideline#766のIssue <https://github.com/terasolunaorg/guideline/issues/766>`_\ を参照されたい。
+        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#16 <https://github.com/terasolunaorg/terasoluna-gfw/issues/16>`_\)に伴い、\ ``ExistInCodeList`` のメッセージキーを変更とバージョンアップ時の注意点を追加 (管理ID#638)
+        * 共通ライブラリのバグ改修(\ `terasoluna-gfw#256 <https://github.com/terasolunaorg/terasoluna-gfw/issues/256>`_\)に伴い、\ ``@ExistInCodeList``\ のメッセージ定義に関する注意点を追加 (管理ID#766)
 
         共通ライブラリの変更内容の反映
 
@@ -1135,12 +1089,11 @@
       - 記載内容の改善
 
         * Locationヘッダやハイパーメディアリンクに設定するURLを組み立てる方法を改善。
-          改善内容の詳細は、\ `guideline#374のIssue <https://github.com/terasolunaorg/guideline/issues/374>`_\ を参照されたい。
+          改善内容の詳細は、(管理ID#374)
 
         Spring Framework 4.1対応に伴う修正
 
-        * \ ``@RestController``\ に関する説明を追加。
-          修正内容の詳細は、\ `guideline#560のIssue <https://github.com/terasolunaorg/guideline/issues/560>`_\ を参照されたい。
+        * \ ``@RestController``\ に関する説明を追加 (管理ID#560)
         * ビルダースタイルのAPIを使用して\ ``ResponseEntity``\ を生成するようにサンプルコードを変更。
 
         Jackson 2.4対応に伴う修正
@@ -1154,19 +1107,17 @@
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload`
       - ガイドラインのバグ修正
 
-        * \ `CVE-2014-0050 <http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0050>`_\ (File Uploadの脆弱性)が解決されたApache Commons FileUploadのバージョンを修正。
-          修正内容の詳細は、\ `guideline#846のIssue <https://github.com/terasolunaorg/guideline/issues/846>`_\ を参照されたい。
+        * \ `CVE-2014-0050 <http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0050>`_\ (File Uploadの脆弱性)が解決されたApache Commons FileUploadのバージョンを修正 (管理ID#846)
 
         記載内容の追加
 
         * 一部のアプリケーションサーバでServlet 3のファイルアップロード機能が文字化けする問題があるため、この事象の回避策としてApache Commons FileUploadを使用する方法を追加。
-          追加内容の詳細は、\ `guideline#778のIssue <https://github.com/terasolunaorg/guideline/issues/778>`_\ を参照されたい。
+          追加内容の詳細は、(管理ID#778)
     * -
       - :doc:`../ArchitectureInDetail/GeneralFuncDetail/SystemDate`
       - 共通ライブラリの変更内容の反映
 
-        * 共通ライブラリの改善(\ `terasoluna-gfw#224 <https://github.com/terasolunaorg/terasoluna-gfw/issues/224>`_\)に伴い、ドキュメント内の構成とパッケージ名及びクラス名を変更。
-          修正内容の詳細は、\ `guideline#701のIssue <https://github.com/terasolunaorg/guideline/issues/701>`_\ を参照されたい。
+        * 共通ライブラリの改善(\ `terasoluna-gfw#224 <https://github.com/terasolunaorg/terasoluna-gfw/issues/224>`_\)に伴い、ドキュメント内の構成とパッケージ名及びクラス名を変更 (管理ID#701)
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout`
       - Tiles 3.0対応に伴う修正
@@ -1175,14 +1126,13 @@
 
         Spring Framework 4.1対応に伴う修正
 
-        * \ ``<mvc:view-resolvers>``\ 、\ ``<mvc:tiles>``\ 、\ ``<mvc:definitions>``\ に関する説明を追加。
-          修正内容の詳細は、\ `guideline#609のIssue <https://github.com/terasolunaorg/guideline/issues/609>`_\ を参照されたい。
+        * \ ``<mvc:view-resolvers>``\ 、\ ``<mvc:tiles>``\ 、\ ``<mvc:definitions>``\ に関する説明を追加 (管理ID#609)
     * -
       - :doc:`../ArchitectureInDetail/GeneralFuncDetail/JodaTime`
       - 記載内容の追加
 
         * \ ``LocalDateTime``\ の使い方を追加。
-          追加内容の詳細は、\ `guideline#584のIssue <https://github.com/terasolunaorg/guideline/issues/584>`_\ を参照されたい。
+          追加内容の詳細は、(管理ID#584)
 
         Joda Time 2.5対応に伴う修正
 
@@ -1204,10 +1154,8 @@
       - :doc:`../Security/Authentication`
       - ガイドラインのバグ修正
 
-        * \ ``<form-login>``\ 、\ ``<logout>``\ 、\ ``<session-management>``\ タグの説明不備や説明不足の修正。
-          修正内容の詳細は、\ `guideline#754のIssue <https://github.com/terasolunaorg/guideline/issues/754>`_\ を参照されたい。
-        * AuthenticationFilterの拡張方法を示すサンプルコードの修正(セッション・フィクセーション攻撃対策やCSRF対策を有効にするための設定を追加)。
-          修正内容の詳細は、\ `guideline#765のIssue <https://github.com/terasolunaorg/guideline/issues/765>`_\ を参照されたい。
+        * \ ``<form-login>``\ 、\ ``<logout>``\ 、\ ``<session-management>``\ タグの説明不備や説明不足の修正 (管理ID#754)
+        * AuthenticationFilterの拡張方法を示すサンプルコードの修正(セッション・フィクセーション攻撃対策やCSRF対策を有効にするための設定を追加) (管理ID#765)
 
         Spring Security 3.2対応に伴う修正
 
@@ -1233,8 +1181,7 @@
       - :doc:`../Tutorial/TutorialREST`
       - 記載内容の改善
 
-        * \ :doc:`../Tutorial/TutorialTodo`\ で作成したプロジェクトにREST APIを追加する手順にすることで、特定のインフラストラクチャ層(O/R Mapper)に依存しない内容に変更。
-          修正内容の詳細は、\ `guideline#325のIssue <https://github.com/terasolunaorg/guideline/issues/325>`_\ を参照されたい。
+        * \ :doc:`../Tutorial/TutorialTodo`\ で作成したプロジェクトにREST APIを追加する手順にすることで、特定のインフラストラクチャ層(O/R Mapper)に依存しない内容に変更 (管理ID#325)
 
         version 5.0.0対応に伴う更新
 
@@ -1293,12 +1240,10 @@
       - \-
       - 1.0.1 RELEASE版公開
 
-        更新内容の詳細は、\ `1.0.1のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?labels=&milestone=1&state=closed>`_\ を参照されたい。
     * -
       - 全般
       - ガイドラインのバグ(タイプミスや記述ミスなど)を修正
 
-        更新内容の詳細は、\ `1.0.1のIssue一覧(bug & clerical error) <https://github.com/terasolunaorg/guideline/issues?labels=bug&milestone=1&state=closed>`_\ を参照されたい。
     * -
       - 日本語版
       - 以下の日本語版を追加
@@ -1360,7 +1305,7 @@
 
         ガイドラインのバグを修正
 
-        * \ ``MultipartFilter``\を設定した場合、\ ``SystemExceptionResolver``\を使用して\ ``MultipartException``\をハンドリングする事が出来ないため、サーブレットコンテナのerror-page機能を使用してハンドリングする方法を追加。修正内容の詳細は、\ `guideline#59のIssue <https://github.com/terasolunaorg/guideline/issues/59>`_\ を参照されたい。
+        * \ ``MultipartFilter``\を設定した場合、\ ``SystemExceptionResolver``\を使用して\ ``MultipartException``\をハンドリングする事が出来ないため、サーブレットコンテナのerror-page機能を使用してハンドリングする方法を追加 (管理ID#59)
     * -
       - 日本語版
       - 以下のプロジェクト作成方法を\ ``mvn archetype:generate``\ から行うように変更
