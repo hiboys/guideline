@@ -584,7 +584,7 @@ Spring Security 4.1以降では、アクセスポリシーを適用するリソ�
       * - | (2)
         - | 「拡張子を付けないパスに対するアクセスポリシー」を定義する。
           | ワイルドカードを使用しない場合、Spring MVCとSpring Securityのパスマッチングの差を吸収するために
-          | 末尾が\ ``/``\ で終わるパスに対するアクセスポリシーも定義する。
+          | 末尾が"\ ``/``\" で終わるパスに対するアクセスポリシーも定義する。
 
 
 .. [#fPathVariableDescription] パス変数の説明は :doc:`../ImplementationAtEachLayer/ApplicationLayer` の\ :ref:`controller_method_argument-pathvariable-label`\ を参照されたい。
