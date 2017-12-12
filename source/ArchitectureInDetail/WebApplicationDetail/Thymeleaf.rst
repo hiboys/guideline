@@ -211,6 +211,7 @@ Thymeleaf + Springを利用し、ThymeleafとSpring MVCを連携させた場合�
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -332,6 +333,7 @@ Thymeleafテンプレートの実装
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -456,6 +458,7 @@ Thymeleafテンプレートの実装
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -759,6 +762,7 @@ Thymeleafに係るブランクプロジェクトの設定は、以下の4点で�
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -812,6 +816,7 @@ Thymeleafに係るブランクプロジェクトの設定は、以下の4点で�
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -864,6 +869,7 @@ Thymeleafに係るブランクプロジェクトの設定は、以下の4点で�
   .. list-table::
      :header-rows: 1
      :widths: 10 90
+     :class: longtable
 
      * - 項番
        - 説明
@@ -1594,6 +1600,7 @@ Controllerから渡されたView名をキーとしてキャッシュの判定が
  .. list-table::
     :widths: 10 30 40 20
     :header-rows: 1
+    :class: longtable
 
     * - 項番
       - 設定項目
@@ -1643,6 +1650,7 @@ Controllerから渡されたView名をキーとしてキャッシュの判定が
  .. list-table::
     :widths: 10 30 40 20
     :header-rows: 1
+    :class: longtable
 
     * - 項番
       - 設定項目
