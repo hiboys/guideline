@@ -3670,7 +3670,6 @@ todo-domain.xml
     \ ``<tx:annotation-driven>``\タグが設定されている。
 
      .. code-block:: xml
-        :emphasize-lines: 9-10, 12-13
 
          <tx:annotation-driven />
 
