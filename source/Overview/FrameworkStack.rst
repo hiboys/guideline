@@ -56,7 +56,7 @@ O/R Mapper
 
 .. warning::
 
-  どんなプロジェクトでもJPAを採用できるわけではない。"テーブルがほとんど正規化されていない"、"テーブルのカラム数が多すぎる"というテーブル設計がされている場合には、JPAの利用は難しい。
+  どんなプロジェクトでもJPAを採用できるわけではない。 "テーブルがほとんど正規化されていない"、 "テーブルのカラム数が多すぎる"というテーブル設計がされている場合には、JPAの利用は難しい。
 
   また、本ガイドラインではJPAの基本的な説明は行っておらず、JPA利用経験者がチーム内にいることが前提である。
 
@@ -636,7 +636,7 @@ version 5.4.0.RELEASEで利用するOSSの一覧を以下に示す。
 --------------------------------------------------------------------------------
 
 \ `共通ライブラリ <https://github.com/terasolunaorg/terasoluna-gfw>`_\ は、TERASOLUNA Server Framework for Java (5.x)が含むSpring Ecosystem や、その他依存ライブラリでは足りない+αな機能を提供するライブラリである。
-基本的には、このライブラリがなくてもTERASOLUNA Server Framework for Java (5.x)によるアプリケーション開発は可能であるが、"あると便利"な存在である。
+基本的には、このライブラリがなくてもTERASOLUNA Server Framework for Java (5.x)によるアプリケーション開発は可能であるが、 "あると便利"な存在である。
 また、提供している2種類の \ `マルチプロジェクト構成のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank>`_\ および \ `シングルプロジェクト構成のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-blank>`_\ の共通ライブラリの標準の組込状況は以下の通りである。
 
 .. tabularcolumns:: |p{0.05\linewidth}|p{0.15\linewidth}|p{0.40\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|
@@ -798,11 +798,11 @@ Javaソースコードを含まないものは、ライブラリの依存関係�
 
 .. note::
 
-  一部を除き、共通ライブラリにはプロジェクト名末尾に"dependencies"が付与されたプロジェクトが存在する。
+  一部を除き、共通ライブラリにはプロジェクト名末尾に "dependencies"が付与されたプロジェクトが存在する。
   (例えば、terasoluna-gfw-commonに対応するterasoluna-gfw-common-dependenciesなどである)
 
   このようなプロジェクトでは、共通ライブラリへの依存関係定義の他に、利用を推奨するOSSライブラリへの依存関係定義を提供している為、
-  共通ライブラリを利用する際は"dependencies"が付与されたプロジェクトの方を、依存関係としてpom.xmlに追加することを推奨する。
+  共通ライブラリを利用する際は "dependencies"が付与されたプロジェクトの方を、依存関係としてpom.xmlに追加することを推奨する。
   
 
 terasoluna-gfw-common

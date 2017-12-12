@@ -32,8 +32,8 @@
 .. note::
 
   アプリケーション層、ドメイン層、インフラストラクチャー層は
-  Eric Evansの"Domain-Driven Design (2004, Addison-Wesley)"で説明されている用語である。
-  ただし、用語は使用しているが以後"Domain-Driven Design"の考えにのっとっているわけではない。
+  Eric Evansの "Domain-Driven Design (2004, Addison-Wesley)"で説明されている用語である。
+  ただし、用語は使用しているが以後 "Domain-Driven Design"の考えにのっとっているわけではない。
 
 |
 
@@ -180,7 +180,7 @@ Domain Objectは、大きく分けて、以下3つに分類される。
 
    本ガイドラインでは主に、\ `状態のみもつモデル <http://martinfowler.com/bliki/AnemicDomainModel.html>`_\ を扱う。
 
-   Martin Fowlerの"Patterns of Enterprise Application Architecture (2002, Addison-Wesley)"では、
+   Martin Fowlerの "Patterns of Enterprise Application Architecture (2002, Addison-Wesley)"では、
    Domain Modelは、\ `状態と振る舞いをもつもの <http://martinfowler.com/eaaCatalog/domainModel.html>`_\ と定義されているが、
    厳密には触れない。
 

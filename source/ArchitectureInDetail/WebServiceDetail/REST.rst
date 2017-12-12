@@ -1923,7 +1923,7 @@ RESTful Web Service用のサーブレットの設定
 
  .. tip:: **@RequestMappingアノテーションのvalue属性に指定する値について**
 
-   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード("\ ``*``\")の部分の値を指定する。
+   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード( "\ ``*``\")の部分の値を指定する。
    
    例えば、\ ``@RequestMapping(value = "members")``\と指定した場合、\ ``/api/v1/members``\といパスに対する処理を行うメソッドとしてデプロイされる。
    そのため、\ ``@RequestMapping``\アノテーションのvalue属性には、分割したサーブレットへマッピングするためパス(\ ``api/v1``\)を指定する必要はない。
@@ -5195,7 +5195,7 @@ RESTful Web Service用の\ ``DispatcherServlet``\を設ける方法
 
  .. tip:: **@RequestMappingアノテーションのvalue属性に指定する値について**
 
-   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード("\ ``*``\")の部分の値を指定する。
+   \ ``@RequestMapping``\アノテーションのvalue属性に指定する値は、\ ``<url-pattern>``\要素で指定したワイルドカード( "\ ``*``\")の部分の値を指定する。
    
    例えば、\ ``@RequestMapping(value = "members")``\と指定した場合、\ ``/api/v1/members``\といパスに対する処理を行うメソッドとしてデプロイされる。
    そのため、\ ``@RequestMapping``\アノテーションのvalue属性には、分割したサーブレットへマッピングするためパス(\ ``api/v1``\)を指定する必要はない。

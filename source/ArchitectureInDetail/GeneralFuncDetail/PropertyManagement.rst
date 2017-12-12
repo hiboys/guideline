@@ -295,10 +295,10 @@ Javaクラス内でプロパティを使用する
      - 説明
    * - | (1)
      - | ``@Value`` アノテーションのvalueに ``${item.upload.title}`` を設定することで、読み込まれたプロパティファイルのキー\ ``item.upload.title``\ に対する値が代入される。
-       | ``uploadTitle`` にはStringクラスに"list of update file"が代入される。
+       | ``uploadTitle`` にはStringクラスに "list of update file"が代入される。
    * - | (2)
      - | ``@Value`` アノテーションのvalueに ``${item.upload.dir}`` を設定することで、読み込まれたプロパティファイルのキー\ ``item.upload.dir``\ に対する値が代入される。
-       | ``uploadDir`` には初期値"/tmp/upload"でオブジェクト生成された\ ``org.springframework.core.io.Resource``\ オブジェクトが格納される。
+       | ``uploadDir`` には初期値 "/tmp/upload"でオブジェクト生成された\ ``org.springframework.core.io.Resource``\ オブジェクトが格納される。
    * - | (3)
      - | ``@Value`` アノテーションのvalueに ``${item.upload.maxUpdateFileNum}`` を設定することで、読み込まれたプロパティファイルのキー\ ``item.upload.maxUpdateFileNum``\ に対する値が代入される。
        | ``maxUpdateFileNum`` には整数型に10が代入される。
@@ -350,7 +350,7 @@ How to extend
    * - | (1)
      - | ``<context:property-placeholder/>``\ の代わりに拡張したPropertySourcesPlaceholderConfigurerを定義する。 ``<context:property-placeholder/>``\ タグを削除しておくこと。
    * - | (2)
-     - | propertyタグのname属性に"locations"を設定し、value属性に読み込むプロパティファイルパスを指定する。
+     - | propertyタグのname属性に "locations"を設定し、value属性に読み込むプロパティファイルパスを指定する。
        | 読み込むプロパティファイルパスの指定方法は :ref:`technical-details_label` と同じ。
 
 **Javaクラス**
@@ -435,7 +435,7 @@ How to extend
      - | コンストラクタで設定した ``StringValueResolver`` の ``resolveStringValue`` メソッドの引数にキーを指定して値を取得している。この値は実際にプロパティファイルに定義されている値である。
    * - | (5)
      - | プロパティファイルの値が暗号化された値かどうかをチェックする。判定方法については実装によって異なる。
-       | ここでは値が"Encrypted:"から始まるかどうかで、暗号化されているかどうかを判断する。
+       | ここでは値が "Encrypted:"から始まるかどうかで、暗号化されているかどうかを判断する。
        | 暗号化されている場合、(6)で復号を実施し、暗号化されていない場合、そのままの値を返却する。
    * - | (6)
      - | プロパティファイルの暗号化されたvalueの復号を行っている。(具体的な復号処理については省略する。)
@@ -481,7 +481,7 @@ How to extend
 
 **プロパティファイル**
 
-| プロパティ値として、暗号化した値のprefixに、暗号化されていることを示す"Encrypted:"を付加している。
+| プロパティ値として、暗号化した値のprefixに、暗号化されていることを示す "Encrypted:"を付加している。
 | 暗号化されているため、プロパティファイルの中身を見ても理解できない状態になっている。
 
  .. code-block:: properties

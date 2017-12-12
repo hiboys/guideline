@@ -536,7 +536,7 @@ NameとEmailが空文字であることに対するエラーメッセージと�
    * - 項番
      - 説明
    * - | (1)
-     - | \ ``<form:form>``\ タグ内で、\ ``<form:errors>``\ の\ ``path``\ 属性に"\ ``*``\" を指定することで、
+     - | \ ``<form:form>``\ タグ内で、\ ``<form:errors>``\ の\ ``path``\ 属性に "\ ``*``\" を指定することで、
        | \ ``<form:form>``\ の\ ``modelAttribute``\ 属性に指定したModelに関する全エラーメッセージを出力できる。
        | ``element``\ 属性に、これらのエラーメッセージを包含するタグ名を指定できる。デフォルトでは、\ ``span``\ であるが、
        | ここではエラーメッセージ一覧をブロック要素として出力するために、\ ``div``\ を指定する。
@@ -1493,7 +1493,7 @@ Bean Validationでグループを指定する場合、アノテーションの\ 
 
 .. warning::
 
-   このControllerの実装は、\ ``country``\ の値が、"cn"、"jp"、"sg"のいずれでもない場合のハンドリングが行われておらず、不十分である。
+   このControllerの実装は、\ ``country``\ の値が、 "cn"、 "jp"、 "sg"のいずれでもない場合のハンドリングが行われておらず、不十分である。
    \ ``country``\ の値が、想定外の場合に、400エラーが返却される。
 
 次にチェック対象の国が増えたため、成人条件18歳以上をデフォルトルールとしたい場合を考える。
@@ -2177,11 +2177,11 @@ Spring MVCによるBean Validationのエラーメッセージは、以下の順�
    | Springのデフォルトのルールについては、「`DefaultMessageCodesResolverのJavaDoc <http://docs.spring.io/spring/docs/4.3.11.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_」を参照されたい。
 #. 1.でメッセージが見つからない場合、アノテーションの\ ``message``\ 属性に、指定されたメッセージからエラーメッセージを取得する (Bean Validationのルール)
 
-  #. \ ``message``\ 属性に指定されたメッセージが、"{メッセージキー}"形式でない場合、そのテキストをエラーメッセージとして使用する。
-  #. \ ``message``\ 属性に指定されたメッセージが、"{メッセージキー}"形式の場合、クラスパス直下のValidationMessages.propertiesから、メッセージキーに対応するメッセージを探す。
+  #. \ ``message``\ 属性に指定されたメッセージが、 "{メッセージキー}"形式でない場合、そのテキストをエラーメッセージとして使用する。
+  #. \ ``message``\ 属性に指定されたメッセージが、 "{メッセージキー}"形式の場合、クラスパス直下のValidationMessages.propertiesから、メッセージキーに対応するメッセージを探す。
 
     #. メッセージキーに対応するメッセージが定義されている場合は、そのメッセージを使用する
-    #. メッセージキーに対応するメッセージが定義されていない場合は、"{メッセージキー}"をそのままエラーメッセージとして使用する
+    #. メッセージキーに対応するメッセージが定義されていない場合は、 "{メッセージキー}"をそのままエラーメッセージとして使用する
 
 基本的にエラーメッセージは、propertiesファイルに定義することを推奨する。
 
@@ -2190,7 +2190,7 @@ Spring MVCによるBean Validationのエラーメッセージは、以下の順�
 * \ ``org.springframework.context.MessageSource``\ が読み込むpropertiesファイル
 * \ クラスパス直下のValidationMessages.properties
 
-以下の説明では、applicationContext.xmlに次の設定があることを前提とし、前者を"application-messages.properties"、後者を"ValidationMessages.properties"と呼ぶ。
+以下の説明では、applicationContext.xmlに次の設定があることを前提とし、前者を "application-messages.properties"、後者を "ValidationMessages.properties"と呼ぶ。
 
 .. code-block:: xml
 
@@ -5112,7 +5112,7 @@ OSコマンドインジェクションが発生する可能性がある。
     * - 項番
       - 説明
     * - | (1)
-      - | 例えば、\ ``script``\ に"exec.sh ; cat /etc/passwd" が入ると、文字列中のセミコロンが\ ``/bin/sh``\ により区切り文字として解釈され、"cat /etc/passwd"が実行される。
+      - | 例えば、\ ``script``\ に "exec.sh ; cat /etc/passwd" が入ると、文字列中のセミコロンが\ ``/bin/sh``\ により区切り文字として解釈され、 "cat /etc/passwd"が実行される。
         | そのため、標準出力の扱い方によっては\ ``/etc/passwd``\ が出力される可能性がある。
 
 .. warning:: **ScriptEngineやScriptTemplateViewResolverの利用について**
@@ -5152,7 +5152,7 @@ OSコマンドインジェクションを起こさないためには、可能な
     * - | (1)
       - | コマンドとして \ ``batch0X.sh``\ （Xは0から9までの半角数字）のみ許可するルールを指定する。
     * - | (2)
-      - | 引数として、無害な文字である半角英数字（\\w）、"\ ``=``\" 、"\ ``_``\" から構成された文字列のみ許可するルールを指定する。
+      - | 引数として、無害な文字である半角英数字（\\w）、 "\ ``=``\" 、 "\ ``_``\" から構成された文字列のみ許可するルールを指定する。
 
 .. note::
 

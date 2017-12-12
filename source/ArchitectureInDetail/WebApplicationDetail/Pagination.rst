@@ -539,7 +539,7 @@ JSPタグライブラリのパラメータに値を指定することで、デ�
     この挙動を変えたい場合は、JavaScriptを使用してページリンク押下時の動作を無効化する必要がある。
     実装例については、「:ref:`PaginationHowToUseDisablePageLinkUsingJavaScript`」を参照されたい。
 
-    terasoluna-gfw-web 5.0.0.RELEASEより、\ ``disabledHref``\ 属性のデフォルト値を"\ ``#``\"から\ ``javascript:void(0)``\ に変更している。
+    terasoluna-gfw-web 5.0.0.RELEASEより、\ ``disabledHref``\ 属性のデフォルト値を "\ ``#``\"から\ ``javascript:void(0)``\ に変更している。
     この変更を行うことで、\ ``disabled``\ 状態のページリンクを押下した際に、フォーカスがページのトップへ移動しないようになっている。
 
 
@@ -1700,7 +1700,7 @@ JavaScriptを使用したページリンクの無効化
 
         ただし、\ ``<t:pagination>``\ タグの\ ``enableLinkOfCurrentPage``\ 属性に\ ``true``\ を指定している場合は、\ ``active``\ 状態のページリンクのクリックイベントを無効化してはいけない。
     * - | (3)
-      - \ ``disabledHref``\ 属性に"\ ``#``\" を指定する。
+      - \ ``disabledHref``\ 属性に "\ ``#``\" を指定する。
 
 |
 

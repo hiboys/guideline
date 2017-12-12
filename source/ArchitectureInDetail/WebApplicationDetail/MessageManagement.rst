@@ -123,7 +123,7 @@ Overview
      - |
      - | 相関チェックエラー
      - | error
-     - * "パスワード"と"パスワード(確認用)"が一致しません。
+     - * "パスワード"と "パスワード(確認用)"が一致しません。
    * - | (G)
      - |
      - | 業務エラー
@@ -537,7 +537,7 @@ How to use
          - | ``MessageSource``\ の定義。ここでは\ ``ResourceBundleMessageSource``\ を使用する。
        * - | (2)
          - | 使用するメッセージプロパティの基底名を定義する。クラスパス相対で指定する。
-           | この例では"src/main/resources/i18n/application-messages.properties"を読み込む。
+           | この例では "src/main/resources/i18n/application-messages.properties"を読み込む。
 
 .. _properties-display:
 
@@ -705,14 +705,14 @@ Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t
       * - 項番
         - 説明
       * - | (1)
-        - | メッセージタイプが"error"である\ ``ResultMessages``\ を作成し、
-          | メッセージIDが"e.ex.an.9001"である結果メッセージを設定する。
+        - | メッセージタイプが "error"である\ ``ResultMessages``\ を作成し、
+          | メッセージIDが "e.ex.an.9001"である結果メッセージを設定する。
           | この処理は次と同義である。
           | ``ResultMessages.error().add(ResultMessage.fromCode("e.ex.an.9001"));``
           | メッセージIDを指定する場合は、\ ``ResultMessage``\ オブジェクトの生成を省略できるため、省略することを推奨する。
       * - | (2)
         - | \ ``ResultMessages``\ をModelに追加する。
-          | 属性は指定しなくてよい。(属性名は"resultMessages"になる)
+          | 属性は指定しなくてよい。(属性名は "resultMessages"になる)
 
 
 
@@ -744,7 +744,7 @@ Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t
         - 説明
       * - | (1)
         - | ``<t:messagesPanel>`` タグをデフォルト設定で使用する。
-          | デフォルトでは、属性名が"resultMessages"のオブジェクトを表示する。
+          | デフォルトでは、属性名が "resultMessages"のオブジェクトを表示する。
           | そのため、デフォルトではControllerからModelに\ ``ResultMessages``\ を設定する際に、属性名を設定する必要がない。
 
     ブラウザで表示すると、以下のように出力される。
@@ -772,7 +772,7 @@ Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t
       * - 項番
         - 説明
       * - | (1)
-        - | メッセージタイプに対応して"alert-error"クラスが付与されている。デフォルトでは\ ``<div>``\ タグのclassに"error error-[メッセージタイプ]"が付与される。
+        - | メッセージタイプに対応して "alert-error"クラスが付与されている。デフォルトでは\ ``<div>``\ タグのclassに "error error-[メッセージタイプ]"が付与される。
       * - | (2)
         - | 結果メッセージのリストが\ ``<ul>``\ タグで出力される。
       * - | (3)
@@ -874,7 +874,7 @@ infoメッセージを表示したい場合は、次のように\ ``ResultMessag
   * - 項番
     - 説明
   * - | (1)
-    - | メッセージタイプに対応して、出力されるclass名が"alert alert-**info**"に変わっている。
+    - | メッセージタイプに対応して、出力されるclass名が "alert alert-**info**"に変わっている。
 
 標準では、以下のメッセージタイプが用意されている。
 
@@ -1007,9 +1007,9 @@ infoメッセージを表示したい場合は、次のように\ ``ResultMessag
       * - 項番
         - 説明
       * - | (1)
-        - | メッセージタイプが"warning"である、\ ``ResultMessages``\ を属性名"messages1"でModelに追加する。
+        - | メッセージタイプが "warning"である、\ ``ResultMessages``\ を属性名 "messages1"でModelに追加する。
       * - | (2)
-        - | メッセージタイプが"info"である、\ ``ResultMessages``\ を属性名"messages2"でModelに追加する。
+        - | メッセージタイプが "info"である、\ ``ResultMessages``\ を属性名 "messages2"でModelに追加する。
 
 
 * JSP (WEB-INF/views/message/showMessages.jsp)
@@ -1066,9 +1066,9 @@ infoメッセージを表示したい場合は、次のように\ ``ResultMessag
       * - 項番
         - 説明
       * - | (1)
-        - | 属性名が"messages1"である\ ``ResultMessages``\ を表示する。
+        - | 属性名が "messages1"である\ ``ResultMessages``\ を表示する。
       * - | (2)
-        - | 属性名が"messages2"である\ ``ResultMessages``\ を表示する。
+        - | 属性名が "messages2"である\ ``ResultMessages``\ を表示する。
 
     ブラウザで表示すると、以下のように出力される。
 
@@ -1160,7 +1160,7 @@ How to extend
 
 | メッセージタイプを追加したい場合の、独自メッセージタイプ作成方法について説明する。
 | 通常は、用意されているメッセージタイプのみで十分であるが、採用しているCSSライブラリによっては
-| メッセージタイプを追加したい場合がある。例えば"notice"というメッセージタイプを追加する場合を説明する。
+| メッセージタイプを追加したい場合がある。例えば "notice"というメッセージタイプを追加する場合を説明する。
 
 
 | まず、以下のように\ ``org.terasoluna.gfw.common.message.ResultMessageType``\ インタフェースを実装した
@@ -1284,7 +1284,7 @@ Appendix
      - ``false``
 
 
-例えば、CSSフレームワーク"\ `BlueTrip <http://www.bluetrip.org/>`_\ "では以下のようなCSSが用意されている。
+例えば、CSSフレームワーク "\ `BlueTrip <http://www.bluetrip.org/>`_\ "では以下のようなCSSが用意されている。
 
 .. code-block:: css
 
@@ -1423,7 +1423,7 @@ ResultMessagesを使用しない結果メッセージの表示
 | 通常は\ ``<t:messagesPanel>``\ タグは\ ``ResultMessages``\ オブジェクトの出力用に使用するが、
 | フレームワークがリクエストスコープに設定した文字列(エラーメッセージなど)を表示する場合にも使用できる。
 
-| 例えば、Spring Securityは認証エラー時に、"SPRING_SECURITY_LAST_EXCEPTION"という属性名で発生した例外クラスを
+| 例えば、Spring Securityは認証エラー時に、 "SPRING_SECURITY_LAST_EXCEPTION"という属性名で発生した例外クラスを
 | リクエストスコープに設定する。
 
 | この例外メッセージを、結果メッセージ同様に\ ``<t:messagesPanel>``\ タグで出力したい場合は、以下のように設定すればよい。
