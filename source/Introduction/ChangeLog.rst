@@ -76,7 +76,7 @@
       - :doc:`../ArchitectureInDetail/MessagingDetail/JMS`
       - 記載内容の修正
 
-        * トランザクション管理に関する記述の修正(管理ID#2814)
+        * 非同期送信のトランザクション管理はChainedTransactionManagerではなくDefaultMessageListenerContainerで行うよう記述を修正(管理ID#2814)
 
     * -
       - :doc:`../Security/Authentication`
