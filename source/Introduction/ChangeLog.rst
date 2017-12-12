@@ -540,6 +540,8 @@
 
         Spring IO Platformのバージョン更新に伴い利用するOSSのバージョンを更新
 
+        * 使用するOSSのバージョンを更新。更新内容は、\ `version 5.1.0の移行ガイド <https://github.com/terasolunaorg/terasoluna-gfw/wiki/Migration-Guide-5.1.0_ja#step-1-update-dependency-libraries>`_\ を参照されたい。
+
         新規プロジェクト追加
 
         * \ ``terasoluna-gfw-string``\ 、\ ``terasoluna-gfw-codepoints``\ 、\ ``terasoluna-gfw-validator``\ 、\ ``terasoluna-gfw-web-jsp``\ プロジェクトの説明を追加。
@@ -823,6 +825,8 @@
 
         Spring IO Platformのバージョン更新に伴い利用するOSSのバージョンを更新
 
+        * 使用するOSSのバージョンを更新。更新内容は、\ `version 5.0.1の移行ガイド <https://github.com/terasolunaorg/terasoluna-gfw/wiki/Migration-Guide-5.0.1_ja#step-1-update-dependency-libraries>`_\ を参照されたい。
+
         記載内容の改善 (管理ID#1148)
 
         * \ ``terasoluna-gfw-recommended-dependencies``\ 、\ ``terasoluna-gfw-recommended-web-dependencies``\ 、\ ``terasoluna-gfw-parent``\ プロジェクトの説明を追加。
@@ -931,6 +935,8 @@
         * 一部のライブラリを除き、推奨ライブラリの管理をSpring IO Platformに委譲する構成に変更した旨を追加。
 
         OSSバージョンの更新
+
+        * 使用するOSSのバージョンを更新。更新内容は、\ `version 5.0.0の移行ガイド <https://github.com/terasolunaorg/terasoluna-gfw/wiki/Migration-Guide-5.0.0_ja#step-1-update-dependency-libraries>`_\ を参照されたい。
 
     * -
       - :doc:`../Overview/FirstApplication`
