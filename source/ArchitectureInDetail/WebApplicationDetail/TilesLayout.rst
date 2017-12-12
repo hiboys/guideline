@@ -223,14 +223,14 @@ Spring MVCとTilesの連携
    * - | (6)
      - | タイトルを指定する。
        | valueはspring-mvcに取り込まれているpropertiesの中から取得する。(以下の説明では application-messages.propertiesに設定する。)
-       | {1},{2}はControllerから返却されたView名の"\*/\*"の「*」の1つ目、2つ目に該当する。
+       | {1},{2}はControllerから返却されたView名の "\*/\*"の「*」の1つ目、2つ目に該当する。
    * - | (7)
-     - | bodyを定義しているjspファイルの置き場所について、{1},{2}にControllerから返却されたView名の"\*/\*"の「*」の1つ目、2つ目が一致するように設計する。これにより、Controllerから返却されるView名ごとの定義を記述する手間を省くことができる。
+     - | bodyを定義しているjspファイルの置き場所について、{1},{2}にControllerから返却されたView名の "\*/\*"の「*」の1つ目、2つ目が一致するように設計する。これにより、Controllerから返却されるView名ごとの定義を記述する手間を省くことができる。
 
  .. note::
 
      Tilesの適用をしたくない画面(エラー画面等)の場合、Tiles使用対象にならないようなファイル構成にする必要がある。
-     ブランクプロジェクトでは、エラー画面に InternalResourceViewResolverが使われるように("\*/\*"形式にならないように)、 /WEB-INF/views/common/error/xxxError.jsp形式にしている。
+     ブランクプロジェクトでは、エラー画面に InternalResourceViewResolverが使われるように( "\*/\*"形式にならないように)、 /WEB-INF/views/common/error/xxxError.jsp形式にしている。
 
 - `application-messages.properties`
 
@@ -372,11 +372,11 @@ Tilesのカスタムタグの詳細は、\ `こちら <http://tiles.apache.org/f
      - | タイトルを設定する。
        | ``titleKey`` が取得できなかった際は、text属性で定義したタイトルを表示する。
    * - | (4)
-     - | tiles-definitions.xmlで定義した"header"を読み込む。
+     - | tiles-definitions.xmlで定義した "header"を読み込む。
    * - | (5)
-     - | tiles-definitions.xmlで定義した"body"を読み込む。
+     - | tiles-definitions.xmlで定義した "body"を読み込む。
    * - | (6)
-     - | tiles-definitions.xmlで定義した"footer"を読み込む。
+     - | tiles-definitions.xmlで定義した "footer"を読み込む。
 
 
 - header.jsp
@@ -445,7 +445,7 @@ Tilesのカスタムタグの詳細は、\ `こちら <http://tiles.apache.org/f
 
 **Controller作成**
 
-ControllerからView名として"staff/createForm"を返却する。
+ControllerからView名として "staff/createForm"を返却する。
 
 - StaffCreateController.java
 
@@ -470,7 +470,7 @@ ControllerからView名として"staff/createForm"を返却する。
 
 **画面描画**
 
-View名に"staff/createForm"が指定されると、
+View名に "staff/createForm"が指定されると、
 以下のようにTilesがレイアウトを構築して画面描画を行う。
 
  .. code-block:: xml
@@ -581,17 +581,17 @@ How to extend
      - 説明
    * - | (1)
      - | 今回追加するレイアウト構成の親定義。
-       | 別のレイアウトを使用する場合、difinitionタグのname属性について、既存のレイアウト定義"layouts"と重複しないようにする。
+       | 別のレイアウトを使用する場合、difinitionタグのname属性について、既存のレイアウト定義 "layouts"と重複しないようにする。
    * - | (2)
      - | 今回追加するレイアウトについて、描画の際にControllerから返却されたView名がnameのパターンと同じ場合に呼ばれるレイアウト定義。
-       | View名が"\*/search\*"に該当する場合、このレイアウト定義が読み込まれる。
-       | extendsしている レイアウト定義"layoutsOfSearch"も適用される。
+       | View名が "\*/search\*"に該当する場合、このレイアウト定義が読み込まれる。
+       | extendsしている レイアウト定義 "layoutsOfSearch"も適用される。
    * - | (3)
      - | 今回追加するレイアウトで使用するタイトルを指定する。
        | valueはspring-mvcに取り込まれているpropertiesの中から取得する。(以下の説明では application-messages.propertiesに設定する。)
-       | {1}はControllerから返却されるView名の"\*/search\*"の「\*」の1つ目、"search{2}"はView名の"\*/search\*"の"search\*"に該当する為、先頭が"search"で始まる必要がある。
+       | {1}はControllerから返却されるView名の "\*/search\*"の「\*」の1つ目、 "search{2}"はView名の "\*/search\*"の "search\*"に該当する為、先頭が "search"で始まる必要がある。
    * - | (4)
-     - | bodyを定義しているjspファイルの置き場所について、{1}にControllerから返却されるView名の"\*/search\*"の「\*」の1つ目、"search{2}"はView名の"\*/search\*"の"search\*"であるため、先頭に"search"を含んだJSPファイル名が一致するように設計する。
+     - | bodyを定義しているjspファイルの置き場所について、{1}にControllerから返却されるView名の "\*/search\*"の「\*」の1つ目、 "search{2}"はView名の "\*/search\*"の "search\*"であるため、先頭に "search"を含んだJSPファイル名が一致するように設計する。
        | JSPファイルの置き場所の構成によってvalue属性の値を変更する必要がある。
 
  .. note::
@@ -616,8 +616,8 @@ How to extend
      - 説明
    * - | (1)
      - | 今回追加するメッセージ。
-       | "staff"はControllerから返却されたView名の"\*/search\*"の「*」の1つ目。
-       | "searchStaff"はControllerから返却されたView名の"\*/search\*"の"search\*"に該当する為、先頭が"search"で始まる必要がある。
+       | "staff"はControllerから返却されたView名の "\*/search\*"の「*」の1つ目。
+       | "searchStaff"はControllerから返却されたView名の "\*/search\*"の "search\*"に該当する為、先頭が "search"で始まる必要がある。
 
 **レイアウト作成**
 
@@ -668,7 +668,7 @@ How to extend
    * - 項番
      - 説明
    * - | (1)
-     - | tiles-definitions.xmlで定義した"menu"を読み込む。
+     - | tiles-definitions.xmlで定義した "menu"を読み込む。
        | それ以外は :ref:`TilesLayoutHowToUse` と同じ
 
 - styles.css
@@ -771,7 +771,7 @@ How to extend
 
 **Controller作成**
 
-ControllerからView名として"staff/searchStaff"を返却する。
+ControllerからView名として "staff/searchStaff"を返却する。
 
 - StaffSearchController.java
 
@@ -796,7 +796,7 @@ ControllerからView名として"staff/searchStaff"を返却する。
 
 **画面描画**
 
-View名に"staff/searchStaff"が指定されると、
+View名に "staff/searchStaff"が指定されると、
 以下のように別のレイアウトを構築して画面描画を行う。
 
 
@@ -834,12 +834,12 @@ View名に"staff/searchStaff"が指定されると、
    * - | (4)
      - | テンプレート /WEB-INF/views/layout/templateSearch.jsp内に存在する ``footer`` に /WEB-INF/views/layout/footer.jspが設定される。
    * - | (5)
-     - | Controllerから返却されたView名が"\*/search\*"に該当する場合、このレイアウト定義が読み込まれる。
-       | その時、親レイアウトである"layoutsOfSearch"も読み込まれる。
+     - | Controllerから返却されたView名が "\*/search\*"に該当する場合、このレイアウト定義が読み込まれる。
+       | その時、親レイアウトである "layoutsOfSearch"も読み込まれる。
    * - | (6)
-     - | staffが{1}、searchStaffが"search{2}"となり、spring-mvcに取り込まれているpropertiesから ``title.staff.searchStaff`` をkeyにvalueを取得する。
+     - | staffが{1}、searchStaffが "search{2}"となり、spring-mvcに取り込まれているpropertiesから ``title.staff.searchStaff`` をkeyにvalueを取得する。
    * - | (7)
-     - | staffが{1}、searchStaffが"search{2}"となり、テンプレート/WEB-INF/views/layout/templateSearch.jsp内に存在する ``body`` に/WEB-INF/views/staff/searchStaff.jspが設定される。
+     - | staffが{1}、searchStaffが "search{2}"となり、テンプレート/WEB-INF/views/layout/templateSearch.jsp内に存在する ``body`` に/WEB-INF/views/staff/searchStaff.jspが設定される。
 
 
 結果として上記のtemplateSearch.jspに、header.jsp、menu.jsp、searchStaff.jsp、footer.jspが組み合わされた方法でブラウザに出力される。

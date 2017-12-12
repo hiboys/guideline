@@ -54,23 +54,23 @@ Spring Frameworkに関して、本ドキュメントを読むための基礎知�
 このドキュメントの読み方
 ================================================================================
 
-まずは"\ :doc:`../Overview/index`\ "
-から読み進めていただきたい。特にSpring MVCの経験がない場合は"\ :doc:`../Overview/FirstApplication`\ "を実施すること。
+まずは "\ :doc:`../Overview/index`\ "
+から読み進めていただきたい。特にSpring MVCの経験がない場合は "\ :doc:`../Overview/FirstApplication`\ "を実施すること。
 "\ :doc:`../Overview/ApplicationLayering`\ "は本ガイドラインで共通する用語と概念の説明を行っているため、必ず一読されたい。
 
-次に"\ :doc:`../Tutorial/index`\ "に進む。
-このチュートリアルでは"習うより慣れろ"を目的として、
+次に "\ :doc:`../Tutorial/index`\ "に進む。
+このチュートリアルでは "習うより慣れろ"を目的として、
 詳細な説明の前にまず手を動かして、TERASOLUNA Server Framework for Java (5.x)によるアプリケーション開発を体感していただきたい。
 
-チュートリアルを実践したのちに、"\ :doc:`../ImplementationAtEachLayer/index`\ "でアプリケーション開発の詳細を学ぶ。
-特に"\ :doc:`../ImplementationAtEachLayer/ApplicationLayer`\ "でSpring MVCによる開発のノウハウを凝集して説明しているため、
+チュートリアルを実践したのちに、 "\ :doc:`../ImplementationAtEachLayer/index`\ "でアプリケーション開発の詳細を学ぶ。
+特に "\ :doc:`../ImplementationAtEachLayer/ApplicationLayer`\ "でSpring MVCによる開発のノウハウを凝集して説明しているため、
 何度も読み返すことを推奨する。
-本章を読み終えた後にもう一度"\ :doc:`../Tutorial/index`\ "を振り返るとより理解が深まる。
+本章を読み終えた後にもう一度 "\ :doc:`../Tutorial/index`\ "を振り返るとより理解が深まる。
 
 **ここまではTERASOLUNA Server Framework for Java (5.x)を使用するすべての開発者が読むことを強く推奨する。**
 
-"\ :doc:`../ArchitectureInDetail/WebApplicationDetail/index`\ "、"\ :doc:`../ArchitectureInDetail/WebServiceDetail/index`\ "、"\ :doc:`../ArchitectureInDetail/DataAccessDetail/index`\ "、"\ :doc:`../ArchitectureInDetail/GeneralFuncDetail/index`\ "、"\ :doc:`../ArchitectureInDetail/MessagingDetail/index`\ "、"\ :doc:`../Security/index`\ "については
-目的に応じて必要なタイミングで参照すればよい。ただし、":doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`"はアプリケーション開発で通常は必要となるため、基本的には読んでおくこと。
+"\ :doc:`../ArchitectureInDetail/WebApplicationDetail/index`\ "、 "\ :doc:`../ArchitectureInDetail/WebServiceDetail/index`\ "、 "\ :doc:`../ArchitectureInDetail/DataAccessDetail/index`\ "、 "\ :doc:`../ArchitectureInDetail/GeneralFuncDetail/index`\ "、 "\ :doc:`../ArchitectureInDetail/MessagingDetail/index`\ "、 "\ :doc:`../Security/index`\ "については
+目的に応じて必要なタイミングで参照すればよい。ただし、 ":doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`"はアプリケーション開発で通常は必要となるため、基本的には読んでおくこと。
 
 テクニカルリーダーはこれらをすべて読み内容を把握した上で
 プロジェクトにおいて、どのような方針を定めるか検討していただきたい。

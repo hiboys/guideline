@@ -86,7 +86,7 @@ JMSとは
 
   | 明示的にメッセージを送信する機能を呼び出すことで、メッセージに対する処理と送信が開始される。
   | JMSプロバイダからの応答を待たないため、後続処理を続けて実行する。
-  | 非同期送信方式の詳細については、\ `Java Message Service(Version 2.0) <http://download.oracle.com/otndocs/jcp/jms-2_0-fr-eval-spec/>`_\ の"7.3. Asynchronous send"を参照されたい。
+  | 非同期送信方式の詳細については、\ `Java Message Service(Version 2.0) <http://download.oracle.com/otndocs/jcp/jms-2_0-fr-eval-spec/>`_\ の "7.3. Asynchronous send"を参照されたい。
 
 
 
@@ -114,7 +114,7 @@ JMSとは
 
 
 | JMSではメッセージは以下のパートで構成される。
-| 詳細は\ `Java Message Service(Version 1.1) <http://download.oracle.com/otndocs/jcp/7195-jms-1.1-fr-spec-oth-JSpec/>`_\ の"3. JMS Message Model"を参照されたい。
+| 詳細は\ `Java Message Service(Version 1.1) <http://download.oracle.com/otndocs/jcp/7195-jms-1.1-fr-spec-oth-JSpec/>`_\ の "3. JMS Message Model"を参照されたい。
 
  .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
  .. list-table::
@@ -448,7 +448,7 @@ How to use
  .. note:: **Bean定義したConnectionFactoryを使用する場合**
 
     JNDIを利用しない場合、\ ``ConnectionFactory``\ の実装クラスをBean定義することでも\ ``ConnectionFactory``\ を利用することが可能である。
-    この場合、\ ``ConnectionFactory``\ の実装クラスはJMSプロバイダ依存となる。詳細については、:ref:`JMSAppendixSettingsDependsOnJMSProvider` の"JNDIを使用しない場合の設定"を参照されたい。
+    この場合、\ ``ConnectionFactory``\ の実装クラスはJMSプロバイダ依存となる。詳細については、:ref:`JMSAppendixSettingsDependsOnJMSProvider` の "JNDIを使用しない場合の設定"を参照されたい。
 
 .. _JMSHowToUseDestinationResolver:
 
@@ -925,7 +925,7 @@ How to use
 DBのトランザクション管理を行う必要があるアプリケーションでは、業務の要件をもとにJMSとDBのトランザクションの関連を精査した上でトランザクションの管理方針を決定すること。
 
 
-  JMSとDBのトランザクションの連携にはJTAによるグローバルトランザクションを使用する方法があるが、プロトコルの特性上、性能面のオーバーヘッドがかかるため、"Best Effort 1 Phase Commit"の使用を推奨する。詳細は以下を参照されたい。
+  JMSとDBのトランザクションの連携にはJTAによるグローバルトランザクションを使用する方法があるが、プロトコルの特性上、性能面のオーバーヘッドがかかるため、 "Best Effort 1 Phase Commit"の使用を推奨する。詳細は以下を参照されたい。
 
   | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\
   | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\
@@ -1024,7 +1024,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
    .. note::
 
       業務上、JMSとDBなど複数のトランザクションをまとめて管理する必要がある場合、グローバルトランザクションを検討する。
-      グローバルトランザクションについては、\ :ref:`service_enable_transaction_management`\ の"複数DB（複数リソース）に対するトランザクション管理（グローバルトランザクションの管理）が必要な場合"を参照されたい。
+      グローバルトランザクションについては、\ :ref:`service_enable_transaction_management`\ の "複数DB（複数リソース）に対するトランザクション管理（グローバルトランザクションの管理）が必要な場合"を参照されたい。
 
 |
 
@@ -1033,7 +1033,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
 メッセージを非同期受信する方法
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| \ :ref:`JMSOverviewAboutJMS`\ の"メッセージ受信方式"で述べたように、一般的に受信処理を行う場合には非同期受信を利用する。
+| \ :ref:`JMSOverviewAboutJMS`\ の "メッセージ受信方式"で述べたように、一般的に受信処理を行う場合には非同期受信を利用する。
 | 非同期受信機能を司る\ ``DefaultMessageListenerContainer``\ に対し、\ ``@JmsListener``\ アノテーションが付与されたリスナーメソッドを登録することで非同期受信処理を実現する。
 | 非同期受信時の処理を行うリスナーメソッドの役割として、以下が存在する。
 
@@ -1120,7 +1120,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
       - \ ``concurrency``\
       - | \ ``DefaultMessageListenerContainer``\ が管理するリスナーメソッドごとの並列数に対する上限を指定する。
         | \ ``concurrency``\ 属性のデフォルトは1である。
-        | 並列数の下限と上限を指定することも可能である。例えば、下限を5、上限を10とする場合は"5-10"と指定する。
+        | 並列数の下限と上限を指定することも可能である。例えば、下限を5、上限を10とする場合は "5-10"と指定する。
         | リスナーメソッドの並列数が設定した上限値に達した場合は、並列に処理されず待ち状態となる。
         | 必要に応じて値を設定すること。
 
@@ -1219,7 +1219,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
       - \ ``concurrency``\
       - | リスナーメソッドの並列数の上限を指定する。
         | \ ``concurrency``\ 属性のデフォルトは1である。
-        | 並列数の下限と上限を指定することも可能である。例えば、下限を5、上限を10とする場合は"5-10"と指定する。
+        | 並列数の下限と上限を指定することも可能である。例えば、下限を5、上限を10とする場合は "5-10"と指定する。
         | リスナーメソッドの並列数が設定した上限値に達した場合は、並列に処理されず待ち状態となる。
         | 必要に応じて値を設定すること。
 
@@ -2149,7 +2149,7 @@ Apache ActiveMQを利用する場合の設定について説明する。
          - 説明
        * - | (1)
          - | 許可する任意のオブジェクトのパッケージを追加する。\ ``java.lang``\ , \ ``java.util``\ , \ ``org.apache.activemq``\ , \ ``org.fusesource.hawtbuf``\ , \ ``com.thoughtworks.xstream.mapper``\ はApache ActiveMQを使用する場合に必要な設定である。
-           | このサンプルで必要な設定値として、"com.example.domain.model"を追加している。
+           | このサンプルで必要な設定値として、 "com.example.domain.model"を追加している。
 
 * **ライブラリの追加**
 

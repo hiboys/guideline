@@ -997,7 +997,7 @@ GET Todosの実装
      - | メソッドがGETのリクエストを処理するために、\ ``method``\ 属性に\ ``RequestMethod.GET``\ を設定する。
    * - | (2)
      - | 応答するHTTPステータスコードを\ ``@ResponseStatus``\ アノテーションに指定する。
-       | HTTPステータスとして、"200 OK"を設定するため、\ ``value``\ 属性には\ ``HttpStatus.OK``\ を設定する。
+       | HTTPステータスとして、 "200 OK"を設定するため、\ ``value``\ 属性には\ ``HttpStatus.OK``\ を設定する。
    * - | (3)
      - | \ ``TodoService``\ の\ ``findAll``\ メソッドから返却された\ ``Todo``\ オブジェクトを、応答するJSONを表現する\ ``TodoResource``\ 型のオブジェクトに変換する。
        | \ ``Todo``\ と\ ``TodoResource``\ の変換処理は、Dozerの\ ``org.dozer.Mapper``\ インタフェースを使うと便利である。
@@ -1009,7 +1009,7 @@ GET Todosの実装
 Application Serverを起動し、実装したAPIの動作確認を行う。
 
 | REST API(Get Todos)にアクセスする。
-| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos``\ を入力し、メソッドにGETを指定して、"Send"ボタンをクリックする。
+| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos``\ を入力し、メソッドにGETを指定して、 "Send"ボタンをクリックする。
 
 .. figure:: ./images_rest/get-todos1.png
    :width: 100%
@@ -1095,7 +1095,7 @@ Todoリソースを新規作成するAPI(POST Todos)の処理を、\ ``TodoRestC
      - | メソッドがPOSTのリクエストを処理するために、\ ``method``\ 属性に\ ``RequestMethod.POST``\ を設定する。
    * - | (2)
      - | 応答するHTTPステータスコードを\ ``@ResponseStatus``\ アノテーションに指定する。
-       | HTTPステータスとして、"201 Created"を設定するため、\ ``value``\ 属性には\ ``HttpStatus.CREATED``\ を設定する。
+       | HTTPステータスとして、 "201 Created"を設定するため、\ ``value``\ 属性には\ ``HttpStatus.CREATED``\ を設定する。
    * - | (3)
      - | HTTPリクエストのBody(JSON)をJavaBeanにマッピングするために、\ ``@RequestBody``\ アノテーションをマッピング対象の\ ``TodoResource``\ クラスに付与する。
        | また、入力チェックするために\ ``@Validated``\ も付与する。例外ハンドリングは別途行う必要がある。
@@ -1118,7 +1118,7 @@ Todoリソースを新規作成するAPI(POST Todos)の処理を、\ ``TodoRestC
       "todoTitle": "Hello World!"
     }
 
-また、「REQUEST」の「HEADERS」の「+」ボタンでHTTPヘッダーを追加し、「\ ``Content-Type``\ 」に「\ ``application/json``\ 」を設定後、"Send"ボタンをクリックする。
+また、「REQUEST」の「HEADERS」の「+」ボタンでHTTPヘッダーを追加し、「\ ``Content-Type``\ 」に「\ ``application/json``\ 」を設定後、 "Send"ボタンをクリックする。
 
 .. figure:: ./images_rest/post-todos1.png
    :width: 100%
@@ -1361,7 +1361,7 @@ GET Todoの実装
 
 | DHCを使用して、実装したAPIの動作確認を行う。
 | DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos/{todoId}``\ を入力し、メソッドにGETを指定する。
-| \ ``{todoId}``\ の部分は実際のIDを入れる必要があるので、POST TodosまたはGET Todosを実行してResponse中の\ ``todoId``\ をコピーして貼り付けてから、"Send"ボタンをクリックする。
+| \ ``{todoId}``\ の部分は実際のIDを入れる必要があるので、POST TodosまたはGET Todosを実行してResponse中の\ ``todoId``\ をコピーして貼り付けてから、 "Send"ボタンをクリックする。
 
 "200 OK"のHTTPステータスが返却され、「RESPONSE」の「Body」に指定したTodoリソースのJSONが表示される。
 
@@ -1466,7 +1466,7 @@ Todoリソースを一件更新(完了状態へ更新)するAPI(PUT Todo)の処�
 
 | DHCを使用して、実装したAPIの動作確認を行う。
 | DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos/{todoId}``\ を入力し、メソッドにPUTを指定する。
-| \ ``{todoId}``\ の部分は実際のIDを入れる必要があるので、POST TodosまたはGET Todosを実行してResponse中の\ ``todoId``\ をコピーして貼り付けてから、"Send"ボタンをクリックする。
+| \ ``{todoId}``\ の部分は実際のIDを入れる必要があるので、POST TodosまたはGET Todosを実行してResponse中の\ ``todoId``\ をコピーして貼り付けてから、 "Send"ボタンをクリックする。
 
 .. figure:: ./images_rest/put-todo1.png
    :width: 100%
@@ -1586,7 +1586,7 @@ DELETE Todoの実装
 
 | DHCを使用して、実装したAPIの動作確認を行う。
 | DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos/{todoId}``\ を入力し、メソッドにDELETEを指定する。
-| \ ``{todoId}``\ の部分は実際のIDを入れる必要があるので、POST TodosまたはGET Todosを実行してResponse中の\ ``todoId``\ をコピーして貼り付けてから、"Send"ボタンをクリックする。
+| \ ``{todoId}``\ の部分は実際のIDを入れる必要があるので、POST TodosまたはGET Todosを実行してResponse中の\ ``todoId``\ をコピーして貼り付けてから、 "Send"ボタンをクリックする。
 
 .. figure:: ./images_rest/delete-todo1.png
    :width: 100%
@@ -1600,7 +1600,7 @@ DELETE Todoの実装
 
 |
 
-| DHCのURLに\ ``localhost:8080/todo/api/v1/todos``\ を入力し、メソッドにGETを指定してから"Send"ボタンをクリックする。
+| DHCのURLに\ ``localhost:8080/todo/api/v1/todos``\ を入力し、メソッドにGETを指定してから "Send"ボタンをクリックする。
 | Todoリソースが削除されている事が確認できる。
 
 .. figure:: ./images_rest/delete-todo3.png
@@ -1945,7 +1945,7 @@ HTTPレスポンスBODYにエラー情報を出力するための実装
 |
 
 | DHCを使用して、実装したエラーハンドリングの動作確認を行う。
-| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos``\を入力し、メソッドにPUTを指定してから、"Send"ボタンをクリックする。
+| DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos``\を入力し、メソッドにPUTを指定してから、 "Send"ボタンをクリックする。
 
 "405 Method Not Allowed"のHTTPステータスが返却され、「RESPONSE」の「Body」には、エラー情報のJSONが表示される。
 
@@ -2065,7 +2065,7 @@ HTTPレスポンスBODYにエラー情報を出力するための実装
 
 \ ``RestGlobalExceptionHandler``\ に\ ``org.terasoluna.gfw.common.exception.BusinessException``\ をハンドリングするメソッドを追加して、業務例外をハンドリングする。
 
-業務例外が発生した場合は、"409 Conflict"のHTTPステータスを設定する。
+業務例外が発生した場合は、 "409 Conflict"のHTTPステータスを設定する。
 
 ``src/main/java/todo/api/common/error/RestGlobalExceptionHandler.java``
 
@@ -2163,7 +2163,7 @@ HTTPレスポンスBODYにエラー情報を出力するための実装
 | {todoId}の部分は実際のIDを入れる必要があるので、POST TodosまたはGET Todosを実行してResponse中の\ ``todoId``\ をコピーして貼り付けてから、”Send”ボタンを2回クリックする。
 | 未完了状態のTodoの\ ``todoId``\ を指定すること。
 
-2回目のリクエストに対するレスポンスとして、"409 Conflict"のHTTPステータスが返却され、「RESPONSE」の「Body」には、エラー情報のJSONが表示される。
+2回目のリクエストに対するレスポンスとして、 "409 Conflict"のHTTPステータスが返却され、「RESPONSE」の「Body」には、エラー情報のJSONが表示される。
 
 .. figure:: ./images_rest/exception-businesserror.png
    :width: 100%
@@ -2175,7 +2175,7 @@ HTTPレスポンスBODYにエラー情報を出力するための実装
 
 \ ``RestGlobalExceptionHandler``\ に\ ``org.terasoluna.gfw.common.exception.ResourceNotFoundException``\ をハンドリングするメソッドを追加して、リソース未検出例外をハンドリングする。
 
-リソース未検出例外が発生した場合、"404 NotFound"のHTTPステータスを設定する。
+リソース未検出例外が発生した場合、 "404 NotFound"のHTTPステータスを設定する。
 
 ``src/main/java/todo/api/common/error/RestGlobalExceptionHandler.java``
 
@@ -2291,7 +2291,7 @@ HTTPレスポンスBODYにエラー情報を出力するための実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 最後に、\ ``RestGlobalExceptionHandler``\ に\ ``java.lang.Exception``\ をハンドリングするメソッドを追加して、システム例外をハンドリングする。
 
-システム例外が発生した場合、"500 InternalServerError"のHTTPステータスを設定する。
+システム例外が発生した場合、 "500 InternalServerError"のHTTPステータスを設定する。
 
 ``src/main/java/todo/api/common/error/RestGlobalExceptionHandler.java``
 

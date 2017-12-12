@@ -109,7 +109,7 @@ How to use
 
 * クライアントのLocaleがzhの場合、\ :file:`application-messages_zh.properties`\が使用される。
 * クライアントのLocaleがjaの場合、\ :file:`application-messages_ja.properties`\が使用される。
-* クライアントのLocaleに対応するプロパティファイルが存在しない場合、デフォルトとして、\ :file:`application-messages.properties`\が使用される。(ファイル名に"_XX"部分が存在しないファイル)
+* クライアントのLocaleに対応するプロパティファイルが存在しない場合、デフォルトとして、\ :file:`application-messages.properties`\が使用される。(ファイル名に "_XX"部分が存在しないファイル)
 
 .. note::
 
@@ -151,7 +151,7 @@ AcceptHeaderLocaleResolverの設定
     * - | 項番
       - | 説明
     * - | (1)
-      - | beanタグのid属性"localeResolver"に ``org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver`` を指定する。
+      - | beanタグのid属性 "localeResolver"に ``org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver`` を指定する。
         | この\ ``LocaleResolver``\ を使用すると、リクエスト毎に設定されるHTTPヘッダー(”accept-language”)に指定されているLocaleが使用される。
 
 .. note::
@@ -230,7 +230,7 @@ JSPの実装
     * - | (2)
       - | JSPでは、Springのタグライブラリである、 ``<spring:message>`` を用いてメッセージ出力を行う。
         | code属性に、プロパティで指定したキーを設定する。
-        | 本例では、Localeが、jaの場合、"管理画面 Top"、それ以外のLocaleの場合、"Admin Top"が出力される。
+        | 本例では、Localeが、jaの場合、 "管理画面 Top"、それ以外のLocaleの場合、 "Admin Top"が出力される。
 
 |
 
@@ -304,7 +304,7 @@ LocaleChangeInterceptorの設定
       - | 説明
     * - | (1)
       - | Spring MVCのインタセプターに、 ``org.springframework.web.servlet.i18n.LocaleChangeInterceptor`` を定義する。
-        | この設定により、"リクエストURL?locale=xx"で :ref:`使用可能<i18n_set_locale_jsp>` となる。
+        | この設定により、 "リクエストURL?locale=xx"で :ref:`使用可能<i18n_set_locale_jsp>` となる。
 
 .. note::
 
@@ -326,7 +326,7 @@ LocaleChangeInterceptorの設定
         * - | 項番
           - | 説明
         * - | (2)
-          - | \ ``paramName``\ プロパティにリクエストパラメータ名を指定する。上記例では、"リクエストURL?lang=xx"となる。
+          - | \ ``paramName``\ プロパティにリクエストパラメータ名を指定する。上記例では、 "リクエストURL?lang=xx"となる。
 
 |
 
@@ -351,9 +351,9 @@ Localeをサーバに保存する場合は、\ ``SessionLocaleResolver``\ を使
     * - | 項番
       - | 説明
     * - | (1)
-      - | beanタグのid属性を"localeResolver"で定義し、 ``org.springframework.web.servlet.LocaleResolver`` を実装したクラスを指定する。
+      - | beanタグのid属性を "localeResolver"で定義し、 ``org.springframework.web.servlet.LocaleResolver`` を実装したクラスを指定する。
         | 本例では、セッションにLocaleを保存する ``org.springframework.web.servlet.i18n.SessionLocaleResolver`` を指定している。
-        | beanタグのid属性は"localeResolver"と設定すること。
+        | beanタグのid属性は "localeResolver"と設定すること。
         | この設定により、 ``LocaleChangeInterceptor`` 内の処理で\ ``SessionLocaleResolver``\ が使用される。
     * - | (2)
       - | \ ``defaultLocale``\ プロパティにLocaleを指定する。セッションからLocaleが取得できない場合、\ ``value``\ の設定値が有効になる。
@@ -386,8 +386,8 @@ Localeをクライアントに保存する場合は、\ ``CookieLocaleResolver``
     * - | 項番
       - | 説明
     * - | (1)
-      - | beanタグのid属性"localeResolver"に ``org.springframework.web.servlet.i18n.CookieLocaleResolver`` を指定する。
-        | beanタグのid属性は"localeResolver"と設定すること。
+      - | beanタグのid属性 "localeResolver"に ``org.springframework.web.servlet.i18n.CookieLocaleResolver`` を指定する。
+        | beanタグのid属性は "localeResolver"と設定すること。
         | この設定により、 ``LocaleChangeInterceptor`` 内の処理で\ ``CookieLocaleResolver``\ が使用される。
     * - | (2)
       - | \ ``defaultLocale``\ プロパティにLocaleを指定する。CookieからLocaleが取得できない場合、\ ``value``\ の設定値が有効になる。
@@ -449,7 +449,7 @@ JSPの実装
         | リクエストパラメータ名は、\ ``LocaleChangeInterceptor``\の\ ``paramName``\ プロパティに指定した値となる。（上記例では、デフォルトのパラメータ名を使用している）
         | 上記例の場合、Englishリンクで英語Locale、Japaneseリンクで日本語Localeに変更している。
         | 以降は、選択したLocaleが有効になる。
-        | 英語Localeは"en"用のプロパティファイルが存在しないため、デフォルトのプロパティファイルから読み込まれる。
+        | 英語Localeは "en"用のプロパティファイルが存在しないため、デフォルトのプロパティファイルから読み込まれる。
 
 .. tip::
 

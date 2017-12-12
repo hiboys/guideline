@@ -2162,7 +2162,7 @@ PlatformTransactionManagerの設定
 
     * - 3
       - proxy-target-class
-      - proxyのターゲットをクラスに限定するかを指定するフラグ（mode="proxy"の場合のみ、有効な設定）。省略した場合「false」となる。
+      - proxyのターゲットをクラスに限定するかを指定するフラグ（mode= "proxy"の場合のみ、有効な設定）。省略した場合「false」となる。
 
         * false の場合、対象がインタフェースを実装している場合は、JDK標準のDynamic proxies機能によってproxyされ、
           インタフェースを実装していない場合はSpring Frameworkに内包されているGCLIBの機能によってproxyされる。

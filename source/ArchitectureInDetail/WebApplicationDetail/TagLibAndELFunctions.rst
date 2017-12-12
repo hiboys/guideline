@@ -440,7 +440,7 @@ f:query() 関数仕様
           - プロパティ名 + \ ``[Mapのキー名]``\
           - \ ``status[accepting]=Accepting Order``\
         * - プロパティの型(\ ``Iterable``\、配列、\ ``Map``\ の要素型)がJavaBeanの場合
-          - プロパティ名を"\ ``.``\" (ドット)でつなげた値
+          - プロパティ名を "\ ``.``\" (ドット)でつなげた値
           - | \ ``mainContract.name=xxx``\
             | \ ``subContracts[0].name=xxx``\
         * - プロパティの型がシンプル型の場合
