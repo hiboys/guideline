@@ -788,7 +788,7 @@ Serviceの単体テスト
           詳細は\ :ref:`UsageOfLibraryForTestCreateMockObject`\ を参照されたい。
     * - | (4)
       - | \ ``ReservationRepository``\ の\ ``insert``\ メソッドについて、
-          引数が\ ``inputReservation``\ の場合、返り値として\ ``1``\ を返すように設定する。
+          引数が\ ``inputReservation``\ の場合、返り値として"\ ``1``\" を返すように設定する。
           メソッドのモック化については、\ :ref:`UsageOfLibraryForTestMockingMethods`\ を参照されたい。
     * - | (5)
       - | \ ``ReservationRepository``\ の\ ``insert``\ メソッドについて、
