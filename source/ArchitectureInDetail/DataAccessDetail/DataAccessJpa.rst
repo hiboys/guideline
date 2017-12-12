@@ -644,6 +644,10 @@ ControllerやJSP等のアプリケーション層でEntityのLazy Fetchを行う
 * Serviceクラスの処理としてFetchした場合、getterメソッドを呼び出すだけの処理やgetterメソッドへアクセスしたコレクションへのアクセスなど、一見意味のない処理を実装することになってしまう。
 * Eager Fetchにした場合、アプリケーション層で使用しないデータへのFetchも行われる可能性があるため、性能に影響を与える可能性がある。
 
+.. raw:: latex
+
+   \newpage
+
 以下に ``OpenEntityManagerInViewInterceptor`` の設定例を示す。
 
 - spring-mvc.xml
