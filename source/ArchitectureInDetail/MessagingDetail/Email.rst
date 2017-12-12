@@ -529,7 +529,7 @@ MimeMessageによるメール送信方法
        | この例では、文字コードにUTF-8を指定している。
    * - | (4)
      - | Fromヘッダの内容を設定する。
-       | この例では、 "名前 <アドレス>"の形式で設定している。
+       | この例では、 "名前 <アドレス>" の形式で設定している。
    * - | (5)
      - | Toヘッダの内容を設定する。
    * - | (6)
@@ -602,7 +602,7 @@ HTMLメールの送信
        | この例では、文字コードにUTF-8を指定している。
    * - | (4)
      - | Fromヘッダの内容を設定する。
-       | この例では、 "名前 <アドレス>"の形式で設定している。
+       | この例では、 "名前 <アドレス>" の形式で設定している。
    * - | (5)
      - | Toヘッダの内容を設定する。
    * - | (6)
@@ -964,7 +964,7 @@ FreeMarkerを使用したメール本文の作成
          - | \ `Configuration <http://freemarker.org/docs/api/freemarker/template/Configuration.html>`_\ をインジェクションする。
        * - | (2)
          - | \ ``Configuration``\ の\ ``getTemplate``\ メソッドを利用して\ `Template <http://freemarker.org/docs/api/freemarker/template/Template.html>`_\ を取得する。
-           | この例では、テンプレートファイルとして "registration-confirmation.ftl"を指定している。
+           | この例では、テンプレートファイルとして "registration-confirmation.ftl" を指定している。
        * - | (3)
          - | 取得した\ ``Template``\ をもとに、\ ``org.springframework.ui.freemarker.FreeMarkerTemplateUtils``\ の\ ``processTemplateIntoString``\ メソッドを利用してテンプレートから文字列を生成する。
            | この例では、データモデルとして\ ``userName``\ プロパティを持つ\ ``User``\ オブジェクト（JavaBeans）を指定している。

@@ -229,8 +229,8 @@ Springのコンテキストで管理されたbean名を用いて実行するView
 コントローラでのViewの指定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-| \ ``BeanNameViewResolver``\ により、コントローラで "samplePdfView"を返却することで、
-| Springのコンテキストで管理されたBeanIDにより、 "samplePdfView"であるViewが使用される。
+| \ ``BeanNameViewResolver``\ により、コントローラで "samplePdfView" を返却することで、
+| Springのコンテキストで管理されたBeanIDにより、 "samplePdfView" であるViewが使用される。
 
 **Javaソースコード**
 
@@ -363,7 +363,7 @@ ViewResolverの定義
 コントローラでのViewの指定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-| \ ``BeanNameViewResolver``\ により、コントローラで "sampleExcelView"を返却することで、
+| \ ``BeanNameViewResolver``\ により、コントローラで "sampleExcelView" を返却することで、
 | Springのコンテキストで管理されたBeanIDにより、”sampleExcelView”であるViewが使用される。
 
 **Javaソース**
@@ -461,7 +461,7 @@ ViewResolverの定義
 
 コントローラでのViewの指定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| \ ``BeanNameViewResolver``\ により、コントローラで "textFileDownloadView"を返却することで、
+| \ ``BeanNameViewResolver``\ により、コントローラで "textFileDownloadView" を返却することで、
 | Springのコンテキストで管理されたBeanIDにより、”textFileDownloadView”であるViewが使用される。
 
 **Javaソース**

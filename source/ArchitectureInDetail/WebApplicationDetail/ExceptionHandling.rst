@@ -651,7 +651,7 @@ Webアプリケーション単位でサーブレットコンテナがハンド�
 | 例外をWebアプリケーション単位でハンドリングする場合、サーブレットコンテナで捕捉し、例外処理を行う。
 | 致命的なエラー、フレームワークでハンドリング対象となっていない例外(JSP内で発生した例外など)、Filterで発生した例外をハンドリングする。
 | 基本フローは以下の通りである。
-| 下記フローは、java.lang.Exceptionを、 "error page"でハンドリングする場合のフローである。
+| 下記フローは、java.lang.Exceptionを、 "error page" でハンドリングする場合のフローである。
 | ログ出力は、ハンドリングされていない例外が発生したことを記録するサーブレットフィルタ(\ ``org.terasoluna.gfw.web.exception.ExceptionLoggingFilter``\ )を使用して、出力する。
 
 .. figure:: ./images/exception-handling-flow-container.png
@@ -739,13 +739,13 @@ How to use
       - | \ ``ExceptionCodeResolver``\ を、bean定義に追加する。
     * - | (2)
       - | ハンドリング対象とする例外名と、適用する「例外コード(メッセージID)」のマッピングを指定する。
-        | 上記の設定例では、例外クラス(又は親クラス)のクラス名に、 "BusinessException"が含まれている場合は、 "e.xx.fw.8001"、 "ResourceNotFoundException"が含まれている場合は、 "e.xx.fw.5001"が「例外コード(メッセージID)」となる。
+        | 上記の設定例では、例外クラス(又は親クラス)のクラス名に、 "BusinessException" が含まれている場合は、 "e.xx.fw.8001" 、 "ResourceNotFoundException" が含まれている場合は、 "e.xx.fw.5001" が「例外コード(メッセージID)」となる。
 
         .. note:: **例外コード(メッセージID)について**
 
-             ここでは、 "BusinessException"に、メッセージIDが指定されなかった場合の対応で定義をしているが、
-             後述の "BusinessException"を発生させる実装側で、メッセージIDを指定することを推奨する。
-             "BusinessException"に対する「例外コード(メッセージID)」の指定は、 "BusinessException"発生時に指定されなかった場合の救済策である。
+             ここでは、 "BusinessException" に、メッセージIDが指定されなかった場合の対応で定義をしているが、
+             後述の "BusinessException" を発生させる実装側で、メッセージIDを指定することを推奨する。
+             "BusinessException" に対する「例外コード(メッセージID)」の指定は、 "BusinessException" 発生時に指定されなかった場合の救済策である。
 
         | **【プロジェクト毎にカスタマイズする箇所】**
     * - | (3)
@@ -867,7 +867,7 @@ How to use
       - | 出力レベルを指定する。ExceptionLoggerでは、info, warn, errorの3種類のログを出力しているが、システム要件にあったレベルを指定すること。本ガイドラインでは、infoレベルを推奨する。
         | **【プロジェクト毎にカスタマイズする箇所】**
     * - | (4)
-      - | (2)で設定したロガーは、appenderを指定していないので、rootに流れる。そのため、出力先となるappenderを指定する。ここでは、 "STDOUT"と "APPLICATION_LOG_FILE"に出力される。
+      - | (2)で設定したロガーは、appenderを指定していないので、rootに流れる。そのため、出力先となるappenderを指定する。ここでは、 "STDOUT" と "APPLICATION_LOG_FILE" に出力される。
         | **【プロジェクト毎にカスタマイズする箇所】**
 
 
@@ -983,12 +983,12 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
 
     * - | (4)
       - | ハンドリング対象とする例外名と、遷移先となるView名のマッピングを指定する。
-        | 上記の設定では、例外クラス(または親クラス)のクラス名に ".DataAccessException"が含まれている場合、 "common/error/dataAccessError"が、遷移先のView名となる。
-        | 例外クラスが "ResourceNotFoundException"の場合、 "common/error/resourceNotFoundError"が、遷移先のView名となる。
+        | 上記の設定では、例外クラス(または親クラス)のクラス名に ".DataAccessException" が含まれている場合、 "common/error/dataAccessError" が、遷移先のView名となる。
+        | 例外クラスが "ResourceNotFoundException" の場合、 "common/error/resourceNotFoundError" が、遷移先のView名となる。
         | **【プロジェクト毎にカスタマイズする箇所】**
     * - | (5)
       - | 遷移先となるView名と、HTTPステータスコードのマッピングを指定する。
-        | 上記の設定では、View名が "common/error/resourceNotFoundError"の場合に、 "404(Not Found)"がHTTPステータスコードとなる。
+        | 上記の設定では、View名が "common/error/resourceNotFoundError" の場合に、 "404(Not Found)" がHTTPステータスコードとなる。
         | **【プロジェクト毎にカスタマイズする箇所】**
     * - | (6)
       - | ハンドリング対象外とする例外クラスを指定する。
@@ -996,7 +996,7 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
         | ハンドリング対象外にする理由は、\ :ref:`「@ExceptionHandlerとSystemExceptionResolverによる致命的なエラーのハンドリングついて」<exception-handling-class-fatalerror-warning>`\ を参照されたい。
     * - | (7)
       - | 遷移するデフォルトのView名を、指定する。
-        | 上記の設定では、例外クラスに "ResourceNotFoundException"、 "BusinessException"、 "InvalidTransactionTokenException"や例外クラス(または親クラス)のクラス名に、 ".DataAccessException"が含まれない場合、 "common/error/systemError"が、遷移先のView名となる。
+        | 上記の設定では、例外クラスに "ResourceNotFoundException" 、 "BusinessException" 、 "InvalidTransactionTokenException" や例外クラス(または親クラス)のクラス名に、 ".DataAccessException" が含まれない場合、 "common/error/systemError" が、遷移先のView名となる。
         | **【プロジェクト毎にカスタマイズする箇所】**
     * - | (8)
       - | レスポンスヘッダに設定するHTTPステータスコードのデフォルト値を指定する。 **"500"(Internal Server Error)** を設定することを推奨する。
@@ -1166,7 +1166,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
        | **【プロジェクト毎にカスタマイズする箇所】**
        | Spring MVCの、デフォルトの例外ハンドリング機能で応答されるHTTPレスポンスコードについては、\ :ref:`exception-handling-appendix-defaulthandlerexceptionresolver-label`\ を参照されたい。
    * - | (2)
-     - | 遷移するファイル名を指定する。Webアプリケーションルートからのパスで、指定する。上記の設定では、 "${WebAppRoot}/WEB-INF/views/common/error/resourceNotFoundError.jsp"が、遷移先のファイルとなる。
+     - | 遷移するファイル名を指定する。Webアプリケーションルートからのパスで、指定する。上記の設定では、 "${WebAppRoot}/WEB-INF/views/common/error/resourceNotFoundError.jsp" が、遷移先のファイルとなる。
        | **【プロジェクト毎にカスタマイズする箇所】**
 
 
@@ -1188,7 +1188,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
    * - 項番
      - 説明
    * - | (3)
-     - | 遷移するファイル名を指定する。Webアプリケーションルートからのパスで指定する。上記の設定では、 "${WebAppRoot}/WEB-INF/views/common/error/unhandledSystemError.html"が、遷移先のファイルとなる。
+     - | 遷移するファイル名を指定する。Webアプリケーションルートからのパスで指定する。上記の設定では、 "${WebAppRoot}/WEB-INF/views/common/error/unhandledSystemError.html" が、遷移先のファイルとなる。
        | **【プロジェクト毎にカスタマイズする箇所】**
 
 .. note:: **locationに指定するパスについて**
@@ -1225,7 +1225,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
       * - | (4)
         - | ハンドリング対象とする **例外クラス名(FQCN)** を指定する。
       * - | (5)
-        - | 遷移するファイル名を指定する。Webアプリケーションルートからのパスで指定する。上記の設定では、 "${WebAppRoot}/WEB-INF/views/common/error/systemError.jsp"が遷移先のファイルとなる。
+        - | 遷移するファイル名を指定する。Webアプリケーションルートからのパスで指定する。上記の設定では、 "${WebAppRoot}/WEB-INF/views/common/error/systemError.jsp" が遷移先のファイルとなる。
           | **【プロジェクト毎にカスタマイズする箇所】**
 
 
@@ -1396,7 +1396,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
         | 存在しない場合、システムで用意するべきリソースがないと判断して、システムエラーにしている。
     * - | (2)
       - | システムが異常な状態の場合、第1引数に例外コード(メッセージID)を指定する。第2引数に例外メッセージを指定して、SystemExceptionを発生させる。
-        | 上記の実装例では、メッセージ本文に、変数 "itemId"の値を埋め込んでいる。
+        | 上記の実装例では、メッセージ本文に、変数 "itemId" の値を埋め込んでいる。
 
 下記のような、アプリケーションログが出力される。
 
@@ -2037,7 +2037,7 @@ SystemExceptionResolverの設定項目について
     * - 項番
       - 説明
     * - | (1)
-      - | 結果メッセージの属性名(resultMessagesAttribute)に、 "resultMessagesForExceptionResolver"を指定する。
+      - | 結果メッセージの属性名(resultMessagesAttribute)に、 "resultMessagesForExceptionResolver" を指定する。
     * - | (2)
       - | メッセージ属性名(messagesAttributeName)に、SystemExceptionResolverで設定した属性名を指定する。
 
@@ -2079,7 +2079,7 @@ SystemExceptionResolverの設定項目について
     * - 項番
       - 説明
     * - | (1)
-      - | 例外コード(メッセージID)の属性名(exceptionCodeAttribute)に、 "exceptionCodeForExceptionResolver"を指定する。
+      - | 例外コード(メッセージID)の属性名(exceptionCodeAttribute)に、 "exceptionCodeForExceptionResolver" を指定する。
     * - | (2)
       - | SystemExceptionResolverに設定した値(exceptionCodeForExceptionResolver)を、テスト対象(空チェック対応)の変数名として指定する。
     * - | (3)
@@ -2112,7 +2112,7 @@ SystemExceptionResolverの設定項目について
     * - 項番
       - 説明
     * - | (1)
-      - | 例外コード(メッセージID)のヘッダー名(exceptionCodeHeader)に、 "X-Exception-Code-ForExceptionResolver"を指定する。
+      - | 例外コード(メッセージID)のヘッダー名(exceptionCodeHeader)に、 "X-Exception-Code-ForExceptionResolver" を指定する。
 
 
 例外オブジェクトの属性名
@@ -2148,7 +2148,7 @@ SystemExceptionResolverの設定項目について
     * - 項番
       - 説明
     * - | (1)
-      - | 例外オブジェクトの属性名(exceptionAttribute)に、 "exceptionForExceptionResolver"を指定する。
+      - | 例外オブジェクトの属性名(exceptionAttribute)に、 "exceptionForExceptionResolver" を指定する。
     * - | (2)
       - | SystemExceptionResolverに設定した値(exceptionForExceptionResolver)を、例外オブジェクトからメッセージを取得するための変数名として、指定する。
 

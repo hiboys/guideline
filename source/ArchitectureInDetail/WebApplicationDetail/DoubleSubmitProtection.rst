@@ -837,7 +837,7 @@ PRG(Post-Redirect-Get)パターンの適用
      - * NameSpaceは、一連の画面遷移を識別するための論理的な名称を付与するための要素となる。
        * NameSpaceを設けることで、異なるNameSpaceに属するリクエストが干渉しあう事を防ぐ事が出来るため、並行して操作を行うことができる画面遷移を増やすことが出来る。
        * NameSpaceとして使用する値は、\ ``@TransactionTokenCheck``\アノテーションのvalue属性で指定した値が使用される。
-       * クラスアノテーションのvalue属性とメソッドアノテーションのvalue属性の両方を指定した場合は、 両方の値を "\ ``/``\"で連結した値がNameSpaceとなる。複数のメソッドで同じ値を指定した場合は、同じNameSpaceに属するメソッドとなる。
+       * クラスアノテーションのvalue属性とメソッドアノテーションのvalue属性の両方を指定した場合は、 両方の値を "\ ``/``\" で連結した値がNameSpaceとなる。複数のメソッドで同じ値を指定した場合は、同じNameSpaceに属するメソッドとなる。
        * クラスアノテーションにのみvalue属性を指定した場合は、そのクラスで生成されるトランザクショントークンのNameSpaceは、全てクラスアノテーションで指定した値となる。
        * メソッドアノテーションにのみvalue属性を指定した場合は、生成されるトランザクショントークンのNameSpaceはメソッドアノテーションで指定した値となる。複数のメソッドで同じ値を指定した場合は、同じNameSpaceに属するメソッドとなる。
        * クラスアノテーションのvalue属性とメソッドアノテーションのvalue属性の両方を省略した場合は、グローバルトークンに属するメソッドとなる。グローバルトークンについては、\ :ref:`doubleSubmit_appendix_global_token`\を参照されたい。
@@ -1575,11 +1575,11 @@ NameSpaceごとに保持できるトランザクショントークンの上限�
    * - 項番
      - 説明
    * - | (1)
-     - | NameSpaceごとのトランザクショントークンの保持数を、 "1"に設定する。
+     - | NameSpaceごとのトランザクショントークンの保持数を、 "1" に設定する。
 
  .. note::
  
-    \ ``@SessionAttributes``\ アノテーションを使用してフォームオブジェクトなどをセッションに格納した場合は、 NameSpaceごとのトランザクショントークンの保持数を "1"に設定するとこで、
+    \ ``@SessionAttributes``\ アノテーションを使用してフォームオブジェクトなどをセッションに格納した場合は、 NameSpaceごとのトランザクショントークンの保持数を "1" に設定するとこで、
     古いデータを表示している画面からのリクエストを不正なリクエストとして防ぐことが可能となる。
 
 |
@@ -1688,7 +1688,7 @@ NameSpaceごとに保持できるトランザクショントークンの上限�
    * - 項番
      - 説明
    * - | (1)
-     - | NameSpaceごとのトランザクショントークンの保持数を、 "1"に設定する。
+     - | NameSpaceごとのトランザクショントークンの保持数を、 "1" に設定する。
 
 Controllerの実装
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1858,7 +1858,7 @@ Quick Reference
      - | 指定無し
      - | create
      - | create~key~value
-     - | アプリケーション全体で、createという同一のNamespaceが作成され、その中の同時実行数は、10に制限される。Accountと、Customerという業務が、別にあり、その中でも、createメソッドでTransactionTokenのNameSpaceに "create"と指定した場合、Accountと、Customerのcreateの合計同時実行数は、10に制限される。
+     - | アプリケーション全体で、createという同一のNamespaceが作成され、その中の同時実行数は、10に制限される。Accountと、Customerという業務が、別にあり、その中でも、createメソッドでTransactionTokenのNameSpaceに "create" と指定した場合、Accountと、Customerのcreateの合計同時実行数は、10に制限される。
    * - | (6)
      - | 10 (Default)
      - | 指定無し
@@ -1906,7 +1906,7 @@ Quick Reference
      - | 指定無し
      - | create
      - | create~key~value
-     - | アプリケーション全体でcreateという同一のNamespaceが作成され、その中の同時実行数は、1に制限されること。AccountとCustomerという業務が別にあり、createメソッドでTransactionTokenのNameSpaceに "create"と指定した場合、AccountとCustomerのcreateは同時に行えない。
+     - | アプリケーション全体でcreateという同一のNamespaceが作成され、その中の同時実行数は、1に制限されること。AccountとCustomerという業務が別にあり、createメソッドでTransactionTokenのNameSpaceに "create" と指定した場合、AccountとCustomerのcreateは同時に行えない。
    * - | (14)
      - |  1 (Custom Setting in spring-mvc.xml)
      - | 指定無し

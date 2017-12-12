@@ -506,7 +506,7 @@ PlatformTransactionManagerの設定
     * - 項番
       - 説明
     * - | (1)
-      - アプリケーションがデプロイされているアプリケーションサーバに最適な\ ``org.springframework.transaction.jta.JtaTransactionManager``\ が、 "transactionManager"というidで、bean定義される。
+      - アプリケーションがデプロイされているアプリケーションサーバに最適な\ ``org.springframework.transaction.jta.JtaTransactionManager``\ が、 "transactionManager" というidで、bean定義される。
         bean定義されたクラスは、JTAのAPIを呼び出して、トランザクション制御を行う。
 
 persistence.xmlの設定
@@ -1083,7 +1083,7 @@ Queryメソッドの追加
 
  .. note:: **JPQLとは**
 
-   JPQLとは "Java Persistence Query Language"の略で、永続層(DB)のレコードに対応するEntityを操作(SELECT/UPDATE/DELETE)するためのQuery言語である。
+   JPQLとは "Java Persistence Query Language" の略で、永続層(DB)のレコードに対応するEntityを操作(SELECT/UPDATE/DELETE)するためのQuery言語である。
    文法はSQLに似ているが、永続層(DB)のレコードを直接操作するのではなく、永続層のレコードにマッピングされているEntityを操作することになる。
    Entityに対して行った操作の永続層(DB)への反映は、JPAプロバイダ(Hibernate)によって行われる。
 
@@ -1185,7 +1185,7 @@ Entityのロックを取得する
         | 指定可能なロックモードについては、`Java Platform, Enterprise Edition API Specification <http://docs.oracle.com/javaee/7/api/javax/persistence/LockModeType.html>`_\ を参照されたい。
     * - | (2)
       - | JPQLから変換されたNativeなSQL。(使用DBはPostgreSQL)
-        | 例では、``LockModeType.PESSIMISTIC_WRITE`` を指定しているので、SQLに "FOR UPDATE"句が追加される。
+        | 例では、``LockModeType.PESSIMISTIC_WRITE`` を指定しているので、SQLに "FOR UPDATE" 句が追加される。
 
 
 .. _data-access-jpa_howtouse_querymethod_modifying:
@@ -1271,7 +1271,7 @@ value属性にQueryヒント( ``@javax.persistence.QueryHint`` )を指定する�
     * - | (1)
       - | ``@QueryHint`` アノテーションのname属性にヒント名、value属性にヒント値を設定する。
         | 指定できるヒントは、JPAの仕様で決められているものに加え、プロバイダ固有のものがある。
-        | 上記例では、ロックタイムアウトを "``0``" に設定している(使用DBはOracle)。SQLに "FOR UPDATE NOWAIT"句が追加される。
+        | 上記例では、ロックタイムアウトを "``0``" に設定している(使用DBはOracle)。SQLに "FOR UPDATE NOWAIT" 句が追加される。
 
  .. note:: **Hibernateで指定できるQueryヒントについて**
 
@@ -1515,12 +1515,12 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
     * - 項番
       - 説明
     * - | (4)
-      - Queryに "ORDER BY"句の指定は行わない。countQuery属性の指定も不要。
+      - Queryに "ORDER BY" 句の指定は行わない。countQuery属性の指定も不要。
     * - | (5)
       - JPQLから変換された件数カウント用のNativeなSQL。
     * - | (6)
       - | JPQLから変換された「指定されたページ位置のEntityを取得する」ためのNativeなSQL。
-        | Queryに指定はしていないが、\ ``Pageable``\ オブジェクト内に保持している ``Sort`` オブジェクトに指定した条件で "ORDER BY"句が追加される。例では、PostgreSQL用のSQLになっている。
+        | Queryに指定はしていないが、\ ``Pageable``\ オブジェクト内に保持している ``Sort`` オブジェクトに指定した条件で "ORDER BY" 句が追加される。例では、PostgreSQL用のSQLになっている。
 
 .. _how_to_specify_query_mathodname-label:
 
@@ -2684,7 +2684,7 @@ IDがわからない場合は、ID以外の条件でEntityを検索するQuery�
 
  .. note:: 1:N(N:M)の関連をもつ関連Entityの並び順について
 
-   * JOIN FETCHに指定された関連Entityの並び順は、JPQLに "ORDER BY"句を指定して制御する。
+   * JOIN FETCHに指定された関連Entityの並び順は、JPQLに "ORDER BY" 句を指定して制御する。
    * Query実行後にロードされる関連Entityの並び順は、  関連Entityのプロパティのアノテーションに、 ``@javax.persistence.OrderBy`` アノテーションを指定して制御する。
 
 |

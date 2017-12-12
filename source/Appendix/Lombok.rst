@@ -227,7 +227,7 @@ Lombokのインストール
 
 インストール対象のSTSを選択後、 "Install / Update" ボタンを押下してインストールを実行する。
 インストール候補のSTSは、インストーラーによって自動検出される仕組みになっているが、
-自動で検出されない場合は、 "Specify location ..."を押下してIDEを指定する必要がある。
+自動で検出されない場合は、 "Specify location ..." を押下してIDEを指定する必要がある。
 
 .. figure:: ./images_Lombok/LombokInstallSuccessful.png
     :alt: Lombok Install Successful
