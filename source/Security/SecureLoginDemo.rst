@@ -4805,7 +4805,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
      * - 項番
        - 説明
      * - | (1)
-       - | \ ``InvalidCharacterException`` \はクライアントの入力に起因して発生する例外であるため、のHTTPステータスコードを\ ``"400"`` \(Bad Request)に設定する
+       - | \ ``InvalidCharacterException`` \はクライアントの入力に起因して発生する例外であるため、のHTTPステータスコードを\ ``400`` \(Bad Request)に設定する
 
   **applicationContext.xml**
 

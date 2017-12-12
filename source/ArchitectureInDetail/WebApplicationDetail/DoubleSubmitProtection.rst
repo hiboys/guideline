@@ -629,7 +629,7 @@ PRG(Post-Redirect-Get)パターンの適用
        | **POSTメソッドでリクエストを受け取る。**
    * - | (6)
      - | **完了画面を表示するためのURLへリダイレクトする。**
-       | 上記例では、\ ``"prgExample/create?complete"``\ というURLに対して\ ``GET``\メソッドで リクエストされる。
+       | 上記例では、\ ``prgExample/create?complete``\ というURLに対して\ ``GET``\メソッドで リクエストされる。
        | リダイレクト先にデータを引き渡す場合は、 \ ``RedirectAttributes``\のaddFlashAttributeメソッドを呼び出し、引き渡すデータを追加する。
        | \ ``Model``\ のaddAttributeメソッドは、リダイレクト先にデータを引き渡すことはできない。
    * - | (7)
@@ -714,7 +714,7 @@ PRG(Post-Redirect-Get)パターンの適用
      - 説明
    * - | (7)
      - | リダイレクト先にて、更新処理から引き渡したデータを参照する場合は、\ ``RedirectAttributes``\ の **addFlashAttributeメソッドで追加したデータの属性名を指定する。**
-       | 上記例では、 \ ``"output"``\が引き渡したデータを参照するための属性名となる。
+       | 上記例では、 \ ``output``\が引き渡したデータを参照するための属性名となる。
 
 .. _doubleSubmit_how_to_use_transaction_token_check:
 
@@ -837,7 +837,7 @@ PRG(Post-Redirect-Get)パターンの適用
      - * NameSpaceは、一連の画面遷移を識別するための論理的な名称を付与するための要素となる。
        * NameSpaceを設けることで、異なるNameSpaceに属するリクエストが干渉しあう事を防ぐ事が出来るため、並行して操作を行うことができる画面遷移を増やすことが出来る。
        * NameSpaceとして使用する値は、\ ``@TransactionTokenCheck``\アノテーションのvalue属性で指定した値が使用される。
-       * クラスアノテーションのvalue属性とメソッドアノテーションのvalue属性の両方を指定した場合は、 両方の値を\ ``"/"``\で連結した値がNameSpaceとなる。複数のメソッドで同じ値を指定した場合は、同じNameSpaceに属するメソッドとなる。
+       * クラスアノテーションのvalue属性とメソッドアノテーションのvalue属性の両方を指定した場合は、 両方の値を"\ ``/``\"で連結した値がNameSpaceとなる。複数のメソッドで同じ値を指定した場合は、同じNameSpaceに属するメソッドとなる。
        * クラスアノテーションにのみvalue属性を指定した場合は、そのクラスで生成されるトランザクショントークンのNameSpaceは、全てクラスアノテーションで指定した値となる。
        * メソッドアノテーションにのみvalue属性を指定した場合は、生成されるトランザクショントークンのNameSpaceはメソッドアノテーションで指定した値となる。複数のメソッドで同じ値を指定した場合は、同じNameSpaceに属するメソッドとなる。
        * クラスアノテーションのvalue属性とメソッドアノテーションのvalue属性の両方を省略した場合は、グローバルトークンに属するメソッドとなる。グローバルトークンについては、\ :ref:`doubleSubmit_appendix_global_token`\を参照されたい。
@@ -1230,12 +1230,12 @@ PRG(Post-Redirect-Get)パターンの適用
 出力されたHTMLを確認すると、
 
 * | NameSpaceは、クラスアノテーションのvalue属性で指定した値が設定される。
-  | 上記例だと、 \ ``"transactionTokenCheckExample"``\(橙色の下線)がNameSpaceとなる。
+  | 上記例だと、 \ ``transactionTokenCheckExample``\(橙色の下線)がNameSpaceとなる。
 * | TokenKeyは、トランザクション開始時に払い出された値が引き回されて設定される。
-  | 上記例だと、 \ ``"c0123252d531d7baf730cd49fe0422ef"``\(青色の下線)がTokenKeyとなる。
+  | 上記例だと、 \ ``c0123252d531d7baf730cd49fe0422ef``\(青色の下線)がTokenKeyとなる。
 * | TokenValueは、リクエスト毎に値が変化している。
-  | 上記例だと、 \ ``"3f610684e1cb546a13b79b9df30a7523"``\、\ ``"da770ed81dbca9a694b232e84247a13b"``\、
-  | \ ``"bd5a2d88ec446b27c06f6d4f486d4428"``\(緑色の下線)がTokenValueとなる。
+  | 上記例だと、 \ ``3f610684e1cb546a13b79b9df30a7523``\、\ ``da770ed81dbca9a694b232e84247a13b``\、
+  | \ ``bd5a2d88ec446b27c06f6d4f486d4428``\(緑色の下線)がTokenValueとなる。
 
 ことが、わかる。
 
@@ -1344,13 +1344,13 @@ PRG(Post-Redirect-Get)パターンの適用
      - | クラスアノテーションのvalue属性でNameSpaceを指定する。
        | 上記例では、本ガイドラインの推奨パターンである \ ``@RequestMapping``\のvalue属性と同じ値を指定している。
    * - | (2)
-     - | \ ``"flowOne"``\という名前を持つユースケースの処理に対して、トランザクショントークンチェックを行う。
+     - | \ ``flowOne``\という名前を持つユースケースの処理に対して、トランザクショントークンチェックを行う。
        | 上記例では、本ガイドラインの推奨パターンである \ ``@RequestMapping``\のvalue属性と同じ値を指定している。
    * - | (3)
-     - | \ ``"flowTwo"``\という名前を持つユースケースの処理に対して、トランザクショントークンチェックを行う。
+     - | \ ``flowTwo``\という名前を持つユースケースの処理に対して、トランザクショントークンチェックを行う。
        | 上記例では、本ガイドラインの推奨パターンである \ ``@RequestMapping``\のvalue属性と同じ値を指定している。
    * - | (4)
-     - | \ ``"flowThree"``\という名前を持つユースケースの処理に対して、トランザクショントークンチェックを行う。
+     - | \ ``flowThree``\という名前を持つユースケースの処理に対して、トランザクショントークンチェックを行う。
        | 上記例では、本ガイドラインの推奨パターンである \ ``@RequestMapping``\のvalue属性と同じ値を指定している。
 
  .. note::
@@ -1521,7 +1521,7 @@ TransactionTokenTypeを正しく設定しない場合、通常のオペレーシ
    * - 項番
      - 説明
    * - | (1)
-     - | クラスアノテーションとして、\ ``"user"``\というNameSpaceを設定している。
+     - | クラスアノテーションとして、\ ``user``\というNameSpaceを設定している。
        | 上記例では、推奨パターンの\ ``@RequestMapping``\アノテーションのvalue属性と同じ値を指定している。
    * - | (2)
      - | 入力画面の表示するためのハンドラメソッド。
@@ -1653,7 +1653,7 @@ HTTPレスポンスヘッダの\ ``Cache-Control``\ の設定により、ブラ�
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | \ ``@TransactionTokenCheck``\アノテーションのvalue属性の指定を省略すると、グローバルなトランザクショントークンとして扱われる。
-| グローバルなトランザクショントークンのNameSpaceには、\ ``"globalToken"``\(固定値)が使用される。
+| グローバルなトランザクショントークンのNameSpaceには、\ ``globalToken``\(固定値)が使用される。
 
  .. note::
 
@@ -1749,7 +1749,7 @@ Controllerの実装
 * HTMLの出力例
 
  | JSPは、\ :ref:`doubleSubmit_how_to_use_transaction_token_check_jsp`\で用意したJSPと同等のものを用意する。
- | actionを、\ ``"transactionTokenCheckExample"``\から\ ``"globalTokenCheckExample"``\に変更したのみで、他は同じである。
+ | actionを、\ ``transactionTokenCheckExample``\から\ ``globalTokenCheckExample``\に変更したのみで、他は同じである。
 
  .. figure:: ./images/transaction-token-global-html.png
    :alt: transaction token global html
@@ -1757,12 +1757,12 @@ Controllerの実装
 
 出力されたHTMLを確認すると、
 
-* | NameSpaceは、\ ``"globalToken"``\という固定値が設定される。
+* | NameSpaceは、\ ``globalToken``\という固定値が設定される。
 * | TokenKeyは、トランザクション開始時に払い出された値が引き回されて設定される。
-  | 上記例だと、 \ ``"9d937be4adc2f5dd2032292d153f1133"``\(青色の下線)がTokenKeyとなる。
+  | 上記例だと、 \ ``9d937be4adc2f5dd2032292d153f1133``\(青色の下線)がTokenKeyとなる。
 * | TokenValueは、リクエスト毎に値が変化している。
-  | 上記例だと、 \ ``"9204d7705ce7a17f16ca6cec24cfd88b"``\、\ ``"69c809fefcad541dbd00bd1983af2148"``\、
-  | \ ``"6b83f33b365f1270ee1c1b263f046719"``\(緑色の下線)がTokenValueとなる。
+  | 上記例だと、 \ ``9204d7705ce7a17f16ca6cec24cfd88b``\、\ ``69c809fefcad541dbd00bd1983af2148``\、
+  | \ ``6b83f33b365f1270ee1c1b263f046719``\(緑色の下線)がTokenValueとなる。
 
 ことが、わかる。
 

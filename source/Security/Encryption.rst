@@ -125,7 +125,7 @@ javax.crypto.Cipherクラス
 | 暗号利用モードとは、\ :ref:`EncryptionOverviewEncryptionAlgorithmAes`\ で説明したとおり、ブロック長より長いメッセージを暗号化するメカニズムである。
 | また、パディング方式とは、ブロック長に満たない暗号化対象を暗号化する場合の保管方式である。
 | 
-| Javaアプリケーションでは、\ ``"<暗号化アルゴリズム>/<暗号利用モード>/<パディング方式>"``\ または、\ ``"<暗号化アルゴリズム>"``\ という形で組み合わせを指定する。たとえば、\ ``"AES/CBC/PKCS5Padding"``\ または、\ ``"RSA"``\ となる。
+| Javaアプリケーションでは、\ ``<暗号化アルゴリズム>/<暗号利用モード>/<パディング方式>``\ または、\ ``<暗号化アルゴリズム>``\ という形で組み合わせを指定する。たとえば、\ ``AES/CBC/PKCS5Padding``\ または、\ ``RSA``\ となる。
   詳細は、\ `CipherクラスのJavaDoc <https://docs.oracle.com/javase/8/docs/api/javax/crypto/Cipher.html>`_\ を参照されたい。
 
 .. _EncryptionOverviewSpringSecurity:

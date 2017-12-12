@@ -1315,15 +1315,15 @@ Controllerでは、入力情報を受け取るフォームを ``@SessionAttribut
       - 説明
     * - | (1)
       - | ``@SessionAttributes`` アノテーションのvalue属性に、セッションに格納するオブジェクトの属性名を指定する。
-        | 上記例は、属性名が ``"accountUpdateForm"`` のオブジェクトが、セッションに格納される。
+        | 上記例は、属性名が ``accountUpdateForm`` のオブジェクトが、セッションに格納される。
     * - | (2)
       - | Modelオブジェクトに格納する属性名を、value属性に指定する。
-        | 上記例では、返却したオブジェクトが、 ``"accountUpdateForm"`` という属性名でセッションに格納される。
+        | 上記例では、返却したオブジェクトが、 ``accountUpdateForm`` という属性名でセッションに格納される。
         | value属性を指定した場合、セッションにオブジェクトを格納した後のリクエストで、 ``@ModelAttribute`` アノテーションの付与されたメソッドが呼び出されなくなるため、無駄なオブジェクトの生成が行われないというメリットがある。
     * - | (3)
       - | ``@SessionAttributes`` アノテーションによって管理されたオブジェクトを利用するには、そのオブジェクトを受け取れるようメソッドに引数を追加する。
         | 入力チェックが必要であれば ``@Validated`` アノテーションを利用する。
-        | 上記例では、 ``AccountUpdateForm`` のデフォルトの属性名である ``"accountUpdateForm"`` を属性名にもつオブジェクトが引数として渡される。
+        | 上記例では、 ``AccountUpdateForm`` のデフォルトの属性名である ``accountUpdateForm`` を属性名にもつオブジェクトが引数として渡される。
     * - | (4)
       - | ``SessionStatus`` オブジェクトの ``setComplete`` メソッドを呼び出し、オブジェクトをセッションから削除する。
       
@@ -1421,7 +1421,7 @@ JSPの作成
       - 説明
     * - | (1)
       - | 入力データを受け取るフォームオブジェクトの属性名をmodelAttribute属性に指定する。
-        | 上記例は、属性名が ``"accountUpdateForm"`` のオブジェクトが入力データを受け取る。
+        | 上記例は、属性名が ``accountUpdateForm`` のオブジェクトが入力データを受け取る。
     * - | (2)
       - | form:inputタグのpath属性に入力データを格納するオブジェクトの要素名を指定する。
         | この方法を利用すると、指定したオブジェクトの要素名にすでにデータがある場合、その値が入力フォームのデフォルト値となる。
@@ -1732,7 +1732,7 @@ Beanとして登録したいクラスに以下のアノテーションを追加�
     * - | (1)
       - | component-scanの対象となるように\ ``@Component``\ アノテーションを指定する
     * - | (2)
-      - | Beanのスコープを\ ``"session"``\ にする。また、proxyMode 属性で\ ``"ScopedProxyMode.TARGET_CLASS"``\ を指定し、scoped-proxyを有効にする。
+      - | Beanのスコープを\ ``session``\ にする。また、proxyMode 属性で\ ``ScopedProxyMode.TARGET_CLASS``\ を指定し、scoped-proxyを有効にする。
 
 また、component-scanの対象となるbase-packageをBean定義ファイルに指定する必要がある。
 しかし、本チュートリアルでは作成済みのBean定義ファイルにすでに以下の記述があるため、新たに記述を追加する必要はない。
@@ -2243,7 +2243,7 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
     * - | (1)
       - | component-scanの対象となるように\ ``@Component``\ アノテーションを指定する
     * - | (2)
-      - | Beanのスコープを\ ``"session"``\ にする。また、proxyMode 属性で\ ``"ScopedProxyMode.TARGET_CLASS"``\ を指定し、scoped-proxyを有効にする。
+      - | Beanのスコープを\ ``session``\ にする。また、proxyMode 属性で\ ``ScopedProxyMode.TARGET_CLASS``\ を指定し、scoped-proxyを有効にする。
 
 
 また、component-scanの対象となるbase-packageをBean定義ファイルに指定する必要がある。 しかし、本チュートリアルでは作成済みのBean定義ファイルにすでに以下の記述があるため、新たに記述を追加する必要はない。
