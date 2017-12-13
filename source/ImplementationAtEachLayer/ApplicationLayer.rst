@@ -1738,7 +1738,7 @@ Cookieに値を書き込む
 `ハンドラメソッドの返り値についても様々な値をとることができる <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-return-types>`_ が、
 基本的には次に挙げるもののみを使用すること。
 
-- String(View論理名)
+- String(View名)
 
 以下に、目的別に返り値の使用方法について説明する。
 
@@ -1775,7 +1775,7 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - ハンドラメソッドの返り値として ``sample/hello`` というView名を返却した場合、 ``ThymeleafViewResolver`` の設定によりテンプレートHTMLとして ``/WEB-INF/views/sample/hello.html`` が解決され、HTMLが応答される。
+     - ハンドラメソッドの返り値として ``sample/hello`` というView名を返却した場合、 ``ThymeleafViewResolver`` の設定によりテンプレートHTMLとして ``/WEB-INF/views/sample/hello.html`` を利用して生成したHTMLが返される。
 
 .. note::
     JSPやVelocity、FreeMarkerなど他のテンプレートエンジンを使用してHTMLを生成する場合でも、ハンドラメソッドの返り値は ``sample/hello`` のままでよい。
@@ -2621,7 +2621,7 @@ Viewは以下の役割を担う。
 
 ThymeleafのテンプレートHTMLの実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| クライアントにHTMLを応答する場合は、Thymeleafを使用してViewを実装する。
+| クライアントにHTMLを応答する場合は、Thymeleafを使用したHTML形式のViewを実装する。
 | Thymeleafによって生成されたHTMLを呼び出すための ``ViewResolver`` は、Thymeleaf+Springより提供されている ``ThymeleafViewResolver`` を使用する。
 | ``ViewResolver`` の設定方法については、 :ref:`configuration-of-blank-project-label` を参照されたい。
 
