@@ -575,7 +575,7 @@ Controllerの作成
        | また、ThymeleafのリンクURL式 ``@{}`` に "``/``" から始まるパスを記述することでコンテキスト相対パスが生成され、 ``th:action`` 属性に指定できる。
        | これらの属性の詳細については `こちら <http://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html#creating-a-form>`_\を参照されたい。
    * - | (3)
-     - | Thymeleaf+Springで提供される ``th:field`` 属性を用いて、特定のプロパティをHTML formにバインドすることができる。
+     - | Thymeleaf + Springで提供される ``th:field`` 属性を用いて、特定のプロパティをHTML formにバインドすることができる。
        |  ``th:field`` 属性は ``id`` 属性、 ``name`` 属性、 ``value`` 属性をHTMLに出力し、 ``id`` 属性、 ``name`` 属性にはプロパティ名が出力される。
        |  ``th:field`` 属性の詳細については、 :doc:`アプリケーション層の実装 <../ImplementationAtEachLayer/ApplicationLayer>` を参照されたい。
 
@@ -822,7 +822,7 @@ Spring MVCでは、 `Bean Validation <http://jcp.org/en/jsr/detail?id=349>`_\ �
 この章では、
 
 #. \ ``mvn archetype:generate``\を利用したブランクプロジェクトの作成方法
-#. SpringMVCの基本的な設定方法
+#. Spring MVCの基本的な設定方法
 #. 最も簡易な、画面遷移方法
 #. 画面間での値の引き渡し方法
 #. シンプルな入力チェック方法
