@@ -602,7 +602,7 @@ How to use
     フォームのラベルと使用する場合は、以下のように使用すれば良い。
 
     .. code-block:: html
-        :emphasize-lines: 3,7,11
+        :emphasize-lines: 2,5,8
 
         <form th:object="${sampleForm}" method="post">
             <label for="year" th:text="#{label.aa.bb.year}">

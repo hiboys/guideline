@@ -1738,7 +1738,7 @@ Cookieに値を書き込む
 `ハンドラメソッドの返り値についても様々な値をとることができる <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-return-types>`_ が、
 基本的には次に挙げるもののみを使用すること。
 
-- String(View論理名)
+- String(View名)
 
 以下に、目的別に返り値の使用方法について説明する。
 
@@ -1775,7 +1775,7 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - ハンドラメソッドの返り値として ``sample/hello`` というView名を返却した場合、 ``ThymeleafViewResolver`` の設定によりテンプレートHTMLとして ``/WEB-INF/views/sample/hello.html`` が解決され、HTMLが応答される。
+     - ハンドラメソッドの返り値として ``sample/hello`` というView名を返却した場合、 ``ThymeleafViewResolver`` の設定によりテンプレートHTMLとして ``/WEB-INF/views/sample/hello.html`` を利用して生成したHTMLが返される。
 
 .. note::
     JSPやVelocity、FreeMarkerなど他のテンプレートエンジンを使用してHTMLを生成する場合でも、ハンドラメソッドの返り値は ``sample/hello`` のままでよい。
@@ -2461,7 +2461,7 @@ form-backing beanの初期化は、\ ``@ModelAttribute``\ アノテーション�
 
 HTMLへのバインディング方法
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| \ ``Model``\ に追加されたフォームオブジェクトの各プロパティは、Thymeleaf+Springで提供される ``th:field`` 属性で指定することで、HTMLのinput要素にバインドすることができる。
+| \ ``Model``\ に追加されたフォームオブジェクトの各プロパティは、Thymeleaf + Springで提供される ``th:field`` 属性で指定することで、HTMLのinput要素にバインドすることができる。
 | JSPには ``<form:xxx>`` タグを利用してフォームオブジェクトをHTML formにバインドする機能があるが、Thymeleafでは ``th:field`` 属性に ``th:object`` 属性を併用することで同様の機能を実現することができる。
 
  .. code-block:: html
@@ -2621,8 +2621,8 @@ Viewは以下の役割を担う。
 
 ThymeleafのテンプレートHTMLの実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| クライアントにHTMLを応答する場合は、Thymeleafを使用してViewを実装する。
-| Thymeleafによって生成されたHTMLを呼び出すための ``ViewResolver`` は、Thymeleaf+Springより提供されている ``ThymeleafViewResolver`` を使用する。
+| クライアントにHTMLを応答する場合はThymeleafを使用する。そのために、ViewはHTML形式で実装する。
+| Thymeleafによって生成されたHTMLを呼び出すための ``ViewResolver`` は、Thymeleaf + Springより提供されている ``ThymeleafViewResolver`` を使用する。
 | ``ViewResolver`` の設定方法については、 :ref:`configuration-of-blank-project-label` を参照されたい。
 
 以下に、基本的なテンプレートHTMLの実装方法について説明する。
@@ -2647,7 +2647,7 @@ ThymeleafのテンプレートHTMLの実装
 - :ref:`view_thymeleaf_pagination-label`
 - :ref:`view_thymeleaf_authorization-label`
 
-本章では、ThymeleafおよびThymeleaf+Springのダイアレクト、ならびにThymeleafのSpring Security連携用ダイアレクトで提供されている代表的な属性やオブジェクトの使い方を説明しているが、
+本章では、ThymeleafおよびThymeleaf + Springのダイアレクト、ならびにThymeleafのSpring Security連携用ダイアレクトで提供されている代表的な属性やオブジェクトの使い方を説明しているが、
 全てについて説明はしていないので、詳細な使い方については、それぞれのドキュメントを参照すること。
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.30\linewidth}|p{0.60\linewidth}|
@@ -2662,7 +2662,7 @@ ThymeleafのテンプレートHTMLの実装
      - Thymeleafのダイアレクト
      - - `<http://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html>`_\
    * - 2.
-     - Thymeleaf+Springのダイアレクト
+     - Thymeleaf + Springのダイアレクト
      - - `<http://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html#the-springstandard-dialect>`_\
    * - 3.
      - ThymeleafのSpring Security連携用ダイアレクト
@@ -2907,7 +2907,7 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
 これらの属性では、以下のいずれかの方法によって生成されたリクエストURL(Controllerのメソッドを呼び出すためのURL)を設定する。
 
 * ThymeleafのリンクURL式 ``@{}`` を使用してリクエストURLを組み立てる
-* Thymeleaf+Springの ``#mvc.url`` メソッドを使用してリクエストURLを組み立てる
+* Thymeleaf + Springの ``#mvc.url`` メソッドを使用してリクエストURLを組み立てる
 
  .. note::
 
@@ -3037,9 +3037,9 @@ HTMLの\ ``<form>``\ 要素の\ ``action``\ 属性や\ ``<a>``\ 要素の\ ``hre
 
 |
 
-**Thymeleaf+Springの#mvc.urlメソッドを使用してリクエストURLを組み立てる**
+**Thymeleaf + Springの#mvc.urlメソッドを使用してリクエストURLを組み立てる**
 
-つぎに、Thymeleaf+Springの\ ``#mvc.url``\メソッドを使用してリクエストURLを組み立てる方法について説明する。
+つぎに、Thymeleaf + Springの\ ``#mvc.url``\メソッドを使用してリクエストURLを組み立てる方法について説明する。
 
 \ ``#mvc.url``\ メソッドを使用すると、Controllerのメソッドのメタ情報(メソッドシグネチャやアノテーションなど)と連携して、
 リクエストURLを組み立てる事ができる。
@@ -3525,7 +3525,7 @@ Thymeleafの ``th:object`` 属性を用いると、オブジェクト名を省�
 
 フォームオブジェクトのプロパティをバインドする
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| Thymeleaf+Springの ``th:field`` 属性を使用すると、フォームオブジェクトのプロパティをバインドすることができる。
+| Thymeleaf + Springの ``th:field`` 属性を使用すると、フォームオブジェクトのプロパティをバインドすることができる。
 
  .. note:: 
     フォームオブジェクトのプロパティのバインドそのものは ``th:field`` を使用することで可能となるが、
@@ -3556,7 +3556,7 @@ Thymeleafの ``th:object`` 属性を用いると、オブジェクト名を省�
 
 入力チェックエラーを表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-入力チェックエラーの内容を表示する場合、Thymeleaf+Springの ``th:errors`` 属性を使用する。詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation` を参照されたい。
+入力チェックエラーの内容を表示する場合、Thymeleaf + Springの ``th:errors`` 属性を使用する。詳細は、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation` を参照されたい。
 
  .. note:: 
     入力チェックそのものは ``th:errors`` を使用することで可能となるが、
