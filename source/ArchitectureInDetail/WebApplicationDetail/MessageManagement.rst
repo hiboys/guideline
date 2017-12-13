@@ -603,7 +603,7 @@ How to use
     フォームのラベルと使用する場合は、以下のように使用すれば良い。
 
     .. code-block:: jsp
-        :emphasize-lines: 3,7,11
+        :emphasize-lines: 2,5,8
 
         <form:form modelAttribute="sampleForm">
             <form:label path="year">
