@@ -2621,7 +2621,7 @@ Viewは以下の役割を担う。
 
 ThymeleafのテンプレートHTMLの実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-| クライアントにHTMLを応答する場合は、Thymeleafを使用したHTML形式のViewを実装する。
+| クライアントにHTMLを応答する場合はThymeleafを使用する。そのために、ViewはHTML形式で実装する。
 | Thymeleafによって生成されたHTMLを呼び出すための ``ViewResolver`` は、Thymeleaf+Springより提供されている ``ThymeleafViewResolver`` を使用する。
 | ``ViewResolver`` の設定方法については、 :ref:`configuration-of-blank-project-label` を参照されたい。
 
