@@ -74,7 +74,7 @@
     * - | `マルチプロジェクト構成のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank>`_
       - 商用環境にリリースするような本格的なアプリケーションを開発する際に使用する。
 
-        プロジェクトの雛形は、MavenのArchetypeとして、以下の3種類を用意している。
+        プロジェクトの雛形は、MavenのArchetypeとして、以下の2種類を用意している。
 
         * MyBatis3用の設定が盛り込まれた雛形
         * JPA(Spring Data JPA)用の設定が盛り込まれた雛形
@@ -83,7 +83,7 @@
     * - | `シングルプロジェクト構成のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-blank>`_
       - POC(Proof Of Concept)、プロトタイプ、サンプルなどの簡易的なアプリケーションを作成する際に使用する。
 
-        プロジェクトの雛形は、MavenのArchetypeとして、以下の4種類を用意している。
+        プロジェクトの雛形は、MavenのArchetypeとして、以下の3種類を用意している。
         (EclipseのWTP用のプロジェクトも用意しているが、本節では説明は割愛する)
 
         * MyBatis3用の設定が盛り込まれた雛形
