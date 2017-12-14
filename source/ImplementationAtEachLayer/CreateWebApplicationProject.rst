@@ -997,7 +997,7 @@ Maven Archetypeで作成したプロジェクトでは、インメモリデー�
 
             <!-- ... -->
 
-            <postgresql.version>9.4.1212</postgresql.version>
+            <postgresql.version>9.4.1212.jre7</postgresql.version>
             <ojdbc.version>12.1.0.2</ojdbc.version>
 
     * ``artifactId/artifactId-web/pom.xml``
