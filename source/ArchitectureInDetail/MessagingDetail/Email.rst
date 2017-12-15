@@ -893,7 +893,7 @@ FreeMarkerを使用したメール本文の作成
        <#escape x as x?html> <#-- (1) -->
        <html>
            <body>
-               <h3>Hi ${userName}, welcome to TERASOLUNA.ORG!</h3> <#-- (2) -->
+               <h3>Hi ${userName}, welcome to Macchinetta!</h3> <#-- (2) -->
     
                <div>
                    If you were not an intended recipient, Please notify the sender.
