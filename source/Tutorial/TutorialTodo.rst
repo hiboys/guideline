@@ -572,15 +572,14 @@ Todoアプリケーションの開発を始める前に、プロジェクトの�
 以下のような実装となっている。
 
 .. code-block:: jsp
-    :emphasize-lines: 12
+    :emphasize-lines: 11
 
     <!DOCTYPE html>
     <html>
     <head>
     <meta charset="utf-8">
     <title>Home</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
         <div id="wrapper">
