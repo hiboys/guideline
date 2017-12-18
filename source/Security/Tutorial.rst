@@ -718,8 +718,7 @@ Spring Securityの設定
     <html>
     <head>
     <title>Login Page</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
         <div id="wrapper">
@@ -831,15 +830,14 @@ JSPからログインユーザーのアカウント情報へアクセス
 | ``src/main/webapp/WEB-INF/views/welcome/home.jsp``
 
 .. code-block:: xml
-    :emphasize-lines: 10-11,17-18
+    :emphasize-lines: 9-10,16-17
   
     <!DOCTYPE html>
     <html>
     <head>
     <meta charset="utf-8">
     <title>Home</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
 
     <!-- (1) -->
@@ -890,15 +888,14 @@ JSPからログインユーザーのアカウント情報へアクセス
 | ``src/main/webapp/WEB-INF/views/welcome/home.jsp``
 
 .. code-block:: xml
-    :emphasize-lines: 18-21
+    :emphasize-lines: 17-20
 
     <!DOCTYPE html>
     <html>
     <head>
     <meta charset="utf-8">
     <title>Home</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
 
     <sec:authentication property="principal.account" var="account" />
@@ -999,8 +996,7 @@ Controllerからログインユーザーのアカウント情報へアクセス
     <head>
     <meta charset="utf-8">
     <title>Home</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
         <div id="wrapper">
