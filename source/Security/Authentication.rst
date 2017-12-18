@@ -697,13 +697,13 @@ Spring Securityにおけるセッション管理
 .. code-block:: xml
 
   <sec:http auto-config="true" create-session="ifRequired" ><!-- (1) -->
-    <!-- omitted -->
-    <sec:session-management
-      invalid-session-url="/"
-      session-authentication-error-url="/"
-      session-fixation-protection="migrateSession"
-      session-authentication-strategy-ref="sessionStrategy" /><!-- 属性の指定順番で(2)～(5) -->
-    <!-- omitted -->
+      <!-- omitted -->
+      <sec:session-management
+        invalid-session-url="/"
+        session-authentication-error-url="/"
+        session-fixation-protection="migrateSession"
+        session-authentication-strategy-ref="sessionStrategy" /><!-- 属性の指定順番で(2)～(5) -->
+      <!-- omitted -->
   </sec:http>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1113,10 +1113,10 @@ spring-security.xml
 .. code-block:: xml
 
   <sec:http auto-config="true" use-expressions="true">
-    <!-- omitted -->
-    <sec:remember-me key="terasoluna-tourreservation-km/ylnHv"
-            token-validity-seconds="#{30 * 24 * 60 * 60}" />  <!-- 属性の指定順番で(1)～(2) -->
-    <!-- omitted -->
+      <!-- omitted -->
+      <sec:remember-me key="terasoluna-tourreservation-km/ylnHv"
+              token-validity-seconds="#{30 * 24 * 60 * 60}" />  <!-- 属性の指定順番で(1)～(2) -->
+      <!-- omitted -->
   </sec:http>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|

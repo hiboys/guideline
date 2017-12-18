@@ -649,16 +649,16 @@ Acceptヘッダでマッピング
 
     <h1>Abc Create Form</h1>
     <form:form modelAttribute="abcForm"
-      action="${pageContext.request.contextPath}/abc/create">
-      <form:label path="input1">Input1</form:label>
-      <form:input path="input1" />
-      <form:errors path="input1" />
-      <br>
-      <form:label path="input2">Input2</form:label>
-      <form:input path="input2" />
-      <form:errors path="input2" />
-      <br>
-      <input type="submit" name="confirm" value="Confirm" /> <!-- (1) -->
+        action="${pageContext.request.contextPath}/abc/create">
+        <form:label path="input1">Input1</form:label>
+        <form:input path="input1" />
+        <form:errors path="input1" />
+        <br>
+        <form:label path="input2">Input2</form:label>
+        <form:input path="input2" />
+        <form:errors path="input2" />
+        <br>
+        <input type="submit" name="confirm" value="Confirm" /> <!-- (1) -->
     </form:form>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -738,17 +738,17 @@ Acceptヘッダでマッピング
 
     <h1>Abc Create Form</h1>
     <form:form modelAttribute="abcForm"
-      action="${pageContext.request.contextPath}/abc/create">
-      <form:label path="input1">Input1</form:label>
-      ${f:h(abcForm.input1)}
-      <form:hidden path="input1" /> <!-- (1) -->
-      <br>
-      <form:label path="input2">Input2</form:label>
-      ${f:h(abcForm.input2)}
-      <form:hidden path="input2" /> <!-- (1) -->
-      <br>
-      <input type="submit" name="redo" value="Back" /> <!-- (2) -->
-      <input type="submit" value="Create" /> <!-- (3) -->
+        action="${pageContext.request.contextPath}/abc/create">
+        <form:label path="input1">Input1</form:label>
+            ${f:h(abcForm.input1)}
+        <form:hidden path="input1" /> <!-- (1) -->
+        <br>
+        <form:label path="input2">Input2</form:label>
+            ${f:h(abcForm.input2)}
+        <form:hidden path="input2" /> <!-- (1) -->
+        <br>
+        <input type="submit" name="redo" value="Back" /> <!-- (2) -->
+        <input type="submit" value="Create" /> <!-- (3) -->
     </form:form>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|

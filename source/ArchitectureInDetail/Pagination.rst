@@ -941,45 +941,45 @@ JSPの実装(基本編)
     <%-- (2) --%>
     <c:when test="${page != null && page.totalPages != 0}">
 
-      <table class="maintable">
-        <thead>
-          <tr>
-            <th class="no">No</th>
-            <th class="articleClass">Class</th>
-            <th class="title">Title</th>
-            <th class="overview">Overview</th>
-            <th class="date">Published Date</th>
-          </tr>
-        </thead>
+        <table class="maintable">
+            <thead>
+                <tr>
+                    <th class="no">No</th>
+                    <th class="articleClass">Class</th>
+                    <th class="title">Title</th>
+                    <th class="overview">Overview</th>
+                    <th class="date">Published Date</th>
+                </tr>
+            </thead>
 
-        <%-- (3) --%>
-        <c:forEach var="article" items="${page.content}" varStatus="rowStatus">
-          <tr>
-            <td class="no">
-              ${(page.number * page.size) + rowStatus.count}
-            </td>
-            <td class="articleClass">
-              ${f:h(article.articleClass.name)}
-            </td>
-            <td class="title">
-              ${f:h(article.title)}
-            </td>
-            <td class="overview">
-              ${f:h(article.overview)}
-            </td>
-            <td class="date">
-              ${f:h(article.publishedDate)}
-            </td>
-          </tr>
-        </c:forEach>
+            <%-- (3) --%>
+            <c:forEach var="article" items="${page.content}" varStatus="rowStatus">
+                <tr>
+                    <td class="no">
+                        ${(page.number * page.size) + rowStatus.count}
+                    </td>
+                    <td class="articleClass">
+                        ${f:h(article.articleClass.name)}
+                    </td>
+                    <td class="title">
+                        ${f:h(article.title)}
+                    </td>
+                    <td class="overview">
+                        ${f:h(article.overview)}
+                    </td>
+                    <td class="date">
+                        ${f:h(article.publishedDate)}
+                    </td>
+                </tr>
+            </c:forEach>
 
-      </table>
+        </table>
 
-      <div class="paginationPart">
+        <div class="paginationPart">
 
         <%-- ... --%>
 
-      </div>
+        </div>
     </c:when>
 
     <%-- ... --%>
@@ -1062,20 +1062,20 @@ JSPの実装(基本編)
  .. code-block:: html
 
      <ul>
-        <li class="disabled"><a href="#">&lt;&lt;</a></li>
-        <li class="disabled"><a href="#">&lt;</a></li>
-        <li class="active"><a href="?page=0&size=6">1</a></li>
-        <li><a href="?page=1&size=6">2</a></li>
-        <li><a href="?page=2&size=6">3</a></li>
-        <li><a href="?page=3&size=6">4</a></li>
-        <li><a href="?page=4&size=6">5</a></li>
-        <li><a href="?page=5&size=6">6</a></li>
-        <li><a href="?page=6&size=6">7</a></li>
-        <li><a href="?page=7&size=6">8</a></li>
-        <li><a href="?page=8&size=6">9</a></li>
-        <li><a href="?page=9&size=6">10</a></li>
-        <li><a href="?page=1&size=6">&gt;</a></li>
-        <li><a href="?page=9&size=6">&gt;&gt;</a></li>
+         <li class="disabled"><a href="#">&lt;&lt;</a></li>
+         <li class="disabled"><a href="#">&lt;</a></li>
+         <li class="active"><a href="?page=0&size=6">1</a></li>
+         <li><a href="?page=1&size=6">2</a></li>
+         <li><a href="?page=2&size=6">3</a></li>
+         <li><a href="?page=3&size=6">4</a></li>
+         <li><a href="?page=4&size=6">5</a></li>
+         <li><a href="?page=5&size=6">6</a></li>
+         <li><a href="?page=6&size=6">7</a></li>
+         <li><a href="?page=7&size=6">8</a></li>
+         <li><a href="?page=8&size=6">9</a></li>
+         <li><a href="?page=9&size=6">10</a></li>
+         <li><a href="?page=1&size=6">&gt;</a></li>
+         <li><a href="?page=9&size=6">&gt;&gt;</a></li>
     </ul>
 
 |
@@ -1336,12 +1336,12 @@ JSPの実装(基本編)
 
     <%-- (1) --%>
     <div id="criteriaPart">
-      <form:form action="${pageContext.request.contextPath}/article/list" method="get"
-                 modelAttribute="articleSearchCriteriaForm">
-        <form:input path="word" />
-        <form:button>Search</form:button>
-        <br>
-      </form:form>
+        <form:form action="${pageContext.request.contextPath}/article/list" method="get"
+            modelAttribute="articleSearchCriteriaForm">
+            <form:input path="word" />
+            <form:button>Search</form:button>
+            <br>
+        </form:form>
     </div>
 
     <%-- ... --%>
@@ -1596,18 +1596,18 @@ JSPの実装(動作編)
  .. code-block:: jsp
 
     <div id="criteriaPart">
-      <form:form
-        action="${pageContext.request.contextPath}/article/search"
-        method="get" modelAttribute="articleSearchCriteriaForm">
-        <form:input path="word" />
-        <%-- (1) --%>
-        <form:select path="sort">
-            <form:option value="publishedDate,DESC">Newest</form:option>
-            <form:option value="publishedDate,ASC">Oldest</form:option>
-        </form:select>
-        <form:button>Search</form:button>
-        <br>
-      </form:form>
+        <form:form
+            action="${pageContext.request.contextPath}/article/search"
+            method="get" modelAttribute="articleSearchCriteriaForm">
+            <form:input path="word" />
+            <%-- (1) --%>
+            <form:select path="sort">
+                <form:option value="publishedDate,DESC">Newest</form:option>
+                <form:option value="publishedDate,ASC">Oldest</form:option>
+            </form:select>
+            <form:button>Search</form:button>
+            <br>
+        </form:form>
     </div>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
