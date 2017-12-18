@@ -704,8 +704,7 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
     <head>
     <meta charset="utf-8">
     <title>Resource Not Found Error!</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
         <div id="wrapper">
@@ -715,9 +714,9 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
                 <spring:message code="e.xx.fw.5001" />
             </div>
             <t:messagesPanel />
-        <br>
-        <!-- ... -->
-        <br>
+            <br>
+            <!-- ... -->
+            <br>
         </div>
     </body>
     </html>
@@ -767,11 +766,10 @@ Maven Archetypeで作成したプロジェクトでは、Tilesを使用して画
 .. code-block:: jsp
 
     <div class="container">
-      <tiles:insertAttribute name="header" />
-      <tiles:insertAttribute name="body" />
-      <hr>
-      <p style="text-align: center; background: #e5eCf9;">Copyright
-        &copy; 20XX CompanyName</p>
+        <tiles:insertAttribute name="header" />
+        <tiles:insertAttribute name="body" />
+        <hr>
+        <p style="text-align: center; background: #e5eCf9;">Copyright &copy; 20XX CompanyName</p>
     </div>
 
 .. note::

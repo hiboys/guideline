@@ -1348,8 +1348,7 @@ JSPの作成
     <head>
     <meta charset="UTF-8" />
     <title>Account Update Page</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
 
@@ -1433,8 +1432,7 @@ JSPの作成
     <head>
     <meta charset="UTF-8" />
     <title>Account Update Page</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
 
@@ -1498,8 +1496,7 @@ JSPの作成
     <head>
     <meta charset="UTF-8" />
     <title>Account Update Page</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
         <div class="container">
@@ -1576,8 +1573,7 @@ JSPの作成
     <head>
     <meta charset="UTF-8" />
     <title>Account Update Page</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
         <div class="container">
@@ -1916,18 +1912,16 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
 ``/session-tutorial-init-web/src/main/webapp/WEB-INF/views/goods/showGoods.jsp``
 
 .. code-block:: jsp
-    :emphasize-lines: 45, 53-59, 72-97
+    :emphasize-lines: 43, 51-57, 70-95
 
     <!DOCTYPE html>
     <html>
     <head>
     <meta charset="UTF-8" />
     <title>Item List Page</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/vendor/bootstrap-3.0.0/css/bootstrap.css"
-        type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/bootstrap-3.0.0/css/bootstrap.css"
+        media="screen, projection">
     </head>
     <body>
 
@@ -2043,15 +2037,14 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
 ``/session-tutorial-init-web/src/main/webapp/WEB-INF/views/goods/showGoodsDetail.jsp``
 
 .. code-block:: jsp
-    :emphasize-lines: 44-51, 57-81
+    :emphasize-lines: 43-50, 56-80
 
     <!DOCTYPE html>
     <html>
     <head>
     <meta charset="UTF-8" />
     <title>Item List Page</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
 
@@ -2555,8 +2548,7 @@ JSPの作成
     <head>
     <meta charset="UTF-8" />
     <title>View Cart Page</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
 
@@ -2814,8 +2806,7 @@ JSPの作成
     <head>
     <meta charset="UTF-8" />
     <title>Order Page</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
 
@@ -2942,8 +2933,7 @@ JSPの作成
     <head>
     <meta charset="UTF-8" />
     <title>Order Page</title>
-    <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/app/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
     </head>
     <body>
 

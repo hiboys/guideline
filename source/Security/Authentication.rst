@@ -296,12 +296,12 @@ Spring Securityはフォーム認証用のログインフォームをデフォ�
 .. code-block:: xml
 
     <sec:http>
-      <sec:form-login 
-          login-page="/login/loginForm"
-          login-processing-url="/login" 
-          authentication-failure-url="/login/loginForm?error" /> <!-- (1)(2)(3) -->
-      <sec:intercept-url pattern="/login/**" access="permitAll"/>  <!-- (4) -->
-      <sec:intercept-url pattern="/**" access="isAuthenticated()"/> <!-- (5) -->
+        <sec:form-login 
+            login-page="/login/loginForm"
+            login-processing-url="/login" 
+            authentication-failure-url="/login/loginForm?error" /> <!-- (1)(2)(3) -->
+        <sec:intercept-url pattern="/login/**" access="permitAll"/>  <!-- (4) -->
+        <sec:intercept-url pattern="/**" access="isAuthenticated()"/> <!-- (5) -->
     </sec:http>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1516,8 +1516,8 @@ Spring Securityのデフォルトでは、認証処理を実行するための�
 .. code-block:: xml
 
   <sec:http>
-    <sec:form-login login-processing-url="/authentication" /> <!-- (1) --> 
-    <!-- omitted -->
+      <sec:form-login login-processing-url="/authentication" /> <!-- (1) --> 
+      <!-- omitted -->
   </sec:http>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1875,9 +1875,9 @@ Spring Securityのデフォルトでは、ログアウト処理を実行する�
 .. code-block:: xml
 
   <sec:http>
-    <!-- omitted -->
-    <sec:logout logout-success-url="/logoutSuccess" /> <!-- (1) -->
-    <!-- omitted -->
+      <!-- omitted -->
+      <sec:logout logout-success-url="/logoutSuccess" /> <!-- (1) -->
+      <!-- omitted -->
   </sec:http>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
