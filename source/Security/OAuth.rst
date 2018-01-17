@@ -1587,7 +1587,7 @@ Spring Securityの詳細については \ :doc:`../../Security/Authentication`\ 
                 <input name="user_oauth_approval" value="true" type="hidden"/>  <!-- (3) -->
                 <sec:csrfInput />  <!-- (4) -->
                 <label>
-                    <input name="authorize" value="Authorize" type="submit"/>
+                    <input value="Authorize" id="authorize" type="submit"/>
                 </label>
             </form>
         </div>
