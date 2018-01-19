@@ -2707,7 +2707,7 @@ JSPの実装
 - :ref:`view_jsp_include-label`
 - :ref:`view_out-label`
 - :ref:`view_jsp_outnumber-label`
-- :ref:`view_jsp_outdate-label`
+- :ref:`view_outdate-label`
 - :ref:`view_jsp_requesturl-label`
 - :ref:`view_jsp_form-label`
 - :ref:`view_jsp_errors-label`
@@ -2915,7 +2915,7 @@ JSTLのJSPタグライブラリから提供されている ``<c:out>`` タグを
 
 |
 
-.. _view_jsp_outdate-label:
+.. _view_outdate-label:
 
 モデルに格納されている日時を表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
