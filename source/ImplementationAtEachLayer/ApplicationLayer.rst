@@ -2713,7 +2713,7 @@ JSPの実装
 - :ref:`view_errors-label`
 - :ref:`view_resultmessages-label`
 - :ref:`view_codelist-label`
-- :ref:`view_jsp_message-label`
+- :ref:`view_message-label`
 - :ref:`view_jsp_if-label`
 - :ref:`view_jsp_forEach-label`
 - :ref:`view_jsp_pagination-label`
@@ -3246,7 +3246,7 @@ Spring Frameworkから提供されている ``<form:form>`` タグを使用し�
 
 |
 
-.. _view_jsp_message-label:
+.. _view_message-label:
 
 固定文言を表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
