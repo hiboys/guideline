@@ -2709,7 +2709,7 @@ JSPの実装
 - :ref:`view_outnumber-label`
 - :ref:`view_outdate-label`
 - :ref:`view_requesturl-label`
-- :ref:`view_jsp_form-label`
+- :ref:`view_form-label`
 - :ref:`view_jsp_errors-label`
 - :ref:`view_jsp_resultmessages-label`
 - :ref:`view_jsp_codelist-label`
@@ -3105,7 +3105,7 @@ HTMLの\ ``<form>``\ 要素(JSPタグライブラリの\ ``<form:form>``\ 要素
 
 |
 
-.. _view_jsp_form-label:
+.. _view_form-label:
 
 HTML formへフォームオブジェクトをバインドする
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
