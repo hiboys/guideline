@@ -1689,7 +1689,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 例外ハンドリングを行う際の、JSPでのコーディングポイントを、以下に示す。
 
-#. :ref:`exception-handling-how-to-use-codingpoint-jsp-panel-label`
+#. :ref:`exception-handling-how-to-use-codingpoint-view-panel-label`
 #. :ref:`exception-handling-how-to-use-codingpoint-jsp-exceptioncode-label`
 
 .. tip::
@@ -1700,7 +1700,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 
     参考までに、Internet Explorerでの詳細な条件は、「`Friendly HTTP Error Pages <https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/>`_」を参照されたい。
 
-.. _exception-handling-how-to-use-codingpoint-jsp-panel-label:
+.. _exception-handling-how-to-use-codingpoint-view-panel-label:
 
 MessagesPanelTagを使用して、メッセージを画面表示する方法
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
