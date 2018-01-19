@@ -1437,7 +1437,7 @@ JSPの実装(基本編)
 
 |
 
-.. _pagination_how_to_use_make_jsp_layout:
+.. _pagination_how_to_use_make_view_layout:
 
 JSPの実装(レイアウト変更編)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
