@@ -749,7 +749,7 @@ How to use
 
         .. note:: **例外コード(メッセージID)について**
 
-             例外コードは、ExceptionLoggerによりログに出力される。（画面での取得も可能である。View(Thymeleaf)から例外コードを参照する方法については、\ :ref:`exception-handling-how-to-use-codingpoint-jsp-exceptioncode-label`\ を参照されたい。）
+             例外コードは、ExceptionLoggerによりログに出力される。（画面での取得も可能である。View(Thymeleaf)から例外コードを参照する方法については、\ :ref:`exception-handling-how-to-use-codingpoint-view-exceptioncode-label`\ を参照されたい。）
              またコード体系については、プロパティに定義している形式でなくともよい。
              例えば、MA7001等
 
@@ -1682,7 +1682,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 例外ハンドリングを行う際の、Thymeleafテンプレート(HTML)でのコーディングポイントを、以下に示す。
 
 #. :ref:`exception-handling-how-to-use-codingpoint-jsp-panel-label`
-#. :ref:`exception-handling-how-to-use-codingpoint-jsp-exceptioncode-label`
+#. :ref:`exception-handling-how-to-use-codingpoint-view-exceptioncode-label`
 
 .. tip::
 
@@ -1725,7 +1725,7 @@ ResultMessagesに格納されたメッセージを画面表示する方法
      - 属性名が"resultMessages"のオブジェクトに格納された ``message`` 変数を、Thymeleafのメッセージ式 ``#messages`` を使用して繰り返し取得し、出力する。
 
 
-.. _exception-handling-how-to-use-codingpoint-jsp-exceptioncode-label:
+.. _exception-handling-how-to-use-codingpoint-view-exceptioncode-label:
 
 システム例外の例外コードを、画面表示する方法
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
