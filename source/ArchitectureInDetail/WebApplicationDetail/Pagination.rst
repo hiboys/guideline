@@ -1345,7 +1345,7 @@ JSPの実装(基本編)
 
 |
 
-.. _pagination_how_to_use_make_jsp_basic_search_criteria:
+.. _pagination_how_to_use_make_view_basic_search_criteria:
 
 ページリンクで検索条件を引き継ぐ
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
