@@ -2715,7 +2715,7 @@ JSPの実装
 - :ref:`view_codelist-label`
 - :ref:`view_message-label`
 - :ref:`view_if-label`
-- :ref:`view_jsp_forEach-label`
+- :ref:`view_forEach-label`
 - :ref:`view_jsp_pagination-label`
 - :ref:`view_jsp_authorization-label`
 
@@ -3351,7 +3351,7 @@ JSTLのJSPタグライブラリから提供されている ``<c:if>`` タグ又�
 
 |
 
-.. _view_jsp_forEach-label:
+.. _view_forEach-label:
 
 コレクションの要素に対して表示処理を繰り返す
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
