@@ -1584,10 +1584,10 @@ Spring Securityの詳細については \ :doc:`../../Security/Authentication`\ 
                         <input type="radio" name="${f:h(scope.key)}" id="${f:h(scope.key)}_deny" value="false"/><label for="${f:h(scope.key)}_deny">Deny</label>
                     </li>
                 </c:forEach>
-                <input name="user_oauth_approval" value="true" type="hidden"/>  <!-- (3) -->
+                <input type="hidden" name="user_oauth_approval" value="true"/>  <!-- (3) -->
                 <sec:csrfInput />  <!-- (4) -->
                 <label>
-                    <input value="Authorize" id="authorize" type="submit"/>
+                    <input type="submit" id="authorize" value="Authorize"/>
                 </label>
             </form>
         </div>
