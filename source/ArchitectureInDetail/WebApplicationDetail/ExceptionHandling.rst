@@ -680,7 +680,7 @@ How to use
 #. :ref:`exception-handling-how-to-use-application-configuration-label`
 #. :ref:`exception-handling-how-to-use-codingpoint-service-label`
 #. :ref:`exception-handling-how-to-use-codingpoint-controller-label`
-#. :ref:`exception-handling-how-to-use-codingpoint-jsp-label`
+#. :ref:`exception-handling-how-to-use-codingpoint-view-label`
 
 
 .. _exception-handling-how-to-use-application-configuration-label:
@@ -1683,7 +1683,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
     \ ``@ControllerAdvice``\の詳細は、\ :ref:`application_layer_controller_advice`\を参照されたい。
 
 
-.. _exception-handling-how-to-use-codingpoint-jsp-label:
+.. _exception-handling-how-to-use-codingpoint-view-label:
 
 コーディングポイント（JSP編）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -489,7 +489,7 @@ Maven Archetypeで作成したプロジェクトでは、エラーの種類毎�
         ``artifactId/artifactId-web/src/main/webapp/WEB-INF/views/common/error/*.jsp``
       - アプリケーション要件(UI規約など)に合わせて修正する。
 
-        エラー画面を表示するJSPをカスタマイズする際は、「:doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling` の :ref:`exception-handling-how-to-use-codingpoint-jsp-label`」を参照されたい。
+        エラー画面を表示するJSPをカスタマイズする際は、「:doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling` の :ref:`exception-handling-how-to-use-codingpoint-view-label`」を参照されたい。
     * - 2.
       - エラー画面用のHTML
 
