@@ -2706,7 +2706,7 @@ JSPの実装
 
 - :ref:`view_jsp_include-label`
 - :ref:`view_out-label`
-- :ref:`view_jsp_outnumber-label`
+- :ref:`view_outnumber-label`
 - :ref:`view_outdate-label`
 - :ref:`view_jsp_requesturl-label`
 - :ref:`view_jsp_form-label`
@@ -2886,7 +2886,7 @@ JSTLのJSPタグライブラリから提供されている ``<c:out>`` タグを
 
 |
 
-.. _view_jsp_outnumber-label:
+.. _view_outnumber-label:
 
 モデルに格納されている数値を表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
