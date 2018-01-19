@@ -1219,7 +1219,7 @@ PRG(Post-Redirect-Get)パターンの適用
  .. note::
     
     \ ``<t:transaction />``\は、共通ライブラリから提供しているJSPタグライブラリである。
-    (2)で使用している「t:」については、\ :ref:`view_jsp_include-label`\ を参照されたい。
+    (2)で使用している「t:」については、\ :ref:`view_include-label`\ を参照されたい。
 
 * HTMLの出力例
 

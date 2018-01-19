@@ -1204,7 +1204,7 @@ webモジュールの構成
 
 
         このファイルは、全てのJSPファイルの先頭にインクルードされる。
-        インクルード用の共通JSPファイルについては、「:ref:`view_jsp_include-label`」を参照されたい。
+        インクルード用の共通JSPファイルについては、「:ref:`view_include-label`」を参照されたい。
     * - | (16)
       - Tilesのレイアウト用のJSPファイルを格納するディレクトリ。
         Tilesのレイアウト用のJSPファイルについては、「:doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout`」を参照されたい。

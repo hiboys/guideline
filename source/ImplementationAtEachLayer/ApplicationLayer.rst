@@ -2704,7 +2704,7 @@ JSPの実装
 
 以下に、基本的なJSPの実装方法について説明する。
 
-- :ref:`view_jsp_include-label`
+- :ref:`view_include-label`
 - :ref:`view_out-label`
 - :ref:`view_outnumber-label`
 - :ref:`view_outdate-label`
@@ -2756,7 +2756,7 @@ JSPの実装
 
 |
 
-.. _view_jsp_include-label:
+.. _view_include-label:
 
 インクルード用の共通JSPの作成
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

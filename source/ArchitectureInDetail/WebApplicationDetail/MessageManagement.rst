@@ -592,7 +592,7 @@ How to use
 * JSP
 
     上記で設定したメッセージをJSPからは、\ ``<spring:message>``\ タグを用いて表示できる。
-    \ :ref:`view_jsp_include-label`\ の設定が必要である。
+    \ :ref:`view_include-label`\ の設定が必要である。
 
     .. code-block:: jsp
 

@@ -210,7 +210,7 @@ JSPの実装
 
 .. note::
 
-  インクルード用の共通jspファイルの詳細は :ref:`view_jsp_include-label` を参照されたい。
+  インクルード用の共通jspファイルの詳細は :ref:`view_include-label` を参照されたい。
 
 |
 
@@ -454,7 +454,7 @@ JSPの実装
 .. tip::
 
     * インクルード用の共通jspにSpringのタグライブラリを定義する必要がある。
-    * インクルード用の共通jspファイルの詳細は :ref:`view_jsp_include-label` を参照されたい。
+    * インクルード用の共通jspファイルの詳細は :ref:`view_include-label` を参照されたい。
 
 |
 

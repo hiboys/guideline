@@ -317,7 +317,7 @@ Tilesのカスタムタグの詳細は、\ `こちら <http://tiles.apache.org/f
  .. note::
 
      カスタムタグはtemplate.jspに設定しても問題は無いが、カスタムタグの定義はインクルード用の共通jspファイルに作成することを推奨する。
-     詳細は :ref:`view_jsp_include-label` を参照されたい。
+     詳細は :ref:`view_include-label` を参照されたい。
 
 **レイアウト作成**
 
