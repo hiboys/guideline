@@ -347,7 +347,7 @@ Bean ValidationのAPI仕様クラス(\ ``javax.validation``\ パッケージの�
     バリデーションのグループを指定できる点で優れているため、本ガイドラインではControllerの引数には、\ ``@Validated``\ を使用することを推奨する。
 
 
-.. _Validation_jsp_impl_sample:
+.. _Validation_view_impl_sample:
 
 * JSP
 
