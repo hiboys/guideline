@@ -159,7 +159,7 @@ How to use
 トランザクショントークンチェック機能の説明及び本タグの使用方法は、「:doc:`./DoubleSubmitProtection`」の以下の節を参照されたい。
 
 * トランザクショントークンチェック機能については、「:ref:`doubleSubmit_how_to_use_transaction_token_check`」
-* 本タグの使用方法については、「:ref:`doubleSubmit_how_to_use_transaction_token_check_jsp`」
+* 本タグの使用方法については、「:ref:`doubleSubmit_how_to_use_transaction_token_check_view`」
 
 .. note::
 

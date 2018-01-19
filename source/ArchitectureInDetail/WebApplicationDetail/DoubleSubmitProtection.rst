@@ -1123,7 +1123,7 @@ PRG(Post-Redirect-Get)パターンの適用
     * \ ``@TransactionTokenCheck``\アノテーションのtype属性にBEGINを指定した場合は、新しくTokenKeyが生成されるため、トランザクショントークンのチェックは行われない。
     * \ ``@TransactionTokenCheck``\アノテーションのtype属性にINが指定された場合は、リクエストで指定されたトークン値とサーバ上で保持しているトークン値が同一のものがあるかをチェックする。
 
-.. _doubleSubmit_how_to_use_transaction_token_check_jsp:
+.. _doubleSubmit_how_to_use_transaction_token_check_view:
 
 トランザクショントークンチェックのView(JSP)での利用方法
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1748,7 +1748,7 @@ Controllerの実装
 
 * HTMLの出力例
 
- | JSPは、\ :ref:`doubleSubmit_how_to_use_transaction_token_check_jsp`\で用意したJSPと同等のものを用意する。
+ | JSPは、\ :ref:`doubleSubmit_how_to_use_transaction_token_check_view`\で用意したJSPと同等のものを用意する。
  | actionを、\ ``transactionTokenCheckExample``\から\ ``globalTokenCheckExample``\に変更したのみで、他は同じである。
 
  .. figure:: ./images/transaction-token-global-html.png
