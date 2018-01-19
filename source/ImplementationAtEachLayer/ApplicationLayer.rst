@@ -2714,7 +2714,7 @@ JSPの実装
 - :ref:`view_resultmessages-label`
 - :ref:`view_codelist-label`
 - :ref:`view_message-label`
-- :ref:`view_jsp_if-label`
+- :ref:`view_if-label`
 - :ref:`view_jsp_forEach-label`
 - :ref:`view_jsp_pagination-label`
 - :ref:`view_jsp_authorization-label`
@@ -3289,7 +3289,7 @@ Spring Frameworkから提供されている ``<form:form>`` タグを使用し�
 
 |
 
-.. _view_jsp_if-label:
+.. _view_if-label:
 
 条件によって表示を切り替える
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
