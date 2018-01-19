@@ -2705,7 +2705,7 @@ JSPの実装
 以下に、基本的なJSPの実装方法について説明する。
 
 - :ref:`view_jsp_include-label`
-- :ref:`view_jsp_out-label`
+- :ref:`view_out-label`
 - :ref:`view_jsp_outnumber-label`
 - :ref:`view_jsp_outdate-label`
 - :ref:`view_jsp_requesturl-label`
@@ -2821,7 +2821,7 @@ JSPの実装
 
 |
 
-.. _view_jsp_out-label:
+.. _view_out-label:
 
 モデルに格納されている値を表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
