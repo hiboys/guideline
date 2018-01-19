@@ -2712,7 +2712,7 @@ JSPの実装
 - :ref:`view_form-label`
 - :ref:`view_errors-label`
 - :ref:`view_resultmessages-label`
-- :ref:`view_jsp_codelist-label`
+- :ref:`view_codelist-label`
 - :ref:`view_jsp_message-label`
 - :ref:`view_jsp_if-label`
 - :ref:`view_jsp_forEach-label`
@@ -3196,7 +3196,7 @@ Spring Frameworkから提供されている ``<form:form>`` タグを使用し�
 
 |
 
-.. _view_jsp_codelist-label:
+.. _view_codelist-label:
 
 コードリストを表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
