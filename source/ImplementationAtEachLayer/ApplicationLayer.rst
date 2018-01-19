@@ -2708,7 +2708,7 @@ JSPの実装
 - :ref:`view_out-label`
 - :ref:`view_outnumber-label`
 - :ref:`view_outdate-label`
-- :ref:`view_jsp_requesturl-label`
+- :ref:`view_requesturl-label`
 - :ref:`view_jsp_form-label`
 - :ref:`view_jsp_errors-label`
 - :ref:`view_jsp_resultmessages-label`
@@ -2949,7 +2949,7 @@ JSTLのJSPタグライブラリから提供されている ``<fmt:formatDate>`` 
 
 |
 
-.. _view_jsp_requesturl-label:
+.. _view_requesturl-label:
 
 リクエストURLを生成する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
