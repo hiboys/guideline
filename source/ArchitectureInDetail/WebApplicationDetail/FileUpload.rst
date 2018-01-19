@@ -1277,7 +1277,7 @@ JSPの実装
 
     <form:form
       action="${pageContext.request.contextPath}/article/uploadFiles" method="post"
-      modelAttribute="filesUploadForm2" enctype="multipart/form-data">
+      modelAttribute="filesUploadForm" enctype="multipart/form-data">
       <table>
         <tr>
           <th width="35%">File to upload</th>
