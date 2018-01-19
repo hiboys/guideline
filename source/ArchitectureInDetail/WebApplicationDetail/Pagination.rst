@@ -1034,7 +1034,7 @@ JSPの実装(基本編)
 
 |
 
-.. _pagination_how_to_use_make_jsp_basic_paginationlink:
+.. _pagination_how_to_use_make_view_basic_paginationlink:
 
 ページネーションリンクの表示
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

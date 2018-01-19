@@ -131,7 +131,7 @@ How to use
 
 * ページネーションリンクについては、「:ref:`pagination_overview_paginationlink`」
 * 本タグのパラメータ値については、「:ref:`pagination_overview_paginationlink_taglibparameters`」
-* 本タグを使用したJSPの基本的な実装方法については、「:ref:`pagination_how_to_use_make_jsp_basic_paginationlink`」
+* 本タグを使用したJSPの基本的な実装方法については、「:ref:`pagination_how_to_use_make_view_basic_paginationlink`」
 * ページネーションリンクのレイアウトの変更方法については、「:ref:`pagination_how_to_use_make_jsp_layout`」
 
 |
