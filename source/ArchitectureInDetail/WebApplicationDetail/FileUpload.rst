@@ -564,7 +564,7 @@ JSPの実装
           <th width="35%">Description</th>
           <td width="65%">
             <form:input path="description" />
-            <form:errors  path="description" />
+            <form:errors path="description" />
           </td>
         </tr>
         <tr>
