@@ -2716,7 +2716,7 @@ JSPの実装
 - :ref:`view_message-label`
 - :ref:`view_if-label`
 - :ref:`view_forEach-label`
-- :ref:`view_jsp_pagination-label`
+- :ref:`view_pagination-label`
 - :ref:`view_jsp_authorization-label`
 
 本章では代表的なJSPタグライブラリの使い方は説明しているが、全てのJSPタグライブラリの説明はしていないので、詳細な使い方については、それぞれのドキュメントを参照すること。
@@ -3397,7 +3397,7 @@ JSTLのJSPタグライブラリから提供されている ``<c:forEach>`` を�
 
 |
 
-.. _view_jsp_pagination-label:
+.. _view_pagination-label:
 
 ページネーション用のリンクを表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
