@@ -2710,7 +2710,7 @@ JSPの実装
 - :ref:`view_outdate-label`
 - :ref:`view_requesturl-label`
 - :ref:`view_form-label`
-- :ref:`view_jsp_errors-label`
+- :ref:`view_errors-label`
 - :ref:`view_jsp_resultmessages-label`
 - :ref:`view_jsp_codelist-label`
 - :ref:`view_jsp_message-label`
@@ -3138,7 +3138,7 @@ Spring Frameworkから提供されている ``<form:form>`` タグを使用し�
 
 |
 
-.. _view_jsp_errors-label:
+.. _view_errors-label:
 
 入力チェックエラーを表示する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
