@@ -1056,38 +1056,24 @@ JSPの実装
     <form:form
       action="${pageContext.request.contextPath}/article/uploadFiles" method="post"
       modelAttribute="filesUploadForm" enctype="multipart/form-data">
-      <table>
-        <tr>
-          <th width="35%">File to upload</th>
-          <td width="65%">
-            <form:input type="file" path="fileUploadForms[0].file" /> <!-- (1) -->
-            <form:errors path="fileUploadForms[0].file" />
-          </td>
-        </tr>
-        <tr>
-          <th width="35%">Description</th>
-          <td width="65%">
-            <form:input path="fileUploadForms[0].description" />
-            <form:errors  path="fileUploadForms[0].description" />
-          </td>
-        </tr>
-      </table>
-      <table>
-        <tr>
-          <th width="35%">File to upload</th>
-          <td width="65%">
-            <form:input type="file" path="fileUploadForms[1].file" /> <!-- (1) -->
-            <form:errors path="fileUploadForms[1].file" />
-          </td>
-        </tr>
-        <tr>
-          <th width="35%">Description</th>
-          <td width="65%">
-            <form:input path="fileUploadForms[1].description" />
-            <form:errors path="fileUploadForms[1].description" />
-          </td>
-        </tr>
-      </table>
+      <c:forEach var="i" begin="0" end="1" step="1">
+        <table>
+          <tr>
+            <th width="35%">File to upload</th>
+            <td width="65%">
+              <form:input type="file" path="fileUploadForms[${i}].file" /> <!-- (1) -->
+              <form:errors path="fileUploadForms[${i}].file" />
+            </td>
+          </tr>
+          <tr>
+            <th width="35%">Description</th>
+            <td width="65%">
+              <form:input path="fileUploadForms[${i}].description" />
+              <form:errors  path="fileUploadForms[${i}].description" />
+            </td>
+          </tr>
+        </table>
+      </c:forEach>
       <div>
         <form:button>Upload</form:button>
       </div>
