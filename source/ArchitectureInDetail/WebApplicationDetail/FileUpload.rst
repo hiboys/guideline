@@ -467,7 +467,7 @@ multipart/form-dataリクエストの時、ファイルアップロードで許�
 | \ ``MultipartException``\ に対する例外コードを設ける場合は、例外コードの設定を追加する。
 | 例外コードは、共通ライブラリのログ出力機能により出力されるログに、出力される。
 | 例外コードは、View(JSP)から参照することもできる。
-| View(JSP)から例外コードを参照する方法については、\ :ref:`exception-handling-how-to-use-codingpoint-jsp-exceptioncode-label`\ を参照されたい。
+| View(JSP)から例外コードを参照する方法については、\ :ref:`exception-handling-how-to-use-codingpoint-view-exceptioncode-label`\ を参照されたい。
 
 - :file:`applicationContext.xml`
 
