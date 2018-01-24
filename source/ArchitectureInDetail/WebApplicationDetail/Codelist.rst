@@ -669,8 +669,8 @@ EnumCodeListの使用方法
 
         \ ``EnumCodeList.CodeListItem``\ インタフェースには、コードリストを作成するために必要な情報(コード値とラベル)を取得するためのメソッドとして、
 
-        * コード値を取得する\ ``getCodeValue()``\ メソッド
-        * ラベルを取得する\ ``getCodeLabel()``\ メソッド
+        * コード値を取得する\ ``getCodeValue``\ メソッド
+        * ラベルを取得する\ ``getCodeLabel``\ メソッド
 
         が定義されている。
     * - | (2)
@@ -1517,7 +1517,7 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
      - | システム日付のDateクラスを作成する ``org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory`` を設定する。
        | ``JodaTimeDateFactory`` を利用して今年と来年の年を取得することができる。
    * - | (3)
-     - | ``asMap()`` メソッドをオーバライドして、今年と来年の年のリストを作成する。
+     - | ``asMap`` メソッドをオーバライドして、今年と来年の年のリストを作成する。
        | 作成したいコードリスト毎に実装が異なる。
 
 **bean定義ファイル(xxx-codelist.xml)の定義**
