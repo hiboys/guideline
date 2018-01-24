@@ -1540,7 +1540,7 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
      - | 作成したコードリストクラスをbean定義する。
        | id に ``CL_YEAR`` を指定することで、bean定義で設定した ``CodeListInterceptor`` によりコードリストをコンポーネント登録する。
    * - | (2)
-     - | システム日付のDateクラスを作成する ``org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory`` を設定する。
+     - | システム日付のDateクラスを作成する ``JodaTimeDateFactory`` を設定する。
        | 事前に、bean定義ファイルにDataFactory実装クラスを設定する必要がある。
 
 |
