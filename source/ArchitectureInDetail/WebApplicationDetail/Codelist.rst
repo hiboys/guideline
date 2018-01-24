@@ -1482,7 +1482,7 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
 
         private JodaTimeDateFactory dateFactory;
 
-        public DepYearCodeList(JodaTimeDateFactory dateFactory) {  //(2)
+        public void setDateFactory(JodaTimeDateFactory dateFactory) { //(2)
             this.dateFactory = dateFactory;
         }
 
@@ -1514,7 +1514,7 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
      - | ``AbstractCodeList`` を継承する。
        | 今年と来年の年のリストを作る時、動的にシステム日付から算出して作成しているため、リロードは不要。
    * - | (2)
-     - | システム日付のDateクラスを作成する ``org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory`` をコンストラクタで設定する。
+     - | システム日付のDateクラスを作成する ``org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory`` を設定する。
        | ``JodaTimeDateFactory`` を利用して今年と来年の年を取得することができる。
    * - | (3)
      - | ``asMap()`` メソッドをオーバライドして、今年と来年の年のリストを作成する。
@@ -1525,7 +1525,7 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
 .. code-block:: xml
 
     <bean id="CL_YEAR" class="com.example.sample.domain.codelist.DepYearCodeList"> <!-- (1) -->
-        <constructor-arg name="dateFactory" ref="dateFactory" /> <!-- (2) -->
+        <property name="dateFactory" ref="dateFactory" /> <!-- (2) -->
     </bean>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1540,7 +1540,7 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
      - | 作成したコードリストクラスをbean定義する。
        | id に"CL_YEAR" を指定することで、bean定義で設定したコードリストインターセプトによりコードリストをコンポーネント登録する。
    * - | (2)
-     - | システム日付のDateクラスを作成する ``org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory`` をコンストラクタでインジェクションする。
+     - | システム日付のDateクラスを作成する ``org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory`` を設定する。
        | 事前に、bean定義ファイルにDataFactory実装クラスを設定する必要がある。
 
 |
