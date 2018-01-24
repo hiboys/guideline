@@ -1478,7 +1478,7 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
 
     ...
 
-    public class DepYearCodeList extends AbstractReloadableCodeList { // (1)
+    public class DepYearCodeList extends AbstractCodeList { // (1)
 
         private JodaTimeDateFactory dateFactory;
 
@@ -1487,7 +1487,7 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
         }
 
         @Override
-        public Map<String, String> retrieveMap() {  // (3)
+        public Map<String, String> asMap() {  // (3)
             DateTime dateTime = dateFactory.newDateTime();
             DateTime nextYearDateTime = dateTime.plusYears(1);
 
@@ -1511,13 +1511,13 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
    * - 項番
      - 説明
    * - | (1)
-     - | ``org.terasoluna.gfw.common.codelist.AbstractReloadableCodeList`` を継承する。
-       | 年をまたぐ際にrefreshメソッドを呼ぶことで、コードリストを更新できる。詳細は、:ref:`codeListTaskScheduler` を参照されたい。
+     - | ``AbstractCodeList`` を継承する。
+       | 今年と来年の年のリストを作る時、動的にシステム日付から算出して作成しているため、リロードは不要。
    * - | (2)
      - | システム日付のDateクラスを作成する ``org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory`` をコンストラクタで設定する。
        | ``JodaTimeDateFactory`` を利用して今年と来年の年を取得することができる。
    * - | (3)
-     - | ``retrieveMap()`` メソッドをオーバライドして、今年と来年の年のリストを作成する。
+     - | ``asMap()`` メソッドをオーバライドして、今年と来年の年のリストを作成する。
        | 作成したいコードリスト毎に実装が異なる。
 
 **bean定義ファイル(xxx-codelist.xml)の定義**
