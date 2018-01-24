@@ -749,7 +749,7 @@ How to use
 
         .. note:: **例外コード(メッセージID)について**
 
-             例外コードは、ExceptionLoggerによりログに出力される。（画面での取得も可能である。View(Thymeleaf)から例外コードを参照する方法については、\ :ref:`exception-handling-how-to-use-codingpoint-view-exceptioncode-label`\ を参照されたい。）
+             例外コードは、ExceptionLoggerによりログに出力される。（画面での取得も可能である。View(テンプレートHTML)から例外コードを参照する方法については、\ :ref:`exception-handling-how-to-use-codingpoint-view-exceptioncode-label`\ を参照されたい。）
              またコード体系については、プロパティに定義している形式でなくともよい。
              例えば、MA7001等
 
@@ -1948,14 +1948,14 @@ SystemExceptionResolverの設定項目について
      - | 結果メッセージの属性名
      - | resultMessagesAttribute
      - | ビジネス例外に設定されているメッセージ情報として、モデルに設定する際の属性名(String)を指定する。
-       | View(Thymeleaf)から結果メッセージにアクセスする際の、属性名となる。
+       | View(テンプレートHTML)から結果メッセージにアクセスする際の、属性名となる。
      - resultMessages
    * - | (2)
      - | 例外コード(メッセージID)の属性名
      - | exceptionCode
        | Attribute
      - | 例外コード(メッセージID)として、HttpServletRequestに設定する際の属性名(String)を指定する。
-       | View(Thymeleaf)から例外コード(メッセージID)にアクセスする際の属性名となる。
+       | View(テンプレートHTML)から例外コード(メッセージID)にアクセスする際の属性名となる。
      - exceptionCode
    * - | (3)
      - | 例外コード(メッセージID)のヘッダー名
@@ -1967,7 +1967,7 @@ SystemExceptionResolverの設定項目について
      - | 例外オブジェクトの属性名
      - | exceptionAttribute
      - | ハンドリングした例外オブジェクトとして、モデルに設定する際の属性名(String)を指定する。
-       | View(Thymeleaf)から例外オブジェクトにアクセスする際の属性名となる。
+       | View(テンプレートHTML)から例外オブジェクトにアクセスする際の属性名となる。
      - exception
    * - | (5)
      - | 本ExceptionResolverとして、使用するハンドラー(Controller)のオブジェクト一覧
