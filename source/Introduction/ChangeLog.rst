@@ -9,6 +9,12 @@
     * - 更新日付
       - 更新箇所
       - 更新内容
+      
+    * - 2018-01-26
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
+      - 記載内容の修正(管理ID#3175 )
+
+        * ``DepYearCodeList`` のbean定義を ``@Component`` からxmlで定義する方法に変更 
 
     * - 2018-XX-XX
       - \-
