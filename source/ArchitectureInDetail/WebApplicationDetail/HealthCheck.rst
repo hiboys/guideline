@@ -309,7 +309,7 @@ JSPファイル
 
 | ヘルスチェック処理を使用する際は、認証・認可機能などによりヘルスチェック用のURLがアクセス不可にならないように注意する必要がある。
 | 例えば、どのロールでもアクセスできるようにするには、spring-security.xmlの\ ``<sec:intercept-url>``\を設定する。
-| \ ``/common/healthcheck``\ 配下の除外設定を行う例を以下に示す。
+| \ ``/healthcheck``\ 配下の除外設定を行う例を以下に示す。
 | 詳細は\ :doc:`../../../Security/Authorization`\を参照されたい。
 
 **spring-security.xml**
