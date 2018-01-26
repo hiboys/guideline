@@ -1514,7 +1514,7 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
      - | ``AbstractCodeList`` を継承する。
        | 今年と来年の年のリストを作る時、動的にシステム日付から算出して作成しているため、リロードは不要。
    * - | (2)
-     - | システム日付のDateクラスを作成する ``org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory`` を設定する。
+     - | システム日付のDateクラスを作成する ``org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory`` をインジェクションするためのセッターを用意する。
        | ``JodaTimeDateFactory`` を利用して今年と来年の年を取得することができる。
    * - | (3)
      - | ``asMap`` メソッドをオーバライドして、今年と来年の年のリストを作成する。
