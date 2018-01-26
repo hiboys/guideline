@@ -10,9 +10,9 @@
       - 更新箇所
       - 更新内容
     
-    * - xxxx-xx-xx
+    * - 2018-XX-XX
       - \-
-      - 5.5.0 RELEASE版公開
+      - 1.6.0 RELEASE版公開
 
     * -
       - 全般
@@ -22,13 +22,9 @@
       
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
-      - 記載内容の修正(管理ID#3175 )
+      - 記載内容の修正
 
         * 独自カスタマイズしたコードリストのBean定義方法を、コンポーネントスキャンからBean定義ファイルによる定義に変更
-
-    * - 2018-XX-XX
-      - \-
-      - 1.6.0 RELEASE版公開
 
     * - 2017-12-18
       - \-
