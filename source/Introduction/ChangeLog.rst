@@ -13,6 +13,12 @@
     * - 2018-XX-XX
       - \-
       - 5.4.1 RELEASE版公開
+    
+    * - 
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
+      - 記載内容の修正(管理ID#3175 )
+
+        * 独自カスタマイズしたコードリストのBean定義方法を、コンポーネントスキャンからBean定義ファイルによる定義に変更
 
     * - 2018-03-16
       - \-
