@@ -9,8 +9,18 @@
     * - 更新日付
       - 更新箇所
       - 更新内容
+    
+    * - xxxx-xx-xx
+      - \-
+      - 5.5.0 RELEASE版公開
+
+    * -
+      - 全般
+      - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
+
+        記載内容の改善
       
-    * - 2018-01-26
+    * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
       - 記載内容の修正(管理ID#3175 )
 
