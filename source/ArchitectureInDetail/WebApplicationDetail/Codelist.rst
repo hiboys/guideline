@@ -669,8 +669,8 @@ EnumCodeListの使用方法
 
         \ ``EnumCodeList.CodeListItem``\ インタフェースには、コードリストを作成するために必要な情報(コード値とラベル)を取得するためのメソッドとして、
 
-        * コード値を取得する\ ``getCodeValue()``\ メソッド
-        * ラベルを取得する\ ``getCodeLabel()``\ メソッド
+        * コード値を取得する\ ``getCodeValue``\ メソッド
+        * ラベルを取得する\ ``getCodeLabel``\ メソッド
 
         が定義されている。
     * - | (2)
@@ -1473,14 +1473,21 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
 
 .. code-block:: java
 
-    @Component("CL_YEAR") // (1)
-    public class DepYearCodeList extends AbstractCodeList { // (2)
 
-        @Inject
-        JodaTimeDateFactory dateFactory; // (3)
+    package com.example.sample.domain.codelist;
+
+    ...
+
+    public class DepYearCodeList extends AbstractCodeList { // (1)
+
+        private JodaTimeDateFactory dateFactory;
+
+        public void setDateFactory(JodaTimeDateFactory dateFactory) { //(2)
+            this.dateFactory = dateFactory;
+        }
 
         @Override
-        public Map<String, String> asMap() {  // (4)
+        public Map<String, String> asMap() {  // (3)
             DateTime dateTime = dateFactory.newDateTime();
             DateTime nextYearDateTime = dateTime.plusYears(1);
 
@@ -1504,18 +1511,37 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
    * - 項番
      - 説明
    * - | (1)
-     - | ``@Component`` で、コードリストをコンポーネント登録する。
-       | Valueに ``CL_YEAR`` を指定することで、bean定義で設定したコードリストインターセプトによりコードリストをコンポーネント登録する。
-   * - | (2)
-     - | ``org.terasoluna.gfw.common.codelist.AbstractCodeList`` を継承する。
+     - | ``AbstractCodeList`` を継承する。
        | 今年と来年の年のリストを作る時、動的にシステム日付から算出して作成しているため、リロードは不要。
-   * - | (3)
-     - | システム日付のDateクラスを作成する ``org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory`` をインジェクトしている。
+   * - | (2)
+     - | システム日付のDateクラスを作成する ``org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory`` をインジェクションするためのセッターを用意する。
        | ``JodaTimeDateFactory`` を利用して今年と来年の年を取得することができる。
-       | 事前に、bean定義ファイルにDataFactory実装クラスを設定する必要がある。
-   * - | (4)
-     - | ``asMap()`` メソッドをオーバライドして、今年と来年の年のリストを作成する。
+   * - | (3)
+     - | ``asMap`` メソッドをオーバライドして、今年と来年の年のリストを作成する。
        | 作成したいコードリスト毎に実装が異なる。
+
+**bean定義ファイル(xxx-codelist.xml)の定義**
+
+.. code-block:: xml
+
+    <bean id="CL_YEAR" class="com.example.sample.domain.codelist.DepYearCodeList"> <!-- (1) -->
+        <property name="dateFactory" ref="dateFactory" /> <!-- (2) -->
+    </bean>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | 作成したコードリストクラスをbean定義する。
+       | id に ``CL_YEAR`` を指定することで、bean定義で設定した ``CodeListInterceptor`` によりコードリストをコンポーネント登録する。
+   * - | (2)
+     - | システム日付のDateクラスを作成する ``JodaTimeDateFactory`` を設定する。
+       | 事前に、bean定義ファイルにDataFactory実装クラスを設定する必要がある。
 
 |
 
