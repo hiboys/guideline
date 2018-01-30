@@ -2127,10 +2127,10 @@ Controllerの修正
 JSPの修正
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-完了処理用のformを追加する。
+\ ``inline-block``\ 用のstyleタグの定義と完了処理用のformを追加する。
 
 .. code-block:: jsp
-    :emphasize-lines: 56-66
+    :emphasize-lines: 12-14, 60-70
 
     <!DOCTYPE html>
     <html>
@@ -2141,6 +2141,10 @@ JSPの修正
     <style type="text/css">
     .strike {
         text-decoration: line-through;
+    }
+
+    .inline {
+        display: inline-block;
     }
 
     .alert {
@@ -2192,7 +2196,7 @@ JSPの修正
                                     action="${pageContext.request.contextPath}/todo/finish"
                                     method="post"
                                     modelAttribute="todoForm"
-                                    cssStyle="display: inline-block;">
+                                    class="inline">
                                     <!-- (2) -->
                                     <form:hidden path="todoId"
                                         value="${f:h(todo.todoId)}" />
@@ -2449,7 +2453,7 @@ JSPの修正
 削除処理用のformを追加する。
 
 .. code-block:: jsp
-    :emphasize-lines: 67-76
+    :emphasize-lines: 71-80
 
     <!DOCTYPE html>
     <html>
@@ -2460,6 +2464,10 @@ JSPの修正
     <style type="text/css">
     .strike {
         text-decoration: line-through;
+    }
+
+    .inline {
+        display: inline-block;
     }
 
     .alert {
@@ -2510,7 +2518,7 @@ JSPの修正
                                     action="${pageContext.request.contextPath}/todo/finish"
                                     method="post"
                                     modelAttribute="todoForm"
-                                    cssStyle="display: inline-block;">
+                                    class="inline">
                                     <form:hidden path="todoId"
                                         value="${f:h(todo.todoId)}" />
                                     <form:button>Finish</form:button>
@@ -2521,7 +2529,7 @@ JSPの修正
                         <form:form
                             action="${pageContext.request.contextPath}/todo/delete"
                             method="post" modelAttribute="todoForm"
-                            cssStyle="display: inline-block;">
+                            class="inline">
                             <!-- (2) -->
                             <form:hidden path="todoId"
                                 value="${f:h(todo.todoId)}" />
@@ -2575,6 +2583,10 @@ CSSファイルの使用
 
     .strike {
         text-decoration: line-through;
+    }
+
+    .inline {
+        display: inline-block;
     }
 
     .alert {
@@ -2649,7 +2661,7 @@ JSPからCSSファイルを読み込む。
                                     action="${pageContext.request.contextPath}/todo/finish"
                                     method="post"
                                     modelAttribute="todoForm"
-                                    cssStyle="display: inline-block;">
+                                    class="inline">
                                     <form:hidden path="todoId"
                                         value="${f:h(todo.todoId)}" />
                                     <form:button>Finish</form:button>
@@ -2659,7 +2671,7 @@ JSPからCSSファイルを読み込む。
                         <form:form
                             action="${pageContext.request.contextPath}/todo/delete"
                             method="post" modelAttribute="todoForm"
-                            cssStyle="display: inline-block;">
+                            class="inline">
                             <form:hidden path="todoId"
                                 value="${f:h(todo.todoId)}" />
                             <form:button>Delete</form:button>
