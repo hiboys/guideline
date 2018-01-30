@@ -241,7 +241,7 @@ JSPでのコードリスト使用
 .. code-block:: html
 
   <select id="orderStatus" name="orderStatus">
-     <option value="">"--Select--</option>
+     <option value="">--Select--</option>
      <option value="1">Received</option>
      <option value="2">Sent</option>
      <option value="3">Cancelled</option>
