@@ -1472,7 +1472,7 @@ Package Explorer上で右クリック -> New -> File を選択し、「New File�
 * TODOの一覧表示エリア
 
 .. code-block:: jsp
-    :emphasize-lines: 15, 19-20, 27-28, 30, 32-33
+    :emphasize-lines: 15, 17, 25-26, 28, 30-31
 
     <!DOCTYPE html>
     <html>
@@ -1489,9 +1489,7 @@ Package Explorer上で右クリック -> New -> File を選択し、「New File�
         <h1>Todo List</h1>
         <div id="todoForm">
             <!-- (1) -->
-            <form:form
-               action="${pageContext.request.contextPath}/todo/create"
-                method="post" modelAttribute="todoForm">
+            <form:form modelAttribute="todoForm">
                 <!-- (2) -->
                 <form:input path="todoTitle" />
                 <form:button>Create Todo</form:button>
@@ -1530,10 +1528,6 @@ Package Explorer上で右クリック -> New -> File を選択し、「New File�
      - | 新規作成処理用のformを表示する。
        | formを表示するために、\ ``<form:form>``\ タグを使用する。
        | \ ``modelAttribute``\ 属性には、Controllerで\ ``Model``\ に追加したFormの名前を指定する。
-       | \ ``action``\ 属性には新規作成処理を実行するためのURL(\ ``<contextPath>/todo/create``\ )を指定する。
-       | 新規作成処理は更新系の処理なので、\ ``method``\属性には\ ``POST``\ メソッドを指定する。
-       |
-       | \ ``action``\ 属性に指定する<contextPath>は、\ ``${pageContext.request.contextPath}``\ で取得することができる。
    * - | (2)
      - | \ ``<form:input>``\ タグでフォームのプロパティをバインドする。
        | \ ``modelAttribute``\ 属性に指定したFormのプロパティ名と、\ ``path``\ 属性の値が一致している必要がある。
@@ -1724,10 +1718,10 @@ Formの修正
 JSPの修正
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-結果メッセージと入力チェックエラーを表示するエリアを追加する。
+TODOの入力フォームを修正し、結果メッセージと入力チェックエラーを表示するエリアを追加する。
 
 .. code-block:: jsp
-    :emphasize-lines: 15-16,22
+    :emphasize-lines: 15-16,18,23
 
     <!DOCTYPE html>
     <html>
@@ -1746,11 +1740,12 @@ JSPの修正
             <!-- (1) -->
             <t:messagesPanel />
 
+            <!-- (2) -->
             <form:form
                action="${pageContext.request.contextPath}/todo/create"
                 method="post" modelAttribute="todoForm">
                 <form:input path="todoTitle" />
-                <form:errors path="todoTitle" /><!-- (2) -->
+                <form:errors path="todoTitle" /><!-- (3) -->
                 <form:button>Create Todo</form:button>
             </form:form>
         </div>
@@ -1786,6 +1781,12 @@ JSPの修正
    * - | (1)
      - | \ ``<t:messagesPanel>``\ タグで、結果メッセージを表示する。
    * - | (2)
+     - | 新規作成処理用のformを修正する。
+       | \ ``action``\ 属性には、新規作成処理を実行するためのURL(\ ``<contextPath>/todo/create``\ )を指定する。
+       | 新規作成処理は更新系の処理なので、\ ``method``\属性には\ ``POST``\ メソッドを指定する。
+       |
+       | \ ``action``\ 属性に指定する<contextPath>は、\ ``${pageContext.request.contextPath}``\ で取得することができる。
+   * - | (3)
      - | \ ``<form:errors>``\ タグで、入力エラーがあった場合に表示する。\ ``path``\ 属性の値は、\ ``<form:input>``\ タグと合わせる。
 
 |
