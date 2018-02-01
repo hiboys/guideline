@@ -579,7 +579,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.model;
+       package com.example.securelogin.domain.model;
 
        // omitted
 
@@ -614,7 +614,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.repository.passwordhistory;
+       package com.example.securelogin.domain.repository.passwordhistory;
 
        // omitted
 
@@ -653,7 +653,7 @@ ER図
        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
        <mapper
-           namespace="org.terasoluna.securelogin.domain.repository.passwordhistory.PasswordHistoryRepository">
+           namespace="com.example.securelogin.domain.repository.passwordhistory.PasswordHistoryRepository">
 
            <resultMap id="PasswordHistoryResultMap" type="PasswordHistory">
                <id property="username" column="username" />
@@ -714,7 +714,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.service.passwordhistory;
+       package com.example.securelogin.domain.service.passwordhistory;
 
        // omitted
 
@@ -749,7 +749,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.service.account;
+       package com.example.securelogin.domain.service.account;
 
        // omitted
 
@@ -812,7 +812,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.account;
+     package com.example.securelogin.domain.service.account;
 
      // omitted
 
@@ -910,7 +910,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.app.common.interceptor;
+     package com.example.securelogin.app.common.interceptor;
 
      // omitted
 
@@ -988,7 +988,7 @@ ER図
             <mvc:exclude-mapping path="/resources/**" />
             <mvc:exclude-mapping path="/**/*.html" />
             <bean
-                class="org.terasoluna.securelogin.app.common.interceptor.PasswordExpirationCheckInterceptor" /> <!-- (4) -->
+                class="com.example.securelogin.app.common.interceptor.PasswordExpirationCheckInterceptor" /> <!-- (4) -->
         </mvc:interceptor>
 
         <!-- omitted -->
@@ -1019,7 +1019,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.app.welcome;
+     package com.example.securelogin.app.welcome;
 
      // omitted
 
@@ -1171,7 +1171,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.app.common.validation.rule;
+     package com.example.securelogin.app.common.validation.rule;
 
      // omitted
 
@@ -1252,7 +1252,7 @@ ER図
      </bean>
      <bean id="usernameRule" class="org.passay.UsernameRule" /> <!-- (7) -->
      <bean id="encodedPasswordHistoryRule"
-         class="org.terasoluna.securelogin.app.common.validation.rule.EncodedPasswordHistoryRule"> <!-- (8) -->
+         class="com.example.securelogin.app.common.validation.rule.EncodedPasswordHistoryRule"> <!-- (8) -->
          <constructor-arg name="passwordEncoder" ref="passwordEncoder" />
      </bean>
 
@@ -1327,7 +1327,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
 
@@ -1336,7 +1336,7 @@ ER図
        @Target({ TYPE, ANNOTATION_TYPE })
        @Retention(RUNTIME)
        public @interface StrongPassword {
-           String message() default "{org.terasoluna.securelogin.app.common.validation.StrongPassword.message}";
+           String message() default "{com.example.securelogin.app.common.validation.StrongPassword.message}";
 
            Class<?>[] groups() default {};
 
@@ -1370,7 +1370,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
 
@@ -1444,14 +1444,14 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        @Documented
        @Constraint(validatedBy = { NotReusedPasswordValidator.class }) // (1)
        @Target({ TYPE, ANNOTATION_TYPE })
        @Retention(RUNTIME)
        public @interface NotReusedPassword {
-           String message() default "{org.terasoluna.securelogin.app.common.validation.NotReusedPassword.message}";
+           String message() default "{com.example.securelogin.app.common.validation.NotReusedPassword.message}";
 
            Class<?>[] groups() default {};
 
@@ -1485,7 +1485,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
 
@@ -1635,7 +1635,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.app.passwordchange;
+     package com.example.securelogin.app.passwordchange;
 
      // omitted
 
@@ -1682,7 +1682,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.app.passwordchange;
+     package com.example.securelogin.app.passwordchange;
 
      // omitted
 
@@ -1852,7 +1852,7 @@ ER図
 
     .. code-block:: java
 
-      package org.terasoluna.securelogin.domain.model;
+      package com.example.securelogin.domain.model;
 
       // omitted
 
@@ -1883,7 +1883,7 @@ ER図
 
     .. code-block:: java
 
-      package org.terasoluna.securelogin.domain.repository.authenticationevent;
+      package com.example.securelogin.domain.repository.authenticationevent;
 
       // omitted
 
@@ -1920,7 +1920,7 @@ ER図
       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
       <mapper
-        namespace="org.terasoluna.securelogin.domain.repository.authenticationevent.FailedAuthenticationRepository">
+        namespace="com.example.securelogin.domain.repository.authenticationevent.FailedAuthenticationRepository">
 
         <resultMap id="failedAuthenticationResultMap"
                 type="FailedAuthentication">
@@ -1970,7 +1970,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.service.authenticationevent;
+       package com.example.securelogin.domain.service.authenticationevent;
 
        // omitted
 
@@ -2041,7 +2041,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.account;
+     package com.example.securelogin.domain.service.account;
 
      // omitted
 
@@ -2082,7 +2082,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.account;
+     package com.example.securelogin.domain.service.account;
 
      // omitted
 
@@ -2152,7 +2152,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.userdetails;
+     package com.example.securelogin.domain.service.userdetails;
 
      // omitted
 
@@ -2191,7 +2191,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.userdetails;
+     package com.example.securelogin.domain.service.userdetails;
 
      // omitted
 
@@ -2269,7 +2269,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.service.authenticationevent;
+       package com.example.securelogin.domain.service.authenticationevent;
 
        // omitted
 
@@ -2308,7 +2308,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.service.account;
+       package com.example.securelogin.domain.service.account;
 
        // omitted
 
@@ -2386,7 +2386,7 @@ ER図
 
       .. code-block:: java
 
-         package org.terasoluna.securelogin.domain.service.unlock;
+         package com.example.securelogin.domain.service.unlock;
 
          // omitted
 
@@ -2421,7 +2421,7 @@ ER図
 
       .. code-block:: java
 
-        package org.terasoluna.securelogin.app.unlock;
+        package com.example.securelogin.app.unlock;
 
         @Data
         public class UnlockForm implements Serializable {
@@ -2518,7 +2518,7 @@ ER図
 
       .. code-block:: java
 
-         package org.terasoluna.securelogin.app.unlock;
+         package com.example.securelogin.app.unlock;
 
          // omitted
 
@@ -2615,7 +2615,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.model;
+       package com.example.securelogin.domain.model;
 
        // omitted
 
@@ -2648,7 +2648,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.repository.authenticationevent;
+       package com.example.securelogin.domain.repository.authenticationevent;
 
        // omitted
 
@@ -2681,7 +2681,7 @@ ER図
        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
        <mapper
-           namespace="org.terasoluna.securelogin.domain.repository.authenticationevent.SuccessfulAuthenticationRepository">
+           namespace="com.example.securelogin.domain.repository.authenticationevent.SuccessfulAuthenticationRepository">
 
            <resultMap id="successfulAuthenticationResultMap"
                    type="SuccessfulAuthentication">
@@ -2722,7 +2722,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.service.authenticationevent;
+       package com.example.securelogin.domain.service.authenticationevent;
 
        // omitted
 
@@ -2768,7 +2768,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.account;
+     package com.example.securelogin.domain.service.account;
 
      // omitted
 
@@ -2809,7 +2809,7 @@ ER図
 
    .. code-block:: java
 
-      package org.terasoluna.securelogin.domain.service.account;
+      package com.example.securelogin.domain.service.account;
 
       // omitted
 
@@ -2857,7 +2857,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.userdetails;
+     package com.example.securelogin.domain.service.userdetails;
 
      // omitted
 
@@ -2901,7 +2901,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.userdetails;
+     package com.example.securelogin.domain.service.userdetails;
 
      // omitted
 
@@ -2947,7 +2947,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.app.welcome;
+     package com.example.securelogin.app.welcome;
 
      // omitted
 
@@ -3084,7 +3084,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.model;
+       package com.example.securelogin.domain.model;
 
        // omitted
 
@@ -3123,7 +3123,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.repository.passwordreissue;
+       package com.example.securelogin.domain.repository.passwordreissue;
 
        // omitted
 
@@ -3162,7 +3162,7 @@ ER図
       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
       <mapper
-          namespace="org.terasoluna.securelogin.domain.repository.passwordreissue.PasswordReissueInfoRepository">
+          namespace="com.example.securelogin.domain.repository.passwordreissue.PasswordReissueInfoRepository">
 
           <resultMap id="PasswordReissueInfoResultMap" type="PasswordReissueInfo">
               <id property="username" column="username" />
@@ -3252,7 +3252,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.service.passwordreissue;
+       package com.example.securelogin.domain.service.passwordreissue;
 
        // omitted
 
@@ -3358,7 +3358,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.passwordreissue;
+       package com.example.securelogin.app.passwordreissue;
 
        // omitted
 
@@ -3406,7 +3406,7 @@ ER図
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.passwordreissue;
+       package com.example.securelogin.app.passwordreissue;
 
        // omitted
 
@@ -3505,7 +3505,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.app.passwordreissue;
+     package com.example.securelogin.app.passwordreissue;
 
      // omitted
 
@@ -3590,7 +3590,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.mail;
+     package com.example.securelogin.domain.service.mail;
 
      // omitted
 
@@ -3634,7 +3634,7 @@ ER図
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.passwordreissue;
+     package com.example.securelogin.domain.service.passwordreissue;
 
      // omitted
 
@@ -3780,7 +3780,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.service.passwordreissue;
+       package com.example.securelogin.domain.service.passwordreissue;
 
        // omitted
 
@@ -3848,7 +3848,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.service.passwordreissue;
+       package com.example.securelogin.domain.service.passwordreissue;
 
        // omitted
 
@@ -3905,7 +3905,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.passwordreissue;
+       package com.example.securelogin.app.passwordreissue;
 
        // omitted
 
@@ -3955,7 +3955,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.service.passwordreissue;
+       package com.example.securelogin.domain.service.passwordreissue;
 
        // omitted
 
@@ -3983,7 +3983,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.service.passwordreissue;
+       package com.example.securelogin.domain.service.passwordreissue;
 
        // omitted
 
@@ -4047,7 +4047,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.passwordreissue;
+       package com.example.securelogin.app.passwordreissue;
 
        // omitted
 
@@ -4167,7 +4167,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.passwordreissue;
+       package com.example.securelogin.app.passwordreissue;
 
        // omitted
 
@@ -4269,7 +4269,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.model;
+       package com.example.securelogin.domain.model;
 
        // omitted
 
@@ -4300,7 +4300,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.domain.repository.passwordreissue;
+       package com.example.securelogin.domain.repository.passwordreissue;
 
        // omitted
 
@@ -4339,7 +4339,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
        <mapper
-        namespace="org.terasoluna.securelogin.domain.repository.passwordreissue.FailedPasswordReissueRepository">
+        namespace="com.example.securelogin.domain.repository.passwordreissue.FailedPasswordReissueRepository">
 
         <select id="countByToken" resultType="_int">
            <![CDATA[
@@ -4383,7 +4383,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.passwordreissue;
+     package com.example.securelogin.domain.service.passwordreissue;
 
      public interface PasswordReissueFailureSharedService {
 
@@ -4393,7 +4393,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.passwordreissue;
+     package com.example.securelogin.domain.service.passwordreissue;
 
      // omitted
 
@@ -4440,7 +4440,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.passwordreissue;
+     package com.example.securelogin.domain.service.passwordreissue;
 
      // omitted
 
@@ -4502,7 +4502,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.service.passwordreissue;
+     package com.example.securelogin.domain.service.passwordreissue;
 
      // omitted
 
@@ -4624,7 +4624,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.app.common.filter;
+     package com.example.securelogin.app.common.filter;
 
      // omitted
 
@@ -4760,7 +4760,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
      <!-- omitted -->
 
      <error-page>
-         <exception-type>org.terasoluna.securelogin.app.common.filter.exception.InvalidCharacterException</exception-type>  <!-- (3) -->
+         <exception-type>com.example.securelogin.app.common.filter.exception.InvalidCharacterException</exception-type>  <!-- (3) -->
          <location>/WEB-INF/views/common/error/invalidCharacterError.jsp</location>
      </error-page>
 
@@ -4811,7 +4811,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
   .. code-block:: xml
 
-     <bean id="inputValidationFilter" class="org.terasoluna.securelogin.app.common.filter.InputValidationFilter">
+     <bean id="inputValidationFilter" class="com.example.securelogin.app.common.filter.InputValidationFilter">
          <constructor-arg index="0" value="${app.security.prohibitedChars}"/>  <!-- (1) -->
          <constructor-arg index="1" value="${app.security.prohibitedCharsForFileName}"/>  <!-- (2) -->
      </bean>
@@ -4862,7 +4862,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
        @Documented
@@ -4872,7 +4872,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
        @ReportAsSingleViolation  // (1)
        @Pattern(regexp = "^\\P{Cntrl}*$") // (2)
        public @interface NotContainControlChars {
-           String message() default "{org.terasoluna.securelogin.app.common.validation.NotContainControlChars.message}";
+           String message() default "{com.example.securelogin.app.common.validation.NotContainControlChars.message}";
 
            Class<?>[] groups() default {};
 
@@ -4903,7 +4903,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
        @Documented
@@ -4913,7 +4913,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
        @ReportAsSingleViolation
        @Pattern(regexp = "^[\\r\\n\\P{Cntrl}]*$") // (1)
        public @interface NotContainControlCharsExceptNewlines {
-           String message() default "{org.terasoluna.securelogin.app.common.validation.NotContainControlCharsExceptNewlines.message}";
+           String message() default "{com.example.securelogin.app.common.validation.NotContainControlCharsExceptNewlines.message}";
 
            Class<?>[] groups() default {};
 
@@ -4947,7 +4947,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
 
@@ -4956,7 +4956,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
        @Target({ ElementType.FIELD })
        @Retention(RetentionPolicy.RUNTIME)
        public @interface FileExtension {
-           String message() default "{org.terasoluna.securelogin.app.common.validation.FileExtension.message}";
+           String message() default "{com.example.securelogin.app.common.validation.FileExtension.message}";
 
            Class<?>[] groups() default {};
 
@@ -4988,7 +4988,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block :: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
 
@@ -5053,7 +5053,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
 
@@ -5063,7 +5063,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
        @Retention(RetentionPolicy.RUNTIME)
        public @interface FileNamePattern {
 
-           String message() default "{org.terasoluna.securelogin.app.common.validation.FileNamePattern.message}";
+           String message() default "{com.example.securelogin.app.common.validation.FileNamePattern.message}";
 
            Class<?>[] groups() default {};
 
@@ -5092,7 +5092,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
 
@@ -5143,7 +5143,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
 
@@ -5154,7 +5154,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
        @URL  // (1)
        public @interface DomainRestrictedURL {
 
-           String message() default "{org.terasoluna.securelogin.app.common.validation.DomainRestrictedURL.message}";
+           String message() default "{com.example.securelogin.app.common.validation.DomainRestrictedURL.message}";
 
            Class<?>[] groups() default {};
 
@@ -5185,7 +5185,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
 
@@ -5250,7 +5250,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
 
@@ -5260,7 +5260,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
        @Retention(RUNTIME)
        @Email  // (1)
        public @interface DomainRestrictedEmail {
-           String message() default "{org.terasoluna.securelogin.app.common.validation.DomainRestrictedEmail.message}";
+           String message() default "{com.example.securelogin.app.common.validation.DomainRestrictedEmail.message}";
 
            Class<?>[] groups() default {};
 
@@ -5294,7 +5294,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     .. code-block:: java
 
-       package org.terasoluna.securelogin.app.common.validation;
+       package com.example.securelogin.app.common.validation;
 
        // omitted
 
@@ -5353,7 +5353,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.app.account;
+     package com.example.securelogin.app.account;
 
      // omitted
 
@@ -5554,7 +5554,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
      <!-- omitted -->
 
      <logger 
-        name="org.terasoluna.securelogin.domain.common.interceptor.ServiceCallLoggingInterceptor"
+        name="com.example.securelogin.domain.common.interceptor.ServiceCallLoggingInterceptor"
         additivity="false">  <!-- (3) -->
         <level value="info" />
         <appender-ref ref="AUDIT_LOG_FILE" />
@@ -5575,7 +5575,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
        - | pattern定義内に"USER:%X{USER}"を記述する
      * - | (3)
        - | 監査ログ出力用のloggerを定義する
-         | \ ``org.terasoluna.securelogin.domain.common.interceptor.ServiceCallLoggingInterceptor`` \の実装については以降で説明する
+         | \ ``com.example.securelogin.domain.common.interceptor.ServiceCallLoggingInterceptor`` \の実装については以降で説明する
 
 * メソッド呼び出し時および実行後にログ出力を行うアドバイスを作成する
 
@@ -5583,7 +5583,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
   .. code-block:: java
 
-     package org.terasoluna.securelogin.domain.common.interceptor;
+     package com.example.securelogin.domain.common.interceptor;
 
      // omitted
 
@@ -5656,7 +5656,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
      <!-- omitted -->
 
      <bean id="serviceCallLoggingInterceptor"
-         class="org.terasoluna.securelogin.domain.common.interceptor.ServiceCallLoggingInterceptor" />  <!-- (1) -->
+         class="com.example.securelogin.domain.common.interceptor.ServiceCallLoggingInterceptor" />  <!-- (1) -->
      <aop:config>
          <aop:advisor advice-ref="serviceCallLoggingInterceptor"
              pointcut="@within(org.springframework.stereotype.Service)" />  <!-- (2) -->
