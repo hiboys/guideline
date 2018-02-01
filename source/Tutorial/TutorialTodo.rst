@@ -1314,6 +1314,8 @@ Show all TODOの実装
 
 を行う。
 
+はじめに、TODOの全件表示を行う画面を表示するための処理を実装する。
+
 Formの作成
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1465,14 +1467,10 @@ Package Explorer上で右クリック -> New -> File を選択し、「New File�
 
 .. figure:: ./images/create-list-jsp.png
 
-まず、以下を表示するために必要なJSPの実装を行う。
-
-* TODOの入力フォーム
-* 「Create Todo」ボタン
-* TODOの一覧表示エリア
+まず、TODOの一覧表示エリアを表示するために必要なJSPの実装を行う。
 
 .. code-block:: jsp
-    :emphasize-lines: 15, 17, 25-26, 28, 30-31
+    :emphasize-lines: 17-18, 20, 22-23
 
     <!DOCTYPE html>
     <html>
@@ -1487,23 +1485,15 @@ Package Explorer上で右クリック -> New -> File を選択し、「New File�
     </head>
     <body>
         <h1>Todo List</h1>
-        <div id="todoForm">
-            <!-- (1) -->
-            <form:form modelAttribute="todoForm">
-                <!-- (2) -->
-                <form:input path="todoTitle" />
-                <form:button>Create Todo</form:button>
-            </form:form>
-        </div>
         <hr />
         <div id="todoList">
             <ul>
-                <!-- (3) -->
+                <!-- (1) -->
                 <c:forEach items="${todos}" var="todo">
                     <li><c:choose>
-                            <c:when test="${todo.finished}"><!-- (4) -->
+                            <c:when test="${todo.finished}"><!-- (2) -->
                                 <span class="strike">
-                                <!-- (5) -->
+                                <!-- (3) -->
                                 ${f:h(todo.todoTitle)}
                                 </span>
                             </c:when>
@@ -1525,17 +1515,10 @@ Package Explorer上で右クリック -> New -> File を選択し、「New File�
    * - 項番
      - 説明
    * - | (1)
-     - | 新規作成処理用のformを表示する。
-       | formを表示するために、\ ``<form:form>``\ タグを使用する。
-       | \ ``modelAttribute``\ 属性には、Controllerで\ ``Model``\ に追加したFormの名前を指定する。
-   * - | (2)
-     - | \ ``<form:input>``\ タグでフォームのプロパティをバインドする。
-       | \ ``modelAttribute``\ 属性に指定したFormのプロパティ名と、\ ``path``\ 属性の値が一致している必要がある。
-   * - | (3)
      - | \ ``<c:forEach>``\ タグを用いて、Todoのリストを全て表示する。
-   * - | (4)
+   * - | (2)
      - | 完了かどうか(\ ``finished``\ )で、打ち消し線(\ ``text-decoration: line-through;``\ )を装飾するかどうかを判断する。
-   * - | (5)
+   * - | (3)
      - | **文字列値を出力する際は、XSS対策のため、必ずf:h()関数を使用してHTMLエスケープを行うこと。**
        | XSS対策についての詳細は、\ :doc:`../Security/XSS`\ を参照されたい。
 
@@ -1718,10 +1701,15 @@ Formの修正
 JSPの修正
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-TODOの入力フォームを修正し、結果メッセージと入力チェックエラーを表示するエリアを追加する。
+以下を表示するために必要なJSPの実装を追加する。
+
+* 結果メッセージを表示するエリア
+* TODOの入力フォーム
+* 入力チェックエラーを表示するエリア
+* 「Create Todo」ボタン
 
 .. code-block:: jsp
-    :emphasize-lines: 15-16,18,23
+    :emphasize-lines: 15-16,18,22,23
 
     <!DOCTYPE html>
     <html>
@@ -1744,8 +1732,8 @@ TODOの入力フォームを修正し、結果メッセージと入力チェッ�
             <form:form
                action="${pageContext.request.contextPath}/todo/create"
                 method="post" modelAttribute="todoForm">
-                <form:input path="todoTitle" />
-                <form:errors path="todoTitle" /><!-- (3) -->
+                <form:input path="todoTitle" /><!-- (3) -->
+                <form:errors path="todoTitle" /><!-- (4) -->
                 <form:button>Create Todo</form:button>
             </form:form>
         </div>
@@ -1781,12 +1769,17 @@ TODOの入力フォームを修正し、結果メッセージと入力チェッ�
    * - | (1)
      - | \ ``<t:messagesPanel>``\ タグで、結果メッセージを表示する。
    * - | (2)
-     - | 新規作成処理用のformを修正する。
-       | \ ``action``\ 属性には、新規作成処理を実行するためのURL(\ ``<contextPath>/todo/create``\ )を指定する。
+     - | 新規作成処理用のformを表示する。
+       | formを表示するために、\ ``<form:form>``\ タグを使用する。
+       | \ ``modelAttribute``\ 属性には、Controllerで\ ``Model``\ に追加したFormの名前を指定する。
+       | \ ``action``\ 属性には新規作成処理を実行するためのURL(\ ``<contextPath>/todo/create``\ )を指定する。
        | 新規作成処理は更新系の処理なので、\ ``method``\属性には\ ``POST``\ メソッドを指定する。
        |
        | \ ``action``\ 属性に指定する<contextPath>は、\ ``${pageContext.request.contextPath}``\ で取得することができる。
    * - | (3)
+     - | \ ``<form:input>``\ タグでフォームのプロパティをバインドする。
+       | \ ``modelAttribute``\ 属性に指定したFormのプロパティ名と、\ ``path``\ 属性の値が一致している必要がある。
+   * - | (4)
      - | \ ``<form:errors>``\ タグで、入力エラーがあった場合に表示する。\ ``path``\ 属性の値は、\ ``<form:input>``\ タグと合わせる。
 
 |
