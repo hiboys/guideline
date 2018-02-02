@@ -1854,4 +1854,95 @@ NumberRangeCodeListのインターバルの変更
 .. raw:: latex
 
    \newpage
+   
+.. _directRefCodeList:
+
+JSPから直接コードリストBeanを参照する
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`clientSide` では、Spring MVCを経由する全てのリクエストに対して、``CodeListIntercepter`` がコードリストのBeanをリクエスト属性として登録するため、コードリストの数が多くなるとリクエスト毎のオーバーヘッドの増加が懸念される。
+
+ここでは、リクエスト毎のオーバーヘッドの増加を防ぐ方法の一つとして、コードリストBeanをJSPから直接参照する方法を紹介する。
+JSPではSpEL式を利用して直接Beanを参照することができるが、こちらを利用することでオーバーヘッドの増加を防止することができる。
+いずれの方法を利用するかは、プロジェクトの要件によって適切に検討されたい。
+
+.. note::
+
+ 国際化対応のため ``SimpleI18nCodeList`` を使用している場合は :ref:`clientSide` で紹介している方法を使用することを推奨する。
+ :ref:`directRefCodeList` を使用する場合は、``CodeListInterceptor`` が実施しているような、``SimpleI18nCodeList`` の ``asMap`` メソッドに渡すロケールを決定するロジックを独自に実装する必要があるためである。
+
+
+**bean定義ファイル(spring-mvc.xml)の定義**
+
+.. code-block:: xml
+  :emphasize-lines: 3,4,5,6,7
+
+   <mvc:interceptors>
+     <mvc:interceptor>
+       <mvc:mapping path="/**" />
+       <bean
+         class="org.terasoluna.gfw.web.codelist.CodeListInterceptor"> <!-- (1) -->
+         <property name="codeListIdPattern" value="CL_.+" />
+       </bean>
+     </mvc:interceptor>
+
+     <!-- omitted -->
+
+   </mvc:interceptors>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+  :header-rows: 1
+  :widths: 10 90
+
+  * - 項番
+    - 説明
+  * - | (1)
+    - | ``CodeListInterceptor`` の設定があれば、削除する。
+
+
+**bean定義ファイル(xxx-codelist.xml)の定義**
+
+.. code-block:: xml
+
+   <bean id="CLDR_ORDERSTATUS" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+       <property name="map">
+           <util:map>
+               <entry key="1" value="Received" />
+               <entry key="2" value="Sent" />
+               <entry key="3" value="Cancelled" />
+           </util:map>
+       </property>
+   </bean>
+
+**jspの実装例**
+
+.. code-block:: jsp
+
+  <spring:eval var="order" expression="@CLDR_ORDERSTATUS.asMap()"/> <!-- (1) -->
+  <form:select items="${order}" path="orderStatus" />
+
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+  :header-rows: 1
+  :widths: 10 90
+
+  * - 項番
+    - 説明
+  * - | (1)
+    - | 変数式により取得したコードリストBeanのasMapメソッドにより、Map形式で参照することができる。
+      | なお、``SimpleI18nCodeList`` の場合は、 ``asMap`` メソッドの引数として ``Locale`` を渡す必要がある。
+
+**出力HTML**
+
+.. code-block:: html
+
+ <select id="orderStatus" name="orderStatus">
+    <option value="1">Received</option>
+    <option value="2">Sent</option>
+    <option value="3">Cancelled</option>
+ </select>
+
+|
 
