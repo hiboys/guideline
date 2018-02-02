@@ -1796,28 +1796,11 @@ HTMLを応答する
 
 - spring-mvc.xml
 
- \ ``<bean>``\ 要素を使用する場合の定義例
-
- .. code-block:: xml
-    :emphasize-lines: 2
-
-    <!-- (1) -->
-    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-        <property name="order" value="0"/> <!-- (2) -->
-    </bean>
-
-    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-      <property name="templateEngine" ref="templateEngine" />
-      <property name="characterEncoding" value="UTF-8" />
-    </bean>
-
- Spring Framework 4.1から追加された\ ``<mvc:view-resolvers>``\ 要素を使用する場合の定義例
-
  .. code-block:: xml
     :emphasize-lines: 2
 
     <mvc:view-resolvers>
-        <mvc:bean-name /> <!-- (3) -->
+        <mvc:bean-name /> <!-- (1) -->
     </mvc:view-resolvers>
 
 - SampleController.java
@@ -1828,7 +1811,7 @@ HTMLを応答する
     @RequestMapping("report")
     public String report() {
         // omitted
-        return "sample/report"; // (4)
+        return "sample/report"; // (2)
     }
 
 
@@ -1837,8 +1820,8 @@ HTMLを応答する
  .. code-block:: java
     :emphasize-lines: 1-2
 
-    @Component("sample/report") // (5)
-    public class XxxExcelView extends AbstractExcelView { // (6)
+    @Component("sample/report") // (3)
+    public class XxxExcelView extends AbstractExcelView { // (4)
         @Override
         protected void buildExcelDocument(Map<String, Object> model,
                 HSSFWorkbook workbook, HttpServletRequest request,
@@ -1866,23 +1849,16 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - \ ``BeanNameViewResolver``\ を定義する。
-
-       \ ``BeanNameViewResolver``\ は、返却されたView名に一致するBeanをアプリケーションコンテキストから探してViewを解決するクラスとなっている。
-   * - | (2)
-     - Thymeleaf用の\ ``ThymeleafViewResolver``\ と併用する場合は、これらの\ ``ViewResolver``\ より、高い優先度を指定する事を推奨する。
-       上記例では、 "``0``" を指定することで、\ ``ThymeleafViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
-   * - | (3)
      - Spring Framework 4.1から追加された\ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
 
        \ ``<mvc:view-resolvers>``\ 要素を使用して\ ``ViewResolver``\ を定義する場合は、子要素に指定する\ ``ViewResolver``\の定義順が優先順位となる。
-   * - | (4)
-     - ハンドラメソッドの返り値として ``sample/report`` というView名を返却した場合、 (5)でBean登録されたViewインスタンスによって生成されたデータがダウンロードデータとして応答される。
-   * - | (5)
+   * - | (2)
+     - ハンドラメソッドの返り値として ``sample/report`` というView名を返却した場合、 (3)でBean登録されたViewインスタンスによって生成されたデータがダウンロードデータとして応答される。
+   * - | (3)
      - コンポーネントの名前にView名を指定して、ViewオブジェクトをBeanとして登録する。
 
        上記例では、 ``sample/report`` というbean名(View名)で ``x.y.z.app.views.XxxExcelView`` のインスタンスがBean登録される。
-   * - | (6)
+   * - | (4)
      - Viewの実装例。
 
        上記例では、 ``org.springframework.web.servlet.view.document.AbstractExcelView`` を継承し、Excelデータを生成するViewクラスの実装となる。
