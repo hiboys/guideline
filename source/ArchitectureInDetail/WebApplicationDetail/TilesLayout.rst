@@ -138,40 +138,6 @@ Spring MVCとTilesの連携
        \ ``<mvc:definitions>``\ 要素の\ ``location``\ 属性に、Tiles定義ファイルを指定する。
 
 
- .. tip::
-
-    \ ``<mvc:view-resolvers>``\ 要素はSpring Framework 4.1から追加されたXML要素である。
-    \ ``<mvc:view-resolvers>``\ 要素を使用すると、\ ``ViewResolver``\ をシンプルに定義することが出来る。
-
-    従来通り\ ``<bean>``\ 要素を使用した場合の定義例を以下に示す。
-
-
-     .. code-block:: xml
-        :emphasize-lines: 1-13
-
-        <bean id="tilesViewResolver"
-            class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
-            <property name="order" value="1" />
-        </bean>
-
-        <bean id="tilesConfigurer"
-            class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-            <property name="definitions">
-                <list>
-                    <value>/WEB-INF/tiles/tiles-definitions.xml</value>
-                </list>
-            </property>
-        </bean>
-
-        <bean id="viewResolver"
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-            <property name="prefix" value="/WEB-INF/views/" />
-            <property name="suffix" value=".jsp" />
-            <property name="order" value="2" />
-        </bean>
-
-    \ ``order``\ プロパティに、\ ``InternalResourceViewResolver``\ より小さい値を指定し、優先度を高くする。
-
 
 **Tilesの定義**
 
