@@ -912,7 +912,7 @@ JSPからログインユーザーのアカウント情報へアクセス
 
 |
 
-Logoutボタンを押下し、アプリケーションからログアウトする(ログインページが表示される)。
+Logoutボタンを押下すると、アプリケーションからログアウトする(ログインページが表示される)。
 
 .. figure:: ./images_Security/security_tutorial_add_logout.png
     :width: 70%
