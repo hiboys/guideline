@@ -1515,39 +1515,40 @@ STSで「todo」プロジェクトを右クリックし、「Run As」→「Run 
     * ``TodoRepositoryImpl.java``
 
      .. code-block:: java
+        :emphasize-lines: 15-30
 
-       package todo.domain.repository.todo;
+        package todo.domain.repository.todo;
 
-       import java.util.Collection;
-       import java.util.Map;
-       import java.util.concurrent.ConcurrentHashMap;
+        import java.util.Collection;
+        import java.util.Map;
+        import java.util.concurrent.ConcurrentHashMap;
 
-       import org.springframework.stereotype.Repository;
+        import org.springframework.stereotype.Repository;
 
-       import todo.domain.model.Todo;
+        import todo.domain.model.Todo;
 
-       @Repository
-       public class TodoRepositoryImpl implements TodoRepository {
-           private static final Map<String, Todo> TODO_MAP = new ConcurrentHashMap<String, Todo>();
+        @Repository
+        public class TodoRepositoryImpl implements TodoRepository {
+            private static final Map<String, Todo> TODO_MAP = new ConcurrentHashMap<String, Todo>();
 
-           <!-- (1) -->
-           static {
-               Todo todo1 = new Todo();
-               todo1.setTodoId("1");
-               todo1.setTodoTitle("Send a e-mail");
-               Todo todo2 = new Todo();
-               todo2.setTodoId("2");
-               todo2.setTodoTitle("Have a lunch");
-               Todo todo3 = new Todo();
-               todo3.setTodoId("3");
-               todo3.setTodoTitle("Read a book");
-               todo3.setFinished(true);
-               TODO_MAP.put(todo1.getTodoId(), todo1);
-               TODO_MAP.put(todo2.getTodoId(), todo2);
-               TODO_MAP.put(todo3.getTodoId(), todo3);
-           }
+            <!-- (1) -->
+            static {
+                Todo todo1 = new Todo();
+                todo1.setTodoId("1");
+                todo1.setTodoTitle("Send a e-mail");
+                Todo todo2 = new Todo();
+                todo2.setTodoId("2");
+                todo2.setTodoTitle("Have a lunch");
+                Todo todo3 = new Todo();
+                todo3.setTodoId("3");
+                todo3.setTodoTitle("Read a book");
+                todo3.setFinished(true);
+                TODO_MAP.put(todo1.getTodoId(), todo1);
+                TODO_MAP.put(todo2.getTodoId(), todo2);
+                TODO_MAP.put(todo3.getTodoId(), todo3);
+            }
 
-             // omitted
+              // omitted
 
 
      .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
