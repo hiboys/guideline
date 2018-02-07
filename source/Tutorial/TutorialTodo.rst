@@ -1544,7 +1544,7 @@ STSで「todo」プロジェクトを右クリックし、「Run As」→「Run 
     * ``TodoRepositoryImpl.java``
 
      .. code-block:: java
-        :emphasize-lines: 15-30
+        :emphasize-lines: 15-29
 
         package todo.domain.repository.todo;
 
@@ -1560,7 +1560,6 @@ STSで「todo」プロジェクトを右クリックし、「Run As」→「Run 
         public class TodoRepositoryImpl implements TodoRepository {
             private static final Map<String, Todo> TODO_MAP = new ConcurrentHashMap<String, Todo>();
 
-            <!-- (1) -->
             static {
                 Todo todo1 = new Todo();
                 todo1.setTodoId("1");
@@ -1578,17 +1577,6 @@ STSで「todo」プロジェクトを右クリックし、「Run As」→「Run 
             }
 
               // omitted
-
-
-     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-     .. list-table::
-         :header-rows: 1
-         :widths: 10 90
-
-         * - 項番
-           - 説明
-         * - | (1)
-           - | staticイニシャライザを使用して、一時的に投入するデータを作成する。
 
 
     以下のように画面に出力される。
