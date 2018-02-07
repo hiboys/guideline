@@ -1523,7 +1523,7 @@ STSで「todo」プロジェクトを右クリックし、「Run As」→「Run 
      .. code-block:: java
         :emphasize-lines: 15-29
 
-        package todo.domain.repository.todo;
+        package com.example.todo.domain.repository.todo;
 
         import java.util.Collection;
         import java.util.Map;
@@ -1531,7 +1531,7 @@ STSで「todo」プロジェクトを右クリックし、「Run As」→「Run 
 
         import org.springframework.stereotype.Repository;
 
-        import todo.domain.model.Todo;
+        import com.example.todo.domain.model.Todo;
 
         @Repository
         public class TodoRepositoryImpl implements TodoRepository {
