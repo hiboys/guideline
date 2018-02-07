@@ -1467,7 +1467,7 @@ Package Explorer上で右クリック -> New -> File を選択し、「New File�
 
 .. figure:: ./images/create-list-jsp.png
 
-まず、TODOの一覧表示エリアを表示するために必要なJSPの実装を行う。
+まず、TODOの全件表示を行うために必要なJSPの実装を行う。
 
 .. code-block:: jsp
     :emphasize-lines: 17-18, 20, 22-23
