@@ -1529,7 +1529,7 @@ STSで「todo」プロジェクトを右クリックし、「Run As」→「Run 
 ブラウザで http://localhost:8080/todo/todo/list にアクセスすると、以下のような画面が表示される。
 
 .. figure:: ./images/image067.png
-   :width: 50%
+   :width: 25%
 
 |
 
@@ -1594,7 +1594,7 @@ STSで「todo」プロジェクトを右クリックし、「Run As」→「Run 
     以下のように画面に出力される。
 
     .. figure:: ./images/show-all-todo-note.png
-       :width: 40%
+       :width: 30%
 
 
 |
