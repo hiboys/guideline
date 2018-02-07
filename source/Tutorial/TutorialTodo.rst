@@ -1797,7 +1797,7 @@ JSPの修正
                 <c:forEach items="${todos}" var="todo">
                     <li><c:choose>
                             <c:when test="${todo.finished}">
-                                <span style="text-decoration: line-through;">
+                                <span class="strike">
                                 ${f:h(todo.todoTitle)}
                                 </span>
                             </c:when>
