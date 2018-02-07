@@ -2196,7 +2196,7 @@ JSPの修正
                                     action="${pageContext.request.contextPath}/todo/finish"
                                     method="post"
                                     modelAttribute="todoForm"
-                                    class="inline">
+                                    cssClass="inline">
                                     <!-- (2) -->
                                     <form:hidden path="todoId"
                                         value="${f:h(todo.todoId)}" />
@@ -2519,7 +2519,7 @@ JSPの修正
                                     action="${pageContext.request.contextPath}/todo/finish"
                                     method="post"
                                     modelAttribute="todoForm"
-                                    class="inline">
+                                    cssClass="inline">
                                     <form:hidden path="todoId"
                                         value="${f:h(todo.todoId)}" />
                                     <form:button>Finish</form:button>
@@ -2530,7 +2530,7 @@ JSPの修正
                         <form:form
                             action="${pageContext.request.contextPath}/todo/delete"
                             method="post" modelAttribute="todoForm"
-                            class="inline">
+                            cssClass="inline">
                             <!-- (2) -->
                             <form:hidden path="todoId"
                                 value="${f:h(todo.todoId)}" />
@@ -2662,7 +2662,7 @@ JSPからCSSファイルを読み込む。
                                     action="${pageContext.request.contextPath}/todo/finish"
                                     method="post"
                                     modelAttribute="todoForm"
-                                    class="inline">
+                                    cssClass="inline">
                                     <form:hidden path="todoId"
                                         value="${f:h(todo.todoId)}" />
                                     <form:button>Finish</form:button>
@@ -2672,7 +2672,7 @@ JSPからCSSファイルを読み込む。
                         <form:form
                             action="${pageContext.request.contextPath}/todo/delete"
                             method="post" modelAttribute="todoForm"
-                            class="inline">
+                            cssClass="inline">
                             <form:hidden path="todoId"
                                 value="${f:h(todo.todoId)}" />
                             <form:button>Delete</form:button>
