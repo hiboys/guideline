@@ -1285,6 +1285,8 @@ Show all TODOの実装
 
 を行う。
 
+はじめに、TODOの全件表示を行うための処理を実装する。
+
 Formの作成
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1436,14 +1438,10 @@ Package Explorer上で右クリック -> New -> File を選択し、「New File�
 
 .. figure:: ./images/create-list-jsp.png
 
-まず、以下を表示するために必要なJSPの実装を行う。
-
-* TODOの入力フォーム
-* 「Create Todo」ボタン
-* TODOの一覧表示エリア
+まず、TODOの全件表示を行うために必要なJSPの実装を行う。
 
 .. code-block:: jsp
-    :emphasize-lines: 15, 19-20, 27-28, 30, 32-33
+    :emphasize-lines: 17-18, 20, 22-23
 
     <!DOCTYPE html>
     <html>
@@ -1458,25 +1456,15 @@ Package Explorer上で右クリック -> New -> File を選択し、「New File�
     </head>
     <body>
         <h1>Todo List</h1>
-        <div id="todoForm">
-            <!-- (1) -->
-            <form:form
-               action="${pageContext.request.contextPath}/todo/create"
-                method="post" modelAttribute="todoForm">
-                <!-- (2) -->
-                <form:input path="todoTitle" />
-                <form:button>Create Todo</form:button>
-            </form:form>
-        </div>
         <hr />
         <div id="todoList">
             <ul>
-                <!-- (3) -->
+                <!-- (1) -->
                 <c:forEach items="${todos}" var="todo">
                     <li><c:choose>
-                            <c:when test="${todo.finished}"><!-- (4) -->
+                            <c:when test="${todo.finished}"><!-- (2) -->
                                 <span class="strike">
-                                <!-- (5) -->
+                                <!-- (3) -->
                                 ${f:h(todo.todoTitle)}
                                 </span>
                             </c:when>
@@ -1498,21 +1486,10 @@ Package Explorer上で右クリック -> New -> File を選択し、「New File�
    * - 項番
      - 説明
    * - | (1)
-     - | 新規作成処理用のformを表示する。
-       | formを表示するために、\ ``<form:form>``\ タグを使用する。
-       | \ ``modelAttribute``\ 属性には、Controllerで\ ``Model``\ に追加したFormの名前を指定する。
-       | \ ``action``\ 属性には新規作成処理を実行するためのURL(\ ``<contextPath>/todo/create``\ )を指定する。
-       | 新規作成処理は更新系の処理なので、\ ``method``\属性には\ ``POST``\ メソッドを指定する。
-       |
-       | \ ``action``\ 属性に指定する<contextPath>は、\ ``${pageContext.request.contextPath}``\ で取得することができる。
-   * - | (2)
-     - | \ ``<form:input>``\ タグでフォームのプロパティをバインドする。
-       | \ ``modelAttribute``\ 属性に指定したFormのプロパティ名と、\ ``path``\ 属性の値が一致している必要がある。
-   * - | (3)
      - | \ ``<c:forEach>``\ タグを用いて、Todoのリストを全て表示する。
-   * - | (4)
+   * - | (2)
      - | 完了かどうか(\ ``finished``\ )で、打ち消し線(\ ``text-decoration: line-through;``\ )を装飾するかどうかを判断する。
-   * - | (5)
+   * - | (3)
      - | **文字列値を出力する際は、XSS対策のため、必ずf:h()関数を使用してHTMLエスケープを行うこと。**
        | XSS対策についての詳細は、\ :doc:`../Security/XSS`\ を参照されたい。
 
@@ -1523,7 +1500,61 @@ STSで「todo」プロジェクトを右クリックし、「Run As」→「Run 
 ブラウザで http://localhost:8080/todo/todo/list にアクセスすると、以下のような画面が表示される。
 
 .. figure:: ./images/image067.png
-   :width: 50%
+   :width: 25%
+
+|
+
+.. note::
+
+    上記で表示されている画面には、TODOが１件も登録されていないため、TODOの一覧は出力されない。
+    
+    以下のように、ドメイン層の作成で作成したTodoRepositoryImplを一時的に修正し初期データを登録することで、TODOの一覧が出力されることを確認できる。
+    
+    なお、次節「11.1.4.2.3. Create TODOの実装」で実際にTODOを登録できるようになるため、一覧の出力が確認できたら削除して構わない。
+
+    * ``TodoRepositoryImpl.java``
+
+     .. code-block:: java
+        :emphasize-lines: 15-29
+
+        package todo.domain.repository.todo;
+
+        import java.util.Collection;
+        import java.util.Map;
+        import java.util.concurrent.ConcurrentHashMap;
+
+        import org.springframework.stereotype.Repository;
+
+        import todo.domain.model.Todo;
+
+        @Repository
+        public class TodoRepositoryImpl implements TodoRepository {
+            private static final Map<String, Todo> TODO_MAP = new ConcurrentHashMap<String, Todo>();
+
+            static {
+                Todo todo1 = new Todo();
+                todo1.setTodoId("1");
+                todo1.setTodoTitle("Send a e-mail");
+                Todo todo2 = new Todo();
+                todo2.setTodoId("2");
+                todo2.setTodoTitle("Have a lunch");
+                Todo todo3 = new Todo();
+                todo3.setTodoId("3");
+                todo3.setTodoTitle("Read a book");
+                todo3.setFinished(true);
+                TODO_MAP.put(todo1.getTodoId(), todo1);
+                TODO_MAP.put(todo2.getTodoId(), todo2);
+                TODO_MAP.put(todo3.getTodoId(), todo3);
+            }
+
+              // omitted
+
+
+    以下のように画面に出力される。
+
+    .. figure:: ./images/show-all-todo-note.png
+       :width: 30%
+
 
 |
 
@@ -1695,10 +1726,15 @@ Formの修正
 JSPの修正
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-結果メッセージと入力チェックエラーを表示するエリアを追加する。
+以下を表示するために必要なJSPの実装を追加する。
+
+* TODOの入力フォーム
+* 「Create Todo」ボタン
+* 入力チェックエラーを表示するエリア
+* 結果メッセージを表示するエリア
 
 .. code-block:: jsp
-    :emphasize-lines: 15-16,22
+    :emphasize-lines: 15-16,18,22,23
 
     <!DOCTYPE html>
     <html>
@@ -1717,11 +1753,12 @@ JSPの修正
             <!-- (1) -->
             <t:messagesPanel />
 
+            <!-- (2) -->
             <form:form
                action="${pageContext.request.contextPath}/todo/create"
                 method="post" modelAttribute="todoForm">
-                <form:input path="todoTitle" />
-                <form:errors path="todoTitle" /><!-- (2) -->
+                <form:input path="todoTitle" /><!-- (3) -->
+                <form:errors path="todoTitle" /><!-- (4) -->
                 <form:button>Create Todo</form:button>
             </form:form>
         </div>
@@ -1757,6 +1794,17 @@ JSPの修正
    * - | (1)
      - | \ ``<t:messagesPanel>``\ タグで、結果メッセージを表示する。
    * - | (2)
+     - | 新規作成処理用のformを表示する。
+       | formを表示するために、\ ``<form:form>``\ タグを使用する。
+       | \ ``modelAttribute``\ 属性には、Controllerで\ ``Model``\ に追加したFormの名前を指定する。
+       | \ ``action``\ 属性には新規作成処理を実行するためのURL(\ ``<contextPath>/todo/create``\ )を指定する。
+       | 新規作成処理は更新系の処理なので、\ ``method``\属性には\ ``POST``\ メソッドを指定する。
+       |
+       | \ ``action``\ 属性に指定する<contextPath>は、\ ``${pageContext.request.contextPath}``\ で取得することができる。
+   * - | (3)
+     - | \ ``<form:input>``\ タグでフォームのプロパティをバインドする。
+       | \ ``modelAttribute``\ 属性に指定したFormのプロパティ名と、\ ``path``\ 属性の値が一致している必要がある。
+   * - | (4)
      - | \ ``<form:errors>``\ タグで、入力エラーがあった場合に表示する。\ ``path``\ 属性の値は、\ ``<form:input>``\ タグと合わせる。
 
 |
