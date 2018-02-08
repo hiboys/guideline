@@ -208,10 +208,10 @@ JSPでのコードリスト使用
      - | 自動でリクエストスコープに設定する、コードリストのbeanIDのパターンを設定する。
        | パターンには ``java.util.regex.Pattern`` で使用する正規表現を設定すること。
        | 上記例では、idが"CL\_XXX"形式で定義されているデータのみを対象とする。その場合、idが"CL\_"で始まらないbean定義は取り込まれない。
-       | "CL\_"で定義したbeanIDは、リクエストスコープに設定されるため、JSPで使用可能となる。
+       | "CL\_"で定義したbeanIDは、リクエストスコープに設定されるため、JSPで容易に参照できる。
        |
        | \ ``codeListIdPattern``\ プロパティは省略可能である。
-       | \ ``codeListIdPattern``\ を省略した場合は、すべてのコードリスト(\ ``org.terasoluna.gfw.common.codelist.CodeList``\ インタフェースを実装しているbean)がJSPで使用可能となる。
+       | \ ``codeListIdPattern``\ を省略した場合は、すべてのコードリスト(\ ``org.terasoluna.gfw.common.codelist.CodeList``\ インタフェースを実装しているbean)がリクエストスコープに設定される。
 
 |
 
