@@ -706,6 +706,40 @@ Spring Securityの設定
 
 |
 
+ログインページを返すControllerの作成
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+| ログインページを返すControllerを作成する。
+| ``src/main/java/com/example/security/app/login/LoginController.java``
+
+.. code-block:: java
+  
+    package com.example.security.app.login;
+
+    import org.springframework.stereotype.Controller;
+    import org.springframework.web.bind.annotation.RequestMapping;
+
+    @Controller
+    @RequestMapping("/login")
+    public class LoginController {
+
+        @RequestMapping("/loginForm") // (1)
+        public String view() {
+            return "login/loginForm";
+        }
+    }
+  
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+  
+    * - 項番
+      - 説明
+    * - | (1)
+      - ログインページである、\ ``login/loginForm``\ を返す。 
+
+|
+
 ログインページの作成
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -814,46 +848,13 @@ Spring Securityの設定
     これは、安易にセッションが使用されないようにするためであるが、
     認証エラーの例外オブジェクトをJSPから取得する場合は、JSPからセッションスコープにアクセスできるようにする必要がある。
 
-|
-
-ログインページを返すControllerの作成
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| ログインページを返すControllerを作成する。
-| ``src/main/java/com/example/security/app/login/LoginController.java``
-
-.. code-block:: java
-  
-    package com.example.security.app.login;
-
-    import org.springframework.stereotype.Controller;
-    import org.springframework.web.bind.annotation.RequestMapping;
-
-    @Controller
-    @RequestMapping("/login")
-    public class LoginController {
-
-        @RequestMapping("/loginForm") // (1)
-        public String view() {
-            return "login/loginForm";
-        }
-    }
-  
-.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-.. list-table::
-    :header-rows: 1
-    :widths: 10 90
-  
-    * - 項番
-      - 説明
-    * - | (1)
-      - ログインページである、\ ``login/loginForm``\ を返す。 
-
 | ブラウザのアドレスバーに http://localhost:8080/first-springsecurity/ を入力し、ウェルカムページを表示しようとする。
 | 未ログイン状態のため、\ ``<sec:form-login>``\ タグの\ ``login-page``\ 属性の設定値( http://localhost:8080/first-springsecurity/login/loginForm )に遷移し、以下のような画面が表示される。
 
 .. figure:: ./images_Tutorial/security_tutorial_login_page.png
    :width: 80%
 
+|
 
 JSPからログインユーザーのアカウント情報へアクセス
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
