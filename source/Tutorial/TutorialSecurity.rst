@@ -809,7 +809,7 @@ JSPからログインユーザーのアカウント情報へアクセス
 | JSPからログインユーザーのアカウント情報にアクセスし、氏名を表示する。
 | ``src/main/webapp/WEB-INF/views/welcome/home.jsp``
 
-.. code-block:: xml
+.. code-block:: jsp
     :emphasize-lines: 9-10,16-17
   
     <!DOCTYPE html>
@@ -867,7 +867,7 @@ JSPからログインユーザーのアカウント情報へアクセス
 | ログアウトするためのボタンを追加する。
 | ``src/main/webapp/WEB-INF/views/welcome/home.jsp``
 
-.. code-block:: xml
+.. code-block:: jsp
     :emphasize-lines: 17-20
 
     <!DOCTYPE html>
