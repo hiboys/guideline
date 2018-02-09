@@ -31,6 +31,13 @@
       - 記載内容の修正・追加(管理ID#3233 )
 
         * 一覧表示機能作成時に、登録機能の一部を作成していた部分を変更し、一覧表示機能の動作確認できるように、コード例を追加
+    
+    * -
+      - :doc:`../Tutorial/TutorialSecurity`
+      - 記載内容の修正・追加(管理ID#3260 )
+
+        * ``login.jsp`` の配置場所を ``src/main/webapp/login.jsp`` から ``src/main/webapp/WEB-INF/login/loginForm.jsp`` に変更
+        * ログインページを返すControllerを作成する章を追加
 
     * - 2018-03-16
       - \-
