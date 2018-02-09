@@ -912,10 +912,15 @@ JSPからログインユーザーのアカウント情報へアクセス
 
 |
 
-Logoutボタンを押下すると、アプリケーションからログアウトする(ログインページが表示される)。
+ウェルカムページにLogoutボタンが表示される。
 
 .. figure:: ./images_Security/security_tutorial_add_logout.png
     :width: 70%
+
+ウェルカムページでLogoutボタンを押下すると、アプリケーションからログアウトする(ログインページが表示される)。
+
+.. figure:: ./images_Security/security_tutorial_login_page.png
+   :width: 80%
 
 
 Controllerからログインユーザーのアカウント情報へアクセス
