@@ -679,8 +679,41 @@ blankプロジェクトからの差分のみ説明する。
      * - | (1)
        - | 雛形の設定ではapplicationContext.xmlにパスワードハッシュ化のために\ ``org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder``\ が設定されている。
          | テストデータとして、BCryptアルゴリズムでハッシュ化された"demo"という文字列を投入する。
+ログインページを返すControllerの作成
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+| ログインページを返すControllerを作成する。
+| ``src/main/java/com/example/security/app/login/LoginController.java``
 
-ログイン画面の作成
+.. code-block:: java
+  
+    package com.example.security.app.login;
+
+    import org.springframework.stereotype.Controller;
+    import org.springframework.web.bind.annotation.RequestMapping;
+
+    @Controller
+    @RequestMapping("/login")
+    public class LoginController {
+
+        @RequestMapping("/loginForm") // (1)
+        public String view() {
+            return "login/loginForm";
+        }
+    }
+  
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+  
+    * - 項番
+      - 説明
+    * - | (1)
+      - ログインページである、\ ``login/loginForm``\ を返す。 
+
+|
+
+ログインページの作成
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 | ログインページにログインフォームを作成する。
@@ -750,46 +783,15 @@ blankプロジェクトからの差分のみ説明する。
      * - | (5)
        - | パスワードのリクエストパラメータ名はデフォルトで\ ``j_password``\ である。
 
-|
-
-ログインページを返すControllerの作成
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| ログインページを返すControllerを作成する。
-| ``src/main/java/com/example/security/app/login/LoginController.java``
-
-.. code-block:: java
-  
-    package com.example.security.app.login;
-
-    import org.springframework.stereotype.Controller;
-    import org.springframework.web.bind.annotation.RequestMapping;
-
-    @Controller
-    @RequestMapping("/login")
-    public class LoginController {
-
-        @RequestMapping("/loginForm") // (1)
-        public String view() {
-            return "login/loginForm";
-        }
-    }
-  
-.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-.. list-table::
-    :header-rows: 1
-    :widths: 10 90
-  
-    * - 項番
-      - 説明
-    * - | (1)
-      - ログインページである、\ ``login/loginForm``\ を返す。 
-
-ブラウザのアドレスバーにhttp://localhost:8080/first-springsecurity/を入力し、表示しようとすると未ログイン状態のため、 :ref:`Spring Securityの設定<Tutorial_setting-spring-security>` の(1)の定義によりhttp://localhost:8080/first-springsecurity/login/loginForm にアクセスとなり、下の画面が表示される。
+| ブラウザのアドレスバーに http://localhost:8080/first-springsecurity/ を入力し、ウェルカムページを表示しようとする。
+| 未ログイン状態のため、\ ``<sec:form-login>``\ タグの\ ``login-page``\ 属性の設定値( http://localhost:8080/first-springsecurity/login/loginForm )に遷移し、以下のような画面が表示される。
 
 .. figure:: ./images_Tutorial/security_tutorial_login_page.png
    :width: 80%
 
-JSPからログインアカウント情報にアクセスする
+|
+
+JSPからログインユーザーのアカウント情報へアクセス
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 * src/main/webapp/WEB-INF/views/welcome/home.jsp
