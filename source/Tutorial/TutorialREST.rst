@@ -540,7 +540,7 @@ spring-mvc-rest.xmlの作成
 ``src/main/resources/META-INF/spring/spring-mvc-rest.xml``
 
 .. code-block:: xml
-    :emphasize-lines: 16-30,33,35
+    :emphasize-lines: 15,20-34,37,39,50
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -556,16 +556,20 @@ spring-mvc-rest.xmlの作成
             http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         ">
 
+        <!-- (1) -->
+        <context:property-placeholder
+            location="classpath*:/META-INF/spring/*.properties" />
+
         <mvc:annotation-driven>
             <mvc:message-converters register-defaults="false">
-                <!-- (1) -->
+                <!-- (2) -->
                 <bean
                     class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                    <!-- (2) -->
+                    <!-- (3) -->
                     <property name="objectMapper">
                         <bean class="com.fasterxml.jackson.databind.ObjectMapper">
                             <property name="dateFormat">
-                                <!-- (3) -->
+                                <!-- (4) -->
                                 <bean class="com.fasterxml.jackson.databind.util.StdDateFormat"/>
                             </property>
                         </bean>
@@ -574,9 +578,20 @@ spring-mvc-rest.xmlの作成
             </mvc:message-converters>
         </mvc:annotation-driven>
 
-        <context:component-scan base-package="com.example.todo.api" /> <!-- (4) -->
+        <context:component-scan base-package="com.example.todo.api" /> <!-- (5) -->
 
-        <!-- (5) -->
+        <!-- (6) -->
+        <mvc:interceptors>
+            <mvc:interceptor>
+                <mvc:mapping path="/**" />
+                <mvc:exclude-mapping path="/resources/**" />
+                <mvc:exclude-mapping path="/**/*.html" />
+                <bean
+                    class="org.terasoluna.gfw.web.logging.TraceLoggingInterceptor" />
+            </mvc:interceptor>
+        </mvc:interceptors>
+
+        <!-- (7) -->
         <!-- Setting AOP. -->
         <bean id="handlerExceptionResolverLoggingInterceptor"
             class="org.terasoluna.gfw.web.exception.HandlerExceptionResolverLoggingInterceptor">
@@ -597,25 +612,29 @@ spring-mvc-rest.xmlの作成
    * - 項番
      - 説明
    * - | (1)
+     - \ アプリケーション層のコンポーネントでプロパティファイルに定義されている値を参照する必要がある場合は、\ ``<context:property-placeholder>``\要素を使用してプロパティファイルを読み込む必要がある。
+   * - | (2)
      - \ ``<mvc:message-converters>``\ に、Controllerの引数と返り値で扱うJavaBeanをシリアライズ/デシリアライズするためのクラス(\ ``org.springframework.http.converter.HttpMessageConverter``\ )を設定する。
 
        \ ``HttpMessageConverter``\ は複数設定する事ができるが、本チュートリアルではJSONしか使用しないため、\ ``MappingJackson2HttpMessageConverter``\ のみ指定している。
-   * - | (2)
+   * - | (3)
      - \ ``MappingJackson2HttpMessageConverter``\ の\ ``objectMapper``\ プロパティに、Jacksonより提供されている\ ``ObjectMapper``\ (「JSON <-> JavaBean」の変換を行うためのコンポーネント)を指定する。
 
        本チュートリアルでは、日時型のフォーマットをカスタマイズした\ ``ObjectMapper``\ を指定している。
        カスタマイズする必要がない場合は\ ``objectMapper``\ プロパティは省略可能である。
-   * - | (3)
+   * - | (4)
      - \ ``ObjectMapper``\ の\ ``dateFormat``\ プロパティに、日時型フィールドの形式を指定する。
 
        本チュートリアルでは、\ ``java.util.Date``\ オブジェクトをシリアライズする際にISO-8601形式とする。
        \ ``Date``\ オブジェクトをシリアライズする際にISO-8601形式にする場合は、\ ``com.fasterxml.jackson.databind.util.StdDateFormat``\ を設定する事で実現する事ができる。
-   * - | (4)
+   * - | (5)
      - REST API用のパッケージ配下のコンポーネントをスキャンする。
 
        本チュートリアルでは、REST API用のパッケージを\ ``com.example.todo.api``\ にしている。
        画面遷移用のControllerは、\ ``app``\ パッケージ配下に格納していたが、REST API用のControllerは、\ ``api``\ パッケージ配下に格納する事を推奨する。
-   * - | (5)
+   * - | (6)
+     - \ Controllerの処理開始、終了時の情報をログに出力するために、共通ライブラリから提供されている\ ``TraceLoggingInterceptor``\を定義する。
+   * - | (7)
      - \ Spring MVCのフレームワークでハンドリングされた例外を、ログ出力するためのAOP定義を指定する。
 
 |
