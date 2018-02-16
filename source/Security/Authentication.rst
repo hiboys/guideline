@@ -278,7 +278,7 @@ Spring Securityはフォーム認証用のログインフォームをデフォ�
       - | 認証エラーを表示するためのエリア。
     * - | (2)
       - | 認証エラー時に出力させる例外メッセージを出力する。
-        | なお、認証エラーが発生した場合、Spring Securityのデフォルトの設定では、認証エラー時に発生した例外オブジェクトを、\ ``org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler``\ が、\ ``SPRING_SECURITY_LAST_EXCEPTION``\ という属性名で、リダイレクト時はセッション、フォワード時はリクエストスコープに格納する。
+        | なお、認証エラーが発生した場合、Spring Securityのデフォルトの設定で使用される、\ ``org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler``\ では、認証エラー時に発生した例外オブジェクトを\ ``SPRING_SECURITY_LAST_EXCEPTION``\ という属性名で、リダイレクト時はセッション、フォワード時はリクエストスコープに格納する。
     * - | (3)
       - | ユーザー名とパスワードを入力するためのログインフォーム。
         | ここではユーザー名を\ ``username``\、パスワードを\ ``passowrd``\ というリクエストパラメータで送信する。

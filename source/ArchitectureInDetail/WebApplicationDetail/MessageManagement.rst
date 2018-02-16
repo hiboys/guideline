@@ -1246,7 +1246,7 @@ ResultMessagesを使用しない結果メッセージの表示
 
 ``ResultMessages``\ オブジェクト以外にも、フレームワークがリクエストスコープに設定した文字列(エラーメッセージなど)を表示することができる。
 
-| 例えば、Spring Securityのデフォルトの設定では、認証エラー時に発生した例外オブジェクトを、\ ``org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler``\ が、\ ``SPRING_SECURITY_LAST_EXCEPTION``\ という属性名で、リダイレクト時はセッション、フォワード時はリクエストスコープに格納する。
+| 例えば、Spring Securityのデフォルトの設定で使用される、\ ``org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler``\ では、認証エラー時に発生した例外オブジェクトを\ ``SPRING_SECURITY_LAST_EXCEPTION``\ という属性名で、リダイレクト時はセッション、フォワード時はリクエストスコープに格納する。
 | この例外メッセージを、 ``ResultMessages`` を使用したときとと同様に出力したい場合は、以下のように設定すればよい。
 
 
