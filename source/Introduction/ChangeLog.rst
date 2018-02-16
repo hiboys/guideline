@@ -59,6 +59,12 @@
 
         * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正
 
+    * -
+      - :doc:`../Tutorial/TutorialREST`
+      - 記載内容の修正(管理ID#3283 )
+
+        * spring-mvc-rest.xmlを作成する方法の説明を変更
+
     * - 2018-03-16
       - \-
       - 5.4.0 RELEASE版公開
