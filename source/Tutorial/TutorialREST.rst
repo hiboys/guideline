@@ -532,15 +532,15 @@ web.xmlの修正
 spring-mvc-rest.xmlの作成
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| \ :file:`src/main/resources/META-INF/spring/spring-mvc.xml`\ をコピーして、REST用のSpring MVC設定ファイルを作成する。
-| REST用のSpringMVC設定ファイルは以下のような定義となる。
+| REST用のSpring MVC設定ファイルを作成する。
+| REST用のSpring MVC設定ファイルは以下のような定義となる。
 
 .. figure:: ./images_rest/add-spring-mvc-rest.png
 
 ``src/main/resources/META-INF/spring/spring-mvc-rest.xml``
 
 .. code-block:: xml
-    :emphasize-lines: 25-39,44
+    :emphasize-lines: 15,20-34,37,39,50
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -556,25 +556,20 @@ spring-mvc-rest.xmlの作成
             http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         ">
 
+        <!-- (1) -->
         <context:property-placeholder
             location="classpath*:/META-INF/spring/*.properties" />
 
         <mvc:annotation-driven>
-            <mvc:argument-resolvers>
-                <bean
-                    class="org.springframework.data.web.PageableHandlerMethodArgumentResolver" />
-                <bean
-                    class="org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver" />
-            </mvc:argument-resolvers>
             <mvc:message-converters register-defaults="false">
-                <!-- (1) -->
+                <!-- (2) -->
                 <bean
                     class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                    <!-- (2) -->
+                    <!-- (3) -->
                     <property name="objectMapper">
                         <bean class="com.fasterxml.jackson.databind.ObjectMapper">
                             <property name="dateFormat">
-                                <!-- (3) -->
+                                <!-- (4) -->
                                 <bean class="com.fasterxml.jackson.databind.util.StdDateFormat"/>
                             </property>
                         </bean>
@@ -583,10 +578,9 @@ spring-mvc-rest.xmlの作成
             </mvc:message-converters>
         </mvc:annotation-driven>
 
-        <mvc:default-servlet-handler />
+        <context:component-scan base-package="com.example.todo.api" /> <!-- (5) -->
 
-        <context:component-scan base-package="com.example.todo.api" /> <!-- (4) -->
-
+        <!-- (6) -->
         <mvc:interceptors>
             <mvc:interceptor>
                 <mvc:mapping path="/**" />
@@ -595,75 +589,9 @@ spring-mvc-rest.xmlの作成
                 <bean
                     class="org.terasoluna.gfw.web.logging.TraceLoggingInterceptor" />
             </mvc:interceptor>
-            <mvc:interceptor>
-                <mvc:mapping path="/**" />
-                <mvc:exclude-mapping path="/resources/**" />
-                <mvc:exclude-mapping path="/**/*.html" />
-                <bean
-                    class="org.terasoluna.gfw.web.token.transaction.TransactionTokenInterceptor" />
-            </mvc:interceptor>
-            <mvc:interceptor>
-                <mvc:mapping path="/**" />
-                <mvc:exclude-mapping path="/resources/**" />
-                <mvc:exclude-mapping path="/**/*.html" />
-                <bean class="org.terasoluna.gfw.web.codelist.CodeListInterceptor">
-                    <property name="codeListIdPattern" value="CL_.+" />
-                </bean>
-            </mvc:interceptor>
-            <!--  REMOVE THIS LINE IF YOU USE JPA
-            <mvc:interceptor>
-                <mvc:mapping path="/**" />
-                <mvc:exclude-mapping path="/resources/**" />
-                <mvc:exclude-mapping path="/**/*.html" />
-                <bean
-                    class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor" />
-            </mvc:interceptor>
-                REMOVE THIS LINE IF YOU USE JPA  -->
         </mvc:interceptors>
 
-        <!-- Settings View Resolver. -->
-        <mvc:view-resolvers>
-            <mvc:jsp prefix="/WEB-INF/views/" />
-        </mvc:view-resolvers>
-
-        <bean id="requestDataValueProcessor"
-            class="org.terasoluna.gfw.web.mvc.support.CompositeRequestDataValueProcessor">
-            <constructor-arg>
-                <util:list>
-                    <bean
-                        class="org.springframework.security.web.servlet.support.csrf.CsrfRequestDataValueProcessor" />
-                    <bean
-                        class="org.terasoluna.gfw.web.token.transaction.TransactionTokenRequestDataValueProcessor" />
-                </util:list>
-            </constructor-arg>
-        </bean>
-
-        <!-- Setting Exception Handling. -->
-        <!-- Exception Resolver. -->
-        <bean id="systemExceptionResolver"
-            class="org.terasoluna.gfw.web.exception.SystemExceptionResolver">
-            <property name="exceptionCodeResolver" ref="exceptionCodeResolver" />
-            <!-- Setting and Customization by project. -->
-            <property name="order" value="3" />
-            <property name="exceptionMappings">
-                <map>
-                    <entry key="ResourceNotFoundException" value="common/error/resourceNotFoundError" />
-                    <entry key="BusinessException" value="common/error/businessError" />
-                    <entry key="InvalidTransactionTokenException" value="common/error/transactionTokenError" />
-                    <entry key=".DataAccessException" value="common/error/dataAccessError" />
-                </map>
-            </property>
-            <property name="statusCodes">
-                <map>
-                    <entry key="common/error/resourceNotFoundError" value="404" />
-                    <entry key="common/error/businessError" value="409" />
-                    <entry key="common/error/transactionTokenError" value="409" />
-                    <entry key="common/error/dataAccessError" value="500" />
-                </map>
-            </property>
-            <property name="defaultErrorView" value="common/error/systemError" />
-            <property name="defaultStatusCode" value="500" />
-        </bean>
+        <!-- (7) -->
         <!-- Setting AOP. -->
         <bean id="handlerExceptionResolverLoggingInterceptor"
             class="org.terasoluna.gfw.web.exception.HandlerExceptionResolverLoggingInterceptor">
@@ -684,24 +612,30 @@ spring-mvc-rest.xmlの作成
    * - 項番
      - 説明
    * - | (1)
+     - \ アプリケーション層のコンポーネントでプロパティファイルに定義されている値を参照する必要がある場合は、\ ``<context:property-placeholder>``\要素を使用してプロパティファイルを読み込む必要がある。
+   * - | (2)
      - \ ``<mvc:message-converters>``\ に、Controllerの引数と返り値で扱うJavaBeanをシリアライズ/デシリアライズするためのクラス(\ ``org.springframework.http.converter.HttpMessageConverter``\ )を設定する。
 
        \ ``HttpMessageConverter``\ は複数設定する事ができるが、本チュートリアルではJSONしか使用しないため、\ ``MappingJackson2HttpMessageConverter``\ のみ指定している。
-   * - | (2)
+   * - | (3)
      - \ ``MappingJackson2HttpMessageConverter``\ の\ ``objectMapper``\ プロパティに、Jacksonより提供されている\ ``ObjectMapper``\ (「JSON <-> JavaBean」の変換を行うためのコンポーネント)を指定する。
 
        本チュートリアルでは、日時型のフォーマットをカスタマイズした\ ``ObjectMapper``\ を指定している。
        カスタマイズする必要がない場合は\ ``objectMapper``\ プロパティは省略可能である。
-   * - | (3)
+   * - | (4)
      - \ ``ObjectMapper``\ の\ ``dateFormat``\ プロパティに、日時型フィールドの形式を指定する。
 
        本チュートリアルでは、\ ``java.util.Date``\ オブジェクトをシリアライズする際にISO-8601形式とする。
        \ ``Date``\ オブジェクトをシリアライズする際にISO-8601形式にする場合は、\ ``com.fasterxml.jackson.databind.util.StdDateFormat``\ を設定する事で実現する事ができる。
-   * - | (4)
+   * - | (5)
      - REST API用のパッケージ配下のコンポーネントをスキャンする。
 
        本チュートリアルでは、REST API用のパッケージを\ ``com.example.todo.api``\ にしている。
        画面遷移用のControllerは、\ ``app``\ パッケージ配下に格納していたが、REST API用のControllerは、\ ``api``\ パッケージ配下に格納する事を推奨する。
+   * - | (6)
+     - \ Controllerの処理開始、終了時の情報をログに出力するために、共通ライブラリから提供されている\ ``TraceLoggingInterceptor``\を定義する。
+   * - | (7)
+     - \ Spring MVCのフレームワークでハンドリングされた例外を、ログ出力するためのAOP定義を指定する。
 
 |
 
