@@ -781,7 +781,7 @@ Spring Securityの設定
     * - | (2)
       - 共通ライブラリから提供されている\ ``<t:messagesPanel>``\ タグを使用してエラーメッセージを表示する。
 
-        認証が失敗した場合、認証エラーの例外オブジェクトが\ ``SPRING_SECURITY_LAST_EXCEPTION``\ という属性名でリダイレクト時はセッション、フォワード時はリクエストスコープに格納される。
+        認証が失敗した場合、Spring Securityのデフォルトの設定では、認証エラー時に発生した例外オブジェクトを、\ ``org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler``\ が、\ ``SPRING_SECURITY_LAST_EXCEPTION``\ という属性名で、リダイレクト時はセッション、フォワード時はリクエストスコープに格納する。
     * - | (3)
       - \ ``<form:form>``\ タグの\ ``action``\ 属性に、認証処理用のURL(\ ``/login``\ )を設定する。このURLはSpring Securityのデフォルトである。
 
