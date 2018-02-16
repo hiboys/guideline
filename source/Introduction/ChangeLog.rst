@@ -26,6 +26,24 @@
 
         * 独自カスタマイズしたコードリストのBean定義方法を、コンポーネントスキャンからBean定義ファイルによる定義に変更
 
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`
+      - 記載内容の修正
+
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正
+    
+    * -
+      - :doc:`../Security/Authentication`
+      - 記載内容の追加
+
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの説明を追加
+    
+    * -
+      - :doc:`../Tutorial/TutorialSecurity`
+      - 記載内容の修正
+
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正
+
     * - 2017-12-18
       - \-
       - 1.5.0 RELEASE版公開
