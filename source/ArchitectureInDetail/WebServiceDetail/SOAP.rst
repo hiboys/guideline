@@ -140,7 +140,7 @@ Spring FrameworkのJAX-WS連携機能について
             
             また、SOAPサーバは、\ ``@Inject``\ではなく、\ ``@Autowired``\でインジェクションすることを推奨する。
 
-            \ ``@Inject``\の場合、JavaEEサーバが提供するDI機能で使用されるため、JavaEEサーバのDIコンテナに存在しないとエラーになってしまう。
+            \ ``@Inject``\の場合、Java EEサーバが提供するDI機能で使用されるため、Java EEサーバのDIコンテナに存在しないとエラーになってしまう。
 
             上記に対して、\ ``@Autowired``\であればSpringのDI機能のみで使用されるため、意図せずJavaEEサーバのDI機能でエラーになるのを防止することができる。
 
