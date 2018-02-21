@@ -1168,7 +1168,7 @@ spring-mvc.xml
 Spring Securityと関係のない設定については、説明を割愛する。
 
 .. code-block:: xml
-    :emphasize-lines: 22-24,85-87
+    :emphasize-lines: 22-24,79-81
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -1241,14 +1241,8 @@ Spring Securityと関係のない設定については、説明を割愛する�
 
         <!-- Settings View Resolver. -->
         <mvc:view-resolvers>
-            <mvc:bean-name />
-            <mvc:tiles />
             <mvc:jsp prefix="/WEB-INF/views/" />
         </mvc:view-resolvers>
-
-        <mvc:tiles-configurer>
-            <mvc:definitions location="/WEB-INF/tiles/tiles-definitions.xml" />
-        </mvc:tiles-configurer>
 
         <bean id="requestDataValueProcessor"
             class="org.terasoluna.gfw.web.mvc.support.CompositeRequestDataValueProcessor">
@@ -1285,6 +1279,11 @@ Spring Securityと関係のない設定については、説明を割愛する�
                     <entry key="common/error/transactionTokenError" value="409" />
                     <entry key="common/error/dataAccessError" value="500" />
                 </map>
+            </property>
+            <property name="excludedExceptions">
+                <array>
+                    <value>org.springframework.web.util.NestedServletException</value>
+                </array>
             </property>
             <property name="defaultErrorView" value="common/error/systemError" />
             <property name="defaultStatusCode" value="500" />
