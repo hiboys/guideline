@@ -191,7 +191,7 @@ Springのコンテキストで管理されたbean名を用いて実行するView
    * - 項番
      - 説明
    * - | (1)
-     - | Spring Framework 4.1から追加された\ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
+     - | \ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
    * - | (2)
      - | \ ``<mvc:bean-name>``\ 要素を先頭に定義し、通常使用する\ ``ViewResolver``\ (JSP用の\ ``ViewResolver``\ )より優先度を高くする。
 

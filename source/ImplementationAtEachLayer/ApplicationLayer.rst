@@ -1849,7 +1849,7 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - Spring Framework 4.1から追加された\ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
+     - \ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
 
        \ ``<mvc:view-resolvers>``\ 要素を使用して\ ``ViewResolver``\ を定義する場合は、子要素に指定する\ ``ViewResolver``\の定義順が優先順位となる。
    * - | (2)
