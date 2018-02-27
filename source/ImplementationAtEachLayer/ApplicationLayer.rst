@@ -1752,9 +1752,9 @@ Cookieに値を書き込む
 HTMLを応答する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | ハンドラメソッドの実行結果をHTMLとして応答する場合、ハンドラメソッドの返り値は、JSPのView名を返却する。
-| JSPを使ってHTMLを生成する場合の\ ``ViewResolver``\ は、基本的には\ ``UrlBasedViewResolver``\ の継承クラス(\ ``InternalViewResolver``\ や \ ``TilesViewResolver``\ 等)となる。
+| JSPを使ってHTMLを生成する場合の\ ``ViewResolver``\ は、基本的には\ ``UrlBasedViewResolver``\ の継承クラス(\ ``InternalResourceViewResolver``\ や \ ``TilesViewResolver``\ 等)となる。
 
-| 以下では、JSP用の\ ``InternalViewResolver``\ を使用する場合の例を記載するが、画面レイアウトがテンプレート化されている場合は\ ``TilesViewResolver``\ を使用することを推奨する。
+| 以下では、JSP用の\ ``InternalResourceViewResolver``\ を使用する場合の例を記載するが、画面レイアウトがテンプレート化されている場合は\ ``TilesViewResolver``\ を使用することを推奨する。
 | \ ``TilesViewResolver``\ の使用方法については、 :doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout` を参照されたい。
 
 - spring-mvc.xml
@@ -1785,7 +1785,7 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - Spring Framework 4.1から追加された\ ``<mvc:jsp>``\ 要素を使用して、JSP用の\ ``InternalViewResolver``\ を定義する。
+     - Spring Framework 4.1から追加された\ ``<mvc:jsp>``\ 要素を使用して、JSP用の\ ``InternalResourceViewResolver``\ を定義する。
 
        * \ ``prefix``\ 属性には、JSPファイルが格納されているベースディレクトリ(ファイルパスのプレフィックス)を指定する。
        * \ ``suffix``\ 属性には、デフォルト値として\ ``.jsp``\が適用されているため、明示的に指定する必要はない。
@@ -1895,7 +1895,7 @@ HTMLを応答する
      - Spring Framework 4.1から追加された\ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
 
        \ ``<mvc:view-resolvers>``\ 要素を使用して\ ``ViewResolver``\ を定義する場合は、子要素に指定する\ ``ViewResolver``\の定義順が優先順位となる。
-       上記例では、JSP用の\ ``InternalViewResolver``\を定義するための要素(\ ``<mvc:jsp>``\)より上に定義することで、JSP用の\ ``InternalViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
+       上記例では、JSP用の\ ``InternalResourceViewResolver``\を定義するための要素(\ ``<mvc:jsp>``\)より上に定義することで、JSP用の\ ``InternalResourceViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
 
        .. note::
 
