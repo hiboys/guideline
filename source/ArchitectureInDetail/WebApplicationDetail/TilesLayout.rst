@@ -123,17 +123,17 @@ Spring MVCとTilesの連携
    * - 項番
      - 説明
    * - | (1)
-     - Spring Framework 4.1から追加された\ ``<mvc:tiles>``\ 要素を使用して、\ ``TilesViewResolver``\ を定義する。
+     - \ ``<mvc:tiles>``\ 要素を使用して、\ ``TilesViewResolver``\ を定義する。
 
        \ ``<mvc:jsp>``\ 要素より上に定義することで、最初にTiles定義ファイル(:file:`tiles-definitions.xml`)を参照して\ ``View``\を解決するようにする。
        Controllerから返却されたView名が、Tiles定義ファイル内の\ ``definition``\ 要素の\ ``name``\ 属性のパターンに合致する場合、\ ``TilesViewResolver``\ によって\ ``View``\が解決される。
    * - | (2)
-     - Spring Framework 4.1から追加された\ ``<mvc:jsp>``\ 要素を使用して、JSP用の\ ``InternalResourceViewResolver``\ を定義する。
+     - \ ``<mvc:jsp>``\ 要素を使用して、JSP用の\ ``InternalResourceViewResolver``\ を定義する。
 
        \ ``<mvc:tiles>``\ 要素より下に定義することで、\ ``TilesViewResolver``\で解決できなかったView名のみ、JSP用の\ ``InternalResourceViewResolver``\を使用して\ ``View``\を解決するようにする。
        View名に対応するJSPファイルが、\ ``/WEB-INF/views/``\ 配下に存在する場合、JSP用の\ ``InternalResourceViewResolver``\ によって\ ``View``\が解決される。
    * - | (3)
-     - Spring Framework 4.1から追加された\ ``<mvc:tiles-configurer>``\ 要素を使用して、Tiles定義ファイルを読み込む。
+     - \ ``<mvc:tiles-configurer>``\ 要素を使用して、Tiles定義ファイルを読み込む。
 
        \ ``<mvc:definitions>``\ 要素の\ ``location``\ 属性に、Tiles定義ファイルを指定する。
 

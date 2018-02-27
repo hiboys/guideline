@@ -1785,7 +1785,7 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - Spring Framework 4.1から追加された\ ``<mvc:jsp>``\ 要素を使用して、JSP用の\ ``InternalResourceViewResolver``\ を定義する。
+     - \ ``<mvc:jsp>``\ 要素を使用して、JSP用の\ ``InternalResourceViewResolver``\ を定義する。
 
        * \ ``prefix``\ 属性には、JSPファイルが格納されているベースディレクトリ(ファイルパスのプレフィックス)を指定する。
        * \ ``suffix``\ 属性には、デフォルト値として\ ``.jsp``\が適用されているため、明示的に指定する必要はない。
@@ -1892,7 +1892,7 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - Spring Framework 4.1から追加された\ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
+     - \ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
 
        \ ``<mvc:view-resolvers>``\ 要素を使用して\ ``ViewResolver``\ を定義する場合は、子要素に指定する\ ``ViewResolver``\の定義順が優先順位となる。
        上記例では、JSP用の\ ``InternalResourceViewResolver``\を定義するための要素(\ ``<mvc:jsp>``\)より上に定義することで、JSP用の\ ``InternalResourceViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
