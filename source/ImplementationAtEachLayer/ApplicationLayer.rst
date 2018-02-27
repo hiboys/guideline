@@ -1785,7 +1785,7 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - Spring Framework 4.1から追加された\ ``<mvc:jsp>``\ 要素に使用して、JSP用の\ ``InternalViewResolver``\ を定義する。
+     - Spring Framework 4.1から追加された\ ``<mvc:jsp>``\ 要素を使用して、JSP用の\ ``InternalViewResolver``\ を定義する。
 
        * \ ``prefix``\ 属性には、JSPファイルが格納されているベースディレクトリ(ファイルパスのプレフィックス)を指定する。
        * \ ``suffix``\ 属性には、デフォルト値として\ ``.jsp``\が適用されているため、明示的に指定する必要はない。
