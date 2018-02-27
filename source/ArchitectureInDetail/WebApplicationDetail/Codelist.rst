@@ -1868,27 +1868,27 @@ JSPではSpEL式を利用して直接Beanを参照することができるが、
 
 .. note::
 
- 国際化対応のため ``SimpleI18nCodeList`` を使用している場合は :ref:`clientSide` で紹介している方法を使用することを推奨する。
+ 国際化対応のため ``SimpleI18nCodeList`` を使用している場合は :ref:`CodeListAppendixDirectReferenceSimpleI18nCodeList` で紹介している方法を参照されたい。
  :ref:`directRefCodeList` を使用する場合は、``CodeListInterceptor`` が実施しているような、``SimpleI18nCodeList`` の ``asMap`` メソッドに渡すロケールを決定するロジックを独自に実装する必要があるためである。
 
+.. _codeListDirectRefCodeListSpringMvc:
 
 **bean定義ファイル(spring-mvc.xml)の定義**
 
 .. code-block:: xml
   :emphasize-lines: 3,4,5,6,7
 
-   <mvc:interceptors>
-     <mvc:interceptor>
-       <mvc:mapping path="/**" />
-       <bean
-         class="org.terasoluna.gfw.web.codelist.CodeListInterceptor"> <!-- (1) -->
-         <property name="codeListIdPattern" value="CL_.+" />
-       </bean>
-     </mvc:interceptor>
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean class="org.terasoluna.gfw.web.codelist.CodeListInterceptor"> <!-- (1) -->
+                <property name="codeListIdPattern" value="CL_.+" />
+            </bean>
+        </mvc:interceptor>
 
-     <!-- omitted -->
+    <!-- omitted -->
 
-   </mvc:interceptors>
+    </mvc:interceptors>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1905,15 +1905,15 @@ JSPではSpEL式を利用して直接Beanを参照することができるが、
 
 .. code-block:: xml
 
-   <bean id="CLDR_ORDERSTATUS" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
-       <property name="map">
-           <util:map>
-               <entry key="1" value="Received" />
-               <entry key="2" value="Sent" />
-               <entry key="3" value="Cancelled" />
-           </util:map>
-       </property>
-   </bean>
+    <bean id="CLDR_ORDERSTATUS" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+        <property name="map">
+            <util:map>
+                <entry key="1" value="Received" />
+                <entry key="2" value="Sent" />
+                <entry key="3" value="Cancelled" />
+            </util:map>
+        </property>
+    </bean>
 
 **jspの実装例**
 
@@ -1932,17 +1932,141 @@ JSPではSpEL式を利用して直接Beanを参照することができるが、
     - 説明
   * - | (1)
     - | 変数式により取得したコードリストBeanのasMapメソッドにより、Map形式で参照することができる。
-      | なお、``SimpleI18nCodeList`` の場合は、 ``asMap`` メソッドの引数として ``Locale`` を渡す必要がある。
 
 **出力HTML**
 
 .. code-block:: html
 
- <select id="orderStatus" name="orderStatus">
-    <option value="1">Received</option>
-    <option value="2">Sent</option>
-    <option value="3">Cancelled</option>
- </select>
+    <select id="orderStatus" name="orderStatus">
+        <option value="1">Received</option>
+        <option value="2">Sent</option>
+        <option value="3">Cancelled</option>
+    </select>
 
 |
+
+.. _CodeListAppendixDirectReferenceSimpleI18nCodeList:
+
+SimpleI18nCodeListをJSPから直接参照する方法
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+``SimpleI18nCodeList`` を直接JSPから参照する方法を紹介する。
+
+ここで紹介する方法では、レスポンスのロケールがコードリストに定義されていなかった場合、デフォルトで設定したロケールでコードリストを表示するようにしている。
+
+**bean定義ファイル(spring-mvc.xml)の定義**
+
+:ref:`bean定義ファイル(spring-mvc.xml)の定義<codeListDirectRefCodeListSpringMvc>` と同様なため割愛する。
+
+**bean定義ファイル(xxx-codelist.xml)の定義**
+
+.. code-block:: xml
+
+    <bean id="CL_I18N_PRICE"
+        class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+        <property name="rowsByCodeList">
+            <util:map>
+                <entry key="en" value-ref="CL_PRICE_EN" />
+                <entry key="ja" value-ref="CL_PRICE_JA" />
+            </util:map>
+        </property>
+    </bean>
+
+    <bean id="CL_PRICE_EN" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+        <property name="map">
+            <util:map>
+                <entry key="0" value="unlimited" />
+                <entry key="10000" value="Less than \\10,000" />
+                <entry key="20000" value="Less than \\20,000" />
+                <entry key="30000" value="Less than \\30,000" />
+                <entry key="40000" value="Less than \\40,000" />
+                <entry key="50000" value="Less than \\50,000" />
+            </util:map>
+        </property>
+    </bean>
+
+    <bean id="CL_PRICE_JA" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+        <property name="map">
+            <util:map>
+                <entry key="0" value="上限なし" />
+                <entry key="10000" value="10,000円以下" />
+                <entry key="20000" value="20,000円以下" />
+                <entry key="30000" value="30,000円以下" />
+                <entry key="40000" value="40,000円以下" />
+                <entry key="50000" value="50,000円以下" />
+            </util:map>
+        </property>
+    </bean>
+
+
+**jspの実装例**
+
+.. code-block:: jsp
+
+    <c:set var="fallbackLocale" value="en"/> <!-- (1) -->
+    <spring:eval var="prices" expression="@CL_I18N_PRICE.asMap(pageContext.response.locale).isEmpty() ? @CL_I18N_PRICE.asMap(fallbackLocale) : @CL_I18N_PRICE.asMap(pageContext.response.locale)" /> <!-- (2) -->
+    <form:select items="${prices}" path="prices" />
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+  :header-rows: 1
+  :widths: 10 90
+
+  * - 項番
+    - 説明
+  * - | (1)
+    - | レスポンスのロケールがコードリストに定義されていなかった場合に、どのロケールのコードリストを取得するか、``fallbackLocale`` 変数に設定する。
+  * - | (2)
+    - | レスポンスのロケールに対応するコードリストを ``Map`` 形式で取得する。
+      | レスポンスのロケールがコードリストに定義されていなかった場合、``fallbackLocale`` 変数に設定したロケールで対応するコードリストを ``Map`` 形式で取得する。
+
+**出力HTML lang=en**
+
+.. code-block:: html
+
+    <select id="basePrice" name="basePrice">
+        <option value="0">unlimited</option>
+        <option value="1">Less than \\10,000</option>
+        <option value="2">Less than \\20,000</option>
+        <option value="3">Less than \\30,000</option>
+        <option value="4">Less than \\40,000</option>
+        <option value="5">Less than \\50,000</option>
+    </select>
+
+**出力HTML lang=ja**
+
+.. code-block:: html
+
+    <select id="basePrice" name="basePrice">
+        <option value="0">上限なし</option>
+        <option value="1">10,000円以下</option>
+        <option value="2">20,000円以下</option>
+        <option value="3">30,000円以下</option>
+        <option value="4">40,000円以下</option>
+        <option value="5">50,000円以下</option>
+    </select>
+    
+**出力HTML lang=undefined**
+
+.. code-block:: html
+
+    <select id="basePrice" name="basePrice">
+        <option value="0">unlimited</option> <!-- (1) -->
+        <option value="1">Less than \\10,000</option>
+        <option value="2">Less than \\20,000</option>
+        <option value="3">Less than \\30,000</option>
+        <option value="4">Less than \\40,000</option>
+        <option value="5">Less than \\50,000</option>
+    </select>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+  :header-rows: 1
+  :widths: 10 90
+
+  * - 項番
+    - 説明
+  * - | (1)
+    - | レスポンスのロケールがコードリストに定義されていなかった場合に、``fallbackLocale`` 変数で指定した"en" が設定されるため、ロケールが"en"である ``CL_PRICE_EN`` コードリストが表示される。
+ 
 
