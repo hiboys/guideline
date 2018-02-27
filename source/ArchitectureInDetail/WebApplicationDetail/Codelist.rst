@@ -1919,8 +1919,8 @@ JSPではSpELを利用して直接Beanを参照することができるが、こ
 
 .. code-block:: jsp
 
-  <spring:eval var="orders" expression="@CL_ORDERSTATUS.asMap()"/> <!-- (1) -->
-  <form:select items="${orders}" path="orderStatus" />
+  <spring:eval var="statuses" expression="@CL_ORDERSTATUS.asMap()"/> <!-- (1) -->
+  <form:select items="${statuses}" path="orderStatus" />
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
