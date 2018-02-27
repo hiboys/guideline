@@ -1905,7 +1905,7 @@ JSPではSpEL式を利用して直接Beanを参照することができるが、
 
 .. code-block:: xml
 
-    <bean id="CLDR_ORDERSTATUS" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+    <bean id="CL_ORDERSTATUS" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
         <property name="map">
             <util:map>
                 <entry key="1" value="Received" />
@@ -1919,7 +1919,7 @@ JSPではSpEL式を利用して直接Beanを参照することができるが、
 
 .. code-block:: jsp
 
-  <spring:eval var="orders" expression="@CLDR_ORDERSTATUS.asMap()"/> <!-- (1) -->
+  <spring:eval var="orders" expression="@CL_ORDERSTATUS.asMap()"/> <!-- (1) -->
   <form:select items="${orders}" path="orderStatus" />
 
 
