@@ -15,6 +15,17 @@
       - 5.4.2 RELEASE版公開
     
     * -
+      - 全般
+      - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
+
+        記載内容の改善
+
+        ViewResolverの定義についての修正(管理ID#3197)
+
+        * \ ``<bean>`` \ 要素を使用した定義方法を削除
+        * \ ``<mvc:view-resolvers>`` \ が追加されたSpring Frameworkのバージョンへの言及を削除
+
+    * -
       - :doc:`../Tutorial/TutorialSession`
       - 記載内容の修正(管理ID#3270 )
 
