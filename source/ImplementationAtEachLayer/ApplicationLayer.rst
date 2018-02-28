@@ -1505,7 +1505,7 @@ URLのパスから値を取得する
    * - | (1)
      - \ ``RedirectAttributes``\ オブジェクトを引数として受け取る。
    * - | (2)
-     - | \ ``RedirectAttributes``\ オブジェクトの\ ``addFlashAttribute``\ メソッドを呼び出し、FlashMapを利用して渡したいデータをモデルに追加する。
+     - | \ ``RedirectAttributes``\ オブジェクトの\ ``addFlashAttribute``\ メソッドを呼び出し、渡したいデータを\ ``RedirectAttributes``\ オブジェクトに追加する。
        | 例では、 ``hello`` という属性名で ``HelloWorld!`` という文字列のデータを追加している。
    * - | (3)
      - | \ ``addFlashAttribute``\ メソッドの第一引数を省略すると値に渡したオブジェクトのクラス名の先頭を小文字にした文字列が属性名になる。
