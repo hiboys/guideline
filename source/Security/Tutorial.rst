@@ -679,6 +679,7 @@ blankプロジェクトからの差分のみ説明する。
      * - | (1)
        - | 雛形の設定ではapplicationContext.xmlにパスワードハッシュ化のために\ ``org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder``\ が設定されている。
          | テストデータとして、BCryptアルゴリズムでハッシュ化された"demo"という文字列を投入する。
+
 ログインページを返すControllerの作成
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | ログインページを返すControllerを作成する。
