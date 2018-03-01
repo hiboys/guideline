@@ -1091,7 +1091,7 @@ Package Explorer上で右クリック -> New -> Class を選択し、「New Java
         TodoRepository todoRepository;
 
         // (4)
-        public Todo findOne(String todoId) {
+        private Todo findOne(String todoId) {
             Todo todo = todoRepository.findOne(todoId);
             if (todo == null) {
                 // (5)

@@ -1081,7 +1081,7 @@ GET Todoの実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ﻿\ :doc:`./TutorialTodo`\ では、\ ``TodoService``\ に一件取得用のメソッド(\ ``findOne``\ )を作成しなかったため、
-\ ``TodoService``\ と\ ``TodoServiceImpl``\ に以下のハイライト部を追加する。
+\ ``TodoService``\ と\ ``TodoServiceImpl``\ に以下のハイライト部を修正・追加する。
 
 | \ ``findOne``\ メソッドの定義を追加する。
 | ``src/main/java/com/example/todo/domain/service/todo/TodoService.java``
@@ -1109,11 +1109,11 @@ GET Todoの実装
 
 |
 
-| \ ``findOne``\ メソッド呼び出し時に開始されるトランザクションを読み取り専用に設定する。
+| \ ``findOne``\ メソッド呼び出し時に開始されるトランザクションを読み取り専用に設定し、アクセス修飾子を\ ``public``\ に変更する。
 | ``src/main/java/com/example/todo/domain/service/todo/TodoServiceImpl.java``
 
 .. code-block:: java
-    :emphasize-lines: 29
+    :emphasize-lines: 28-30
 
     package com.example.todo.domain.service.todo;
 
