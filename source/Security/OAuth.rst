@@ -5257,13 +5257,6 @@ RFCに準拠したエンドポイントや、認可サーバ内でフォワー�
       - | アクセストークン操作に関するエンドポイントのURLを含むように、アクセス制御の対象を変更する。
 
 
-.. Warning::
-
-    Spring Security OAuthのバージョン2.0.12以前を使用する場合、\ ``check-token-endpoint-url``\ は、\ ``authorization-endpoint-url``\ または\ ``token-endpoint-url``\ を指定していない場合は反映されないため注意が必要である。
-    これは以下のissueで取り上げられており、バージョン2.0.13で改修される予定である。
-
-    https://github.com/spring-projects/spring-security-oauth/issues/897
-
 |
 
 変更したエンドポイントに合わせて、エンドポイントを参照する設定を変更する必要がある。
