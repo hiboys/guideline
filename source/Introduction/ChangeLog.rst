@@ -55,6 +55,11 @@
       - 記載内容の修正(管理ID#3283 )
 
         * spring-mvc-rest.xmlを作成する方法の説明を変更
+    * -
+      - :doc:`../Security/OAuth`
+      - 記載内容の修正(管理ID#3263)
+
+        * 認可サーバのエンドポイントに対するSpring Security OAuthのバージョンに関するWarningを削除
 
     * - 2018-03-16
       - \-
