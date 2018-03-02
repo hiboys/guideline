@@ -29,7 +29,7 @@
       - :doc:`../Security/OAuth`
       - 記載内容の修正
 
-        * 認可サーバのエンドポイントに対するSpring Security OAuthのバージョンに関するWarningを削除
+        * 認可サーバのチェックトークンエンドポイントのURL設定が反映されない不具合へのWarningを削除
 
     * - 2017-12-18
       - \-
