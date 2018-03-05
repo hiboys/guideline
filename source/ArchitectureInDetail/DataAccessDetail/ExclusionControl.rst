@@ -1615,7 +1615,7 @@ Spring Data JPAでは、\ ``@org.springframework.data.jpa.repository.Lock``\ ア
 
      .. warning:: **PostgreSQL使用時に"nowait"句が付加されない不具合について**
 
-        TERASOLUNA Server Framework for Java 5.4.0 RELEASE版の依存ライブラリであるHibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)のため、PostgreSQLを使用した場合、タイムアウト時間を "``0``" に設定してもSQLに"nowait"句が付加されない。
+        TERASOLUNA Server Framework for Java 5.4.1 RELEASE版の依存ライブラリであるHibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)のため、PostgreSQLを使用した場合、タイムアウト時間を "``0``" に設定してもSQLに"nowait"句が付加されない。
 
         そのため、以下の様な対策を検討する必要がある。
         

@@ -1319,7 +1319,7 @@ Spring Security OAuthではクライアント情報を取得するためのイ�
         | \ ``authentication-manager-ref``\ 属性に(7)で定義しているクライアント認証用の\ ``AuthenticationManager``\のBeanを指定する。
     * - | (3)
       - | クライアント認証にBasic認証を適用する。
-        | 詳細については\ `Basic and Digest Authentication <http://docs.spring.io/spring-security/site/docs/4.2.3.RELEASE/reference/html/basic.html>`_\を参照されたい。
+        | 詳細については\ `Basic and Digest Authentication <http://docs.spring.io/spring-security/site/docs/4.2.4.RELEASE/reference/html/basic.html>`_\を参照されたい。
     * - | (4)
       - | \ ``/oauth/*token*/**``\ へのアクセスに対してCSRF対策機能を無効化する。
         | Spring Security OAuthでは、OAuth 2.0のCSRF対策として推奨されている、stateパラメータを使用したリクエストの正当性確認を採用している。

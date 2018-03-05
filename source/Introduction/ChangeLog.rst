@@ -10,18 +10,9 @@
       - 更新箇所
       - 更新内容
 
-    * - 2018-XX-XX
-      - \-
-      - 5.4.1 RELEASE版公開
-    * -
-      - :doc:`../Security/OAuth`
-      - 記載内容の修正(管理ID#3263)
-
-        * 認可サーバのチェックトークンエンドポイントのURL設定が反映されない不具合へのWarningを削除
-
     * - 2018-03-16
       - \-
-      - 5.4.0 RELEASE版公開
+      - 5.4.1 RELEASE版公開
 
     * -
       - 全般
@@ -37,6 +28,11 @@
         * MyBatisのバージョンを3.4.5に更新
 
         Spring IO Platformのバージョン更新に伴い利用するOSSのバージョンを更新
+
+        CVE-2018-1199への対応のため、利用するOSSのバージョンを更新(管理ID#3300)
+
+        * Spring Frameworkのバージョンを4.3.14に更新
+        * Spring Securityのバージョンを4.2.4に更新
 
     * -
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
@@ -131,6 +127,8 @@
         * サンプルコードの修正(管理ID#2891)
 
         * フロー図およびその説明の改善(管理ID#2891)
+
+        * 認可サーバのチェックトークンエンドポイントのURL設定が反映されない不具合へのWarningを削除(管理ID#3263)
 
     * -
       - :doc:`../UnitTest/index`
