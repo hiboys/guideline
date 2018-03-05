@@ -56,7 +56,7 @@ URL一覧を以下に示す。
     * - 1
       - ログインフォーム表示
       - GET
-      - /login.jsp
+      - /login/loginForm
       - ログインフォームを表示する
     * - 2
       - ログイン
@@ -539,9 +539,9 @@ Spring Securityの設定
    
    * - | URL
      - | 説明
-   * - | /login.jsp
+   * - | /login/loginForm
      - | ログインフォームを表示するためのURL
-   * - | /login.jsp?error=true
+   * - | /login/loginForm?error=true
      - | 認証エラー時に遷移するページ(ログインページ)を表示するためのURL
    * - | /authenticate
      - | 認証処理を行うためのURL
@@ -585,8 +585,8 @@ Spring Securityの設定
             <sec:session-management />
             <!-- (1) -->
             <sec:form-login
-                login-page="/login.jsp"
-                authentication-failure-url="/login.jsp?error=true"
+                login-page="/login/loginForm"
+                authentication-failure-url="/login/loginForm?error=true"
                 login-processing-url="/authenticate" />
             <!-- (2) -->
             <sec:logout
@@ -594,7 +594,7 @@ Spring Securityの設定
                 logout-success-url="/"
                 delete-cookies="JSESSIONID" />
             <!-- (3) -->
-            <sec:intercept-url pattern="/login.jsp" access="permitAll" />
+            <sec:intercept-url pattern="/login/**" access="permitAll" />
             <sec:intercept-url pattern="/**" access="isAuthenticated()" />
 
         </sec:http>
@@ -706,11 +706,45 @@ Spring Securityの設定
 
 |
 
+ログインページを返すControllerの作成
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+| ログインページを返すControllerを作成する。
+| ``src/main/java/com/example/security/app/login/LoginController.java``
+
+.. code-block:: java
+  
+    package com.example.security.app.login;
+
+    import org.springframework.stereotype.Controller;
+    import org.springframework.web.bind.annotation.RequestMapping;
+
+    @Controller
+    @RequestMapping("/login")
+    public class LoginController {
+
+        @RequestMapping("/loginForm") // (1)
+        public String view() {
+            return "login/loginForm";
+        }
+    }
+  
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+  
+    * - 項番
+      - 説明
+    * - | (1)
+      - ログインページである、\ ``login/loginForm``\ を返す。 
+
+|
+
 ログインページの作成
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 | ログインページにログインフォームを作成する。
-| ``src/main/webapp/login.jsp``
+| ``src/main/webapp/WEB-INF/login/loginForm.jsp``
 
 .. code-block:: jsp
   
@@ -762,7 +796,7 @@ Spring Securityの設定
     * - 項番
       - 説明
     * - | (1)
-      - 認証が失敗した場合、\ ``"/login.jsp?error=true"``\ が呼び出し、ログインページを表示する。
+      - 認証が失敗した場合、\ ``/login/loginForm?error=true``\ が呼び出され、ログインページを表示する。
         そのため、認証エラー後の表示の時のみエラーメッセージが表示されるように\ ``<c:if>``\ タグを使用する。
     * - | (2)
       - 共通ライブラリから提供されている\ ``<t:messagesPanel>``\ タグを使用してエラーメッセージを表示する。
@@ -814,14 +848,13 @@ Spring Securityの設定
     これは、安易にセッションが使用されないようにするためであるが、
     認証エラーの例外オブジェクトをJSPから取得する場合は、JSPからセッションスコープにアクセスできるようにする必要がある。
 
-| 
-
 | ブラウザのアドレスバーに http://localhost:8080/first-springsecurity/ を入力し、ウェルカムページを表示しようとする。
-| 未ログイン状態のため、\ ``<sec:form-login>``\ タグの\ ``login-page``\ 属性の設定値( http://localhost:8080/first-springsecurity/login.jsp )に遷移し、以下のような画面が表示される。
+| 未ログイン状態のため、\ ``<sec:form-login>``\ タグの\ ``login-page``\ 属性の設定値( http://localhost:8080/first-springsecurity/login/loginForm )に遷移し、以下のような画面が表示される。
 
 .. figure:: ./images_Tutorial/security_tutorial_login_page.png
    :width: 80%
 
+|
 
 JSPからログインユーザーのアカウント情報へアクセス
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
