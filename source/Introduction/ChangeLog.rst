@@ -31,6 +31,24 @@
 
         * 認可サーバのチェックトークンエンドポイントのURL設定が反映されない不具合へのWarningを削除
 
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`
+      - 記載内容の修正(管理ID#3276 )
+
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正
+    
+    * -
+      - :doc:`../Security/Authentication`
+      - 記載内容の追加(管理ID#3276 )
+
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの説明を追加
+    
+    * -
+      - :doc:`../Tutorial/TutorialSecurity`
+      - 記載内容の修正(管理ID#3276 )
+
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正
+
     * - 2017-12-18
       - \-
       - 1.5.0 RELEASE版公開
