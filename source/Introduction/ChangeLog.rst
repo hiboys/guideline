@@ -61,6 +61,13 @@
       - 記載内容の修正(管理ID#3283 )
 
         * spring-mvc-rest.xmlを作成する方法の説明を変更
+
+    * -
+      - :doc:`../Tutorial/TutorialSession`
+      - 記載内容の修正(管理ID#3270 )
+
+        * \ JSPのコードをTiles形式に修正
+
     * -
       - :doc:`../Security/OAuth`
       - 記載内容の修正(管理ID#3263)
