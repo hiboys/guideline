@@ -22,8 +22,7 @@
 
         ViewResolverの定義についての修正(管理ID#3197)
 
-        * \ ``<bean>`` \ 要素を使用した定義方法を削除
-        * \ ``<mvc:view-resolvers>`` \ が追加されたSpring Frameworkのバージョンへの言及を削除
+        * Spring 4.0以前からの\ ``<bean>``\要素を使用した定義方法を削除し、Spring 4.1以降の\ ``<mvc:view-resolvers>``\要素を使用した定義方法のみ解説するよう変更
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
