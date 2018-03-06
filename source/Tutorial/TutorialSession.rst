@@ -1962,7 +1962,7 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
 ``/session-tutorial-init-web/src/main/webapp/WEB-INF/views/goods/showGoodsDetail.jsp``
 
 .. code-block:: jsp
-    :emphasize-lines: 30-36, 42-61
+    :emphasize-lines: 29-35, 41-60
 
     <sec:authentication property="principal" var="userDetails" />
     <div style="display: inline-flex">
@@ -1978,7 +1978,6 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
     <br>
 
     <div>
-
         <table>
             <tr>
                 <th>Name</th>
