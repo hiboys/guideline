@@ -47,6 +47,12 @@
         * JavaScript Escapingのサンプルソースを修正(\ `guideline#2531 <https://github.com/terasolunaorg/guideline/issues/2531>`_\ )
         * \ ``document.write()`` \を使用する際の注意事項を追加(\ `guideline#2531 <https://github.com/terasolunaorg/guideline/issues/2531>`_\ )
 
+    * -
+      - :doc:`../Tutorial/TutorialSession`
+      - 記載内容の修正(\ `guideline#3270 <https://github.com/terasolunaorg/guideline/issues/3270>`_\ )
+
+        * \ JSPのコードをTiles形式に修正
+
     * - 2017-03-17
       - \-
       - 5.2.1 RELEASE版公開
