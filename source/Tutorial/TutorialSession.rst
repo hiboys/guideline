@@ -20,7 +20,7 @@
 本チュートリアルは以下の流れで実施する。
 
 #. 作成するwebアプリケーションの要件を確認する
-#. 要件を満たすようなContollerの実装方法とデータの設計を行う手順を確認する
+#. 要件を満たすようなControllerの実装方法とデータの設計を行う手順を確認する
 #. 設計情報をもとに実装する
 
 
@@ -31,7 +31,7 @@
     * セッションに格納するデータの選択
     * セッション中のデータの破棄
 * 本FWにおけるセッションの具体的な利用方法
-    * @SessionAttributesを使用する方法
+    * ``@SessionAttributes`` を使用する方法  
     * セッションスコープのBeanを使用する方法
 
 
@@ -157,7 +157,7 @@ ECサイトにおいて、ユーザは以下が行える。
 
 使用性
 
-* 複数ブラウザ及びタブ上での動作保障はしない
+* 複数ブラウザ及びタブ上での動作保証はしない
 
 性能
 
@@ -248,7 +248,7 @@ URLの抽出
 
 画面イメージをもとに、アプリケーションが処理をするURLを決定する。
 
-各画面から発生するイベントごとにURLとパラメータを設定する。
+画面から発生するイベントごとにURLとパラメータを設定する。
 それぞれ、次の規約通りに名称を付与する。
 
 * URL：/<ユースケース名>
@@ -514,9 +514,9 @@ URLの抽出
     * - | 商品検索情報
       - | 商品検索情報は8画面にまたがって保持されるため、hiddenを用いたデータの持ち回りが必要となる。この場合、作成するほぼすべての画面でデータ持ち回りの処理を記述しなければならない。そのため、画面の実装コストを抑えるためにも、本チュートリアルではセッションを利用することを検討する。
     * - | 商品情報
-      - | カート削除情報は1画面でのみ利用されるため、リクエストスコープでデータを扱えばよい。
+      - | 商品情報は1画面でのみ利用されるため、リクエストスコープでデータを扱えばよい。
     * - | カート登録情報
-      - | カート削除情報は1画面でのみ利用されるため、リクエストスコープでデータを扱えばよい。
+      - | カート登録情報は1画面でのみ利用されるため、リクエストスコープでデータを扱えばよい。
     * - | カート情報
       - | カート情報は8画面にまたがって保持されるため、hiddenを用いたデータの持ち回りが必要となる。この場合、作成するほぼすべての画面でデータ持ち回りの処理を記述しなければならない。そのため、画面の実装コストを抑えるためにも、本チュートリアルではセッションを利用することを検討する。
     * - | カート削除情報
@@ -531,7 +531,7 @@ URLの抽出
 以上から、アカウント更新情報、アカウント情報、カート情報、商品検索情報の4つについて、セッションを利用することを検討する。
 
 次に、セッションを利用することのデメリットを検証する。
-この検証によって、デメリットの影響が無視できないと判断される場合はセッションは利用しない。
+この検証によって、デメリットの影響が無視できないと判断される場合はセッションを利用しない。
 
 セッション利用によるデメリットとして大きく以下の3点が挙げられる。
 
@@ -550,9 +550,9 @@ URLの抽出
     * - 観点
       - 検討内容
     * - | データの整合性
-      - | 本アプリケーションでは、複数ブラウザ及びタブ上での動作保障はしない。そのため、データの整合性を担保する対策は不要である。
+      - | 本アプリケーションでは、複数ブラウザ及びタブ上での動作保証はしない。そのため、データの整合性を担保する対策は不要である。
     * - | メモリ使用量
-      - | セッションの利用を検討しているデータのサイズを見積もる。文字列要素は最大100文字240バイト(4文字8バイト+初期40バイト)、日付要素は24バイト、数値要素は16バイトとして推定する。また、ログイン認証時ににセッションに格納される認証情報\ ``UserDetails``\ のサイズも含める。\ ``UserDetails``\ には大きく、ID、パスワード、ユーザの権限が含まれる。ユーザの権限は複数指定できるが、ここでは1つとして推定を行う。各項目の推定結果は、以下のようになる。
+      - | セッションの利用を検討しているデータのサイズを見積もる。文字列要素は最大100文字240バイト(4文字8バイト+初期40バイト)、日付要素は24バイト、数値要素は16バイトとして推定する。また、ログイン認証時にセッションへ格納される認証情報\ ``UserDetails``\ のサイズも含める。\ ``UserDetails``\ には大きく、ID、パスワード、ユーザの権限が含まれる。ユーザの権限は複数指定できるが、ここでは1つとして推定を行う。各項目の推定結果は、以下のようになる。
       
         * アカウント情報(文字列：7項目、日付：2項目)： 最大1.7Kバイト
         
@@ -564,7 +564,7 @@ URLの抽出
         
         * \ ``UserDetails``\ ：(文字列：3項目)：0.7Kバイト
 
-        | 1ユーザで最大合計19KB使用する。安全率を10%を考慮すると1ユーザ約21KB使用する。同時接続人数1万人を考慮しても使用量は約210MBであり、その他のメモリ使用量を考えてもメモリ搭載量8GBを大幅に下回るため、メモリ枯渇が発生する可能性は小さい。
+        | 1ユーザで最大合計19KB使用する。安全率を10%と考慮すると1ユーザ約21KB使用する。同時接続人数1万人を考慮しても使用量は約210MBであり、その他のメモリ使用量を考えてもメモリ搭載量8GBを大幅に下回るため、メモリ枯渇が発生する可能性は小さい。
     * - | APサーバの多重化
       - | 本アプリケーションでは高い可用性は求められていないため、障害発生時におけるユースケースの継続は不要で、再ログインによるユースケースのやり直しを許容している。そのため、同一セッション内で発生するリクエストを全て同じAPサーバに振り分けるようにロードバランサを設定する対処のみとし、セッションのAPサーバ間でのレプリケーションを実現しない。
 
@@ -591,7 +591,7 @@ URLの抽出
 
 本チュートリアルでは、セッションを利用してデータの持ち回りを実現するという判断を下した。
 しかし、検討の結果、セッションを利用しないという判断を下すことも考えられる。
-セッションを利用しない場合は、一例としてhiddenを利用してデータを持ち回りを実現する。
+セッションを利用しない場合は、一例としてhiddenを利用してデータの持ち回りを実現する。
 
 
 また、セッションを利用する際にデータの整合性を保つ方式やレプリケーションの設定が必要になることがある。
@@ -618,7 +618,7 @@ URLの抽出
 ガイドラインでは、データの利用場所に応じて2種類の実装方法を提供している。
 :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement` では、1つのController内で完結するデータかどうかによって利用方法を区別している。
 したがって、セッションに格納するデータのライフサイクルとURLマッピングを考慮して実装方法を決める必要がある。
-また、認証情報に紐ずくデータである場合は、Spring Securityの機能によってセッション管理を実現することが望ましい。
+また、認証情報に紐づくデータである場合は、Spring Securityの機能によってセッション管理を実現することが望ましい。
 
 これらを考慮して、セッションで扱うデータを整理した最終的な結果が以下である。
 
@@ -632,7 +632,7 @@ URLの抽出
       - セッション中のデータ利用方法
     * - | アカウント変更情報
       - | 1つのController内でのみ利用される
-      - | @SessionAttributesアノテーションを用いた方法
+      - | ``@SessionAttributes`` アノテーションを用いた方法  
     * - | アカウント情報
       - | 複数のController間で利用される
         | 認証処理で使用される
@@ -732,53 +732,53 @@ gitで取得した初期プロジェクトの構成について述べる。
         └── src
             └── main
                  ├── java
-                 │   └── com
-                 │       └── example
-                 │           └── session
-                 │               └── domain
-                 │                   ├── model  ... (1)
-                 │                   │  ├── Account.java  ... (2)
-                 │                   │  ├── Cart.java  ... (3)
-                 │                   │  ├── CartItem.java  ... (3)
-                 │                   │  ├── Goods.java
-                 │                   │  ├── Order.java  ... (4)
-                 │                   │  └── OrderLine.java  ... (4)
-                 │                   ├── repository  ... (5)
-                 │                   │  ├── account
-                 │                   │  │  └── AccountRepository.java
-                 │                   │  ├── goods
-                 │                   │  │  └── GoodsRepository.java
-                 │                   │  └── order
-                 │                   │      └── OrderRepository.java
-                 │                   └── service  ... (6)
-                 │                       ├── account
-                 │                       │  └── AccountService.java
-                 │                       ├── goods
-                 │                       │  └── GoodsService.java
-                 │                       ├── order
-                 │                       │  ├── EmptyCartOrderException.java
-                 │                       │  ├── InvalidCartOrderException.java
-                 │                       │  └── OrderService.java
-                 │                       └── userdetails
-                 │                           ├── AccountDetails.java
-                 │                           └── AccountDetailsService.java
-                 └── resources
-                      ├── com
-                      │  └── example
-                      │      └── session
-                      │          └── domain
-                      │              └── repository  ... (7)
-                      │                  ├── account
-                      │                  │  └── AccountRepository.xml
-                      │                  ├── goods
-                      │                  │  └── GoodsRepository.xml
-                      │                  └── order
-                      │                      └── OrderRepository.xml
-                      └── META-INF
-                           ├── dozer
-                           │  └── order-mapping.xml  ... (8)
-                           └── spring
-                               └── session-tutorial-init-codelist.xml  ... (9)
+                 │   └── com
+                 │       └── example
+                 │           └── session
+                 │               └── domain
+                 │                   ├── model  ... (1)
+                 │                   │  ├── Account.java  ... (2)
+                 │                   │  ├── Cart.java  ... (3)
+                 │                   │  ├── CartItem.java  ... (3)
+                 │                   │  ├── Goods.java
+                 │                   │  ├── Order.java  ... (4)
+                 │                   │  └── OrderLine.java  ... (4)
+                 │                   ├── repository  ... (5)
+                 │                   │  ├── account
+                 │                   │  │  └── AccountRepository.java
+                 │                   │  ├── goods
+                 │                   │  │  └── GoodsRepository.java
+                 │                   │  └── order
+                 │                   │      └── OrderRepository.java
+                 │                   └── service  ... (6)
+                 │                       ├── account
+                 │                       │  └── AccountService.java
+                 │                       ├── goods
+                 │                       │  └── GoodsService.java
+                 │                       ├── order
+                 │                       │  ├── EmptyCartOrderException.java
+                 │                       │  ├── InvalidCartOrderException.java
+                 │                       │  └── OrderService.java
+                 │                       └── userdetails
+                 │                           ├── AccountDetails.java
+                 │                           └── AccountDetailsService.java
+                 └── resources
+                      ├── com
+                      │  └── example
+                      │      └── session
+                      │          └── domain
+                      │              └── repository  ... (7)
+                      │                  ├── account
+                      │                  │  └── AccountRepository.xml
+                      │                  ├── goods
+                      │                  │  └── GoodsRepository.xml
+                      │                  └── order
+                      │                      └── OrderRepository.xml
+                      └── META-INF
+                           ├── dozer
+                           │  └── order-mapping.xml  ... (8)
+                           └── spring
+                               └── session-tutorial-init-codelist.xml  ... (9)
 
 
 
@@ -823,9 +823,9 @@ gitで取得した初期プロジェクトの構成について述べる。
         └── src
             └── main
                  └── resources
-                     └── database  ... (1)
-                         ├── H2-dataload.sql
-                         └── H2-schema.sql
+                     └── database  ... (1)
+                         ├── H2-dataload.sql
+                         └── H2-schema.sql
 
 
 
@@ -846,55 +846,57 @@ gitで取得した初期プロジェクトの構成について述べる。
         └── src
             └── main
                  ├── java
-                 │   └── com
-                 │       └── example
-                 │           └── session
-                 │               └── app  ... (1)
-                 │                   ├── account 
-                 │                   │  ├── AccountCreateController.java 
-                 │                   │  ├── AccountCreateForm.java 
-                 │                   │  ├── IlleagalOperationException.java  
-                 │                   │  └── IlleagalOperationExceptionHandler.java
-                 │                   ├── goods
-                 │                   │  ├── GoodsController.java  
-                 │                   │  └── GoodsViewForm.java
-                 │                   ├── login
-                 │                   │  └── LoginController.java
-                 │                   └── validation
-                 │                       ├── Confirm.java
-                 │                       └── ConfirmValidator.java
-                 ├── resources
-                 │   ├── i18n
-                 │   │  └── application-messages.properties  ... (2)
-                 │   ├── META-INF
-                 │   │   └── spring  ... (3)
-                 │   │       ├── spring-mvc.xml
-                 │   │       └── spring-security.xml
-                 │   └── ValidationMessages.properties  ... (2)
-                 └── webapp
-                      ├── resources  ... (4)
-                      │  ├── app
-                      │  │  └── css
-                      │  │      └── styles.css
-                      │  └── vendor
-                      │      └── bootstrap-3.0.0
-                      │          └── css
-                      │              └── bootstrap.css
-                      └── WEB-INF
-                          └── views  ... (5)
-                              ├── account
-                              │  ├── createConfirm.jsp
-                              │  ├── createFinish.jsp
-                              │  └── createForm.jsp
-                              ├── common
-                              │  ├── error
-                              │  │  └── illegalOperationError.jsp
-                              │  └── include.jsp
-                              ├── goods
-                              │  ├── showGoods.jsp
-                              │  └── showGoodsDetails.jsp
-                              └── login
-                                  └── loginForm.jsp
+                 │   └── com
+                 │       └── example
+                 │           └── session
+                 │               └── app  ... (1)
+                 │                   ├── account 
+                 │                   │  ├── AccountCreateController.java 
+                 │                   │  ├── AccountCreateForm.java 
+                 │                   │  ├── IlleagalOperationException.java  
+                 │                   │  └── IlleagalOperationExceptionHandler.java
+                 │                   ├── goods
+                 │                   │  ├── GoodsController.java  
+                 │                   │  └── GoodsViewForm.java
+                 │                   ├── login
+                 │                   │  └── LoginController.java
+                 │                   └── validation
+                 │                       ├── Confirm.java
+                 │                       └── ConfirmValidator.java
+                 ├── resources
+                 │   ├── i18n
+                 │   │  └── application-messages.properties  ... (2)
+                 │   ├── META-INF
+                 │   │   └── spring  ... (3)
+                 │   │       ├── spring-mvc.xml
+                 │   │       └── spring-security.xml
+                 │   └── ValidationMessages.properties  ... (2)
+                 └── webapp
+                      ├── resources  ... (4)
+                      │  ├── app
+                      │  │  └── css
+                      │  │      └── styles.css
+                      │  └── vendor
+                      │      └── bootstrap-3.0.0
+                      │          └── css
+                      │              └── bootstrap.css
+                      └── WEB-INF
+                          └── views  ... (5)
+                              ├── account
+                              │  ├── createConfirm.jsp
+                              │  ├── createFinish.jsp
+                              │  └── createForm.jsp
+                              ├── common
+                              │  ├── error
+                              │  │  └── illegalOperationError.jsp
+                              │  └── include.jsp
+                              ├── layout
+                              │  └── template.jsp
+                              ├── goods
+                              │  ├── showGoods.jsp
+                              │  └── showGoodsDetails.jsp
+                              └── login
+                                  └── loginForm.jsp
 
 
 .. tabularcolumns::  |p{0.20\linewidth}|p{0.80\linewidth}|
@@ -907,7 +909,7 @@ gitで取得した初期プロジェクトの構成について述べる。
    * - | (1)
      - | 本アプリケーションで使用するアプリケーション層のクラスを格納するためのパッケージ。
    * - | (2)
-     - | 本アプリケーションで使用するメッセージが定義されているプロパディファイル
+     - | 本アプリケーションで使用するメッセージが定義されているプロパティファイル
    * - | (3)
      - | 本アプリケーションで使用するコンポーネントが定義されているBean定義ファイル
    * - | (4)
@@ -957,7 +959,7 @@ STSにインポートしたプロジェクトを対象として、アプリケ�
 
 ユーザに情報を入力させてアカウント情報を更新する機能を作成する。
 
-:ref:`development_policy` で説明したとおり、アカウント変更情報は ``@SessionAttributesアノテーション`` を利用して管理する。
+:ref:`development_policy` で説明したとおり、アカウント変更情報は ``@SessionAttributes`` アノテーションを利用して管理する。
 
 以下にアカウント情報変更機能で実装する画面の情報を示す。
 
@@ -1161,7 +1163,7 @@ STSにインポートしたプロジェクトを対象として、アプリケ�
     * - 項番
       - 説明
     * - | (1)
-      - | このクラスのインスタンスをセッションに格納するため、Serializableを実装しておく。
+      - | このクラスのインスタンスをセッションに格納するため、 ``Serializable`` を実装しておく。
     * - | (2)
       - | 画面遷移ごとに入力チェックの対象を指定するために、バリデーションのグループ化を行う。
         | 上記例では、1ページ目の入力項目と2ページ目の入力項目にそれぞれに対応した入力チェックを実現するために、2つのグループを作成している。
@@ -1314,16 +1316,16 @@ Controllerでは、入力情報を受け取るフォームを ``@SessionAttribut
     * - 項番
       - 説明
     * - | (1)
-      - | ``@SessionAttributes`` アノテーションのvalue属性に、セッションに格納するオブジェクトの属性名を指定する。
-        | 上記例は、属性名が ``"accountUpdateForm"`` のオブジェクトが、セッションに格納される。
+      - | ``@SessionAttributes`` アノテーションの ``value`` 属性に、セッションに格納するオブジェクトの属性名を指定する。
+        | 上記例は、属性名が ``accountUpdateForm`` のオブジェクトが、セッションに格納される。
     * - | (2)
-      - | Modelオブジェクトに格納する属性名を、value属性に指定する。
-        | 上記例では、返却したオブジェクトが、 ``"accountUpdateForm"`` という属性名でセッションに格納される。
-        | value属性を指定した場合、セッションにオブジェクトを格納した後のリクエストで、 ``@ModelAttribute`` アノテーションの付与されたメソッドが呼び出されなくなるため、無駄なオブジェクトの生成が行われないというメリットがある。
+      - | ``Model`` オブジェクトに格納する属性名を、 ``value`` 属性に指定する。  
+        | 上記例では、返却したオブジェクトが、 ``accountUpdateForm`` という属性名でセッションに格納される。
+        | ``value`` 属性を指定した場合、セッションにオブジェクトを格納した後のリクエストで、 ``@ModelAttribute`` アノテーションの付与されたメソッドが呼び出されなくなるため、無駄なオブジェクトの生成が行われないというメリットがある。
     * - | (3)
       - | ``@SessionAttributes`` アノテーションによって管理されたオブジェクトを利用するには、そのオブジェクトを受け取れるようメソッドに引数を追加する。
-        | 入力チェックが必要がであれば ``@Validated`` アノテーションを利用する。
-        | 上記例では、 ``AccountUpdateForm`` のデフォルトの属性名である ``"accountUpdateForm"`` を属性名にもつオブジェクトが引数として渡される。
+        | 入力チェックが必要であれば ``@Validated`` アノテーションを利用する。
+        | 上記例では、 ``AccountUpdateForm`` のデフォルトの属性名である ``accountUpdateForm`` を属性名にもつオブジェクトが引数として渡される。
     * - | (4)
       - | ``SessionStatus`` オブジェクトの ``setComplete`` メソッドを呼び出し、オブジェクトをセッションから削除する。
       
@@ -1350,65 +1352,56 @@ JSPの作成
 
 .. code-block:: jsp
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8" />
-    <title>Account Update Page</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
-    </head>
-    <body>
+    <div>
+        <%-- (1) --%>
+        <form:form action="${pageContext.request.contextPath}/account/update"
+            method="post" modelAttribute="accountUpdateForm">
 
-        <div class="container">
-            <%-- (1) --%>
-            <form:form action="${pageContext.request.contextPath}/account/update"
-                method="post" modelAttribute="accountUpdateForm">
+            <h2>Account Update Page 1/2</h2>
+            <table>
+                <tr>
+                    <td><form:label path="name" cssErrorClass="error-label">name</form:label></td>
+                    <%-- (2) --%>
+                    <td><form:input path="name" cssErrorClass="error-input" />
+                        <form:errors path="name" cssClass="error-messages" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><form:label path="email" cssErrorClass="error-label">e-mail</form:label></td>
+                    <td><form:input path="email" cssErrorClass="error-input" />
+                        <form:errors path="email" cssClass="error-messages" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><form:label path="birthday" cssErrorClass="error-label">birthday</form:label></td>
+                    <td><fmt:formatDate value="${accountUpdateForm.birthday}" pattern="yyyy-MM-dd" var="formattedBirthday" />
+                        <input type="date" id="birthday" name="birthday" value="${formattedBirthday}">
+                        <form:errors path="birthday" cssClass="error-messages" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><form:label path="zip" cssErrorClass="error-label">zip</form:label></td>
+                    <td><form:input path="zip" cssErrorClass="error-input" />
+                        <form:errors path="zip" cssClass="error-messages" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><form:label path="address" cssErrorClass="error-label">address</form:label></td>
+                    <td><form:input path="address" cssErrorClass="error-input" />
+                        <form:errors path="address" cssClass="error-messages" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" name="form2" id="next" value="next" /></td>
+                </tr>
+            </table>
+        </form:form>
 
-                <h2>Account Update Page 1/2</h2>
-                <table>
-                    <tr>
-                        <td><form:label path="name" cssErrorClass="error-label">name</form:label></td>
-                        <%-- (2) --%>
-                        <td><form:input path="name" cssErrorClass="error-input" /> <form:errors
-                                path="name" cssClass="error-messages" /></td>
-                    </tr>
-                    <tr>
-                        <td><form:label path="email" cssErrorClass="error-label">e-mail</form:label></td>
-                        <td><form:input path="email" cssErrorClass="error-input" /> <form:errors
-                                path="email" cssClass="error-messages" /></td>
-                    </tr>
-                    <tr>
-                        <td><form:label path="birthday" cssErrorClass="error-label">birthday</form:label></td>
-                        <td><fmt:formatDate value="${accountUpdateForm.birthday}"
-                                pattern="yyyy-MM-dd" var="formattedBirthday" /> <input
-                            type="date" id="birthday" name="birthday"
-                            value="${formattedBirthday}"> <form:errors path="birthday"
-                                cssClass="error-messages" /></td>
-                    </tr>
-                    <tr>
-                        <td><form:label path="zip" cssErrorClass="error-label">zip</form:label></td>
-                        <td><form:input path="zip" cssErrorClass="error-input" /> <form:errors
-                                path="zip" cssClass="error-messages" /></td>
-                    </tr>
-                    <tr>
-                        <td><form:label path="address" cssErrorClass="error-label">address</form:label></td>
-                        <td><form:input path="address" cssErrorClass="error-input" />
-                            <form:errors path="address" cssClass="error-messages" /></td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><input type="submit" name="form2" id="next" value="next" /></td>
-                    </tr>
-                </table>
-            </form:form>
-
-            <form method="get"
-                action="${pageContext.request.contextPath}/account/update">
-                <input type="submit" name="home" id="home" value="home" />
-            </form>
-        </div>
-    </body>
-    </html>
+        <form method="get" action="${pageContext.request.contextPath}/account/update">
+            <input type="submit" name="home" id="home" value="home" />
+        </form>
+    </div>
 
 
 
@@ -1420,10 +1413,10 @@ JSPの作成
     * - 項番
       - 説明
     * - | (1)
-      - | 入力データを受け取るフォームオブジェクトの属性名をmodelAttribute属性に指定する。
-        | 上記例は、属性名が ``"accountUpdateForm"`` のオブジェクトが入力データを受け取る。
+      - | 入力データを受け取るフォームオブジェクトの属性名を ``modelAttribute`` 属性に指定する。
+        | 上記例は、属性名が ``accountUpdateForm`` のオブジェクトが入力データを受け取る。
     * - | (2)
-      - | form:inputタグのpath属性に入力データを格納するオブジェクトの要素名を指定する。
+      - | ``form:input`` タグの ``path`` 属性に入力データを格納するオブジェクトの要素名を指定する。
         | この方法を利用すると、指定したオブジェクトの要素名にすでにデータがある場合、その値が入力フォームのデフォルト値となる。
 
 
@@ -1434,62 +1427,44 @@ JSPの作成
 
 .. code-block:: jsp
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8" />
-    <title>Account Update Page</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
-    </head>
-    <body>
+    <div>
 
-        <div class="container">
+        <form:form action="${pageContext.request.contextPath}/account/update" method="post" modelAttribute="accountUpdateForm">
 
-            <form:form action="${pageContext.request.contextPath}/account/update"
-                method="post" modelAttribute="accountUpdateForm">
+            <h2>Account Update Page 2/2</h2>
+            <table>
+                <tr>
+                    <td><form:label path="cardNumber" cssErrorClass="error-label">your card number</form:label></td>
+                    <td><form:input path="cardNumber" cssErrorClass="error-input" />
+                        <form:errors path="cardNumber" cssClass="error-messages" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><form:label path="cardExpirationDate" cssErrorClass="error-label">expiration date of your card</form:label></td>
+                    <td><fmt:formatDate value="${accountUpdateForm.cardExpirationDate}" pattern="yyyy-MM" var="formattedCardExpirationDate" />
+                        <input type="month" name="cardExpirationDate" id="cardExpirationDate" value="${formattedCardExpirationDate}">
+                        <form:errors path="cardExpirationDate" cssClass="error-messages" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><form:label path="cardSecurityCode" cssErrorClass="error-label">security code of your card</form:label></td>
+                    <td><form:input path="cardSecurityCode" cssErrorClass="error-input" />
+                        <form:errors path="cardSecurityCode" cssClass="error-messages" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" name="redoForm1" id="back" value="back" />
+                        <input type="submit" name="confirm" id="confirm" value="confirm" />
+                    </td>
+                </tr>
+            </table>
+        </form:form>
 
-                <h2>Account Update Page 2/2</h2>
-                <table>
-                    <tr>
-                        <td><form:label path="cardNumber" cssErrorClass="error-label">your card number</form:label></td>
-                        <td><form:input path="cardNumber" cssErrorClass="error-input" />
-                            <form:errors path="cardNumber" cssClass="error-messages" /></td>
-                    </tr>
-                    <tr>
-                        <td><form:label path="cardExpirationDate"
-                                cssErrorClass="error-label">expiration date of
-                                your card</form:label></td>
-                        <td><fmt:formatDate
-                                value="${accountUpdateForm.cardExpirationDate}" pattern="yyyy-MM"
-                                var="formattedCardExpirationDate" /><input type="month"
-                            name="cardExpirationDate" id="cardExpirationDate"
-                            value="${formattedCardExpirationDate}"> <form:errors
-                                path="cardExpirationDate" cssClass="error-messages" /></td>
-                    </tr>
-                    <tr>
-                        <td><form:label path="cardSecurityCode"
-                                cssErrorClass="error-label">security code of
-                                your card</form:label></td>
-                        <td><form:input path="cardSecurityCode"
-                                cssErrorClass="error-input" /> <form:errors
-                                path="cardSecurityCode" cssClass="error-messages" /></td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><input type="submit" name="redoForm1" id="back"
-                            value="back" /><input type="submit" name="confirm" id="confirm"
-                            value="confirm" /></td>
-                    </tr>
-                </table>
-            </form:form>
-
-            <form method="get"
-                action="${pageContext.request.contextPath}/account/update">
-                <input type="submit" name="home" id="home" value="home" />
-            </form>
-        </div>
-    </body>
-    </html>
+        <form method="get" action="${pageContext.request.contextPath}/account/update">
+            <input type="submit" name="home" id="home" value="home" />
+        </form>
+    </div>
 
 
 確認画面
@@ -1498,75 +1473,57 @@ JSPの作成
 
 .. code-block:: jsp
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8" />
-    <title>Account Update Page</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
-    </head>
-    <body>
-        <div class="container">
+    <div>
 
-            <form:form action="${pageContext.request.contextPath}/account/update"
-                method="post">
+        <form:form action="${pageContext.request.contextPath}/account/update" method="post">
 
-                <h3>Your account will be updated with below information. Please
-                    push "update" button if it's OK.</h3>
-                <table>
-                    <tr>
-                        <td><label for="name">name</label></td>
-                        <td><span id="name">${f:h(accountUpdateForm.name)}</span></td>
-                    </tr>
-                    <tr>
-                        <td><label for="email">e-mail</label></td>
-                        <td><span id="email">${f:h(accountUpdateForm.email)}</span></td>
-                    </tr>
-                    <tr>
-                        <td><label for="birthday">birthday</label></td>
-                        <td><span id="birthday"><fmt:formatDate
-                                    value="${accountUpdateForm.birthday}" pattern="yyyy-MM-dd" /></span></td>
-                    </tr>
-                    <tr>
-                        <td><label for="zip">zip</label></td>
-                        <td><span id="zip">${f:h(accountUpdateForm.zip)}</span></td>
-                    </tr>
-                    <tr>
-                        <td><label for="address">address</label></td>
-                        <td><span id="address">${f:h(accountUpdateForm.address)}</span></td>
-                    </tr>
-                    <tr>
-                        <td><label for="cardNumber">your card number</label></td>
-                        <td><span id="cardNumber">****-****-****-${f:h(accountUpdateForm.lastFourOfCardNumber)}</span></td>
-                    </tr>
-                    <tr>
-                        <td><label for="cardExpirationDate">expiration date of
-                                your card</label></td>
-                        <td><span id="cardExpirationDate"><fmt:formatDate
-                                    value="${accountUpdateForm.cardExpirationDate}"
-                                    pattern="yyyy-MM" /></span></td>
-                    </tr>
-                    <tr>
-                        <td><label for="cardSecurityCode">security code of
-                                your card</label></td>
-                        <td><span id="cardSecurityCode">${f:h(accountUpdateForm.cardSecurityCode)}</span></td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><input type="submit" name="redoForm2" id="back"
-                            value="back" /><input type="submit" id="update" value="update" /></td>
-                    </tr>
-                </table>
-            </form:form>
+            <h3>Your account will be updated with below information. Please push "update" button if it's OK.</h3>
+            <table>
+                <tr>
+                    <td><label for="name">name</label></td>
+                    <td id="name">${f:h(accountUpdateForm.name)}</td>
+                </tr>
+                <tr>
+                    <td><label for="email">e-mail</label></td>
+                    <td id="email">${f:h(accountUpdateForm.email)}</td>
+                </tr>
+                <tr>
+                    <td><label for="birthday">birthday</label></td>
+                    <td id="birthday"><fmt:formatDate value="${accountUpdateForm.birthday}" pattern="yyyy-MM-dd" /></td>
+                </tr>
+                <tr>
+                    <td><label for="zip">zip</label></td>
+                    <td id="zip">${f:h(accountUpdateForm.zip)}</td>
+                </tr>
+                <tr>
+                    <td><label for="address">address</label></td>
+                    <td id="address">${f:h(accountUpdateForm.address)}</td>
+                </tr>
+                <tr>
+                    <td><label for="cardNumber">your card number</label></td>
+                    <td id="cardNumber">****-****-****-${f:h(accountUpdateForm.lastFourOfCardNumber)}</td>
+                </tr>
+                <tr>
+                    <td><label for="cardExpirationDate">expiration date of your card</label></td>
+                    <td id="cardExpirationDate"><fmt:formatDate value="${accountUpdateForm.cardExpirationDate}" pattern="yyyy-MM" /></td>
+                </tr>
+                <tr>
+                    <td><label for="cardSecurityCode">security code of your card</label></td>
+                    <td id="cardSecurityCode">${f:h(accountUpdateForm.cardSecurityCode)}</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" name="redoForm2" id="back" value="back" />
+                        <input type="submit" id="update" value="update" />
+                    </td>
+                </tr>
+            </table>
+        </form:form>
 
-
-            <form method="get"
-                action="${pageContext.request.contextPath}/account/update">
-                <input type="submit" name="home" id="home" value="home" />
-            </form>
-        </div>
-    </body>
-    </html>
+        <form method="get" action="${pageContext.request.contextPath}/account/update">
+            <input type="submit" name="home" id="home" value="home" />
+        </form>
+    </div>
 
 
 完了画面
@@ -1575,64 +1532,49 @@ JSPの作成
 
 .. code-block:: jsp
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8" />
-    <title>Account Update Page</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
-    </head>
-    <body>
-        <div class="container">
+    <div>
 
-            <h3>Your account has updated.</h3>
-            <table>
-                <tr>
-                    <td><label for="name">name</label></td>
-                    <td><span id="name">${f:h(account.name)}</span></td>
-                </tr>
-                <tr>
-                    <td><label for="email">e-mail</label></td>
-                    <td><span id="email">${f:h(account.email)}</span></td>
-                </tr>
-                <tr>
-                    <td><label for="birthday">birthday</label></td>
-                    <td><span id="birthday"><fmt:formatDate
-                                value="${account.birthday}" pattern="yyyy-MM-dd" /></span></td>
-                </tr>
-                <tr>
-                    <td><label for="zip">zip</label></td>
-                    <td><span id="zip">${f:h(account.zip)}</span></td>
-                </tr>
-                <tr>
-                    <td><label for="address">address</label></td>
-                    <td><span id="address">${f:h(account.address)}</span></td>
-                </tr>
-                <tr>
-                    <td><label for="cardNumber">your card number</label></td>
-                    <td><span id="cardNumber">****-****-****-${f:h(account.lastFourOfCardNumber)}</span></td>
-                </tr>
-                <tr>
-                    <td><label for="cardExpirationDate">expiration date of
-                            your card</label></td>
-                    <td><span id="cardExpirationDate"><fmt:formatDate
-                                value="${account.cardExpirationDate}" pattern="yyyy-MM" /></span></td>
-                </tr>
-                <tr>
-                    <td><label for="cardSecurityCode">security code of your
-                            card</label></td>
-                    <td><span id="cardSecurityCode">${f:h(account.cardSecurityCode)}</span></td>
-                </tr>
-            </table>
+        <h3>Your account has updated.</h3>
+        <table>
+            <tr>
+                <td><label for="name">name</label></td>
+                <td id="name">${f:h(account.name)}</td>
+            </tr>
+            <tr>
+                <td><label for="email">e-mail</label></td>
+                <td id="email">${f:h(account.email)}</td>
+            </tr>
+            <tr>
+                <td><label for="birthday">birthday</label></td>
+                <td id="birthday"><fmt:formatDate value="${account.birthday}" pattern="yyyy-MM-dd" /></td>
+            </tr>
+            <tr>
+                <td><label for="zip">zip</label></td>
+                <td id="zip">${f:h(account.zip)}</td>
+            </tr>
+            <tr>
+                <td><label for="address">address</label></td>
+                <td id="address">${f:h(account.address)}</td>
+            </tr>
+            <tr>
+                <td><label for="cardNumber">your card number</label></td>
+                <td id="cardNumber">****-****-****-${f:h(account.lastFourOfCardNumber)}</td>
+            </tr>
+            <tr>
+                <td><label for="cardExpirationDate">expiration date of your card</label></td>
+                <td id="cardExpirationDate"><fmt:formatDate value="${account.cardExpirationDate}" pattern="yyyy-MM" /></td>
+            </tr>
+            <tr>
+                <td><label for="cardSecurityCode">security code of your card</label></td>
+                <td id="cardSecurityCode">${f:h(account.cardSecurityCode)}</td>
+            </tr>
+        </table>
 
-            <form method="get"
-                action="${pageContext.request.contextPath}/account/update">
-                <input type="submit" name="home" id="home" value="home" />
-            </form>
+        <form method="get" action="${pageContext.request.contextPath}/account/update">
+            <input type="submit" name="home" id="home" value="home" />
+        </form>
 
-        </div>
-    </body>
-    </html>
+    </div>
 
 動作確認
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1732,14 +1674,14 @@ Beanとして登録したいクラスに以下のアノテーションを追加�
     * - | (1)
       - | component-scanの対象となるように\ ``@Component``\ アノテーションを指定する
     * - | (2)
-      - | Beanのスコープを\ ``"session"``\ にする。また、proxyMode 属性で\ ``"ScopedProxyMode.TARGET_CLASS"``\ を指定し、scoped-proxyを有効にする。
+      - | Beanのスコープを\ ``session``\ にする。また、 ``proxyMode`` 属性で\ ``ScopedProxyMode.TARGET_CLASS``\ を指定し、scoped-proxyを有効にする。
 
 また、component-scanの対象となるbase-packageをBean定義ファイルに指定する必要がある。
 しかし、本チュートリアルでは作成済みのBean定義ファイルにすでに以下の記述があるため、新たに記述を追加する必要はない。
 
 ``/session-tutorial-init-domain/src/main/resources/META-INF/spring/session-tutorial-init-domain.xml``
 
-.. code-block:: jsp
+.. code-block:: xml
 
     <!-- (1) -->
     <context:component-scan base-package="com.example.session.domain" />
@@ -1869,7 +1811,7 @@ Controllerを作成する。
             Goods goods = goodsService.findOne(goodsId);
             model.addAttribute(goods);
 
-            return "/goods/showGoodsDetail";
+            return "goods/showGoodsDetail";
         }
 
         @RequestMapping(value = "/addToCart", method = RequestMethod.POST)
@@ -1919,106 +1861,82 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
 ``/session-tutorial-init-web/src/main/webapp/WEB-INF/views/goods/showGoods.jsp``
 
 .. code-block:: jsp
-    :emphasize-lines: 43, 51-57, 70-95
+    :emphasize-lines: 28, 34-41, 53-74
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8" />
-    <title>Item List Page</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/bootstrap-3.0.0/css/bootstrap.css"
-        media="screen, projection">
-    </head>
-    <body>
+    <sec:authentication property="principal" var="userDetails" />
+    <div style="display: inline-flex">
+        welcome&nbsp;&nbsp; <span id="userName">${f:h(userDetails.account.name)}</span>
+        <form method="post" action="${pageContext.request.contextPath}/logout">
+            <input type="submit" id="logout" value="logout" />
+            <sec:csrfInput />
+        </form>
+        <form method="get" action="${pageContext.request.contextPath}/account/update">
+            <input type="submit" name="form1" id="updateAccount" value="Account Update" />
+        </form>
+    </div>
+    <br>
+    <br>
 
-        <sec:authentication property="principal" var="userDetails" />
-        <div style="display: inline-flex">
-            welcome&nbsp;&nbsp; <span id="userName">${f:h(userDetails.account.name)}</span>
-            <form method="post" action="${pageContext.request.contextPath}/logout">
-                <input type="submit" id="logout" value="logout" />
-                <sec:csrfInput />
-            </form>
-            <form method="get"
-                action="${pageContext.request.contextPath}/account/update">
-                <input type="submit" name="form1" id="updateAccount"
-                    value="Account Update" />
-            </form>
-        </div>
-        <br>
-        <br>
+    <div>
+        <p>select a category</p>
 
-        <div class="container">
-            <p>select a category</p>
-
-            <form:form method="get"
-                action="${pageContext.request.contextPath}/goods/"
-                modelAttribute="goodViewForm">
-                <form:select path="categoryId" items="${CL_CATEGORIES}" />
-                <input type="submit" id="update" value="update" />
-            </form:form>
-            <br />
-            <t:messagesPanel />
-            <table>
+        <form:form method="get" action="${pageContext.request.contextPath}/goods/" modelAttribute="goodViewForm">
+            <form:select path="categoryId" items="${CL_CATEGORIES}" />
+            <input type="submit" id="update" value="update" />
+        </form:form>
+        <br />
+        <t:messagesPanel />
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            <c:forEach items="${page.content}" var="goods" varStatus="status">
                 <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <td><a id="${f:h(goods.name)}" href="${pageContext.request.contextPath}/goods/${f:h(goods.id)}">${f:h(goods.name)}</a></td>
+                    <td><fmt:formatNumber value="${f:h(goods.price)}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+                    <td><form:form method="post"
+                            action="${pageContext.request.contextPath}/goods/addToCart"
+                            modelAttribute="goodAddForm">
+                            <input type="text" name="quantity" id="quantity${status.index}" value="1" />
+                            <input type="hidden" name="goodsId" value="${f:h(goods.id)}" />
+                            <input type="submit" id="add${status.index}" value="add" />
+                        </form:form>
+                    </td>
                 </tr>
-                <c:forEach items="${page.content}" var="goods" varStatus="status">
-                    <tr>
-                        <td><a id="${f:h(goods.name)}"
-                            href="${pageContext.request.contextPath}/goods/${f:h(goods.id)}">${f:h(goods.name)}</a></td>
-                        <td><fmt:formatNumber value="${f:h(goods.price)}"
-                                type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
-                        <td><form:form method="post"
-                                action="${pageContext.request.contextPath}/goods/addToCart"
-                                modelAttribute="goodAddForm">
-                                <input type="text" name="quantity" id="quantity${status.index}" value="1" />
-                                <input type="hidden" name="goodsId" value="${f:h(goods.id)}" />
-                                <input type="submit" id="add${status.index}" value="add" />
-                            </form:form></td>
-                    </tr>
-                </c:forEach>
-            </table>
-            <t:pagination page="${page}" outerElementClass="pagination" />
-        </div>
-        <div>
-            <p>
-                <fmt:formatNumber value="${page.totalElements}" />
-                results <br> ${f:h(page.number + 1) } / ${f:h(page.totalPages)}
-                Pages
-            </p>
-        </div>
-        <div>
-            <%-- (1) --%>
-            <spring:eval var="cart" expression="@cart" />
-            <form method="get" action="${pageContext.request.contextPath}/cart">
-                <input type="submit" id="viewCart" value="view cart" />
-            </form>
-            <table>
-                <%-- (2) --%>
-                <c:forEach items="${cart.cartItems}" var="cartItem" varStatus="status">
-                    <tr>
-                        <td><span id="itemName${status.index}">${f:h(cartItem.goods.name)}</span></td>
-                        <td><span id="itemPrice${status.index}"><fmt:formatNumber
-                                    value="${cartItem.goods.price}" type="CURRENCY"
-                                    currencySymbol="&yen;" maxFractionDigits="0" /></span></td>
-                        <td><span id="itemQuantity${status.index}">${f:h(cartItem.quantity)}</span></td>
-                    </tr>
-                </c:forEach>
+            </c:forEach>
+        </table>
+        <t:pagination page="${page}" outerElementClass="pagination" />
+    </div>
+    <div>
+        <p>
+            <fmt:formatNumber value="${page.totalElements}" /> results <br>
+            ${f:h(page.number + 1) } / ${f:h(page.totalPages)} Pages
+        </p>
+    </div>
+    <div>
+        <%-- (1) --%>
+        <spring:eval var="cart" expression="@cart" />
+        <form method="get" action="${pageContext.request.contextPath}/cart">
+            <input type="submit" id="viewCart" value="view cart" />
+        </form>
+        <table>
+            <%-- (2) --%>
+            <c:forEach items="${cart.cartItems}" var="cartItem" varStatus="status">
                 <tr>
-                    <td>Total</td>
-                    <td><span id="totalPrice"><fmt:formatNumber
-                                value="${f:h(cart.totalAmount)}" type="CURRENCY"
-                                currencySymbol="&yen;" maxFractionDigits="0" /></span></td>
-                    <td></td>
+                    <td id="itemName${status.index}">${f:h(cartItem.goods.name)}</td>
+                    <td id="itemPrice${status.index}"><fmt:formatNumber value="${cartItem.goods.price}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+                    <td id="itemQuantity${status.index}">${f:h(cartItem.quantity)}</td>
                 </tr>
-            </table>
-        </div>
-
-    </body>
-    </html>
+            </c:forEach>
+            <tr>
+                <td>Total</td>
+                <td id="totalPrice"><fmt:formatNumber value="${f:h(cart.totalAmount)}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -2033,7 +1951,7 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
         | 上記例では、セッションスコープにあるCartオブジェクトを変数cartに格納している。
     * - | (2)
       - | (1)で作成した変数を通して、セッションスコープのBeanの中身を参照する。
-        | 上記例では、変数varを通してセッションスコープのBeanの中身を参照している。
+        | 上記例では、変数cartを通してセッションスコープのBeanの中身を参照している。
 
 .. note::
 
@@ -2044,90 +1962,68 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
 ``/session-tutorial-init-web/src/main/webapp/WEB-INF/views/goods/showGoodsDetail.jsp``
 
 .. code-block:: jsp
-    :emphasize-lines: 43-50, 56-80
+    :emphasize-lines: 29-35, 41-60
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8" />
-    <title>Item List Page</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
-    </head>
-    <body>
+    <sec:authentication property="principal" var="userDetails" />
+    <div style="display: inline-flex">
+        welcome&nbsp;&nbsp; <span id="userName">${f:h(userDetails.account.name)}</span>
+        <form:form method="post" action="${pageContext.request.contextPath}/logout">
+            <input type="submit" id="logout" value="logout" />
+        </form:form>
+        <form method="get" action="${pageContext.request.contextPath}/account/update">
+            <input type="submit" name="form1" id="updateAccount" value="Account Update" />
+        </form>
+    </div>
+    <br>
+    <br>
 
-        <sec:authentication property="principal" var="userDetails" />
-        <div style="display: inline-flex">
-            welcome&nbsp;&nbsp; <span id="userName">${f:h(userDetails.account.name)}</span>
-            <form:form method="post"
-                action="${pageContext.request.contextPath}/logout">
-                <input type="submit" id="logout" value="logout" />
-            </form:form>
-            <form method="get"
-                action="${pageContext.request.contextPath}/account/update">
-                <input type="submit" name="form1" id="updateAccount"
-                    value="Account Update" />
-            </form>
-        </div>
-        <br>
-        <br>
+    <div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <td id="name">${f:h(goods.name)}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td id="price"><fmt:formatNumber value="${f:h(goods.price)}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td id="description">${f:h(goods.description)}</td>
+            </tr>
+        </table>
+        <form:form method="post"
+            action="${pageContext.request.contextPath}/goods/addToCart"
+            modelAttribute="AddToCartForm">
+            Quantity<input type="text" id="quantity" name="quantity" value="1" />
+            <input type="hidden" name="goodsId" value="${f:h(goods.id)}" />
+            <input type="submit" id="add" value="add" />
+        </form:form>
 
-        <div class="container">
-
-            <table>
+        <form method="get" action="${pageContext.request.contextPath}/goods">
+            <input type="submit" id="home" value="home" />
+        </form>
+    </div>
+    <div>
+        <spring:eval var="cart" expression="@cart" />
+        <form method="get" action="${pageContext.request.contextPath}/cart">
+            <input type="submit" value="view cart" />
+        </form>
+        <table>
+            <c:forEach items="${cart.cartItems}" var="cartItem" varStatus="status">
                 <tr>
-                    <th>Name</th>
-                    <td>${f:h(goods.name)}</td>
+                    <td id="itemName${status.index}">${f:h(cartItem.goods.name)}</td>
+                    <td id="itemPrice${status.index}"><fmt:formatNumber value="${cartItem.goods.price}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+                    <td id="itemQuantity${status.index}">${f:h(cartItem.quantity)}</td>
                 </tr>
-                <tr>
-                    <th>Price</th>
-                    <td><fmt:formatNumber value="${f:h(goods.price)}"
-                            type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
-                </tr>
-                <tr>
-                    <th>Description</th>
-                    <td>${f:h(goods.description)}</td>
-                </tr>
-            </table>
-            <form:form method="post"
-                action="${pageContext.request.contextPath}/goods/addToCart"
-                modelAttribute="AddToCartForm">
-                Quantity<input type="text" id="quantity" name="quantity"
-                    value="1" />
-                <input type="hidden" name="goodsId" value="${f:h(goods.id)}" />
-                <input type="submit" id="add" value="add" />
-            </form:form>
-
-            <form method="get" action="${pageContext.request.contextPath}/goods">
-                <input type="submit" id="home" value="home" />
-            </form>
-        </div>
-        <div>
-            <spring:eval var="cart" expression="@cart" />
-            <form method="get" action="${pageContext.request.contextPath}/cart">
-                <input type="submit" value="view cart" />
-            </form>
-            <table>
-                <c:forEach items="${cart.cartItems}" var="cartItem"
-                    varStatus="status">
-                    <tr>
-                        <td><span id="itemName${status.index}">${f:h(cartItem.goods.name)}</span></td>
-                        <td><span id="itemPrice${status.index}"><fmt:formatNumber
-                                    value="${cartItem.goods.price}" type="CURRENCY"
-                                    currencySymbol="&yen;" maxFractionDigits="0" /></span></td>
-                        <td><span id="itemQuantity${status.index}">${f:h(cartItem.quantity)}</span></td>
-                    </tr>
-                </c:forEach>
-                <tr>
-                    <td>Total</td>
-                    <td><span id="totalPrice"><fmt:formatNumber
-                                value="${f:h(cart.totalAmount)}" type="CURRENCY"
-                                currencySymbol="&yen;" maxFractionDigits="0" /></span></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-    </body>
-    </html>
+            </c:forEach>
+            <tr>
+                <td>Total</td>
+                <td id="totalPrice"><fmt:formatNumber value="${f:h(cart.totalAmount)}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
 
 
 
@@ -2148,7 +2044,7 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
 しかし、商品追加後に遷移する画面は、常に「book」カテゴリの1ページ目となっている。
 
 本チュートリアルでは、選択カテゴリやページ番号といった商品検索情報は注文が完了するまで保持する仕様となっている。
-そのため、商品追加後やアカウント更新画面から戻ってきたきたときに前の状態に遷移するように実装を修正する。
+そのため、商品追加後やアカウント更新画面から戻ってきたときに前の状態に遷移するように実装を修正する。
 
 
 :ref:`development_policy` で説明したとおり、商品検索情報はセッションスコープのBeanとして管理する。
@@ -2243,7 +2139,7 @@ JSPもすでに作成されているため、以下に示すコードをbodyタ�
     * - | (1)
       - | component-scanの対象となるように\ ``@Component``\ アノテーションを指定する
     * - | (2)
-      - | Beanのスコープを\ ``"session"``\ にする。また、proxyMode 属性で\ ``"ScopedProxyMode.TARGET_CLASS"``\ を指定し、scoped-proxyを有効にする。
+      - | Beanのスコープを\ ``session``\ にする。また、proxyMode 属性で\ ``ScopedProxyMode.TARGET_CLASS``\ を指定し、scoped-proxyを有効にする。
 
 
 また、component-scanの対象となるbase-packageをBean定義ファイルに指定する必要がある。 しかし、本チュートリアルでは作成済みのBean定義ファイルにすでに以下の記述があるため、新たに記述を追加する必要はない。
@@ -2535,7 +2431,7 @@ Controllerを作成する。
     * - 項番
       - 説明
     * - | (1)
-      - | セッションスコープのBeanをDIコンテナからから取得する。
+      - | セッションスコープのBeanをDIコンテナから取得する。
     * - | (2)
       - | セッションスコープのBeanのデータを削除する。
 
@@ -2550,84 +2446,62 @@ JSPの作成
 
 .. code-block:: jsp
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8" />
-    <title>View Cart Page</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
-    </head>
-    <body>
+    <sec:authentication property="principal" var="userDetails" />
 
-        <sec:authentication property="principal" var="userDetails" />
+    <div style="display: inline-flex">
+        welcome&nbsp;&nbsp; <span id="userName">${f:h(userDetails.account.name)}</span>
+        <form:form method="post" action="${pageContext.request.contextPath}/logout">
+            <input type="submit" id="logout" value="logout" />
+        </form:form>
+        <form method="get" action="${pageContext.request.contextPath}/account/update">
+            <input type="submit" name="form1" id="updateAccount" value="Account Update" />
+        </form>
+    </div>
+    <br>
+    <br>
 
-        <div style="display: inline-flex">
-            welcome ${f:h(userDetails.account.name)}
-            <form:form method="post"
-                action="${pageContext.request.contextPath}/logout">
-                <input type="submit" id="logout" value="logout" />
-            </form:form>
-            <form method="get"
-                action="${pageContext.request.contextPath}/account/update">
-                <input type="submit" name="form1" id="updateAccount"
-                    value="Account Update" />
-            </form>
-        </div>
-        <br>
-        <br>
-
-        <div>
-            <spring:eval var="cart" expression="@cart" />
-            <form:form method="post"
-                action="${pageContext.request.contextPath}/cart"
-                modelAttribute="cartForm">
-                <form:errors path="removedItemsIds" cssClass="error-messages" />
-                <t:messagesPanel />
-                <table>
+    <div>
+        <spring:eval var="cart" expression="@cart" />
+        <form:form method="post"
+            action="${pageContext.request.contextPath}/cart"
+            modelAttribute="cartForm">
+            <form:errors path="removedItemsIds" cssClass="error-messages" />
+            <t:messagesPanel />
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Remove</th>
+                </tr>
+                <c:forEach items="${cart.cartItems}" var="cartItem" varStatus="status">
                     <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Remove</th>
+                        <td id="itemName${status.index}">${f:h(cartItem.goods.name)}</td>
+                        <td id="itemPrice${status.index}"><fmt:formatNumber value="${cartItem.goods.price}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+                        <td id="itemQuantity${status.index}">${f:h(cartItem.quantity)}</td>
+                        <%-- (1) --%>
+                        <td><input type="checkbox" name="removedItemsIds" id="removedItemsIds${status.index}" value="${f:h(cartItem.goods.id)}" /></td>
                     </tr>
-                    <c:forEach items="${cart.cartItems}" var="cartItem"
-                        varStatus="status">
-                        <tr>
-                            <td><span id="itemName${status.index}">${f:h(cartItem.goods.name)}</span></td>
-                            <td><span id="itemPrice${status.index}"><fmt:formatNumber
-                                        value="${cartItem.goods.price}" type="CURRENCY"
-                                        currencySymbol="&yen;" maxFractionDigits="0" /></span></td>
-                            <td><span id="itemQuantity${status.index}">${f:h(cartItem.quantity)}</span></td>
-                            <%-- (1) --%>
-                            <td><input type="checkbox" name="removedItemsIds"
-                                id="removedItemsIds${status.index}"
-                                value="${f:h(cartItem.goods.id)}" /></td>
-                        </tr>
-                    </c:forEach>
-                    <tr>
-                        <td>Total</td>
-                        <td><span id="totalPrice"><fmt:formatNumber
-                                    value="${f:h(cart.totalAmount)}" type="CURRENCY"
-                                    currencySymbol="&yen;" maxFractionDigits="0" /></span></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-                <input type="submit" id="remove" value="remove" />
-            </form:form>
-        </div>
+                </c:forEach>
+                <tr>
+                    <td>Total</td>
+                    <td id="totalPrice"><fmt:formatNumber value="${f:h(cart.totalAmount)}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <input type="submit" id="remove" value="remove" />
+        </form:form>
+    </div>
 
-        <div style="display: inline-flex">
-            <form method="get" action="${pageContext.request.contextPath}/order">
-                <input type="submit" id="confirm" name="confirm"
-                    value="confirm your order" />
-            </form>
-            <form method="get" action="${pageContext.request.contextPath}/goods">
-                <input type="submit" id="home" value="home" />
-            </form>
-        </div>
-    </body>
-    </html>
+    <div style="display: inline-flex">
+        <form method="get" action="${pageContext.request.contextPath}/order">
+            <input type="submit" id="confirm" name="confirm" value="confirm your order" />
+        </form>
+        <form method="get" action="${pageContext.request.contextPath}/goods">
+            <input type="submit" id="home" value="home" />
+        </form>
+    </div>
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -2778,7 +2652,7 @@ Controllerを作成する。
     * - 項番
       - 説明
     * - | (1)
-      - | セッションスコープのBeanをDIコンテナからから取得する。
+      - | セッションスコープのBeanをDIコンテナから取得する。
     * - | (2)
       - | ドメイン層にあるServiceのメソッドにて、セッションスコープのBeanの中身を空にしている。
         | これによりセッションスコープのBeanの破棄が行われたことになる。
@@ -2793,7 +2667,7 @@ Controllerを作成する。
 
 .. warning::
 
-    セッションスコープのBeanの破棄を行う方法は@SessionAttributesで管理させるオブジェクトの破棄方法とは異なる。
+    セッションスコープのBeanの破棄を行う方法は ``@SessionAttributes`` で管理させるオブジェクトの破棄方法とは異なる。
     セッションスコープBeanの破棄はDIコンテナに任せるべきであり、アプリケーションから破棄すべきでない。
     そのため、セッションスコープのBeanの破棄を行うには、セッションスコープBeanのフィールドをリセットするだけで良い。
     セッションタイムアウト時またはログアウト時にBean自体が破棄される。
@@ -2808,110 +2682,90 @@ JSPの作成
 
 .. code-block:: jsp
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8" />
-    <title>Order Page</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
-    </head>
-    <body>
+    <sec:authentication property="principal" var="userDetails" />
 
-        <sec:authentication property="principal" var="userDetails" />
+    <div style="display: inline-flex">
+        welcome&nbsp;&nbsp; <span id="userName">${f:h(userDetails.account.name)}</span>
+        <form:form method="post"
+            action="${pageContext.request.contextPath}/logout">
+            <input type="submit" id="logout" value="logout" />
+        </form:form>
+        <form method="get"
+            action="${pageContext.request.contextPath}/account/update">
+            <input type="submit" name="form1" id="updateAccount"
+                value="Account Update" />
+        </form>
+    </div>
+    <br>
+    <br>
 
-        <div style="display: inline-flex">
-            welcome ${f:h(userDetails.account.name)}
-            <form:form method="post"
-                action="${pageContext.request.contextPath}/logout">
-                <input type="submit" id="logout" value="logout" />
-            </form:form>
-            <form method="get"
-                action="${pageContext.request.contextPath}/account/update">
-                <input type="submit" name="form1" id="updateAccount"
-                    value="Account Update" />
-            </form>
-        </div>
-        <br>
-        <br>
+    <div>
+        <spring:eval var="cart" expression="@cart" />
 
-        <div>
-            <spring:eval var="cart" expression="@cart" />
+        <h3>Below items will be ordered. Please push "order" button if it's OK.</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            <c:forEach items="${cart.cartItems}" var="cartItem" varStatus="status">
+                <tr>
+                    <td id="itemName${status.index}">${f:h(cartItem.goods.name)}</td>
+                    <td id="itemPrice${status.index}"><fmt:formatNumber value="${cartItem.goods.price}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+                    <td id="itemQuantity${status.index}">${f:h(cartItem.quantity)}</td>
+                </tr>
+            </c:forEach>
+            <tr>
+                <td>Total</td>
+                <td id="totalPrice"><fmt:formatNumber value="${f:h(cart.totalAmount)}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+                <td></td>
+            </tr>
+        </table>
 
-            <h3>Below items will be ordered. Please push "order" button if
-                it's OK.</h3>
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                </tr>
-                <c:forEach items="${cart.cartItems}" var="cartItem"
-                    varStatus="status">
-                    <tr>
-                        <td><span id="itemName${status.index}">${f:h(cartItem.goods.name)}</span></td>
-                        <td><span id="itemPrice${status.index}"><fmt:formatNumber
-                                    value="${cartItem.goods.price}" type="CURRENCY"
-                                    currencySymbol="&yen;" maxFractionDigits="0" /></span></td>
-                        <td><span id="itemQuantity${status.index}">${f:h(cartItem.quantity)}</span></td>
-                    </tr>
-                </c:forEach>
-                <tr>
-                    <td>Total</td>
-                    <td><span id="totalPrice"><fmt:formatNumber
-                                value="${f:h(cart.totalAmount)}" type="CURRENCY"
-                                currencySymbol="&yen;" maxFractionDigits="0" /></span></td>
-                    <td></td>
-                </tr>
-            </table>
-
-            <table>
-                <tr>
-                    <td><label for="name">name</label></td>
-                    <td><span id="name">${f:h(account.name)}</span></td>
-                </tr>
-                <tr>
-                    <td><label for="email">e-mail</label></td>
-                    <td><span id="email">${f:h(account.email)}</span></td>
-                </tr>
-                <tr>
-                    <td><label for="zip">zip</label></td>
-                    <td><span id="zip">${f:h(account.zip)}</span></td>
-                </tr>
-                <tr>
-                    <td><label for="address">address</label></td>
-                    <td><span id="address">${f:h(account.address)}</span></td>
-                </tr>
-                <tr>
-                    <%-- (1) --%>
-                    <td>payment</td>
-                    <td><span id="payment"><c:choose>
-                                <c:when test="${empty account.cardNumber}">
-                                cash
-                            </c:when>
-                                <c:otherwise>
-                                card (card number : ****-****-****-${f:h(account.lastFourOfCardNumber)})
-                            </c:otherwise>
-                            </c:choose></span></td>
-                </tr>
-            </table>
-        </div>
-        <div style="display: inline-flex">
-            <form:form method="post"
-                action="${pageContext.request.contextPath}/order">
-                <input type="hidden" name="signature" value="${f:h(signature)}" />
-                <input type="submit" id="order" value="order" />
-            </form:form>
-            <form method="get" action="${pageContext.request.contextPath}/cart">
-                <input type="submit" id="back" value="back" />
-            </form>
-        </div>
-        <div>
-            <form method="get" action="${pageContext.request.contextPath}/goods">
-                <input type="submit" id="home" value="home" />
-            </form>
-        </div>
-    </body>
-    </html>
+        <table>
+            <tr>
+                <td><label for="name">name</label></td>
+                <td id="name">${f:h(account.name)}</td>
+            </tr>
+            <tr>
+                <td><label for="email">e-mail</label></td>
+                <td id="email">${f:h(account.email)}</td>
+            </tr>
+            <tr>
+                <td><label for="zip">zip</label></td>
+                <td id="zip">${f:h(account.zip)}</td>
+            </tr>
+            <tr>
+                <td><label for="address">address</label></td>
+                <td id="address">${f:h(account.address)}</td>
+            </tr>
+            <tr>
+                <%-- (1) --%>
+                <td>payment</td>
+                <td id="payment">
+                    <c:choose>
+                        <c:when test="${empty account.cardNumber}">cash</c:when>
+                        <c:otherwise>card (card number : ****-****-****-${f:h(account.lastFourOfCardNumber)})</c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="display: inline-flex">
+        <form:form method="post" action="${pageContext.request.contextPath}/order">
+            <input type="hidden" name="signature" value="${f:h(signature)}" />
+            <input type="submit" id="order" value="order" />
+        </form:form>
+        <form method="get" action="${pageContext.request.contextPath}/cart">
+            <input type="submit" id="back" value="back" />
+        </form>
+    </div>
+    <div>
+        <form method="get" action="${pageContext.request.contextPath}/goods">
+            <input type="submit" id="home" value="home" />
+        </form>
+    </div>
 
 
 
@@ -2934,78 +2788,58 @@ JSPの作成
 
 .. code-block:: jsp
 
+    <sec:authentication property="principal" var="userDetails" />
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8" />
-    <title>Order Page</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/styles.css">
-    </head>
-    <body>
+    <div style="display: inline-flex">
+        welcome&nbsp;&nbsp; <span id="userName">${f:h(userDetails.account.name)}</span>
+        <form:form method="post" action="${pageContext.request.contextPath}/logout">
+            <input type="submit" id="logout" value="logout" />
+        </form:form>
+        <form method="get" action="${pageContext.request.contextPath}/account/update">
+            <input type="submit" name="form1" id="updateAccount" value="Account Update" />
+        </form>
+    </div>
+    <br>
+    <br>
 
-        <sec:authentication property="principal" var="userDetails" />
+    <div>
 
-        <div style="display: inline-flex">
-            welcome ${f:h(userDetails.account.name)}
-            <form:form method="post"
-                action="${pageContext.request.contextPath}/logout">
-                <input type="submit" id="logout" value="logout" />
-            </form:form>
-            <form method="get"
-                action="${pageContext.request.contextPath}/account/update">
-                <input type="submit" name="form1" id="updateAccount"
-                    value="Account Update" />
-            </form>
-        </div>
-        <br>
-        <br>
-
-        <div>
-
-            <h3>Your order has been accepted</h3>
-            <table>
+        <h3>Your order has been accepted</h3>
+        <table>
+            <tr>
+                <td><label for="orderNumber">order number</label></td>
+                <td id="orderNumber">${f:h(order.id)}</td>
+            </tr>
+            <tr>
+                <td><label for="orderDate">order date</label></td>
+                <td id="orderDate"><fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd　hh:mm:ss" /></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            <c:forEach items="${order.orderLines}" var="orderLine" varStatus="status">
                 <tr>
-                    <td><label for="orderNumber">order number</label></td>
-                    <td><span id="orderNumber">${f:h(order.id)}</span></td>
+                    <td id="itemName${status.index}">${f:h(orderLine.goods.name)}</td>
+                    <td id="itemPrice${status.index}"><fmt:formatNumber value="${orderLine.goods.price}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+                    <td id="itemQuantity${status.index}">${f:h(orderLine.quantity)}</td>
                 </tr>
-                <tr>
-                    <td><label for="orderDate">order date</label></td>
-                    <td><span id="orderDate"><fmt:formatDate
-                                value="${order.orderDate}" pattern="yyyy-MM-dd　hh:mm:ss" /></span></td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                </tr>
-                <c:forEach items="${order.orderLines}" var="orderLine" varStatus="status">
-                    <tr>
-                        <td><span id="itemName${status.index}">${f:h(orderLine.goods.name)}</span></td>
-                        <td><span id="itemPrice${status.index}"><fmt:formatNumber
-                                    value="${orderLine.goods.price}" type="CURRENCY"
-                                    currencySymbol="&yen;" maxFractionDigits="0" /></span></td>
-                        <td><span id="itemQuantity${status.index}">${f:h(orderLine.quantity)}</span></td>
-                    </tr>
-                </c:forEach>
-                <tr>
-                    <td>Total</td>
-                    <td><span id="totalPrice"><fmt:formatNumber
-                                value="${f:h(order.totalAmount)}" type="CURRENCY"
-                                currencySymbol="&yen;" maxFractionDigits="0" /></span></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <form method="get" action="${pageContext.request.contextPath}/goods">
-                <input type="submit" id="home" value="home" />
-            </form>
-        </div>
-    </body>
-    </html>
+            </c:forEach>
+            <tr>
+                <td>Total</td>
+                <td id="totalPrice"><fmt:formatNumber value="${f:h(order.totalAmount)}" type="CURRENCY" currencySymbol="&yen;" maxFractionDigits="0" /></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <form method="get" action="${pageContext.request.contextPath}/goods">
+            <input type="submit" id="home" value="home" />
+        </form>
+    </div>
 
 動作確認
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3113,7 +2947,7 @@ JSPの作成
     * - 項番
       - 説明
     * - | (1)
-      - | sec:session-managementタグのinvalid-session-url属性にタイムアウト後のリクエストを検知した際の遷移先を記述する。
+      - | ``sec:session-management`` タグの ``invalid-session-url`` 属性にタイムアウト後のリクエストを検知した際の遷移先を記述する。
 
 
 
@@ -3129,7 +2963,7 @@ JSPの作成
     * セッションを利用するか否かの判断フローの一例
     * セッション中のデータの破棄
 * 本FWにおけるセッションの具体的な利用方法
-    * @SessionAttributesを使用する方法
+    * ``@SessionAttributes`` を使用する方法
     * セッションスコープのBeanを使用する方法
     * 各利用方法におけるセッション内データの参照方法
     * 各利用方法におけるセッションの破棄方法
