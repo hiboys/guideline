@@ -1997,14 +1997,60 @@ SimpleI18nCodeListをJSPから直接参照する方法
             </util:map>
         </property>
     </bean>
+    
 
+**プロパティファイル**
+
+.. code-block:: properties
+
+    cdls.simpleI18nCodeList.fallback.locale = en
+
+**Controllerクラス**
+
+.. code-block:: java
+
+
+    package com.example.sample.app.codelist;
+
+    ...
+    
+    @Controller
+    public class SampleController {
+        
+        @Value("${cdls.simpleI18nCodeList.fallback.locale}") // (1)
+        private Locale fallBackLocale;
+
+        @RequestMapping("sample") 
+        public String hello(Model model, HttpServletRequest request) {
+            model.addAttribute("requestContextUtilsLocale", RequestContextUtils
+                .getLocale(request)); // (2)
+            model.addAttribute("fallBackLocale",fallBackLocale); // (3)
+
+            return "welecome/hello"
+        }
+    }
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+   :header-rows: 1
+   :widths: 10 90
+
+
+   * - 項番
+     - 説明
+   * - | (1)
+     - | レスポンスのロケールがコードリストに定義されていなかった場合に、どのロケールのコードリストを取得するかをプロパティファイルから取得し、``fallBackLocale`` 変数に設定する。
+   * - | (2)
+     - | ``org.springframework.ui.Model`` に、``org.springframework.web.servlet.support.RequestContextUtils`` の ``getLocale`` メソッドで取得した ``Locale`` を設定する。
+         ``RequestContextUtils`` の ``getLocale`` メソッドは、引数に ``javax.servlet.http.HttpServletRequest`` を取るため、この場合は ``HttpServletRequest`` をハンドラメソッドの引数にとっても良い。
+   * - | (3)
+     - | ``Model`` に、``fallBackLocale`` 変数に設定する。``fallBackLocale`` 変数は、レスポンスのロケールがコードリストに定義されていなかった場合に使用されるロケールである。
 
 **jspの実装例**
 
 .. code-block:: jsp
 
-    <c:set var="fallbackLocale" value="en"/> <!-- (1) -->
-    <spring:eval var="prices" expression="@CL_I18N_PRICE.asMap(pageContext.response.locale).isEmpty() ? @CL_I18N_PRICE.asMap(fallbackLocale) : @CL_I18N_PRICE.asMap(pageContext.response.locale)" /> <!-- (2) -->
+    <spring:eval var="prices" expression="@CL_I18N_PRICE.asMap(requestContextUtilsLocale).isEmpty() ? @CL_I18N_PRICE.asMap(fallBackLocale) : @CL_I18N_PRICE.asMap(requestContextUtilsLocale)" /> <!-- (1) -->
     <form:select items="${prices}" path="prices" />
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -2015,8 +2061,6 @@ SimpleI18nCodeListをJSPから直接参照する方法
   * - 項番
     - 説明
   * - | (1)
-    - | レスポンスのロケールがコードリストに定義されていなかった場合に、どのロケールのコードリストを取得するか、``fallbackLocale`` 変数に設定する。
-  * - | (2)
     - | レスポンスのロケールに対応するコードリストを ``Map`` 形式で取得する。
       | レスポンスのロケールがコードリストに定義されていなかった場合、``fallbackLocale`` 変数に設定したロケールで対応するコードリストを ``Map`` 形式で取得する。
 
