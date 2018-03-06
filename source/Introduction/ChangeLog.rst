@@ -19,6 +19,12 @@
       - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
         記載内容の改善
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Pagination`
+      - 構成見直し
+
+        * Overviewを取得データの表示、ページネーションリンクの表示、ページネーション情報の表示の3点について説明するように変更(管理ID#3218)
       
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`

@@ -135,8 +135,8 @@ How to use
 
 ページネーション機能の説明及び本タグの使用方法は、「:doc:`./Pagination`」の以下の節を参照されたい。
 
-* ページネーションリンクについては、「:ref:`pagination_overview_paginationlink`」
-* 本タグのパラメータ値については、「:ref:`pagination_overview_paginationlink_taglibparameters`」
+* ページネーションリンクについては、「:ref:`pagination_overview_page_display_paginationlink`」
+* 本タグのパラメータ値については、「:ref:`pagination_overview_page_display_paginationlink_taglibparameters`」
 * 本タグを使用したJSPの基本的な実装方法については、「:ref:`pagination_how_to_use_make_jsp_basic_paginationlink`」
 * ページネーションリンクのレイアウトの変更方法については、「:ref:`pagination_how_to_use_make_jsp_layout`」
 
