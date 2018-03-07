@@ -2022,7 +2022,7 @@ SimpleI18nCodeListをJSPから直接参照する方法
 
         @RequestMapping("sample") 
         public String hello(Model model, HttpServletRequest request) {
-            model.addAttribute("requestContextUtilsLocale", RequestContextUtils
+            model.addAttribute("requestLocale", RequestContextUtils
                 .getLocale(request)); // (2)
             model.addAttribute("fallBackLocale",fallBackLocale); // (3)
 
@@ -2050,8 +2050,8 @@ SimpleI18nCodeListをJSPから直接参照する方法
 
 .. code-block:: jsp
 
-    <spring:eval var="prices" expression="@CL_I18N_PRICE.asMap(requestContextUtilsLocale).isEmpty() ? @CL_I18N_PRICE.asMap(fallBackLocale) : @CL_I18N_PRICE.asMap(requestContextUtilsLocale)" /> <!-- (1) -->
-    <form:select items="${prices}" path="prices" />
+    <spring:eval var="price" expression="@CL_I18N_PRICE.asMap(requestLocale).isEmpty() ? @CL_I18N_PRICE.asMap(fallBackLocale) : @CL_I18N_PRICE.asMap(requestLocale)" /> <!-- (1) -->
+    <form:select path="basePrice" items="${price}" />
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
