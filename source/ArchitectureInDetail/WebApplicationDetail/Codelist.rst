@@ -2039,7 +2039,7 @@ SimpleI18nCodeListをJSPから直接参照する方法
    * - | (1)
      - | レスポンスのロケールがコードリストに定義されていなかった場合に、どのロケールのコードリストを取得するかをプロパティファイルから取得し、``fallBackLocale`` 変数に設定する。
    * - | (2)
-     - | Model に、``org.springframework.web.servlet.support.RequestContextUtils`` の ``getLocale`` メソッドで取得したロケールを設定する。
+     - | ``org.springframework.web.servlet.support.RequestContextUtils`` 利用してリクエストで指定されたロケールを取得し、Modelに登録する。
          ``RequestContextUtils`` の ``getLocale`` メソッドは、引数に ``javax.servlet.http.HttpServletRequest`` を取るため、この場合は ``HttpServletRequest`` をハンドラメソッドの引数にとっても良い。
    * - | (3)
      - | Model に、``fallBackLocale`` 変数に設定する。``fallBackLocale`` 変数は、レスポンスのロケールがコードリストに定義されていなかった場合に使用されるロケールである。
