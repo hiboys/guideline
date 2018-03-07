@@ -10,6 +10,17 @@
       - 更新箇所
       - 更新内容
 
+    * - 2019-XX-XX
+      - \-
+      - 5.4.2 RELEASE版公開
+    
+    * -
+      - :doc:`../Tutorial/TutorialSession`
+      - 記載内容の修正(管理ID#3270 )
+
+        * \ JSPのコードをTiles形式に修正
+
+
     * - 2018-XX-XX
       - \-
       - 5.4.1 RELEASE版公開
