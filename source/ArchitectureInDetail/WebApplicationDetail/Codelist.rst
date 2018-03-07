@@ -2003,7 +2003,7 @@ SimpleI18nCodeListをJSPから直接参照する方法
 
 .. code-block:: properties
 
-    cdls.simpleI18nCodeList.fallback.locale = en
+    simpleI18nCodeList.fallback.locale = en
 
 **Controllerクラス**
 
@@ -2017,7 +2017,7 @@ SimpleI18nCodeListをJSPから直接参照する方法
     @Controller
     public class SampleController {
         
-        @Value("${cdls.simpleI18nCodeList.fallback.locale}") // (1)
+        @Value("${simpleI18nCodeList.fallback.locale}") // (1)
         private Locale fallBackLocale;
 
         @RequestMapping("sample") 
