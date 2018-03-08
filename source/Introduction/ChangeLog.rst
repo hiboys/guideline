@@ -10,7 +10,7 @@
       - 更新箇所
       - 更新内容
     
-    * - xxxx-xx-xx
+    * - 2018-xx-xx
       - \-
       - 5.5.0 RELEASE版公開
 
@@ -32,9 +32,13 @@
       
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
-      - 記載内容の修正(管理ID#3175 )
+      - 記載内容の修正
 
-        * 独自カスタマイズしたコードリストのBean定義方法を、コンポーネントスキャンからBean定義ファイルによる定義に変更
+        * 独自カスタマイズしたコードリストのBean定義方法を、コンポーネントスキャンからBean定義ファイルによる定義に変更(管理ID#3175 )
+        
+        記載内容の追加
+
+        * コードリストBeanをJSPから直接参照する方法を追加(管理ID#3246 )
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
