@@ -2015,7 +2015,7 @@ SimpleI18nCodeListをJSPから直接参照する方法
         @Value("${simpleI18nCodeList.fallback.locale}") // (1)
         private Locale fallBackLocale;
 
-        @RequestMapping(value = "price",method = RequestMethod.GET) 
+        @RequestMapping(value = "price", method = RequestMethod.GET) 
         public String price(Model model, HttpServletRequest request) {
             model.addAttribute("requestLocale", RequestContextUtils
                 .getLocale(request)); // (2)
