@@ -19,6 +19,10 @@
       - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
         記載内容の改善
+        
+        ViewResolverの定義についての修正(管理ID#3197)
+
+        * Spring 4.0以前からの\ ``<bean>``\要素を使用した定義方法を削除し、Spring 4.1以降の\ ``<mvc:view-resolvers>``\要素を使用した定義方法のみ解説するよう変更
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Pagination`

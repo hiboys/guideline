@@ -1752,30 +1752,17 @@ Cookieに値を書き込む
 HTMLを応答する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | ハンドラメソッドの実行結果をHTMLとして応答する場合、ハンドラメソッドの返り値は、JSPのView名を返却する。
-| JSPを使ってHTMLを生成する場合の\ ``ViewResolver``\ は、基本的には\ ``UrlBasedViewResolver``\ の継承クラス(\ ``InternalViewResolver``\ や \ ``TilesViewResolver``\ 等)となる。
+| JSPを使ってHTMLを生成する場合の\ ``ViewResolver``\ は、基本的には\ ``UrlBasedViewResolver``\ の継承クラス(\ ``InternalResourceViewResolver``\ や \ ``TilesViewResolver``\ 等)となる。
 
-| 以下では、JSP用の\ ``InternalViewResolver``\ を使用する場合の例を記載するが、画面レイアウトがテンプレート化されている場合は\ ``TilesViewResolver``\ を使用することを推奨する。
+| 以下では、JSP用の\ ``InternalResourceViewResolver``\ を使用する場合の例を記載するが、画面レイアウトがテンプレート化されている場合は\ ``TilesViewResolver``\ を使用することを推奨する。
 | \ ``TilesViewResolver``\ の使用方法については、 :doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout` を参照されたい。
 
 - spring-mvc.xml
 
- \ ``<bean>``\ 要素を使用する場合の定義例
-
- .. code-block:: xml
-
-    <!-- (1) -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/" /> <!-- (2) -->
-        <property name="suffix" value=".jsp" /> <!-- (3) -->
-        <property name="order" value="1" /> <!-- (4) -->
-    </bean>
-
- Spring Framework 4.1から追加された\ ``<mvc:view-resolvers>``\ 要素を使用する場合の定義例
-
  .. code-block:: xml
 
     <mvc:view-resolvers>
-        <mvc:jsp prefix="/WEB-INF/views/" /> <!-- (5) -->
+        <mvc:jsp prefix="/WEB-INF/views/" /> <!-- (1) -->
     </mvc:view-resolvers>
 
 
@@ -1787,7 +1774,7 @@ HTMLを応答する
     @RequestMapping("hello")
     public String hello() {
         // omitted
-        return "sample/hello"; // (6)
+        return "sample/hello"; // (2)
     }
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1798,21 +1785,7 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - JSP用の\ ``InternalViewResolver``\ を定義する。
-   * - | (2)
-     - JSPファイルが格納されているベースディレクトリ(ファイルパスのプレフィックス)を指定する。
-
-       プレフィックスを指定しておくことで、ControllerでView名を返却する際に、JSPの物理的な格納場所を意識する必要がなくなる。
-   * - | (3)
-     - JSPファイルの拡張子(ファイルパスのサフィックス)を指定する。
-
-       サフィックスを指定しておくことで、ControllerでView名を返却する際に、JSPの拡張子を意識する必要がなくなる。
-   * - | (4)
-     - 複数の\ ``ViewResolver``\ を指定した場合の実行順番を指定する。
-
-       \ ``Integer``\ の範囲で指定することが可能で、値が小さいものから順に実行される。
-   * - | (5)
-     - Spring Framework 4.1から追加された\ ``<mvc:jsp>``\ 要素に使用して、JSP用の\ ``InternalViewResolver``\ を定義する。
+     - \ ``<mvc:jsp>``\ 要素を使用して、JSP用の\ ``InternalResourceViewResolver``\ を定義する。
 
        * \ ``prefix``\ 属性には、JSPファイルが格納されているベースディレクトリ(ファイルパスのプレフィックス)を指定する。
        * \ ``suffix``\ 属性には、デフォルト値として\ ``.jsp``\が適用されているため、明示的に指定する必要はない。
@@ -1822,7 +1795,7 @@ HTMLを応答する
            \ ``<mvc:view-resolvers>``\ 要素を使用すると、\ ``ViewResolver``\ をシンプルに定義することが出来るため、
            本ガイドラインでは\ ``<mvc:view-resolvers>``\ を使用することを推奨する。
 
-   * - | (6)
+   * - | (2)
      - ハンドラメソッドの返り値として ``sample/hello`` というView名を返却した場合、 ``/WEB-INF/views/sample/hello.jsp`` が呼び出されてHTMLが応答される。
 
 
@@ -1865,29 +1838,11 @@ HTMLを応答する
 
 - spring-mvc.xml
 
- \ ``<bean>``\ 要素を使用する場合の定義例
-
- .. code-block:: xml
-    :emphasize-lines: 1-4
-
-    <!-- (1) -->
-    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-        <property name="order" value="0"/> <!-- (2) -->
-    </bean>
-
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/" />
-        <property name="suffix" value=".jsp" />
-        <property name="order" value="1" />
-    </bean>
-
- Spring Framework 4.1から追加された\ ``<mvc:view-resolvers>``\ 要素を使用する場合の定義例
-
  .. code-block:: xml
     :emphasize-lines: 2
 
     <mvc:view-resolvers>
-        <mvc:bean-name /> <!-- (3) -->
+        <mvc:bean-name /> <!-- (1) -->
         <mvc:jsp prefix="/WEB-INF/views/" />
     </mvc:view-resolvers>
 
@@ -1899,7 +1854,7 @@ HTMLを応答する
     @RequestMapping("report")
     public String report() {
         // omitted
-        return "sample/report"; // (4)
+        return "sample/report"; // (2)
     }
 
 
@@ -1908,8 +1863,8 @@ HTMLを応答する
  .. code-block:: java
     :emphasize-lines: 1-2
 
-    @Component("sample/report") // (5)
-    public class XxxExcelView extends AbstractExcelView { // (6)
+    @Component("sample/report") // (3)
+    public class XxxExcelView extends AbstractExcelView { // (4)
         @Override
         protected void buildExcelDocument(Map<String, Object> model,
                 HSSFWorkbook workbook, HttpServletRequest request,
@@ -1937,29 +1892,22 @@ HTMLを応答する
    * - 項番
      - 説明
    * - | (1)
-     - \ ``BeanNameViewResolver``\ を定義する。
-
-       \ ``BeanNameViewResolver``\ は、返却されたView名に一致するBeanをアプリケーションコンテキストから探してViewを解決するクラスとなっている。
-   * - | (2)
-     - JSP用の\ ``InternalViewResolver``\ や \ ``TilesViewResolver``\ と併用する場合は、これらの\ ``ViewResolver``\ より、高い優先度を指定する事を推奨する。
-       上記例では、 "``0``" を指定することで、\ ``InternalViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
-   * - | (3)
-     - Spring Framework 4.1から追加された\ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
+     - \ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
 
        \ ``<mvc:view-resolvers>``\ 要素を使用して\ ``ViewResolver``\ を定義する場合は、子要素に指定する\ ``ViewResolver``\の定義順が優先順位となる。
-       上記例では、JSP用の\ ``InternalViewResolver``\を定義するための要素(\ ``<mvc:jsp>``\)より上に定義することで、JSP用の\ ``InternalViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
+       上記例では、JSP用の\ ``InternalResourceViewResolver``\を定義するための要素(\ ``<mvc:jsp>``\)より上に定義することで、JSP用の\ ``InternalResourceViewResolver``\ より先に\ ``BeanNameViewResolver``\によるView解決が行われる。
 
        .. note::
 
            \ ``<mvc:view-resolvers>``\ 要素を使用すると、\ ``ViewResolver``\ をシンプルに定義することが出来るため、
            本ガイドラインでは\ ``<mvc:view-resolvers>``\ を使用することを推奨する。
-   * - | (4)
+   * - | (2)
      - ハンドラメソッドの返り値として ``sample/report`` というView名を返却した場合、 (5)でBean登録されたViewインスタンスによって生成されたデータがダウンロードデータとして応答される。
-   * - | (5)
+   * - | (3)
      - コンポーネントの名前にView名を指定して、ViewオブジェクトをBeanとして登録する。
 
        上記例では、 ``sample/report`` というbean名(View名)で ``x.y.z.app.views.XxxExcelView`` のインスタンスがBean登録される。
-   * - | (6)
+   * - | (4)
      - Viewの実装例。
 
        上記例では、 ``org.springframework.web.servlet.view.document.AbstractExcelView`` を継承し、Excelデータを生成するViewクラスの実装となる。
