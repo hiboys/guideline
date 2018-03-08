@@ -2007,24 +2007,21 @@ SimpleI18nCodeListをJSPから直接参照する方法
 
 .. code-block:: java
 
-
-    package com.example.sample.app.codelist;
-
     ...
     
     @Controller
-    public class SampleController {
+    public class OrderController {
         
         @Value("${simpleI18nCodeList.fallback.locale}") // (1)
         private Locale fallBackLocale;
 
-        @RequestMapping("sample") 
-        public String hello(Model model, HttpServletRequest request) {
+        @RequestMapping(value = "price",method = RequestMethod.GET) 
+        public String price(Model model, HttpServletRequest request) {
             model.addAttribute("requestLocale", RequestContextUtils
                 .getLocale(request)); // (2)
             model.addAttribute("fallBackLocale",fallBackLocale); // (3)
 
-            return "welecome/hello"
+            return "order/price";
         }
     }
 
