@@ -265,21 +265,6 @@ Spring MVCの設定方法を理解するために、生成されたSpring MVCの
    * - | (3)
      - JSP用の\ ``ViewResolver``\ を指定し、JSPファイルの配置場所を定義する。
 
-       .. tip::
-
-           \ ``<mvc:view-resolvers>``\ 要素はSpring Framework 4.1から追加されたXML要素である。
-           \ ``<mvc:view-resolvers>``\ 要素を使用すると、\ ``ViewResolver``\ をシンプルに定義することが出来る。
-
-           従来通り\ ``<bean>``\ 要素を使用した場合の定義例を以下に示す。
-
-            .. code-block:: xml
-
-               <bean id="viewResolver"
-                   class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                   <property name="prefix" value="/WEB-INF/views/" />
-                   <property name="suffix" value=".jsp" />
-               </bean>
-
 |
 
 次に、Welcomeページを表示するためのController (\ ``com.example.helloworld.app.welcome.HelloController``\ ) について、簡単に説明する。
