@@ -2391,7 +2391,7 @@ DHCを開いてURLに\ ``localhost:8080/todo/api/v1/todos``\ を入力し、メ�
                 FROM
                     todo [42102-182]
         ### The error may exist in com/example/todo/domain/repository/todo/TodoRepository.xml
-        ### The error may involve com/example/todo.domain.repository.todo.TodoRepository.findAll
+        ### The error may involve com.example.todo.domain.repository.todo.TodoRepository.findAll
         ### The error occurred while executing a query
 
         ... (omitted)
