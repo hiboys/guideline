@@ -3946,20 +3946,6 @@ spring-mvc.xml
      - | \ ``ViewResolver``\ の設定を行う。
        | この設定により、例えばコントローラからview名として\ ``hello``\が返却された場合には\ ``/WEB-INF/views/hello.jsp``\ が実行される。
 
-       .. tip::
-
-           \ ``<mvc:view-resolvers>``\ 要素はSpring Framework 4.1から追加されたXML要素である。
-           \ ``<mvc:view-resolvers>``\ 要素を使用すると、\ ``ViewResolver``\ をシンプルに定義することが出来る。
-
-           従来通り\ ``<bean>``\ 要素を使用した場合の定義例を以下に示す。
-
-            .. code-block:: xml
-
-               <bean id="viewResolver"
-                   class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                   <property name="prefix" value="/WEB-INF/views/" />
-                   <property name="suffix" value=".jsp" />
-               </bean>
 
 .. raw:: latex
 
