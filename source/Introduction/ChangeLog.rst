@@ -13,6 +13,12 @@
     * - 2019-XX-XX
       - \-
       - 5.4.2 RELEASE版公開
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Pagination`
+      - 構成見直し
+
+        * Overviewを取得データの表示、ページネーションリンクの表示、ページネーション情報の表示の3点について説明するように変更(管理ID#3218)
     
     * -
       - 全般
