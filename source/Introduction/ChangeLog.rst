@@ -42,16 +42,15 @@
 
         * コードリストBeanをJSPから直接参照する方法を追加(管理ID#3246 )
 
-
-    * - 2018-XX-XX
-      - \-
-      - 5.4.1 RELEASE版公開
-    
     * - 
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
       - 記載内容の修正
 
         * 独自カスタマイズしたコードリストのBean定義方法を、コンポーネントスキャンからBean定義ファイルによる定義に変更(管理ID#3175 )
+
+    * - 2018-XX-XX
+      - \-
+      - 5.4.1 RELEASE版公開
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
