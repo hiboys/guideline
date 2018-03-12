@@ -40,11 +40,11 @@
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
       - 記載内容の追加
 
-        * コードリストBeanをJSPから直接参照する方法を追加(管理ID#3246 )
+        * コードリストBeanをJSPから直接参照する方法を追加(管理ID#3246)
 
         記載内容の修正
 
-        * 独自カスタマイズしたコードリストのBean定義方法を、コンポーネントスキャンからBean定義ファイルによる定義に変更(管理ID#3175 )
+        * 独自カスタマイズしたコードリストのBean定義方法を、コンポーネントスキャンからBean定義ファイルによる定義に変更(管理ID#3175)
 
     * - 2018-XX-XX
       - \-
@@ -54,7 +54,7 @@
       - :doc:`../Tutorial/TutorialTodo`
       - 記載内容の修正・追加
 
-        * 一覧表示機能作成時に、登録機能の一部を作成していた部分を変更し、一覧表示機能の動作確認できるように、コード例を追加(管理ID#3233 )
+        * 一覧表示機能作成時に、登録機能の一部を作成していた部分を変更し、一覧表示機能の動作確認できるように、コード例を追加(管理ID#3233)
     * -
       - :doc:`../Security/OAuth`
       - 記載内容の修正
@@ -64,19 +64,19 @@
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`
       - 記載内容の修正
 
-        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正(管理ID#3276 )
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正(管理ID#3276)
     
     * -
       - :doc:`../Security/Authentication`
       - 記載内容の追加
 
-        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの説明を追加(管理ID#3276 )
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの説明を追加(管理ID#3276)
     
     * -
       - :doc:`../Tutorial/TutorialSecurity`
       - 記載内容の修正
 
-        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正(管理ID#3276 )
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正(管理ID#3276)
 
     * - 2018-03-16
       - \-
