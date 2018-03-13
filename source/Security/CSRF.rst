@@ -261,9 +261,9 @@ Ajaxを使ってリクエストを送信する場合は、HTMLのmetaタグと�
 
     <head>
         <!-- omitted -->
-        <meta name="_csrf_parameter" th:content="${_csrf.parameterName}" /> <!-- (1) -->
-        <meta name="_csrf_header" th:content="${_csrf.headerName}" /> <!-- (1) -->
-        <meta name="_csrf" th:content="${_csrf.token}" /> <!-- (1) -->
+        <meta name="_csrf_parameter" th:content="${_csrf.parameterName}"> <!-- (1) -->
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"> <!-- (1) -->
+        <meta name="_csrf" th:content="${_csrf.token}"> <!-- (1) -->
         <!-- omitted -->
     </head>
 
@@ -286,10 +286,10 @@ Ajaxを使ってリクエストを送信する場合は、HTMLのmetaタグと�
 
     <head>
         <!-- omitted -->
-        <meta name="_csrf_parameter" content="_csrf" />
-        <meta name="_csrf_header" content="X-CSRF-TOKEN" /> <!-- ヘッダ名 -->
+        <meta name="_csrf_parameter" content="_csrf">
+        <meta name="_csrf_header" content="X-CSRF-TOKEN"> <!-- ヘッダ名 -->
         <meta name="_csrf"
-              content="63845086-6b57-4261-8440-97a3c6fa6b99" /> <!-- トークン値 -->
+              content="63845086-6b57-4261-8440-97a3c6fa6b99"> <!-- トークン値 -->
         <!-- omitted -->
     </head>
 

@@ -474,24 +474,14 @@ web.xmlの修正
             <url-pattern>/</url-pattern>
         </servlet-mapping>
     
-        <jsp-config>
-            <jsp-property-group>
-                <url-pattern>*.jsp</url-pattern>
-                <el-ignored>false</el-ignored>
-                <page-encoding>UTF-8</page-encoding>
-                <scripting-invalid>false</scripting-invalid>
-                <include-prelude>/WEB-INF/views/common/include.jsp</include-prelude>
-            </jsp-property-group>
-        </jsp-config>
-    
         <error-page>
             <error-code>500</error-code>
-            <location>/WEB-INF/views/common/error/systemError.jsp</location>
+            <location>/common/error/systemError</location>
         </error-page>
 
         <error-page>
             <error-code>404</error-code>
-            <location>/WEB-INF/views/common/error/resourceNotFoundError.jsp</location>
+            <location>/common/error/resourceNotFoundError</location>
         </error-page>
 
         <error-page>
@@ -685,7 +675,7 @@ REST API用のSpring Securityの定義追加
                         <bean
                             class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
                             <property name="errorPage"
-                                value="/WEB-INF/views/common/error/invalidCsrfTokenError.jsp" />
+                                value="/common/error/invalidCsrfTokenError" />
                         </bean>
                     </entry>
                     <entry
@@ -693,7 +683,7 @@ REST API用のSpring Securityの定義追加
                         <bean
                             class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
                             <property name="errorPage"
-                                value="/WEB-INF/views/common/error/missingCsrfTokenError.jsp" />
+                                value="/common/error/missingCsrfTokenError" />
                         </bean>
                     </entry>
                 </map>
@@ -702,7 +692,7 @@ REST API用のSpring Securityの定義追加
                 <bean
                     class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
                     <property name="errorPage"
-                        value="/WEB-INF/views/common/error/accessDeniedError.jsp" />
+                        value="/common/error/accessDeniedError" />
                 </bean>
             </constructor-arg>
         </bean>
