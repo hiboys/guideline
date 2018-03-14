@@ -1004,7 +1004,7 @@ Viewの実装
 | 先述のとおり、``#temporals`` では用途に応じて様々なメソッドを用意している。
 | 以下に、``#temporals`` が持つメソッドの一覧を示す。
 
-.. tabularcolumns:: |p{0.05\linewidth}|p{0.10\linewidth}|p{0.85\linewidth}|
+.. tabularcolumns:: |p{0.05\linewidth}|p{0.15\linewidth}|p{0.40\linewidth}|p{0.40\linewidth}|
 .. list-table:: **#temporalsのメソッド一覧**
    :header-rows: 1
    :widths: 5 15 40 40
