@@ -203,7 +203,7 @@ Controllerクラスの作成方法
 - `URI Template Patterns <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\
 - `URI Template Patterns with Regular Expressions <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates-regex>`_\
 - `Path Patterns <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-patterns>`_\
-- `Patterns with Placeholders <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-placeholders>`_\
+- `Path Patterns with Placeholders <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-placeholders>`_\
 
 |
 
@@ -2247,7 +2247,7 @@ Spring Frameworkでは、HTML formから送信されたリクエストパラメ�
 
     * `Spring Type Conversion <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/validation.html#core-convert>`_\
     * `Spring Field Formatting <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/validation.html#format>`_\
-    * `java.beans.PropertyEditor implementations <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/validation.html#beans-beans-conversion>`_\
+    * `Built-in PropertyEditor implementations <http://docs.spring.io/spring/docs/4.3.11.RELEASE/spring-framework-reference/html/validation.html#beans-beans-conversion>`_\
 
  .. warning::
 
