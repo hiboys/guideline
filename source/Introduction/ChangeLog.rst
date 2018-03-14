@@ -101,11 +101,6 @@
 
         Spring IO Platformのバージョン更新に伴い利用するOSSのバージョンを更新
 
-        CVE-2018-1199への対応のため、利用するOSSのバージョンを更新(管理ID#3300)
-        
-        * Spring Frameworkのバージョンを4.3.14に更新
-        * Spring Securityのバージョンを4.2.4に更新
-
     * -
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
       - 記載内容の追加
