@@ -10,9 +10,30 @@
       - 更新箇所
       - 更新内容
 
-    * - 2018-XX-XX
+    * - 2018-03-16
       - \-
-      - 1.6.0 RELEASE版公開
+      - 1.6.0 RC1版作成
+
+    * -
+      - Thymeleaf対応
+      - 以下のThymeleaf対応章を追加
+
+        * :doc:`../ArchitectureInDetail/WebApplicationDetail/Thymeleaf`
+        * :doc:`../ArchitectureInDetail/WebApplicationDetail/Pagination`
+        * :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
+        * :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
+        * :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload`
+        * :doc:`../ArchitectureInDetail/WebApplicationDetail/FileDownload`
+        * :doc:`../ArchitectureInDetail/WebApplicationDetail/Ajax`
+        * :doc:`../ArchitectureInDetail/WebApplicationDetail/HealthCheck`
+        * :doc:`../ArchitectureInDetail/GeneralFuncDetail/DateAndTime`
+        * :doc:`../ArchitectureInDetail/GeneralFuncDetail/JodaTime`
+        * :doc:`../Security/OAuth`
+        * :doc:`../Security/SecureLoginDemo`
+        * :doc:`../Tutorial/TutorialTodo`
+        * :doc:`../Tutorial/TutorialREST`
+        * :doc:`../Tutorial/TutorialSession`
+        * :doc:`../Tutorial/TutorialSecurity`
 
     * -
       - 全般
@@ -20,9 +41,23 @@
 
         記載内容の改善
 
-        ViewResolverの定義についての修正(管理ID#3197)
+        記載内容の修正・追加
 
-        * Spring 4.0以前からの\ ``<bean>``\要素を使用した定義方法を削除し、Spring 4.1以降の\ ``<mvc:view-resolvers>``\要素を使用した定義方法のみ解説するよう変更
+        * ViewResolverの定義について、Spring 4.0以前からの\ ``<bean>``\要素を使用した定義方法を削除し、Spring 4.1以降の\ ``<mvc:view-resolvers>``\要素を使用した定義方法のみ解説するよう変更
+
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの説明を修正
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Pagination`
+      - 構成見直し
+
+        * Overviewを取得データの表示、ページネーションリンクの表示、ページネーション情報の表示の3点について説明するように変更
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
+      - 記載内容の修正
+
+        * 独自カスタマイズしたコードリストのBean定義方法を、コンポーネントスキャンからBean定義ファイルによる定義に変更
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
