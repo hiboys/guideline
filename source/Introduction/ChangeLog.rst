@@ -20,9 +20,25 @@
 
         記載内容の改善
 
-        ViewResolverの定義についての修正(管理ID#3197)
+        ViewResolverの定義についての修正
 
         * Spring 4.0以前からの\ ``<bean>``\要素を使用した定義方法を削除し、Spring 4.1以降の\ ``<mvc:view-resolvers>``\要素を使用した定義方法のみ解説するよう変更
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Pagination`
+      - 構成見直し
+
+        * Overviewを取得データの表示、ページネーションリンクの表示、ページネーション情報の表示の3点について説明するように変更
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Codelist`
+      - 記載内容の修正
+
+        * 独自カスタマイズしたコードリストのBean定義方法を、コンポーネントスキャンからBean定義ファイルによる定義に変更
+
+        記載内容の追加
+
+        * コードリストBeanをJSPから直接参照する方法を追加
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
@@ -31,10 +47,34 @@
         * 一覧表示機能作成時に、登録機能の一部を作成していた部分を変更し、一覧表示機能の動作確認できるように、コード例を追加
 
     * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`
+      - 記載内容の修正
+
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正
+
+    * -
+      - :doc:`../Security/Authentication`
+      - 記載内容の追加
+
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの説明を追加
+
+    * -
+      - :doc:`../Tutorial/TutorialSecurity`
+      - 記載内容の修正
+
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正
+
+    * -
       - :doc:`../Tutorial/TutorialREST`
       - 記載内容の修正
 
         * spring-mvc-rest.xmlを作成する方法の説明を変更
+
+    * -
+      - :doc:`../Tutorial/TutorialSession`
+      - 記載内容の修正
+
+        * \ JSPのコードをTiles形式に修正
 
     * -
       - :doc:`../Security/OAuth`
