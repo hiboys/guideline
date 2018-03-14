@@ -1624,7 +1624,7 @@ HTTPレスポンスヘッダの\ ``Cache-Control``\ の設定により、ブラ�
    :width: 60%
 
 この場合でも二重送信自体は防止されているため、問題はない。
-バージョン5.0.0.RELEASE以降の\ :doc:`雛形プロジェクト <../../ImplementationAtEachLayer/CreateWebApplicationProject>`\ では、
+バージョン1.5.0.RELEASE以降の\ :doc:`雛形プロジェクト <../../ImplementationAtEachLayer/CreateWebApplicationProject>`\ では、
 \ :ref:`Spring Securityの機能 <SpringSecurityLinkageWithBrowser>`\ でキャッシュが無効になる設定が行われている。
 
 もしこの画面の表示が出る代わりにトランザクショントークンエラー画面を表示したい場合は、
