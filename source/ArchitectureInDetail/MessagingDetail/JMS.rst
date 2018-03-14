@@ -1192,7 +1192,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
 
  \ ``@JmsListener``\ アノテーションの主な属性の一覧を以下に示す。
- 詳細やその他の属性については、\ `@JmsListenerアノテーションのJavadoc <http://docs.spring.io/spring-framework/docs/4.3.11.RELEASE/javadoc-api/org/springframework/jms/annotation/JmsListener.html#destination-->`_\ を参照されたい。
+ 詳細やその他の属性については、\ `@JmsListenerアノテーションのJavadoc <https://docs.spring.io/spring-framework/docs/4.3.11.RELEASE/javadoc-api/org/springframework/jms/annotation/JmsListener.html>`_\ を参照されたい。
 
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.70\linewidth}|
