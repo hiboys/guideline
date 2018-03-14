@@ -20,9 +20,11 @@
 
         記載内容の改善
         
-        ViewResolverの定義についての修正(管理ID#3197)
+        記載内容の修正・追加
 
-        * Spring 4.0以前からの\ ``<bean>``\要素を使用した定義方法を削除し、Spring 4.1以降の\ ``<mvc:view-resolvers>``\要素を使用した定義方法のみ解説するよう変更
+        * ViewResolverの定義について、Spring 4.0以前からの\ ``<bean>``\要素を使用した定義方法を削除し、Spring 4.1以降の\ ``<mvc:view-resolvers>``\要素を使用した定義方法のみ解説するよう変更(管理ID#3197)
+
+        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの説明を修正(管理ID#3276 )
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Pagination`
@@ -45,24 +47,6 @@
       - 記載内容の修正・追加(管理ID#3233 )
 
         * 一覧表示機能作成時に、登録機能の一部を作成していた部分を変更し、一覧表示機能の動作確認できるように、コード例を追加
-        
-    * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`
-      - 記載内容の修正(管理ID#3276 )
-
-        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正
-    
-    * -
-      - :doc:`../Security/Authentication`
-      - 記載内容の追加(管理ID#3276 )
-
-        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの説明を追加
-    
-    * -
-      - :doc:`../Tutorial/TutorialSecurity`
-      - 記載内容の修正(管理ID#3276 )
-
-        * \ ``SPRING_SECURITY_LAST_EXCEPTION`` \ が格納されるスコープの誤記を修正
 
     * -
       - :doc:`../Tutorial/TutorialREST`
