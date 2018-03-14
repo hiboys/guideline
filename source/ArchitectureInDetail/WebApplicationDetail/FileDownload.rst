@@ -157,12 +157,7 @@ ViewResolverの定義
 \ ``org.springframework.web.servlet.view.BeanNameViewResolver``\ とは、
 Springのコンテキストで管理されたbean名を用いて実行するViewを選択するクラスである。
 
-\ ``BeanNameViewResolver``\ を使用する際は、通常使用する、
-
-* JSP用の\ ``ViewResolver``\(\ ``InternalResourceViewResolver``\)
-* Tiles用の\ ``ViewResolver``\(\ ``TilesViewResolver``\)
-
-より先に\ ``BeanNameViewResolver``\が実行されるように定義する事を推奨する。
+\ ``BeanNameViewResolver``\ を使用する際は、通常使用するThymeleaf用の\ ``ViewResolver``\(\ ``ThymeleafViewResolver``\)より先に\ ``BeanNameViewResolver``\が実行されるように定義する事を推奨する。
 
 .. note::
 
@@ -180,7 +175,9 @@ Springのコンテキストで管理されたbean名を用いて実行するView
 
     <mvc:view-resolvers>
         <mvc:bean-name /> <!-- (1) (2) -->
-        <mvc:jsp prefix="/WEB-INF/views/" />
+        <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+            <!-- omitted -->
+        </bean>
     </mvc:view-resolvers>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -193,7 +190,7 @@ Springのコンテキストで管理されたbean名を用いて実行するView
    * - | (1)
      - | \ ``<mvc:bean-name>``\ 要素を使用して、\ ``BeanNameViewResolver``\ を定義する。
    * - | (2)
-     - | \ ``<mvc:bean-name>``\ 要素を先頭に定義し、通常使用する\ ``ViewResolver``\ (JSP用の\ ``ViewResolver``\ )より優先度を高くする。
+     - | \ ``<mvc:bean-name>``\ 要素を先頭に定義し、通常使用する\ ``ViewResolver``\ (Thymeleaf用の\ ``ViewResolver``\ )より優先度を高くする。
 
 
 |
