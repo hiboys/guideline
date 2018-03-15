@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'TERASOLUNA Server Framework for Java (5.x) Development Guideline'
-copyright = u'© Copyright 2013-2017, NTT DATA Corporation. © Copyright 2017, NTT Corporation.'
+copyright = u'© Copyright 2013-2018, NTT DATA Corporation. © Copyright 2013-2018, NTT Corporation.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
