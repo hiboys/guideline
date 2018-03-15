@@ -1545,7 +1545,7 @@ STSで「todo」プロジェクトを右クリックし、「Run As」→「Run 
     
     以下のように、ドメイン層の作成で作成したTodoRepositoryImplを一時的に修正し初期データを登録することで、TODOの一覧が出力されることを確認できる。
     
-    なお、次節「11.1.4.2.3. Create TODOの実装」で実際にTODOを登録できるようになるため、一覧の出力が確認できたら削除して構わない。
+    なお、次節「\ :ref:`CreateTodoImplementation`\ 」で実際にTODOを登録できるようになるため、一覧の出力が確認できたら削除して構わない。
 
     * ``TodoRepositoryImpl.java``
 
@@ -1592,6 +1592,9 @@ STSで「todo」プロジェクトを右クリックし、「Run As」→「Run 
 
 
 |
+
+
+.. _CreateTodoImplementation:
 
 Create TODOの実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
